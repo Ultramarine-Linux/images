@@ -28,7 +28,7 @@ mediawriter
 # Office
 libreoffice-kf5
 
--gnome*
+-gnome-session
 
 %end
 %post

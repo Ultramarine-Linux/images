@@ -35,6 +35,7 @@ EOF
 ##Configuration
 
 #Edit Cyber Configuration
+touch /home/liveuser/.config/cyberos/themes.conf
 cat << 'EOF' > /home/liveuser/.config/cyberos/themes.conf
 [General]
 AccentColor=0
@@ -44,20 +45,8 @@ PixelRatio=1
 Wallpaper=/usr/share/backgrounds/images/default-16_9.png
 EOF
 
-#Autostart Installer
-cat << 'EOF' > /home/liveuser/.config/autostart/liveinst.desktop
-[Desktop Entry]
-Type=Application
-Exec=/usr/bin/liveinst
-Hidden=false
-NoDisplay=false
-Name=Install Ultramarine Linux
-X-GNOME-Autostart-enabled=true
-EOF
-
-
-
 #Cyber Dock
+touch /home/liveuser/.config/cyberos/dock_pinned.conf
 cat << 'EOF' > /home/liveuser/.config/cyberos/dock_pinned.conf
 [Anaconda]
 DesktopPath=
@@ -92,6 +81,18 @@ EOF
 mkdir -p /home/liveuser/.config/autostart
 cp -a /etc/xdg/autostart/org.kde.discover.notifier.desktop /home/liveuser/.config/autostart/
 echo 'Hidden=true' >> /home/liveuser/.config/autostart/org.kde.discover.notifier.desktop
+
+#Autostart Installer
+touch /home/liveuser/.config/autostart/liveinst.desktop
+cat << 'EOF' > /home/liveuser/.config/autostart/liveinst.desktop
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/liveinst
+Hidden=false
+NoDisplay=false
+Name=Install Ultramarine Linux
+X-GNOME-Autostart-enabled=true
+EOF
 
 
 # make sure to set the right permissions and selinux contexts

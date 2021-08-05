@@ -4,20 +4,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build Virtual Environment and Live CD",
+            "label": "Build Live CD",
             "type": "shell",
             "command": "./build.sh",
             "problemMatcher": []
-        },
-        {
-            "label": "Build Image",
-            "type": "shell",
-            "command": "sudo livemedia-creator --make-iso --tmp tmp/live/ --logfile livemedia.log --iso results/images/boot.iso --ks ultramarine-cyber.ks --nomacboot --no-virt && rm -rf tmp/",
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
         }
     ]
 }

@@ -33,6 +33,6 @@ stages:
       - job: iso-build
         steps:
           - script: bash ./build.sh
-          - publish: ./*.iso
+          - publish: ./build/*.iso
             artifact: live-image-cyber
             displayName: Cyber Desktop

@@ -3,7 +3,7 @@ name: Ultramarine Linux ISO Build
 on:
   push:
     branches:
-      - main
+      - mainproblem
 
 jobs:
   build:
@@ -28,4 +28,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Ultramarine Linux ISO
-          path: ./*.iso
+          path: ./build/*.iso

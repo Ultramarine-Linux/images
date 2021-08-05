@@ -14,6 +14,8 @@ livemedia-creator\
  --fs-label "Ultramarine-Linux-Live"\
  --location lorax/\
  --iso lorax/images/boot.iso\
- --no-virt
+ --no-virt\
+ --iso-only\
+ --resultdir build/
 rm -rf tmp/
 EOF

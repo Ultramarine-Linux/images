@@ -7,3 +7,4 @@ lorax/
 debugdata/
 pkglists/
 *pkgsizes.txt
+build/

@@ -3,7 +3,7 @@ name: Ultramarine Linux ISO Build
 on:
   push:
     branches:
-      - mainproblem
+      - main
 
 jobs:
   build:

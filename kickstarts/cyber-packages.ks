@@ -1,21 +1,14 @@
 
-%packages --excludeWeakdeps
-
-adwaita-gtk2-theme
-ark
-bluedevil
-bluez-hid2hci
-bluez-obexd
-bluez-tools
-okular
-phonon-qt5-backend-gstreamer
-plasma-discover
-plasma-discover-flatpak
-plasma-discover-notifier
-plasma-discover-offline-updates
-plasma-discover-packagekit
+%packages
+@core
+@standard
+@base-x
+@input-methods
+@dial-up
+@multimedia
+@fonts
+falkon
+calligra
 sddm
-spectacle
-svgpart
 
 %end

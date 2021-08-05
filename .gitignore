@@ -3,3 +3,7 @@ flattened.ks
 tmp/
 *.log
 *.iso
+lorax/
+debugdata/
+pkglists/
+*pkgsizes.txt

@@ -14,12 +14,17 @@ jobs:
       options: --privileged
     steps:
       - uses: actions/checkout@v2
+      - name: Cloning Git repo...
+        run: |
+          sudo dnf in -y git
+          git clone https://github.com/ultramarine-linux/ultramarine-kickstarts.git
+          cd ultramarine-kickstarts
       - name: Installing dependencies
-        run: curl -fsSL https://github.com/ultramarine-linux/ultramarine-kickstarts/raw/main/builddeps.sh | bash
+        run: ./builddeps.sh
       - name: Building the base Lorax image...
-        run: curl -fsSL https://github.com/ultramarine-linux/ultramarine-kickstarts/raw/main/build-lorax.sh | bash
+        run: ./build-lorax.sh
       - name: Building the ISO...
-        run: curl -fsSL https://github.com/ultramarine-linux/ultramarine-kickstarts/raw/main/build.sh | bash
+        run: ./build.sh
       - uses: actions/upload-artifact@v2
         with:
           name: Ultramarine Linux ISO

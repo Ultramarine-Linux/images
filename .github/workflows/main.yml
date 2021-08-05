@@ -1,0 +1,20 @@
+name: Ultramarine Linux ISO Build
+
+jobs:
+  build:
+    name: ISO Builder
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+      options: --privileged
+
+      steps:
+        - uses: actions/checkout@v2
+        - name: Installing dependencies
+          run: curl -fsSL https://github.com/ultramarine-linux/ultramarine-kickstarts/raw/main/builddeps.sh | bash
+        - name: Building the ISO...
+          run: curl -fsSL https://github.com/ultramarine-linux/ultramarine-kickstarts/raw/main/build.sh | bash
+        - uses: actions/upload-artifact@v2
+          with:
+            name: Ultramarine Linux ISO
+            path: *.iso

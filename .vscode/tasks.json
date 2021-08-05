@@ -12,6 +12,12 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Build Lorax Image then build ISO",
+            "type": "shell",
+            "command": "sudo -s <<EOF ./build-lorax.sh && ./build.sh EOF",
+            "problemMatcher": []
         }
     ]
 }

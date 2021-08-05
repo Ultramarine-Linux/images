@@ -7,7 +7,11 @@
             "label": "Build Live CD",
             "type": "shell",
             "command": "./build.sh",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }

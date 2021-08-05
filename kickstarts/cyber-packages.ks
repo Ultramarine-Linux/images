@@ -7,8 +7,6 @@
 @dial-up
 @multimedia
 @fonts
-falkon
-calligra
 sddm
 
 %end

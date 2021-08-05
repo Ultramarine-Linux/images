@@ -23,15 +23,19 @@ sddm
 @admin-tools
 
 fuse
-mediawriter
 
 # Office
 libreoffice-kf5
 
 -gnome-session
+-@ GNOME Desktop Environment 
 
 %end
 %post
-systemctl disable gdm
+
+#enable SDDM
 systemctl enable sddm
+
+
+
 %end

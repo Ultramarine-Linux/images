@@ -24,31 +24,69 @@ cat >> /etc/rc.d/init.d/livesys << EOF
 # set up autologin for user liveuser
 if [ -f /etc/sddm.conf ]; then
 sed -i 's/^#User=.*/User=liveuser/' /etc/sddm.conf
-sed -i "s/^#Session=.*/Session=\cyber-xsession/" /etc/sddm.conf
+sed -i "s/^#Session=.*/Session=cyber-session/" /etc/sddm.conf
 else
-cat > /etc/sddm.conf << SDDM_EOF
+cat << 'EOF' > /etc/sddm.conf
 [Autologin]
 User=liveuser
 Session=cyber-session
-SDDM_EOF
-fi
+EOF
 
-# add liveinst.desktop to favorites menu
-mkdir -p /home/liveuser/.config/
-cat > /home/liveuser/.config/kickoffrc << MENU_EOF
-[Favorites]
-FavoriteURLs=/usr/share/applications/firefox.desktop,/usr/share/applications/cyber-settings.desktop,/usr/share/applications/cyber-terminal.desktop,/usr/share/applications/liveinst.desktop
-MENU_EOF
+##Configuration
 
-# show liveinst.desktop on desktop and in menu
-sed -i 's/NoDisplay=true/NoDisplay=false/' /usr/share/applications/liveinst.desktop
-# set executable bit disable KDE security warning
-chmod +x /usr/share/applications/liveinst.desktop
-mkdir /home/liveuser/Desktop
-cp -a /usr/share/applications/liveinst.desktop /home/liveuser/Desktop/
+#Edit Cyber Configuration
+cat << 'EOF' > /home/liveuser/.config/cyberos/themes.conf
+[General]
+AccentColor=0
+DarkMode=false
+DarkModeDimsWallpaer=false
+PixelRatio=1
+Wallpaper=/usr/share/backgrounds/images/default-16_9.png
+EOF
 
-#live installer on autostart
-cp -a /usr/share/applications/liveinst.desktop /home/liveuser/.config/autostart/
+#Autostart Installer
+cat << 'EOF' > /home/liveuser/.config/autostart/liveinst.desktop
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/liveinst
+Hidden=false
+NoDisplay=false
+Name=Install Ultramarine Linux
+X-GNOME-Autostart-enabled=true
+EOF
+
+
+
+#Cyber Dock
+cat << 'EOF' > /home/liveuser/.config/cyberos/dock_pinned.conf
+[Anaconda]
+DesktopPath=
+Exec=
+IconName=anaconda
+Index=2
+visibleName=Anaconda Installer
+ 
+[Firefox]
+DesktopPath=/usr/share/applications/firefox.desktop
+Exec=firefox
+IconName=firefox
+Index=0
+visibleName=Firefox
+ 
+[cyber-fm]
+DesktopPath=/usr/share/applications/cyber-fm.desktop
+Exec=cyber-fm
+IconName=file-system-manager
+Index=3
+visibleName=File Manager
+ 
+[cyber-terminal]
+DesktopPath=/usr/share/applications/cyber-terminal.desktop
+Exec=cyber-terminal
+IconName=utilities-terminal
+Index=1
+visibleName=Terminal
+EOF
 
 # "Disable plasma-discover-notifier"
 mkdir -p /home/liveuser/.config/autostart

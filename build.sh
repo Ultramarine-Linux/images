@@ -1,5 +1,6 @@
 #!/bin/bash
 sudo -s <<EOF
+echo Flattening Scripts...
 ksflatten --config kickstarts/ultramarine-cyber.ks --output flattened.ks
 echo ------------------------------------------------------- 
 echo --------------------BUILDING ISO-----------------------

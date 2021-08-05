@@ -8,5 +8,7 @@
 @multimedia
 @fonts
 sddm
+policycoreutils
+coreutils
 
 %end

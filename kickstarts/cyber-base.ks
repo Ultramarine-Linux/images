@@ -33,6 +33,13 @@ Session=cyber-session
 EOF
 
 ##Configuration
+#Create Liveuser dir
+mkdir -p /home/liveuser/.config/cyberos
+mkdir -p /home/liveuser/.config/
+mkdir -p /home/liveuser/Downloads
+mkdir -p /home/liveuser/Documents
+mkdir -p /home/liveuser/Pictures
+mkdir -p /home/liveuser/Videos
 
 #Edit Cyber Configuration
 touch /home/liveuser/.config/cyberos/themes.conf
@@ -94,11 +101,17 @@ Name=Install Ultramarine Linux
 X-GNOME-Autostart-enabled=true
 EOF
 
+#Set Text Editor for all users
+touch /etc/gnome/defaults.list
+cat << 'EOF' > /etc/gnome/defaults.list
+[Default Applications]
+text/plain=cyber-editor.desktop
+EOF
 
 # make sure to set the right permissions and selinux contexts
 chown -R liveuser:liveuser /home/liveuser/
 restorecon -R /home/liveuser/
 
-EOF
+
 
 %end

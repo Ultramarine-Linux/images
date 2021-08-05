@@ -18,7 +18,7 @@ jobs:
         run: |
           sudo dnf in -y git
           git clone https://github.com/ultramarine-linux/ultramarine-kickstarts.git
-          cd ultramarine-kickstarts.git
+          cd ultramarine-kickstarts
       - name: Installing dependencies
         run: ./builddeps.sh
       - name: Building the base Lorax image...

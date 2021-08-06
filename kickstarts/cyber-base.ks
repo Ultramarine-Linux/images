@@ -22,14 +22,13 @@ cat >> /etc/rc.d/init.d/livesys << EOF
 
 
 # set up autologin for user liveuser
-if [ -f /etc/sddm.conf ]; then
-sed -i 's/^#User=.*/User=liveuser/' /etc/sddm.conf
-sed -i "s/^#Session=.*/Session=cyber-session/" /etc/sddm.conf
-else
+
 cat << 'EOF' > /etc/sddm.conf
 [Autologin]
 User=liveuser
 Session=cyber-session
+#this has been bugging us for a long time and we have no idea why
+InputMethod=
 EOF
 
 ##Configuration

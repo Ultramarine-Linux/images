@@ -15,12 +15,12 @@ Download the dependencies (If you don't have Lorax and Anaconda installed)
 
 Build a Lorax base install Image (For first build only, or if you want to provide an already existing Fedora image, skip this step)
 ```
-./build-lorax.sh
+./build-lorax.sh <release> <architecture>
 ```
 
 And finally, build the actual image.
 ```
-./build.sh
+./build.sh <path to kickstart config> <project name(for GRUB)> <filesystem label for ISO>
 ```
 
 # Frequently Asked Questions

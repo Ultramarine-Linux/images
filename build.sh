@@ -1,6 +1,6 @@
 #!/bin/bash
 kickstartFile="${1}"
-project="${2}"
+project="\"${2}\""
 livemediaFsLabel="${3}"
 
 sudo -s <<<"
@@ -9,6 +9,7 @@ ksflatten --config ${kickstartFile} --output flattened.ks
 echo ------------------------------------------------------- 
 echo --------------------BUILDING ISO-----------------------
 echo -------------------------------------------------------
+rm -rf build/
 livemedia-creator\
  --make-iso\
  --ks flattened.ks\

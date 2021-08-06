@@ -8,3 +8,4 @@ debugdata/
 pkglists/
 *pkgsizes.txt
 build/
+anaconda/

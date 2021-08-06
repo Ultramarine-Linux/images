@@ -1,4 +1,4 @@
-name: Ultramarine Linux 35 Cyber x86_64 ISO Build
+name: Ultramarine Linux 34 Cyber x86_64 ISO Build
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     name: ISO Builder
     runs-on: self-hosted
     container:
-      image: fedora:latest
+      image: registry.fedoraproject.org/fedora:34-x86_64
       options: --privileged
     steps:
       - uses: actions/checkout@v2

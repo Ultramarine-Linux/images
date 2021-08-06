@@ -1,10 +1,13 @@
 #base fedora stuff
 
-%include additional-repos.ks
 %include cyber-base.ks
 
 #cyber-desktop repo
 repo --name "copr:copr.fedorainfracloud.org:cappyishihara:cyber-desktop" --install --baseurl https://download.copr.fedorainfracloud.org/results/cappyishihara/cyber-desktop/fedora-$releasever-$basearch/
+
+#OpenH264
+repo --name="fedora-cisco-openh264" --baseurl=https://codecs.fedoraproject.org/openh264/$releasever/$basearch/os/
+
 
 %packages
 #x server
@@ -36,6 +39,7 @@ libreoffice-kf5
 #enable SDDM
 systemctl enable sddm
 
-
+#le cisco 
+dnf config-manager --set-enabled fedora-cisco-openh264
 
 %end

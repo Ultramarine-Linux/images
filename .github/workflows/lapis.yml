@@ -10,7 +10,7 @@ jobs:
     name: ISO Builder
     runs-on: ubuntu-latest
     container:
-      image: registry.fedoraproject.org/fedora-minimal:34
+      image: fedora:latest
       options: --privileged
     steps:
       - uses: actions/checkout@v2

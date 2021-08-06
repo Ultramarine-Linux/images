@@ -12,6 +12,8 @@ jobs:
     container:
       image: registry.fedoraproject.org/fedora:34-x86_64
       options: --privileged
+      volumes:
+      - /files:/home/common/files
     steps:
       - uses: actions/checkout@v2
       - name: Cloning Git repo...
@@ -21,8 +23,6 @@ jobs:
           cd ultramarine-kickstarts
       - name: Installing dependencies
         run: ./builddeps.sh
-      - name: Building the base Lorax image...
-        run: ./build-lorax.sh '34' 'x86_64'
       - name: Building the ISO...
         run: ./build.sh 'kickstarts/ultramarine-cyber.ks' 'Ultramarine Linux Cyber' 'Ultramarine-Linux-Cyber-Live'
       - uses: actions/upload-artifact@v2

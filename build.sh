@@ -17,7 +17,7 @@ livemedia-creator\
  --project ${project}\
  --fs-label ${livemediaFsLabel}\
  --location lorax/\
- --iso lorax/images/boot.iso\
+ --iso /files/f34-base.iso\
  --no-virt\
  --iso-only\
  --resultdir build/

@@ -12,22 +12,22 @@ resources:
 stages:
   - stage: prep
     jobs:
-      - job: fetch-git-repo
+      - job: fetch_git_repo
         steps:
           - script: dnf in -y git
           - script: git clone https://github.com/ultramarine-linux/ultramarine-kickstarts.git --depth 1
           - script: cd ultramarine-kickstarts
           - script: bash ./builddeps.sh
-  - stage: base-image
+  - stage: base_image
     jobs:
-      - job: lorax-build
+      - job: lorax_build
         steps:
           - script: bash ./build-lorax.sh
   - stage: image
     jobs:
-      - job: iso-build
+      - job: iso_build
         steps:
           - script: bash ./build.sh
-          - publish: ./*.iso
+          - publish: ./build/*.iso
             artifact: live-image-cyber
             displayName: Cyber Desktop

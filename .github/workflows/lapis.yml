@@ -13,18 +13,15 @@ jobs:
       image: registry.fedoraproject.org/fedora:34-x86_64
       options: --privileged
       volumes:
-      - /files:/home/common/files
+      - /home/common/files:/files
     steps:
       - uses: actions/checkout@v2
       - name: Cloning Git repo...
-        run: |
-          sudo dnf in -y git
-          git clone https://github.com/ultramarine-linux/ultramarine-kickstarts.git
-          cd ultramarine-kickstarts
+        run: ls
       - name: Installing dependencies
         run: ./builddeps.sh
       - name: Building the ISO...
-        run: ./build.sh 'kickstarts/ultramarine-cyber.ks' 'Ultramarine Linux Cyber' 'Ultramarine-Linux-Cyber-Live' && ls /files
+        run: ./build.sh 'kickstarts/ultramarine-cyber.ks' 'Ultramarine Linux Cyber' 'Ultramarine-Linux-Cyber-Live'
       - uses: actions/upload-artifact@v2
         with:
           name: Ultramarine Linux Cyber x86_64 ISO

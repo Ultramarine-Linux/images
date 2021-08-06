@@ -1,16 +1,16 @@
-name: Ultramarine Linux ISO Build
+name: Ultramarine Linux 34 Cyber x86_64 ISO Build
 
 on:
   push:
     branches:
-      - main
+      - lapis
 
 jobs:
   build:
     name: ISO Builder
     runs-on: ubuntu-latest
     container:
-      image: fedora:latest
+      image: registry.fedoraproject.org/fedora-minimal:34
       options: --privileged
     steps:
       - uses: actions/checkout@v2
@@ -22,10 +22,10 @@ jobs:
       - name: Installing dependencies
         run: ./builddeps.sh
       - name: Building the base Lorax image...
-        run: ./build-lorax.sh
+        run: ./build-lorax.sh '34' 'x86_64'
       - name: Building the ISO...
-        run: ./build.sh
+        run: ./build.sh 'kickstarts/ultramarine-cyber.ks' 'Ultramarine Linux Cyber' 'Ultramarine-Linux-Cyber-Live'
       - uses: actions/upload-artifact@v2
         with:
-          name: Ultramarine Linux ISO
+          name: Ultramarine Linux Cyber x86_64 ISO
           path: ./build/*.iso

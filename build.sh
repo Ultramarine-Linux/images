@@ -1,21 +1,24 @@
 #!/bin/bash
-sudo -s <<EOF
+kickstartFile="${1}"
+project="${2}"
+livemediaFsLabel="${3}"
+
+sudo -s <<<"
 echo Flattening Scripts...
 ksflatten --config kickstarts/ultramarine-cyber.ks --output flattened.ks
 echo ------------------------------------------------------- 
 echo --------------------BUILDING ISO-----------------------
 echo -------------------------------------------------------
-#livecd-creator --verbose --config flattened.ks --fslabel "Ultramarine-Linux" --cache tmp/cache/ | tee build.log
 livemedia-creator\
  --make-iso\
  --ks flattened.ks\
  --nomacboot\
- --project "Ultramarine Linux"\
- --fs-label "Ultramarine-Linux-Live"\
+ --project ${project}\
+ --fs-label ${livemediaFsLabel}\
  --location lorax/\
  --iso lorax/images/boot.iso\
  --no-virt\
  --iso-only\
  --resultdir build/
 rm -rf tmp/
-EOF
+"

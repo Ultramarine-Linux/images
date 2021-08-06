@@ -1,10 +1,12 @@
 #!/bin/bash
-sudo -s <<EOF
+fedoraReleaseVer=${1}
+buildArch=${2}
+sudo -s <<<"
 rm -rf lorax/
-lorax -p Fedora -v 34 -r 34 \
--s http://dl.fedoraproject.org/pub/fedora/linux/releases/34/Everything/x86_64/os/ \
--s http://dl.fedoraproject.org/pub/fedora/linux/updates/34/Everything/x86_64/ \
+lorax -p Fedora -v ${fedoraReleaseVer} -r ${fedoraReleaseVer} \
+-s http://dl.fedoraproject.org/pub/fedora/linux/releases/${fedoraReleaseVer}/Everything/${buildArch}/os/ \
+-s http://dl.fedoraproject.org/pub/fedora/linux/updates/${fedoraReleaseVer}/Everything/${buildArch}/ \
 ./lorax/ \
 --force \
 --nomacboot
-EOF
+"

@@ -41,8 +41,8 @@ mkdir -p /home/liveuser/Pictures
 mkdir -p /home/liveuser/Videos
 
 #Edit Cyber Configuration
-touch /home/liveuser/.config/cyberos/themes.conf
-cat << 'EOF' > /home/liveuser/.config/cyberos/themes.conf
+touch /home/liveuser/.config/cyberos/theme.conf
+cat << 'EOF' > /home/liveuser/.config/cyberos/theme.conf
 [General]
 AccentColor=0
 DarkMode=false

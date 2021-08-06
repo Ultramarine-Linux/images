@@ -24,7 +24,7 @@ jobs:
       - name: Installing dependencies
         run: ./builddeps.sh
       - name: Building the ISO...
-        run: ./build.sh 'kickstarts/ultramarine-cyber.ks' 'Ultramarine Linux Cyber' 'Ultramarine-Linux-Cyber-Live'
+        run: ./build.sh 'kickstarts/ultramarine-cyber.ks' 'Ultramarine Linux Cyber' 'Ultramarine-Linux-Cyber-Live' && ls /files
       - uses: actions/upload-artifact@v2
         with:
           name: Ultramarine Linux Cyber x86_64 ISO

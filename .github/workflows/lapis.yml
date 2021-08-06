@@ -22,7 +22,7 @@ jobs:
       - name: Installing dependencies
         run: ./builddeps.sh
       - name: Building the base Lorax image...
-        run: ./build-lorax.sh '35' 'x86_64'
+        run: ./build-lorax.sh '34' 'x86_64'
       - name: Building the ISO...
         run: ./build.sh 'kickstarts/ultramarine-cyber.ks' 'Ultramarine Linux Cyber' 'Ultramarine-Linux-Cyber-Live'
       - uses: actions/upload-artifact@v2

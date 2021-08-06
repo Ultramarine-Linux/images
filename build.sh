@@ -5,7 +5,7 @@ livemediaFsLabel="${3}"
 
 sudo -s <<<"
 echo Flattening Scripts...
-ksflatten --config kickstarts/ultramarine-cyber.ks --output flattened.ks
+ksflatten --config ${kickstartFile} --output flattened.ks
 echo ------------------------------------------------------- 
 echo --------------------BUILDING ISO-----------------------
 echo -------------------------------------------------------

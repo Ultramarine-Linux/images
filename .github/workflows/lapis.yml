@@ -25,7 +25,7 @@ jobs:
     name: ISO Builder
     runs-on: self-hosted
     container:
-      image: ghcr.io/ultramarine-linux/installer-buildenv:34 # finally
+      image: docker.io/rmnscnce/installer-buildenv:34 # finally
       volumes:
         - /home/common/files:/files
     steps:

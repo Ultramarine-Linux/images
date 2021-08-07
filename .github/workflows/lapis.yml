@@ -16,7 +16,8 @@ jobs:
       - /files:/home/common/files
     steps:
       - uses: actions/checkout@v2
-        ref: 'lapis' # for now
+        with:
+          ref: 'lapis'
       - name: Installing dependencies
         run: ./builddeps.sh
       - name: Building the ISO...

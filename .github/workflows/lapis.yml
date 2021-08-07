@@ -20,9 +20,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: 'lapis'
+      - name: Fetch Dependencies
+        run: microdnf install livecd-tools    
       - name: Building the ISO...
-        run: ./build.sh 'kickstarts/ultramarine-cyber.ks' 'Ultramarine Linux Cyber' 'Ultramarine-Linux-Cyber-Live'
+        run: livecd-creator -c kickstarts/ultramarine-cyber.ks -f Ultramarine-Linux-Live
       - uses: actions/upload-artifact@v2
         with:
           name: Ultramarine Linux Cyber x86_64 ISO
-          path: ./build/*.iso
+          path: ./*.iso

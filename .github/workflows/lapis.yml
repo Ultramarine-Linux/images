@@ -10,7 +10,7 @@ jobs:
     name: ISO Builder
     runs-on: self-hosted
     container:
-      image: ghcr.io/ultramarine-linux/installer-buildenv:latest # finally
+      image: ghcr.io/ultramarine-linux/installer-buildenv:34 # finally
       credentials:
         username: ${{ secrets.GHCR_USER }}
         password: ${{ secrets.GHCR_TOKEN }}

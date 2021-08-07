@@ -10,7 +10,7 @@ jobs:
     name: ISO Builder
     runs-on: self-hosted
     container:
-      image: ghcr.io/ultramarine-linux/installer-buildenv:34 # finally
+      image: ghcr.io/ultramarine-linux/installer-buildenv:latest # finally
       credentials:
         username: ${{ secrets.GHCR_USER }}
         password: ${{ secrets.GHCR_TOKEN }}
@@ -19,11 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: 'lapis'
-      - name: Fetch Dependencies
-        run: microdnf install livecd-tools    
+          ref: 'lapis' 
       - name: Building the ISO...
-        run: livecd-creator -c kickstarts/ultramarine-cyber.ks -f Ultramarine-Linux-Live
+        run: ./build.sh
       - uses: actions/upload-artifact@v2
         with:
           name: Ultramarine Linux Cyber x86_64 ISO

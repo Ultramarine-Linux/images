@@ -13,7 +13,7 @@ jobs:
       image: ghcr.io/ultramarine-linux/installer-buildenv:34 # finally
       options: --privileged
       volumes:
-      - /files:/home/common/files
+        - /home/common/files:/files
     steps:
       - uses: actions/checkout@v2
         with:

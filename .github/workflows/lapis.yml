@@ -22,7 +22,7 @@ jobs:
         with:
           ref: 'lapis' 
       - name: Building the ISO...
-        run: ./build.sh
+        run: ./build.sh cyber
       - uses: actions/upload-artifact@v2
         with:
           name: Ultramarine Linux Cyber x86_64 ISO

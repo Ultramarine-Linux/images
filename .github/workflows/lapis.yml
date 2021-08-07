@@ -10,17 +10,15 @@ jobs:
     name: ISO Builder
     runs-on: self-hosted
     container:
-      image: registry.fedoraproject.org/fedora:34-x86_64
+      image: ghcr.io/ultramarine-linux/installer-buildenv:34 # finally
       options: --privileged
       volumes:
       - /files:/home/common/files
     steps:
       - uses: actions/checkout@v2
-      - name: Cloning Git repo...
-        run: |
-          sudo dnf in -y git
-          git clone https://github.com/ultramarine-linux/ultramarine-kickstarts.git
-          cd ultramarine-kickstarts
+        with:
+          ref: 'lapis' # for now
+          fetch-depth: 1
       - name: Installing dependencies
         run: ./builddeps.sh
       - name: Building the ISO...

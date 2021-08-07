@@ -11,6 +11,7 @@ jobs:
     runs-on: self-hosted
     container:
       image: ghcr.io/ultramarine-linux/installer-buildenv:lapis # finally
+      options: --privileged
       credentials:
         username: ${{ secrets.GHCR_USER }}
         password: ${{ secrets.GHCR_TOKEN }}

@@ -11,7 +11,9 @@ jobs:
     runs-on: self-hosted
     container:
       image: ghcr.io/ultramarine-linux/installer-buildenv:34 # finally
-      options: --privileged
+      credentials:
+        username: ${{ secrets.GHCR_USER }}
+        password: ${{ secrets.GHCR_TOKEN }}
       volumes:
         - /home/common/files:/files
     steps:

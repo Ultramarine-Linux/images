@@ -1,31 +1,19 @@
-name: Ultramarine Linux ISO build integration testing
+name: Ultramarine Linux 34 Cyber x86_64 ISO Build
 
 on:
   push:
     branches:
       - lapis
 
-env:
-  GHCR_USER: ${{ secrets.GHCR_USER }}
-  GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
-  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-
 jobs:
-  login:
-    name: Log into GitHub Container Registry
-    runs-on: self-hosted
-    steps:
-      - name: Log into ghcr.io
-        uses: redhat-actions/podman-login@v1
-        with:
-          username: ${{ env.GHCR_USER }}
-          password: ${{ env.GHCR_TOKEN }}
-          registry: ${{ env.IMAGE_REGISTRY }}
   build:
     name: ISO Builder
     runs-on: self-hosted
     container:
-      image: docker.io/rmnscnce/installer-buildenv:34 # finally
+      image: ghcr.io/ultramarine-linux/installer-buildenv:34 # finally
+      credentials:
+        username: ${{ secrets.GHCR_USER }}
+        password: ${{ secrets.GHCR_TOKEN }}
       volumes:
         - /home/common/files:/files
     steps:

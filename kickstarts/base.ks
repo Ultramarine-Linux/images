@@ -63,7 +63,7 @@ chkconfig
 # Branding
 # DELET FEDORA
 -fedora-logos*
--fedora*
+-fedora-release*
 #embrace generic
 ultramarine-*
 

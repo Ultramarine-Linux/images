@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: ISO Builder
-    runs-on: self-hosted
+    runs-on: [self-hosted, azure, rocky]
     container:
       image: ghcr.io/ultramarine-linux/installer-buildenv:lapis # finally
       options: --privileged

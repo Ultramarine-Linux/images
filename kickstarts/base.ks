@@ -22,7 +22,7 @@ shutdown
 
 %include base-repo.ks
 
-%packages --excludeWeakdeps
+%packages --excludeWeakdeps --nobase
 # Explicitly specified here:
 # <notting> walters: because otherwise dependency loops cause yum issues.
 kernel
@@ -63,7 +63,7 @@ chkconfig
 # Branding
 # DELET FEDORA
 -fedora-logos*
--fedora-release*
+-fedora*
 #embrace generic
 ultramarine-*
 

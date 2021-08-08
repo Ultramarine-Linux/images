@@ -22,7 +22,7 @@ shutdown
 
 %include base-repo.ks
 
-%packages --excludeWeakdeps --nobase
+%packages --excludeWeakdeps
 # Explicitly specified here:
 # <notting> walters: because otherwise dependency loops cause yum issues.
 kernel

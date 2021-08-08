@@ -59,6 +59,15 @@ glibc-all-langpacks
 # no longer in @core since 2018-10, but needed for livesys script
 initscripts
 chkconfig
+
+# Branding
+# DELET FEDORA
+-fedora-logos*
+-fedora-release*
+#embrace generic
+ultramarine-*
+
+
 %end
 
 %post

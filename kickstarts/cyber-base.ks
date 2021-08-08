@@ -26,9 +26,10 @@ cat >> /etc/rc.d/init.d/livesys << EOF
 cat << 'EOF' > /etc/sddm.conf
 [Autologin]
 User=liveuser
-Session=cyber-session
+Session=cyber-xsession.desktop
 #this has been bugging us for a long time and we have no idea why
 InputMethod=
+Relogin=true
 EOF
 
 ##Configuration

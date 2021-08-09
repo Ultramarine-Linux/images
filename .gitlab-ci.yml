@@ -10,7 +10,9 @@
 image: registry.gitlab.com/ultramarine-linux/installer-buildenv:34
 
 iso:
-  script: ./build.sh
+  script:
+      - echo $PWD
+      - ./build.sh
   artifacts:
     paths:
       - Ultramarine-Linux-Live*.iso

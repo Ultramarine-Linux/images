@@ -11,7 +11,8 @@ image: registry.gitlab.com/ultramarine-linux/installer-buildenv:34
 
 iso:
   script:
-      - echo $PWD
+      - microdnf install git
+      - git clone https://gitlab.com/ultramarine-linux/ultramarine-kickstarts .
       - ./build.sh
   artifacts:
     paths:

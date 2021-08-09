@@ -30,6 +30,7 @@ Session=cyber-xsession.desktop
 #this has been bugging us for a long time and we have no idea why
 InputMethod=
 Relogin=true
+[Theme]
 EOF
 
 ##Configuration

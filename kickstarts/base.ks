@@ -66,6 +66,7 @@ chkconfig
 -fedora-release*
 #embrace generic
 ultramarine-*
+@ guest-agents
 
 
 %end
@@ -111,7 +112,7 @@ done
 
 # enable swapfile if it exists
 if ! strstr "\`cat /proc/cmdline\`" noswap && [ -f /run/initramfs/live/\${livedir}/swap.img ] ; then
-  action "Enabling swap file" swapon /run/initramfs/live/\${livedir}/swap.img
+  echo "Enabling swap file" && swapon /run/initramfs/live/\${livedir}/swap.img
 fi
 
 mountPersistentHome() {
@@ -127,7 +128,7 @@ mountPersistentHome() {
   elif [ ! -b "\$homedev" ]; then
     loopdev=\`losetup -f\`
     if [ "\${homedev##/run/initramfs/live}" != "\${homedev}" ]; then
-      action "Remounting live store r/w" mount -o remount,rw /run/initramfs/live
+      echo "Remounting live store r/w" && mount -o remount,rw /run/initramfs/live
     fi
     losetup \$loopdev \$homedev
     homedev=\$loopdev
@@ -166,7 +167,7 @@ fi
 
 # if we have a persistent /home, then we want to go ahead and mount it
 if ! strstr "\`cat /proc/cmdline\`" nopersistenthome && [ -n "\$homedev" ] ; then
-  action "Mounting persistent /home" mountPersistentHome
+  echo "Mounting persistent /home" && mountPersistentHome
 fi
 
 if [ -n "\$configdone" ]; then
@@ -174,7 +175,7 @@ if [ -n "\$configdone" ]; then
 fi
 
 # add liveuser user with no passwd
-action "Adding live user" useradd \$USERADDARGS -c "Live System User" liveuser
+echo "Adding live user" && useradd \$USERADDARGS -c "Live System User" liveuser
 passwd -d liveuser > /dev/null
 usermod -aG wheel liveuser > /dev/null
 

@@ -1,12 +1,11 @@
 #base fedora stuff
 
 %include cyber-base.ks
+#%include base.ks
 
 #cyber-desktop repo
 repo --name "copr:copr.fedorainfracloud.org:cappyishihara:cyber-desktop" --install --baseurl https://download.copr.fedorainfracloud.org/results/cappyishihara/cyber-desktop/fedora-$releasever-$basearch/
 repo --name "copr:copr.fedorainfracloud.org:cappyishihara:cyber-desktop-testing" --install --baseurl https://download.copr.fedorainfracloud.org/results/cappyishihara/cyber-desktop-testing/fedora-$releasever-$basearch/
-#OpenH264
-repo --name="fedora-cisco-openh264" --baseurl=https://codecs.fedoraproject.org/openh264/$releasever/$basearch/os/
 
 
 %packages

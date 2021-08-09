@@ -10,5 +10,6 @@
 sddm
 policycoreutils
 coreutils
+sddm-breeze
 
 %end

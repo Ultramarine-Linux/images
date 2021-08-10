@@ -30,8 +30,7 @@ upload-iso:
   dependencies:
     - iso-cyber
   script:
-    - echo $PWD
-    - ls -R
+    - ssh-keyscan -t lapis.cappuchino.xyz > ~/.ssh/known_hosts
     - cat $SSH_PRIVATE_KEY > privkey
     - scp -i privkey Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
   artifacts:

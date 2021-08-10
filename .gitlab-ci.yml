@@ -16,6 +16,7 @@ stages:
 iso-cyber:
   stage: build
   script:
+    - - mkdir -p ~/.ssh/
     - touch ~/.ssh/known_hosts
     - ssh-keyscan -t lapis.cappuchino.xyz > ~/.ssh/known_hosts
     - cat $SSH_PRIVATE_KEY > privkey
@@ -31,6 +32,7 @@ upload-iso:
   dependencies:
     - iso-cyber
   script:
+    - mkdir -p ~/.ssh/
     - touch ~/.ssh/known_hosts
     - ssh-keyscan -t lapis.cappuchino.xyz > ~/.ssh/known_hosts
     - cat $SSH_PRIVATE_KEY > privkey

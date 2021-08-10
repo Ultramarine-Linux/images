@@ -12,14 +12,14 @@ image: registry.gitlab.com/ultramarine-linux/installer-buildenv/lapis:latest
 stages: 
   - build
   - deploy
-  - test
 
 iso-cyber:
   stage: build
   script:
       - ls -R
-      - git clone https://gitlab.com/ultramarine-linux/ultramarine-kickstarts && cd ultramarine-kickstarts
       - ./build.sh cyber
+  artifacts:
+    untracked: true
 
 upload-iso:
   stage: deploy
@@ -28,16 +28,16 @@ upload-iso:
   script:
     - echo $PWD
     - ls -R
-    - scp -i $SSH_PRIVATE_KEY ultramarine-kickstarts/Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
-  artifacts:
-    paths:
-      - ultramarine-kickstarts/Ultramarine-Linux-Live.iso
+    - cat $SSH_PRIVATE_KEY > privkey
+    - scp -i privkey Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
+
+
 
 file-test:
   dependencies:
   - iso-cyber
-  stage: test
+  stage: deploy
   script:
   - echo $PWD
   - ls -R
-  - file ultramarine-kickstarts/Ultramarine-Linux-Live.iso | grep bootable
+  - file Ultramarine-Linux-Live.iso | grep bootable

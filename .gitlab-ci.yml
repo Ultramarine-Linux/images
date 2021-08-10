@@ -11,7 +11,7 @@ image: registry.gitlab.com/ultramarine-linux/installer-buildenv:34
 
 iso:
   script:
-      - microdnf install git
+      - microdnf install git -y
       - git clone https://gitlab.com/ultramarine-linux/ultramarine-kickstarts && cd ultramarine-kickstarts
       - ./build.sh
   artifacts:

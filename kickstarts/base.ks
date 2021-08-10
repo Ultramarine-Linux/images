@@ -22,7 +22,7 @@ shutdown
 
 %include base-repo.ks
 
-%packages --excludeWeakdeps
+%packages --exclude-weakdeps
 # Explicitly specified here:
 # <notting> walters: because otherwise dependency loops cause yum issues.
 kernel
@@ -74,7 +74,7 @@ policycoreutils
 
 %end
 
-%post
+%post --log=post.log 
 # FIXME: it'd be better to get this installed from a package
 cat > /etc/rc.d/init.d/livesys << EOF
 #!/bin/bash

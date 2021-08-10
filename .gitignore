@@ -1,6 +1,5 @@
 #compiled files
 tmp/
-*.log
 lorax/
 debugdata/
 pkglists/

@@ -16,24 +16,26 @@ stages:
 iso-cyber:
   stage: build
   script:
-      - cat $SSH_PRIVATE_KEY > privkey
-      - ls -R
       - ./build.sh cyber
       - scp -i privkey Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
   artifacts:
     untracked: true
+
+
+upload-iso:
+  stage: deploy
+  dependencies:
+    - iso-cyber
+  script:
+    - ssh-keyscan -t lapis.cappuchino.xyz > ~/.ssh/known_hosts
+    - echo $PWD
+    - ls -R
+    - cat $SSH_PRIVATE_KEY > privkey
+    - scp -i privkey Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
+  artifacts:
+    untracked: true
     exclude: 
       - privkey
-
-#upload-iso:
-#  stage: deploy
-#  dependencies:
-#    - iso-cyber
-#  script:
-#    - echo $PWD
-#    - ls -R
-#    - cat $SSH_PRIVATE_KEY > privkey
-#    - scp -i privkey Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
 
 
 

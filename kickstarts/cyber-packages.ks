@@ -11,7 +11,6 @@ sddm
 policycoreutils
 coreutils
 sddm-breeze
--plasma-workspace
 -plasma-desktop
 plasma-discover
 

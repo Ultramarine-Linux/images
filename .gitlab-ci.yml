@@ -8,13 +8,28 @@
 
 # you can delete this line if you're not using Docker
 image: registry.gitlab.com/ultramarine-linux/installer-buildenv/lapis:latest
+
+stages: 
+  - build
+  - deploy
+  - test
+
 iso-cyber:
+  stage: build
   script:
       - git clone https://gitlab.com/ultramarine-linux/ultramarine-kickstarts && cd ultramarine-kickstarts
       - ./build.sh cyber
+
+upload-artifacts:
+  stage: deploy
+  script:
       - mkdir results/
       - find . -name "*.iso" -type f | xargs mv -t results/
   artifacts:
     paths:
-      - results/
+      - results/Ultramarine-Linux-Live.iso
 
+test-iso:
+  stage: test
+  script:
+    - file results/Ultramarine-Linux-Live.iso | grep bootable

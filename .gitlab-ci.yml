@@ -40,4 +40,5 @@ file-test:
   script:
   - echo $PWD
   - ls -R
+  - ksvalidator flattened.ks
   - file Ultramarine-Linux-Live.iso | grep bootable

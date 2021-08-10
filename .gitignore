@@ -1,5 +1,4 @@
 #compiled files
-flattened.ks
 tmp/
 *.log
 lorax/

@@ -22,9 +22,7 @@ iso-cyber:
       - ls
   artifacts:
     paths:
-      - $PWD/Ultramarine-Linux-Live.iso
-      - $PWD/
-      - $PWD/*.iso
+      - ultramarine-kickstarts/Ultramarine-Linux-Live.iso
 
 test-iso:
   stage: test

@@ -22,7 +22,7 @@ network --bootproto=dhcp --device=link --activate
 rootpw --lock --iscrypted locked
 shutdown
 
-%include fedora-repo.ks
+%include base-repo.ks
 
 %packages
 @base-x

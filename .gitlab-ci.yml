@@ -17,16 +17,12 @@ stages:
 iso-cyber:
   stage: build
   script:
+      - cat $SSH_PRIVATE_KEY | openssl aes-256-cbc -a -salt -pass pass:$PASSWORD | tr -d '\r' | ssh-add -
       - git clone https://gitlab.com/ultramarine-linux/ultramarine-kickstarts && cd ultramarine-kickstarts
       - ./build.sh cyber
       - ls
+      - scp ultramarine-kickstarts/Ultramarine-Linux-Live.iso lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
   artifacts:
     paths:
       - ultramarine-kickstarts/Ultramarine-Linux-Live.iso
 
-test-iso:
-  stage: test
-  dependencies:
-    - iso-cyber
-  script:
-    - find . -name "*" | xargs file | grep bootable

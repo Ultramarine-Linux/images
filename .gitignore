@@ -6,3 +6,4 @@ pkglists/
 *pkgsizes.txt
 build/
 anaconda/
+*.iso

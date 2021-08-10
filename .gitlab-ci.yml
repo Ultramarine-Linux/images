@@ -17,6 +17,13 @@ iso-cyber:
   stage: build
   script:
     - ./build.sh cyber
+    - mkdir -p ~/.ssh/
+    - touch ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa lapis.cappuchino.xyz > ~/.ssh/known_hosts
+    - echo $SSH_PRIVATE_KEY > privkey
+    - chmod 400 privkey
+    - ssh-agent && ssh-add privkey
+    - scp Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
   artifacts:
     untracked: true
     exclude: 

@@ -2,7 +2,7 @@
 spin="${1}"
 sudo -s <<<"
 echo Flattening Scripts...
-ksflatten --config kickstarts/ultramarine-${spin}.ks --output flattened.ks
+ksflatten --config kickstarts/ultramarine-${spin}.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks
 echo ------------------------------------------------------- 
 echo --------------------BUILDING ISO-----------------------
 echo -------------------------------------------------------

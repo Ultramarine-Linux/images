@@ -29,5 +29,8 @@ iso-cyber:
 
 test-iso:
   stage: test
+  dependencies:
+    - build
+    - iso-cyber
   script:
-    - file results/Ultramarine-Linux-Live.iso | grep bootable
+    - find . -name "*" | xargs file | grep bootable

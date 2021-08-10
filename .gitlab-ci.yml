@@ -17,6 +17,7 @@ stages:
 iso-cyber:
   stage: build
   script:
+      - ls -R
       - git clone https://gitlab.com/ultramarine-linux/ultramarine-kickstarts && cd ultramarine-kickstarts
       - ./build.sh cyber
 
@@ -26,7 +27,7 @@ upload-iso:
     - iso-cyber
   script:
     - echo $PWD
-    - ls
+    - ls -R
     - scp -i $SSH_PRIVATE_KEY ultramarine-kickstarts/Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
   artifacts:
     paths:
@@ -38,5 +39,5 @@ file-test:
   stage: test
   script:
   - echo $PWD
-  - ls
+  - ls -R
   - file ultramarine-kickstarts/Ultramarine-Linux-Live.iso | grep bootable

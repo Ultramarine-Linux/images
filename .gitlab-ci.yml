@@ -7,7 +7,7 @@
 # See https://docs.gitlab.com/ee/ci/yaml/index.html for all available options
 
 # you can delete this line if you're not using Docker
-image: registry.gitlab.com/ultramarine-linux/installer-buildenv:34 --privileged
+image: registry.gitlab.com/ultramarine-linux/installer-buildenv:34
 iso:
   script:
       - microdnf install git -y

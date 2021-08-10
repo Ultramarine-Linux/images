@@ -19,11 +19,13 @@ iso-cyber:
   script:
       - git clone https://gitlab.com/ultramarine-linux/ultramarine-kickstarts && cd ultramarine-kickstarts
       - ./build.sh cyber
-      - mkdir results/
-      - find . -name "*.iso" -type f | xargs mv -t results/
+      - ls
+      - find . -name "*" | xargs file 
   artifacts:
     paths:
-      - results/Ultramarine-Linux-Live.iso
+      - $PWD/Ultramarine-Linux-Live.iso
+      - $PWD/
+      - $PWD/*.iso
 
 test-iso:
   stage: test

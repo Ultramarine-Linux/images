@@ -69,6 +69,9 @@ ultramarine-*
 @ guest-agents
 
 
+#weirdly does not come with one for some reason
+policycoreutils
+
 %end
 
 %post
@@ -115,49 +118,45 @@ if ! strstr "\`cat /proc/cmdline\`" noswap && [ -f /run/initramfs/live/\${livedi
   echo "Enabling swap file" && swapon /run/initramfs/live/\${livedir}/swap.img
 fi
 
-mountPersistentHome() {
-  # support label/uuid
-  if [ "\${homedev##LABEL=}" != "\${homedev}" -o "\${homedev##UUID=}" != "\${homedev}" ]; then
-    homedev=\`/sbin/blkid -o device -t "\$homedev"\`
+
+# support label/uuid
+if [ "\${homedev##LABEL=}" != "\${homedev}" -o "\${homedev##UUID=}" != "\${homedev}" ]; then
+  homedev=\`/sbin/blkid -o device -t "\$homedev"\`
+fi
+# if we're given a file rather than a blockdev, loopback it
+if [ "\${homedev##mtd}" != "\${homedev}" ]; then
+  # mtd devs don't have a block device but get magic-mounted with -t jffs2
+  mountopts="-t jffs2"
+elif [ ! -b "\$homedev" ]; then
+  loopdev=\`losetup -f\`
+  if [ "\${homedev##/run/initramfs/live}" != "\${homedev}" ]; then
+    echo "Remounting live store r/w" && mount -o remount,rw /run/initramfs/live
   fi
+  losetup \$loopdev \$homedev
+  homedev=\$loopdev
+fi
+# if it's encrypted, we need to unlock it
+if [ "\$(/sbin/blkid -s TYPE -o value \$homedev 2>/dev/null)" = "crypto_LUKS" ]; then
+  echo
+  echo "Setting up encrypted /home device"
+  plymouth ask-for-password --command="cryptsetup luksOpen \$homedev EncHome"
+  homedev=/dev/mapper/EncHome
+fi
 
-  # if we're given a file rather than a blockdev, loopback it
-  if [ "\${homedev##mtd}" != "\${homedev}" ]; then
-    # mtd devs don't have a block device but get magic-mounted with -t jffs2
-    mountopts="-t jffs2"
-  elif [ ! -b "\$homedev" ]; then
-    loopdev=\`losetup -f\`
-    if [ "\${homedev##/run/initramfs/live}" != "\${homedev}" ]; then
-      echo "Remounting live store r/w" && mount -o remount,rw /run/initramfs/live
-    fi
-    losetup \$loopdev \$homedev
-    homedev=\$loopdev
+# and finally do the mount
+mount \$mountopts \$homedev /home
+# if we have /home under what's passed for persistent home, then
+# we should make that the real /home.  useful for mtd device on olpc
+if [ -d /home/home ]; then mount --bind /home/home /home ; fi
+[ -x /sbin/restorecon ] && /sbin/restorecon /home
+if [ -d /home/liveuser ]; then USERADDARGS="-M" ; fi
+
+for arg in \`cat /proc/cmdline\` ; do
+  if [ "\${arg##persistenthome=}" != "\${arg}" ]; then
+    homedev=\${arg##persistenthome=}
   fi
+done
 
-  # if it's encrypted, we need to unlock it
-  if [ "\$(/sbin/blkid -s TYPE -o value \$homedev 2>/dev/null)" = "crypto_LUKS" ]; then
-    echo
-    echo "Setting up encrypted /home device"
-    plymouth ask-for-password --command="cryptsetup luksOpen \$homedev EncHome"
-    homedev=/dev/mapper/EncHome
-  fi
-
-  # and finally do the mount
-  mount \$mountopts \$homedev /home
-  # if we have /home under what's passed for persistent home, then
-  # we should make that the real /home.  useful for mtd device on olpc
-  if [ -d /home/home ]; then mount --bind /home/home /home ; fi
-  [ -x /sbin/restorecon ] && /sbin/restorecon /home
-  if [ -d /home/liveuser ]; then USERADDARGS="-M" ; fi
-}
-
-findPersistentHome() {
-  for arg in \`cat /proc/cmdline\` ; do
-    if [ "\${arg##persistenthome=}" != "\${arg}" ]; then
-      homedev=\${arg##persistenthome=}
-    fi
-  done
-}
 
 if strstr "\`cat /proc/cmdline\`" persistenthome= ; then
   findPersistentHome

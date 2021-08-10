@@ -20,7 +20,6 @@ iso-cyber:
       - git clone https://gitlab.com/ultramarine-linux/ultramarine-kickstarts && cd ultramarine-kickstarts
       - ./build.sh cyber
       - ls
-      - find . -name "*" | xargs file 
   artifacts:
     paths:
       - $PWD/Ultramarine-Linux-Live.iso

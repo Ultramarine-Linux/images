@@ -16,7 +16,6 @@ stages:
 iso-cyber:
   stage: build
   script:
-    - chmod 400 privkey
     - ./build.sh cyber
   artifacts:
     untracked: true

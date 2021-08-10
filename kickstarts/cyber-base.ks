@@ -1,6 +1,5 @@
 
-
-%include base.ks
+#ksflatten is funny
 %include cyber-packages.ks
 
 %post

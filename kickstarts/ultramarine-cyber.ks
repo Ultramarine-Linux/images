@@ -1,7 +1,7 @@
 #base fedora stuff
 
+%include base.ks
 %include cyber-base.ks
-#%include base.ks
 
 #cyber-desktop repo
 repo --name "copr:copr.fedorainfracloud.org:cappyishihara:cyber-desktop" --install --baseurl https://download.copr.fedorainfracloud.org/results/cappyishihara/cyber-desktop/fedora-$releasever-$basearch/

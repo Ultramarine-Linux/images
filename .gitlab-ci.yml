@@ -19,7 +19,7 @@ iso-cyber:
     - - mkdir -p ~/.ssh/
     - touch ~/.ssh/known_hosts
     - ssh-keyscan -t rsa lapis.cappuchino.xyz > ~/.ssh/known_hosts
-    - cat $SSH_PRIVATE_KEY > privkey
+    - echo $SSH_PRIVATE_KEY > privkey
     - chmod 400 privkey
     - ./build.sh cyber
     - scp -i privkey Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
@@ -36,7 +36,7 @@ upload-iso:
     - mkdir -p ~/.ssh/
     - touch ~/.ssh/known_hosts
     - ssh-keyscan -t rsa lapis.cappuchino.xyz > ~/.ssh/known_hosts
-    - cat $SSH_PRIVATE_KEY > privkey
+    - echo $SSH_PRIVATE_KEY > privkey
     - chmod 400 privkey
     - scp -i privkey Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
   artifacts:

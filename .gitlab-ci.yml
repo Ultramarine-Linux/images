@@ -15,5 +15,5 @@ iso:
       - ./build.sh cyber
   artifacts:
     paths:
-      - Ultramarine-Linux-Live*.iso
+      - "*.iso"
 

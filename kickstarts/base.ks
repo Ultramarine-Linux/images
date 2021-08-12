@@ -63,10 +63,18 @@ syslinux
 # anaconda needs the locales available to run for different locales
 glibc-all-langpacks
 
+##Exclude Fedora Branding
+-fedora-release
+-fedora-logos
+ultramarine-release
+
 # no longer in @core since 2018-10, but needed for livesys script
 initscripts
 chkconfig
 %end
+
+
+
 
 %post
 # FIXME: it'd be better to get this installed from a package
@@ -361,5 +369,22 @@ if [ "$(uname -i)" = "i386" -o "$(uname -i)" = "x86_64" ]; then
     %endif\
     ' /usr/share/lorax/templates.d/99-generic/live/x86.tmpl
 fi
+
+#Anaconda Config files for Ultramarine
+cat << 'EOF' > /etc/anaconda/product.d/ultramarine.conf
+# Anaconda configuration file for Fedora Workstation Live.
+
+[Product]
+product_name = Ultramarine Linux
+
+[Base Product]
+product_name = Fedora
+variant_name = Workstation
+
+[User Interface]
+
+EOF
+
+
 
 %end

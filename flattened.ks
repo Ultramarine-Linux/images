@@ -332,6 +332,23 @@ if [ "$(uname -i)" = "i386" -o "$(uname -i)" = "x86_64" ]; then
     ' /usr/share/lorax/templates.d/99-generic/live/x86.tmpl
 fi
 
+#Anaconda Config files for Ultramarine
+cat << 'EOF' > /etc/anaconda/product.d/ultramarine.conf
+# Anaconda configuration file for Fedora Workstation Live.
+
+[Product]
+product_name = Ultramarine Linux
+
+[Base Product]
+product_name = Fedora
+variant_name = Workstation
+
+[User Interface]
+
+EOF
+
+
+
 %end
 
 %post
@@ -707,10 +724,13 @@ rsync
 sddm
 sddm-kcm
 syslinux
+ultramarine-release
 unar
 xorg-x11-drivers
 xorg-x11-server-Xorg
 -@ GNOME Desktop Environment
+-fedora-logos
+-fedora-release
 -gnome-session
 
 %end

@@ -1,59 +1,35 @@
-# This file is a template, and might need editing before it works on your project.
-# To contribute improvements to CI/CD templates, please follow the Development guide at:
-# https://docs.gitlab.com/ee/development/cicd/templates.html
-# This specific template is located at:
-# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Bash.gitlab-ci.yml
-
-# See https://docs.gitlab.com/ee/ci/yaml/index.html for all available options
-
-# you can delete this line if you're not using Docker
-image: registry.gitlab.com/ultramarine-linux/installer-buildenv/lapis:latest
+image: registry.freedesktop.org/ultramarine-linux/installer-buildenv:34
+services:
+  - docker:dind
 
 stages: 
   - build
+  - test
   - deploy
 
 iso-cyber:
+  only:
+    - $CI_COMMIT_MESSAGE == (?:(?!\[\!build\])(?:.|\n))*\[\!build\]
   stage: build
   script:
     - ./build.sh cyber
-    - mkdir -p ~/.ssh/
-    - touch ~/.ssh/known_hosts
-    - ssh-keyscan -t rsa lapis.cappuchino.xyz > ~/.ssh/known_hosts
-    - echo $SSH_PRIVATE_KEY > privkey
-    - chmod 400 privkey
-    - ssh-agent && ssh-add privkey
-    - scp Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
   artifacts:
-    untracked: true
-    exclude: 
-      - privkey
-
-upload-iso:
-  stage: deploy
-  dependencies:
-    - iso-cyber
-  script:
-    - mkdir -p ~/.ssh/
-    - touch ~/.ssh/known_hosts
-    - ssh-keyscan -t rsa lapis.cappuchino.xyz > ~/.ssh/known_hosts
-    - echo $SSH_PRIVATE_KEY > privkey
-    - chmod 400 privkey
-    - ssh-agent && ssh-add privkey
-    - scp Ultramarine-Linux-Live.iso cappy@lapis.cappuchino.xyz:/srv/builds/Ultramarine-Linux-build-$(date +'%M-%H-%D')/
-  artifacts:
-    untracked: true
-    exclude: 
-      - privkey
-
-
+    paths:
+    - Ultramarine-Linux-Live.iso
 
 file-test:
+  only:
+    - $CI_COMMIT_MESSAGE == (?:(?!\[\!build\])(?:.|\n))*\[\!build\]
   dependencies:
   - iso-cyber
-  stage: deploy
+  stage: test
   script:
-  - echo $PWD
-  - ls -R
-  - ksvalidator flattened.ks
-  - file Ultramarine-Linux-Live.iso | grep bootable
+    - file Ultramarine-Linux-Live.iso | grep bootable
+
+kickstart-test:
+  only:
+    - $CI_COMMIT_MESSAGE == (?:(?!\[\!build\])(?:.|\n))*\[\!build\]
+  stage: test
+  script:
+    - ksflatten --config kickstarts/ultramarine-${spin}.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks
+    - ksvalidator flattened.ks

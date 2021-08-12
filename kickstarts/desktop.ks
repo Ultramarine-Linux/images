@@ -2,9 +2,8 @@
 #
 # Defines the basics for a basic desktop environment.
 
-%include base.ks
 
-%packages --excludeWeakdeps
+%packages
 
 # Common modules (see fedora-workstation-common.ks)
 @base-x
@@ -56,8 +55,6 @@ rpm-plugin-systemd-inhibit
 blivet-gui			# Storage management
 exfatprogs
 htop
-nano-default-editor
-neofetch
 rsync
 unar
 
@@ -154,6 +151,7 @@ fi
 echo "install_weak_deps=False" >> /etc/dnf/dnf.conf
 
 # Set default boot theme
-plymouth-set-default-theme spinner
+#fails because no command, it works without this anyway
+#plymouth-set-default-theme spinner
 
 %end

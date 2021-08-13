@@ -7,14 +7,13 @@
 @dial-up
 @multimedia
 @fonts
-sddm
+lightdm
 policycoreutils
 coreutils
-materia-kde-sddm
-sddm-kcm
 plasma-discover
 qt5ct
-plasma-systemsettings
+lightdm-settings
+slick-greeter
 
 
 #install cyber desktop

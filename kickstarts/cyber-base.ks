@@ -20,16 +20,16 @@ EOF
 cat >> /etc/rc.d/init.d/livesys << ALLEOF
 
 # set up autologin for user liveuser
-if [ -f /etc/sddm.conf ]; then
-sed -i 's/^#User=.*/User=liveuser/' /etc/sddm.conf
-sed -i 's/^#Session=.*/Session=cyber-xsession.desktop/' /etc/sddm.conf
+if [ -f /etc/lightdm/lightdm.conf ]; then
+sed -i 's/^#autologin-user=.*/autologin-user=liveuser/' /etc/lightdm/lightdm.conf
+sed -i 's/^#autologin-session=.*/autologin-session=cyber-xsession.desktop/' /etc/lightdm/lightdm.conf
+sed -i 's/^#greeter-session=.*/greeter-session=slick-greeter/' /etc/lightdm/lightdm.conf
 else
-cat > /etc/sddm.conf << SDDM_EOF
-[Autologin]
-User=liveuser
-Session=cyber-xsession.desktop
-[Theme]
-Current=materia
+cat > /etc/lightdm/lightdm.conf << SDDM_EOF
+[Seat:*]
+autologin-user=liveuser
+autologin-session=cyber-xsession.desktop
+greeter-session=slick-greeter
 SDDM_EOF
 fi
 
@@ -84,7 +84,7 @@ touch /home/liveuser/.config/autostart/liveinst.desktop
 cat << 'EOF' > /home/liveuser/.config/autostart/liveinst.desktop
 [Desktop Entry]
 Type=Application
-Exec=sh -c '/usr/bin/liveinst'
+Exec=/usr/share/anaconda/gnome/fedora-welcome
 Hidden=false
 NoDisplay=false
 Name=Install Ultramarine Linux
@@ -96,8 +96,8 @@ touch /home/liveuser/.config/cyberos/dock_pinned.conf
 cat << 'EOF' > /home/liveuser/.config/cyberos/dock_pinned.conf
 [Anaconda]
 DesktopPath=
-Exec=/usr/bin/liveinst
-IconName=anaconda
+Exec=/usr/share/anaconda/gnome/fedora-welcome
+IconName=
 Index=2
 visibleName=Install Ultramarine
  

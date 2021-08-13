@@ -16,7 +16,7 @@
         {
             "label": "Build with Lorax",
             "type": "shell",
-            "command": "sudo livemedia-creator --ks flattened.ks --resultdir builds/ --make-iso --volid Ultramarine-Linux-Live --nomacboot --project 'Ultramarine Linux' --iso ~/Downloads/Fedora-Server-dvd-x86_64-34-1.2.iso",
+            "command": "sudo livemedia-creator --ks flattened.ks --resultdir builds/ --make-iso --volid Ultramarine-Linux-Live --nomacboot --project 'Ultramarine Linux' --no-virt",
             "problemMatcher": []
         }
     ]

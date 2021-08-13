@@ -7,6 +7,12 @@ echo -------------------------------------------------------
 echo --------------------BUILDING ISO-----------------------
 echo -------------------------------------------------------
 rm -rf build/
-livecd-creator flattened.ks -v --compression-type zstd -f Ultramarine-Linux-Live
+livecd-creator flattened.ks\
+ -v\
+ -d\
+ --compression-type None\
+ -f Ultramarine-Linux-Live\
+ --title "Ultramarine Linux 34"\
+ --product "Ultramarine Linux"\
 rm -rf tmp/
 "

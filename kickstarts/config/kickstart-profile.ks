@@ -16,12 +16,11 @@ activatable_modules =
 
 [Product]
 product_name = Ultramarine Linux
-id=ultramarine
+
 [Base Product]
 product_name = Fedora
 
 [Payload]
-default_environment = workstation-product-environment
 default_source = CLOSEST_MIRROR
 
 default_rpm_gpg_keys =

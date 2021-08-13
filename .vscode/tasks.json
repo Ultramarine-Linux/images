@@ -6,7 +6,7 @@
         {
             "label": "Build Live CD",
             "type": "shell",
-            "command": "./build.sh 'kickstarts/ultramarine-cyber.ks' 'Ultramarine Linux Cyber' 'Ultramarine-Linux-Cyber-Live'",
+            "command": "./build.sh cyber",
             "problemMatcher": [],
             "group": {
                 "kind": "build",
@@ -14,9 +14,9 @@
             }
         },
         {
-            "label": "Build Lorax Image then build ISO",
+            "label": "Build with Lorax",
             "type": "shell",
-            "command": "sudo -s <<EOF ./build-lorax.sh ./build-lorax.sh 'rawhide' 'x86_64'  && ./build.sh 'kickstarts/ultramarine-cyber.ks' 'Ultramarine Linux Cyber' 'Ultramarine-Linux-Cyber-Live' EOF",
+            "command": "sudo livemedia-creator --ks flattened.ks --resultdir builds/ --make-iso --volid Ultramarine-Linux-Live --nomacboot --project Ultramarine-Linux --iso ~/Downloads/Fedora-Server-dvd-x86_64-34-1.2.iso",
             "problemMatcher": []
         }
     ]

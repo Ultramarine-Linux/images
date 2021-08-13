@@ -7,3 +7,5 @@ pkglists/
 build/
 anaconda/
 *.iso
+builds/
+*.log

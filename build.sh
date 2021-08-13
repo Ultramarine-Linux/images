@@ -1,5 +1,9 @@
 #!/bin/bash
-spin="${1}"
+spin="${1?"Usage: $0 Spin"}"
+
+
+rm -f flattened.ks
+rm -f -- *.iso
 sudo -s <<<"
 echo Flattening Scripts...
 ksflatten --config kickstarts/ultramarine-${spin}.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks
@@ -12,7 +16,7 @@ livecd-creator flattened.ks\
  -d\
  --compression-type None\
  -f Ultramarine-Linux-Live\
- --title "Ultramarine Linux 34"\
- --product "Ultramarine Linux"\
+ --title 'Ultramarine Linux 34'\
+ --product 'Ultramarine Linux'
 rm -rf tmp/
 "

@@ -19,19 +19,14 @@ EOF
 # add initscript
 cat >> /etc/rc.d/init.d/livesys << ALLEOF
 
-# set up autologin for user liveuser
-if [ -f /etc/lightdm/lightdm.conf ]; then
+# set up lightdm autologin
 sed -i 's/^#autologin-user=.*/autologin-user=liveuser/' /etc/lightdm/lightdm.conf
-sed -i 's/^#autologin-session=.*/autologin-session=cyber-xsession.desktop/' /etc/lightdm/lightdm.conf
-sed -i 's/^#greeter-session=.*/greeter-session=slick-greeter/' /etc/lightdm/lightdm.conf
-else
-cat > /etc/lightdm/lightdm.conf << SDDM_EOF
-[Seat:*]
-autologin-user=liveuser
-autologin-session=cyber-xsession.desktop
-greeter-session=slick-greeter
-SDDM_EOF
-fi
+sed -i 's/^#autologin-user-timeout=.*/autologin-user-timeout=0/' /etc/lightdm/lightdm.conf
+#sed -i 's/^#show-language-selector=.*/show-language-selector=true/' /etc/lightdm/lightdm-gtk-greeter.conf
+
+
+# set cyber as default session, otherwise login will fail
+sed -i 's/^#user-session=.*/user-session=cyber-xsession/' /etc/lightdm/lightdm.conf
 
 ##Configuration
 #Create Liveuser dir
@@ -80,15 +75,7 @@ visibleName=Terminal
 EOF
 
 #Autostart Installer
-touch /home/liveuser/.config/autostart/liveinst.desktop
-cat << 'EOF' > /home/liveuser/.config/autostart/liveinst.desktop
-[Desktop Entry]
-Type=Application
-Exec=/usr/share/anaconda/gnome/fedora-welcome
-Hidden=false
-NoDisplay=false
-Name=Install Ultramarine Linux
-EOF
+cp /usr/share/anaconda/gnome/fedora-welcome.desktop /home/liveuser/.config/autostart/
 
 
 #Cyber Dock
@@ -97,7 +84,7 @@ cat << 'EOF' > /home/liveuser/.config/cyberos/dock_pinned.conf
 [Anaconda]
 DesktopPath=
 Exec=/usr/share/anaconda/gnome/fedora-welcome
-IconName=
+IconName=anaconda
 Index=2
 visibleName=Install Ultramarine
  

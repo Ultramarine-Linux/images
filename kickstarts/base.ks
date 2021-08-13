@@ -7,6 +7,10 @@
 # Does includes "default" language configuration (kickstarts including
 # this template can override these settings)
 
+#load custom files
+%include config/kickstart-profile.ks
+
+
 lang en_US.UTF-8
 keyboard us
 timezone US/Eastern
@@ -74,6 +78,7 @@ ultramarine-repos
 # no longer in @core since 2018-10, but needed for livesys script
 initscripts
 chkconfig
+isomd5sum
 %end
 
 
@@ -235,7 +240,7 @@ touch /.liveimg-configured
 # https://bugzilla.redhat.com/show_bug.cgi?id=679486
 # the hostname must be something else than 'localhost'
 # https://bugzilla.redhat.com/show_bug.cgi?id=1370222
-echo "localhost-live" > /etc/hostname
+echo "ultramarine-live" > /etc/hostname
 
 EOF
 
@@ -350,6 +355,9 @@ rm -f /boot/*-rescue*
 rm -f /etc/machine-id
 touch /etc/machine-id
 
+#edit fedora-welcome
+sed -i 's/^Fedora.*/Ultramarine/' /usr/share/anaconda/gnome/fedora-welcome
+sed -i 's/^org.fedoraproject.AnacondaInstaller.*/anaconda/' /usr/share/anaconda/gnome/fedora-welcome
 %end
 
 

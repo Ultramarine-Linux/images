@@ -9,3 +9,4 @@ anaconda/
 *.iso
 builds/
 *.log
+flattened.ks

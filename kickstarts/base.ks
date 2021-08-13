@@ -9,7 +9,7 @@
 
 #load custom files
 %include config/kickstart-profile.ks
-
+%include desktop.ks
 
 lang en_US.UTF-8
 keyboard us
@@ -79,6 +79,7 @@ ultramarine-repos
 initscripts
 chkconfig
 isomd5sum
+gjs
 %end
 
 

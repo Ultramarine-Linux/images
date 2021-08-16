@@ -9,7 +9,7 @@
 
 #load custom files
 %include ../config/kickstart-profile.ks
-
+%include desktop.ks
 lang en_US.UTF-8
 keyboard us
 timezone Asia/Bangkok
@@ -22,7 +22,12 @@ clearpart --all
 part / --size 8192 --fstype ext4
 services --enabled=NetworkManager,ModemManager --disabled=sshd
 network --bootproto=dhcp --device=link --activate
-rootpw --lock --iscrypted locked
+rootpw --lock --iscrypted 
+
+
+
+
+
 reqpart
 
 %include base-repo.ks
@@ -68,13 +73,12 @@ syslinux
 glibc-all-langpacks
 
 ##Exclude Fedora Branding
--fedora-release
--fedora-logos
-ultramarine-release
-ultramarine-logos
+-fedora-release*
+-fedora-logos*
+ultramarine-release*
+ultramarine-logos*
 ultramarine-repos
--generic-*
-@^Fedora Custom Operating System
+ultramarine-backgrounds
 
 # no longer in @core since 2018-10, but needed for livesys script
 initscripts
@@ -358,6 +362,7 @@ rm -f /etc/machine-id
 touch /etc/machine-id
 
 #edit fedora-welcome
+sed -i 's/liveinst/kdesu calamares/g' /usr/share/anaconda/gnome/fedora-welcome
 sed -i 's/org.fedoraproject.AnacondaInstaller/anaconda/g' /usr/share/anaconda/gnome/fedora-welcome
 sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
 %end

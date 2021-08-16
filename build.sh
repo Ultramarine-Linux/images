@@ -14,7 +14,7 @@ rm -rf build/
 livecd-creator flattened.ks\
  -v\
  -d\
- --compression-type None\
+ --compression-type zstd\
  -f Ultramarine-Linux-Live\
  --title 'Ultramarine Linux 34'\
  --product 'Ultramarine Linux'

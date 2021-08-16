@@ -1,25 +1,17 @@
+%include profile-anaconda.ks
+##Anaconda fix
 %post
 touch /etc/anaconda/product.d/ultramarine.conf
 cat << EOF >>/etc/anaconda/product.d/ultramarine.conf
 # Anaconda configuration file for Fedora Workstation Live.
 
-[Anaconda]
-activatable_modules =
-    org.fedoraproject.Anaconda.Modules.Timezone
-    org.fedoraproject.Anaconda.Modules.Network
-    org.fedoraproject.Anaconda.Modules.Localization
-    org.fedoraproject.Anaconda.Modules.Security
-    org.fedoraproject.Anaconda.Modules.Users
-    org.fedoraproject.Anaconda.Modules.Payloads
-    org.fedoraproject.Anaconda.Modules.Storage
-    org.fedoraproject.Anaconda.Modules.Services
 
 [Product]
 product_name = Ultramarine Linux
-
+product_id = ultramarine
 [Base Product]
 product_name = Fedora
-
+variant_name =  Workstation
 [Payload]
 default_source = CLOSEST_MIRROR
 
@@ -31,10 +23,12 @@ updates_repositories =
     updates-modular
 
 [Bootloader]
-menu_auto_hide = True
+menu_auto_hide = False
 
 [User Interface]
 custom_stylesheet = /usr/share/anaconda/pixmaps/ultramarine.css
-
+[Profile Detection]
+# Match os-release values.
+os_id = ultramarine
 EOF
 %end

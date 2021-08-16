@@ -141,7 +141,7 @@ cat > /etc/default/grub << EOF_DEFAULT_GRUB
 GRUB_TIMEOUT=3
 GRUB_DISTRIBUTOR="\$(sed 's, release .*\$,,g' /etc/system-release)"
 GRUB_DEFAULT=saved
-GRUB_CMDLINE_LINUX="rd.md=0 rd.dm=0 rd.luks=0 rhgb quiet"
+GRUB_CMDLINE_LINUX="rd.md=0 rd.dm=0 rd.luks=0 inst.profile=ultramarine rhgb quiet"
 GRUB_DISABLE_RECOVERY=false
 # GRUB_DISABLE_OS_PROBER=true
 EOF_DEFAULT_GRUB

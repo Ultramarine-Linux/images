@@ -37,9 +37,6 @@ libreoffice-kf5
 %end
 %post
 
-#enable SDDM
-systemctl enable lightdm
-
 #le cisco 
 dnf config-manager --set-enabled fedora-cisco-openh264
 

@@ -12,6 +12,7 @@
 %include desktop.ks
 lang en_US.UTF-8
 keyboard us
+firstboot --enable
 timezone Asia/Bangkok
 #auth --useshadow --passalgo=sha512
 selinux --permissive
@@ -61,7 +62,7 @@ anaconda-install-env-deps
 anaconda-live
 @anaconda-tools
 calamares
-
+initial-setup
 # Need aajohan-comfortaa-fonts for the SVG rnotes images
 aajohan-comfortaa-fonts
 
@@ -208,10 +209,10 @@ usermod -aG wheel liveuser > /dev/null
 passwd -d root > /dev/null
 
 # turn off firstboot for livecd boots
-systemctl --no-reload disable firstboot-text.service 2> /dev/null || :
-systemctl --no-reload disable firstboot-graphical.service 2> /dev/null || :
-systemctl stop firstboot-text.service 2> /dev/null || :
-systemctl stop firstboot-graphical.service 2> /dev/null || :
+#systemctl --no-reload disable firstboot-text.service 2> /dev/null || :
+#systemctl --no-reload disable firstboot-graphical.service 2> /dev/null || :
+#systemctl stop firstboot-text.service 2> /dev/null || :
+#systemctl stop firstboot-graphical.service 2> /dev/null || :
 
 # don't use prelink on a running live image
 sed -i 's/PRELINKING=yes/PRELINKING=no/' /etc/sysconfig/prelink &>/dev/null || :

@@ -45,7 +45,7 @@ AccentColor=0
 DarkMode=false
 DarkModeDimsWallpaer=false
 PixelRatio=1
-Wallpaper=/usr/share/backgrounds/images/default-16_9.png
+Wallpaper=/usr/share/backgrounds/ultramarine-linux/default/blue-ocean.jpg
 EOF
 
 #Cyber Dock
@@ -144,7 +144,7 @@ AccentColor=0
 DarkMode=false
 DarkModeDimsWallpaer=false
 PixelRatio=1
-Wallpaper=/usr/share/backgrounds/images/default-16_9.png
+Wallpaper=/usr/share/backgrounds/ultramarine-linux/default/blue-ocean.jpg
 EOF
 
 #Cyber Dock

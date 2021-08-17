@@ -7,14 +7,14 @@
 @dial-up
 @multimedia
 @fonts
-lightdm
+sddm
 policycoreutils
 coreutils
 gnome-software
 qt5ct
-lightdm-settings
-slick-greeter
-konsole
+kate
+
+
 
 
 #install cyber desktop

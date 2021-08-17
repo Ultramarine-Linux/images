@@ -5,8 +5,8 @@ debugdata/
 pkglists/
 *pkgsizes.txt
 build/
-anaconda/
 *.iso
 builds/
 *.log
 flattened.ks
+tmp.sh

@@ -19,14 +19,22 @@
 # add initscript
 cat >> /etc/rc.d/init.d/livesys << ALLEOF
 
-# set up lightdm autologin
-sed -i 's/^#autologin-user=.*/autologin-user=liveuser/' /etc/lightdm/lightdm.conf
-sed -i 's/^#autologin-user-timeout=.*/autologin-user-timeout=0/' /etc/lightdm/lightdm.conf
-sed -i 's/^#show-language-selector=.*/show-language-selector=true/' /etc/lightdm/lightdm-gtk-greeter.conf
+# set up autologin for user liveuser
+if [ -f /etc/sddm.conf ]; then
+sed -i 's/^#User=.*/User=liveuser/' /etc/sddm.conf
+sed -i "s/^#Session=.*/Session=cutefish-xsession/" /etc/sddm.conf
+sed -i "s/^#Current.*/Current=cutefish/" /etc/sddm.conf
+else
+cat > /etc/sddm.conf << SDDM_EOF
+[Autologin]
+User=liveuser
+Session=cutefish-xsession
+SDDM_EOF
+fi
 
 
 # set cutefish as default session, otherwise login will fail
-sed -i 's/^#user-session=.*/user-session=cutefish-xsession/' /etc/lightdm/lightdm.conf
+#sed -i 's/^#user-session=.*/user-session=cutefish-xsession/' /etc/lightdm/lightdm.conf
 
 ##Configuration
 #Create Liveuser dir
@@ -86,7 +94,7 @@ cat << 'EOF' > /home/liveuser/.config/cutefishos/dock_pinned.conf
 [Anaconda]
 DesktopPath=
 Exec=/usr/share/anaconda/gnome/fedora-welcome
-IconName=org.fedoraproject.AnacondaInstaller
+IconName=anaconda
 Index=2
 visibleName=Install Ultramarine
  

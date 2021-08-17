@@ -22,7 +22,7 @@ zerombr
 clearpart --all
 part / --size 8192 --fstype ext4
 services --enabled=NetworkManager,ModemManager --disabled=sshd
-network --bootproto=dhcp --device=link --activate
+network --bootproto=dhcp --device=link --activate --hostname=ultramarine
 rootpw --lock --iscrypted 
 
 
@@ -103,11 +103,6 @@ cat > /etc/rc.d/init.d/livesys << EOF
 ### BEGIN INIT INFO
 # X-Start-Before: display-manager chronyd
 ### END INIT INFO
-
-cat << EOF >>/home/liveuser/Desktop/liveinst.desktop
-visibleName=Install Ultramarine
-EOF
-
 
 . /etc/init.d/functions
 
@@ -255,7 +250,7 @@ touch /.liveimg-configured
 echo "ultramarine-live" > /etc/hostname
 
 EOF
-echo "ultramarine-live" > /etc/hostname
+
 # bah, hal starts way too late
 cat > /etc/rc.d/init.d/livesys-late << EOF
 #!/bin/bash
@@ -264,7 +259,7 @@ cat > /etc/rc.d/init.d/livesys-late << EOF
 #
 # chkconfig: 345 99 01
 # description: Late init script for live image.
-
+echo "ultramarine-live" > /etc/hostname
 . /etc/init.d/functions
 
 if ! strstr "\`cat /proc/cmdline\`" rd.live.image || [ "\$1" != "start" ] || [ -e /.liveimg-late-configured ] ; then
@@ -371,7 +366,11 @@ touch /etc/machine-id
 #sed -i 's/liveinst/kdesu calamares/g' /usr/share/anaconda/gnome/fedora-welcome
 #sed -i 's/org.fedoraproject.AnacondaInstaller/anaconda/g' /usr/share/anaconda/gnome/fedora-welcome
 sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
+cat << EOF >>/home/liveuser/Desktop/liveinst.desktop
+visibleName=Install Ultramarine
+EOF
 %end
+
 
 
 %post --nochroot

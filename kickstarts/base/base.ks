@@ -104,6 +104,11 @@ cat > /etc/rc.d/init.d/livesys << EOF
 # X-Start-Before: display-manager chronyd
 ### END INIT INFO
 
+cat << EOF >>/home/liveuser/Desktop/liveinst.desktop
+visibleName=Install Ultramarine
+EOF
+
+
 . /etc/init.d/functions
 
 if ! strstr "\`cat /proc/cmdline\`" rd.live.image || [ "\$1" != "start" ]; then
@@ -250,7 +255,7 @@ touch /.liveimg-configured
 echo "ultramarine-live" > /etc/hostname
 
 EOF
-
+echo "ultramarine-live" > /etc/hostname
 # bah, hal starts way too late
 cat > /etc/rc.d/init.d/livesys-late << EOF
 #!/bin/bash
@@ -364,7 +369,7 @@ touch /etc/machine-id
 
 #edit fedora-welcome
 #sed -i 's/liveinst/kdesu calamares/g' /usr/share/anaconda/gnome/fedora-welcome
-sed -i 's/org.fedoraproject.AnacondaInstaller/anaconda/g' /usr/share/anaconda/gnome/fedora-welcome
+#sed -i 's/org.fedoraproject.AnacondaInstaller/anaconda/g' /usr/share/anaconda/gnome/fedora-welcome
 sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
 %end
 

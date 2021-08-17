@@ -8,7 +8,6 @@
 # this template can override these settings)
 
 #load custom files
-%include ../config/kickstart-profile.ks
 %include desktop.ks
 lang en_US.UTF-8
 keyboard us
@@ -88,8 +87,9 @@ isomd5sum
 gjs
 %end
 
-
-
+%pre
+echo $INSTALL_ROOT
+%end
 
 %post
 # FIXME: it'd be better to get this installed from a package
@@ -393,16 +393,5 @@ if [ "$(uname -i)" = "i386" -o "$(uname -i)" = "x86_64" ]; then
     ' /usr/share/lorax/templates.d/99-generic/live/x86.tmpl
 fi
 
-##Build and inject Product.img
-echo =========LAPIS BUILD SYSTEM SCRIPT========
-echo
-echo =========Merging Product folders========
-action "Preparing temporary directory" mkdir -p /tmp/lapis
-action "Copying base root" cp files/base/product/ /tmp/lapis
-action "Merging with spin-specific changes" cp files/${spin}/product /tmp/lapis
-action "Compressing image" find tmp/lapis/product/ | cpio -c -o | gzip -9cv > product.img
-
-#Inject product.img into the ISO
-action "Injecting into ISO directory" mv product.img $LIVE_ROOT/images
 
 %end

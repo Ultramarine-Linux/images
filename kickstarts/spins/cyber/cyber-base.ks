@@ -19,19 +19,19 @@
 # add initscript
 cat >> /etc/rc.d/init.d/livesys << ALLEOF
 
-##Configuration
-#Create Liveuser dir
-mkdir -p /home/liveuser/.config/cyberos
-mkdir -p /home/liveuser/.config/
-mkdir -p /home/liveuser/Downloads
-mkdir -p /home/liveuser/Documents
-mkdir -p /home/liveuser/Pictures
-mkdir -p /home/liveuser/Videos
+# set up autologin for user liveuser
+if [ -f /etc/sddm.conf ]; then
+sed -i 's/^#User=.*/User=liveuser/' /etc/sddm.conf
+sed -i "s/^#Session=.*/Session=cyber-xsession/" /etc/sddm.conf
+else
+cat > /etc/sddm.conf << SDDM_EOF
+[Autologin]
+User=liveuser
+Session=cyber-xsession
+SDDM_EOF
+fi
 
 
-
-#Set Text Editor for all users
-xdg-mime default cyber-edit.desktop text/plain
 
 
 # make sure to set the right permissions and selinux contexts

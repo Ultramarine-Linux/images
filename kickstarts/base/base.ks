@@ -201,7 +201,7 @@ if [ -n "\$configdone" ]; then
 fi
 
 # add liveuser user with no passwd
-action "Adding live user" useradd \$USERADDARGS -c "Live System User" liveuser
+action "Adding live user" useradd -m -c "Live System User" liveuser
 passwd -d liveuser > /dev/null
 usermod -aG wheel liveuser > /dev/null
 
@@ -247,8 +247,8 @@ touch /.liveimg-configured
 # https://bugzilla.redhat.com/show_bug.cgi?id=679486
 # the hostname must be something else than 'localhost'
 # https://bugzilla.redhat.com/show_bug.cgi?id=1370222
-echo "ultramarine-live" > /etc/hostname
-
+#echo "ultramarine" > /etc/hostname
+#systemctl restart hostname.service
 EOF
 
 # bah, hal starts way too late
@@ -259,7 +259,6 @@ cat > /etc/rc.d/init.d/livesys-late << EOF
 #
 # chkconfig: 345 99 01
 # description: Late init script for live image.
-echo "ultramarine-live" > /etc/hostname
 . /etc/init.d/functions
 
 if ! strstr "\`cat /proc/cmdline\`" rd.live.image || [ "\$1" != "start" ] || [ -e /.liveimg-late-configured ] ; then

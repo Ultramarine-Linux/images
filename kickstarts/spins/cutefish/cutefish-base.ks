@@ -33,9 +33,6 @@ SDDM_EOF
 fi
 
 
-# set cutefish as default session, otherwise login will fail
-#sed -i 's/^#user-session=.*/user-session=cutefish-xsession/' /etc/lightdm/lightdm.conf
-
 
 
 

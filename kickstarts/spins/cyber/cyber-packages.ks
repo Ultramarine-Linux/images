@@ -19,6 +19,7 @@ xorg-x11-server-Xorg
 cyber-desktop-common
 ultramarine-repos-cyber
 meuikit
+whitesur-icon-theme-ultramarine
 
 
 %end

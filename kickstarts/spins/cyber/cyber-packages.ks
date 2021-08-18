@@ -17,6 +17,7 @@ sddm
 #install cyber desktop
 xorg-x11-server-Xorg
 cyber-desktop-common
+ultramarine-repos-cyber
 meuikit
 
 

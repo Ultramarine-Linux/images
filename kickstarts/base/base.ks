@@ -80,6 +80,9 @@ ultramarine-logos*
 ultramarine-repos
 ultramarine-backgrounds
 
+#sorry for all the deps
+neofetch
+
 # no longer in @core since 2018-10, but needed for livesys script
 initscripts
 chkconfig

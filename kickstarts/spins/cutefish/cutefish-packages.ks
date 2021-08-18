@@ -13,6 +13,7 @@ coreutils
 gnome-software
 qt5ct
 kate
+-konsole
 
 
 

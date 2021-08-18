@@ -208,6 +208,9 @@ action "Adding live user" useradd -m -c "Live System User" liveuser
 passwd -d liveuser > /dev/null
 usermod -aG wheel liveuser > /dev/null
 
+#add .bashrc to Liveuser
+cp -av /etc/bashrc /home/liveuser/.bashrc
+
 # Remove root password lock
 passwd -d root > /dev/null
 

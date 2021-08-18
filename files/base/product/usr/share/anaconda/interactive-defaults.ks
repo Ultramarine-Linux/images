@@ -1,5 +1,5 @@
 # Default postinstall kickstart config in Ultramarine
-firstboot --enable
+firstboot --enable --reconfig
 %packages
 initial-setup
 initial-setup-gui

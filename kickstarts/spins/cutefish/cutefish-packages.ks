@@ -22,5 +22,6 @@ kate
 xorg-x11-server-Xorg
 cutefish-desktop-common
 
+ultramarine-repos-cutefish
 
 %end

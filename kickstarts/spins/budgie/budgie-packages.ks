@@ -11,9 +11,10 @@ repo --name="copr:copr.fedorainfracloud.org:stenstorp:budgie" --baseurl=https://
 policycoreutils
 coreutils
 gnome-software
+-setroubleshoot
 
 lightdm
-slick-greeter
+lightdm-gtk
 
 tilix
 gnome-system-monitor
@@ -26,13 +27,12 @@ evince
 evince-nautilus
 seahorse
 gnome-sound-recorder
-arc-theme
-arc-theme-plank
 gnome-disk-utility
-gnome-packagekit
 @ Games
 gnome-packagekit*
 -gdm
+
+ultramarine-repos-budgie
 
 #install budgie
 xorg-x11-server-Xorg

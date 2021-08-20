@@ -1,6 +1,11 @@
 #!/bin/bash
 spin="${1?"Usage: $0 Spin"}"
+version=${2}
 
+if [ -z "$1" ]
+  then
+    version=$(rpm -E '%{fedora}')
+fi
 
 
 sudo -s <<<"
@@ -17,9 +22,9 @@ livecd-creator flattened.ks\
  --compression-type zstd\
  -f Ultramarine\
  --title 'Ultramarine Linux'\
- --product 'Ultramarine Linux'
+ --product 'Ultramarine Linux' --releasever=${version}
 mv Ultramarine.iso ${spin}.iso
 echo Cleaning up...
-rm -rf /var/tmp/imgcreate* > /dev/null
+rm -rf -f /var/tmp/imgcreate* > /dev/null
 rm -rf /tmp/lapis
 "

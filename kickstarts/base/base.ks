@@ -11,10 +11,9 @@
 %include desktop.ks
 lang en_US.UTF-8
 keyboard us
-firstboot --enable
+firstboot --reconfig --enable
 timezone Asia/Bangkok
-#auth --useshadow --passalgo=sha512
-selinux --permissive
+selinux --disabled
 firewall --enabled --service=mdns
 xconfig --startxonboot
 zerombr
@@ -24,11 +23,6 @@ services --enabled=NetworkManager,ModemManager --disabled=sshd
 network --bootproto=dhcp --device=link --activate --hostname=ultramarine
 rootpw --lock --iscrypted 
 
-
-
-
-
-reqpart
 
 %include base-repo.ks
 
@@ -215,10 +209,10 @@ cp -av /etc/bashrc /home/liveuser/.bashrc
 passwd -d root > /dev/null
 
 # turn off firstboot for livecd boots
-#systemctl --no-reload disable firstboot-text.service 2> /dev/null || :
-#systemctl --no-reload disable firstboot-graphical.service 2> /dev/null || :
-#systemctl stop firstboot-text.service 2> /dev/null || :
-#systemctl stop firstboot-graphical.service 2> /dev/null || :
+systemctl --no-reload disable firstboot-text.service 2> /dev/null || :
+systemctl --no-reload disable firstboot-graphical.service 2> /dev/null || :
+systemctl stop firstboot-text.service 2> /dev/null || :
+systemctl stop firstboot-graphical.service 2> /dev/null || :
 
 # don't use prelink on a running live image
 sed -i 's/PRELINKING=yes/PRELINKING=no/' /etc/sysconfig/prelink &>/dev/null || :

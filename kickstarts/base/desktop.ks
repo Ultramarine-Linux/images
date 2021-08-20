@@ -37,7 +37,7 @@ firewall-config
 
 # Internet
 firefox
-mozilla-openh264
+#mozilla-openh264
 
 # Software
 PackageKit

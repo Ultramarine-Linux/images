@@ -1,7 +1,7 @@
 %include ../../base/base.ks
 %include budgie-packages.ks
 
-services --disabled=gdm --enabled lightdm
+services --disabled=gdm
 %post
 
 # create /etc/sysconfig/desktop (needed for installation)
@@ -9,12 +9,6 @@ services --disabled=gdm --enabled lightdm
 cat > /etc/sysconfig/desktop <<EOF
 PREFERRED=/usr/bin/budgie-desktop
 DISPLAYMANAGER=/usr/sbin/lightdm
-EOF
-
-cat > /usr/share/lightdm/lightdm.conf.d/00-live-session.conf <<EOF
-[Seat*]
-autologin-user=liveuser
-user-session=budgie-desktop
 EOF
 
 cat >> /etc/rc.d/init.d/livesys << EOF
@@ -26,6 +20,11 @@ sed -i 's/^#show-language-selector=.*/show-language-selector=true/' /etc/lightdm
 #
 # set Budgie as default session, otherwise login will fail
 sed -i 's/^#user-session=.*/user-session=budgie-desktop/' /etc/lightdm/lightdm.conf
+cat > /etc/lightdm/lightdm.conf.d/00-live-session.conf <<DMEOF
+[Seat*]
+autologin-user=liveuser
+user-session=budgie-desktop
+DMEOF
 
 
 # Show harddisk install on the desktop

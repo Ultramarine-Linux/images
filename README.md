@@ -1,4 +1,5 @@
 # Ultramarine Linux
+![](https://gitlab.com/ultramarine-linux/ultramarine/-/raw/main/assets/screenshots/budgie-1.png)
 Ultramarine Linux is a remix of the Fedora Linux distribution focused on experimenting with niche (and sometimes unconventional) desktop configurations.
 
 It is built on top of the standard Fedora images with custom Kickstart configurations.

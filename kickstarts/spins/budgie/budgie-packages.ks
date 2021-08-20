@@ -17,8 +17,7 @@ slick-greeter
 
 tilix
 gnome-system-monitor
-arc-theme
-arc-icon-theme
+flat-remix-theme
 gedit
 nautilus
 tilix-nautilus

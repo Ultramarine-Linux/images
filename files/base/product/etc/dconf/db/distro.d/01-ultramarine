@@ -1,0 +1,5 @@
+[org/gnome/desktop/interface]
+gtk-theme='Flat-Remix-GTK-Blue'
+icon-theme='Flat-Remix-Blue'
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/backgrounds/ultramarine-linux/default/blue-ocean.jpg'

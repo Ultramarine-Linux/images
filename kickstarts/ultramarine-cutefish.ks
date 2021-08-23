@@ -39,6 +39,18 @@ libreoffice-kf5
 dnf config-manager --set-enabled fedora-cisco-openh264
 
 %end
-%pre
-echo cutefish > .spin
+%post --nochroot
+if [ ! -z "$INSTALL_ROOT" ]; then eval INSTROOT="${INSTALL_ROOT}" ; else eval INSTROOT="/mnt/sysimage"; fi
+
+SPIN=cutefish
+
+echo =========LAPIS BUILD SYSTEM SCRIPT========
+echo
+echo "Running on $PWD"
+echo =========Merging Product folders========
+echo "Preparing temporary directory" && mkdir -p /tmp/lapis
+echo "Copying base root" && cp -avx files/base/product/ /tmp/lapis
+echo "Merging with spin-specific changes" && cp -avx files/$SPIN/product /tmp/lapis
+#Inject product.img into the ISO
+echo "Injecting changes into root" && cp -avx /tmp/lapis/product/./* $INSTROOT/
 %end

@@ -37,6 +37,7 @@ ultramarine-repos-budgie
 #install budgie
 xorg-x11-server-Xorg
 budgie-desktop
+budgie-extras
 #funny theme
 
 

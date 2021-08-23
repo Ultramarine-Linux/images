@@ -37,7 +37,7 @@ reqpart
 @multimedia
 @hardware-support
 @printing
-
+pam
 # Explicitly specified here:
 # <notting> walters: because otherwise dependency loops cause yum issues.
 kernel
@@ -196,12 +196,13 @@ fi
 if [ -n "\$configdone" ]; then
   exit 0
 fi
-
+# update dconf
+dconf update
 # add liveuser user with no passwd
 action "Adding live user" useradd -m -c "Live System User" liveuser
 passwd -d liveuser > /dev/null
 usermod -aG wheel liveuser > /dev/null
-
+mkhomedir_helper liveuser /etc/skel
 #add .bashrc to Liveuser
 cp -av /etc/bashrc /home/liveuser/.bashrc
 
@@ -243,6 +244,8 @@ sed -i 's/rtcsync//' /etc/chrony.conf
 # Mark things as configured
 touch /.liveimg-configured
 
+echo "Merging Default Home"
+cp -rvn /etc/skel/./* /home/liveuser
 # add static hostname to work around xauth bug
 # https://bugzilla.redhat.com/show_bug.cgi?id=679486
 # the hostname must be something else than 'localhost'
@@ -324,15 +327,15 @@ cat >> /etc/fstab << EOF
 vartmp   /var/tmp    tmpfs   defaults   0  0
 EOF
 
-# work around for poor key import UI in PackageKit
-rm -f /var/lib/rpm/__db*
-releasever=$(rpm -q --qf '%{version}\n' --whatprovides system-release)
-basearch=$(uname -i)
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
-echo "Packages within this LiveCD"
-rpm -qa
-# Note that running rpm recreates the rpm db files which aren't needed or wanted
-rm -f /var/lib/rpm/__db*
+## work around for poor key import UI in PackageKit
+#rm -f /var/lib/rpm/__db*
+#releasever=$(rpm -q --qf '%{version}\n' --whatprovides system-release)
+#basearch=$(uname -i)
+#rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+#echo "Packages within this LiveCD"
+#rpm -qa
+## Note that running rpm recreates the rpm db files which aren't needed or wanted
+#rm -f /var/lib/rpm/__db*
 
 # go ahead and pre-make the man -k cache (#455968)
 /usr/bin/mandb
@@ -391,18 +394,4 @@ if [ "$(uname -i)" = "i386" -o "$(uname -i)" = "x86_64" ]; then
     %endif\
     ' /usr/share/lorax/templates.d/99-generic/live/x86.tmpl
 fi
-if [ ! -z "$INSTALL_ROOT" ]; then eval INSTROOT="${INSTALL_ROOT}" ; else eval INSTROOT="/mnt/sysimage"; fi
-
-SPIN=$(cat .spin)
-
-echo =========LAPIS BUILD SYSTEM SCRIPT========
-echo
-echo "Running on $PWD"
-echo =========Merging Product folders========
-echo "Preparing temporary directory" && mkdir -p /tmp/lapis
-echo "Copying base root" && cp -avx files/base/product/ /tmp/lapis
-echo "Merging with spin-specific changes" && cp -avx files/$SPIN/product /tmp/lapis
-#Inject product.img into the ISO
-echo "Injecting changes into root" && cp -avx /tmp/lapis/product/./* $INSTROOT/
-
 %end

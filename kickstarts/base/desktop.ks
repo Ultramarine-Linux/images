@@ -14,7 +14,7 @@ bind-utils
 btrfs-progs
 microcode_ctl
 psmisc
-
+flat-remix-theme
 # Multimedia
 @multimedia
 libva-vdpau-driver

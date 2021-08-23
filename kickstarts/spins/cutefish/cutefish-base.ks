@@ -5,16 +5,16 @@
 
 
 # set default GTK+ theme for root (see #683855, #689070, #808062)
-#cat > /root/.gtkrc-2.0 << EOF
-#include "/usr/share/themes/Adwaita/gtk-2.0/gtkrc"
-#include "/etc/gtk-2.0/gtkrc"
-#gtk-theme-name="Adwaita"
-#EOF
-#mkdir -p /root/.config/gtk-3.0
-#cat > /root/.config/gtk-3.0/settings.ini << EOF
-#[Settings]
-#gtk-theme-name = Adwaita
-#EOF
+cat > /root/.gtkrc-2.0 << EOF
+include "/usr/share/themes/Flat-Remix-GTK-Blue/gtk-2.0/gtkrc"
+include "/etc/gtk-2.0/gtkrc"
+gtk-theme-name="Flat-Remix-GTK-Blue"
+EOF
+mkdir -p /root/.config/gtk-3.0
+cat > /root/.config/gtk-3.0/settings.ini << EOF
+[Settings]
+gtk-theme-name = Flat-Remix-GTK-Blue
+EOF
 
 # add initscript
 cat >> /etc/rc.d/init.d/livesys << ALLEOF
@@ -34,7 +34,16 @@ fi
 
 
 
-
+cat > /home/liveuser/.gtkrc-2.0 << EOF
+include "/usr/share/themes/Flat-Remix-GTK-Blue/gtk-2.0/gtkrc"
+include "/etc/gtk-2.0/gtkrc"
+gtk-theme-name="Flat-Remix-GTK-Blue"
+EOF
+mkdir -p /home/liveuser/.config/gtk-3.0
+cat > /home/liveuser/.config/gtk-3.0/settings.ini << EOF
+[Settings]
+gtk-theme-name = Flat-Remix-GTK-Blue
+EOF
 
 #Autostart Installer
 mkdir -p /home/liveuser/.config/autostart/

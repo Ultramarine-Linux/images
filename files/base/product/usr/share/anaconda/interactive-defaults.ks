@@ -13,5 +13,6 @@ systemctl start firstboot-text.service
 systemctl start firstboot-graphical.service
 chkconfig livesys off
 chkconfig livesys-late off 
+dconf update
 
 %end

@@ -31,8 +31,20 @@ iso-budgie:
     paths:
     - budgie.iso
 
-kickstart-test:
+cyber-test:
   stage: test
   script:
-    - ksflatten --config kickstarts/ultramarine-${spin}.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks
+    - ksflatten --config kickstarts/ultramarine-cyber.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks
+    - ksvalidator flattened.ks
+
+budgie-test:
+  stage: test
+  script:
+    - ksflatten --config kickstarts/ultramarine-budgie.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks
+    - ksvalidator flattened.ks
+
+cutefish-test:
+  stage: test
+  script:
+    - ksflatten --config kickstarts/ultramarine-cutefish.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks
     - ksvalidator flattened.ks

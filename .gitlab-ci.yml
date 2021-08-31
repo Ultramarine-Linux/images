@@ -1,4 +1,4 @@
-image: gitlab.ultramarine-linux.org/release-engineering/oci-images/installer-buildenv:34
+image: gitlab.ultramarine-linux.org:5050/release-engineering/oci-images/installer-buildenv:34
 services:
   - docker:dind
 

@@ -8,27 +8,30 @@ stages:
   - deploy
 
 iso-cyber:
-  only:
-    - $CI_COMMIT_MESSAGE == (?:(?!\[\!build\])(?:.|\n))*\[\!build\]
   stage: build
   script:
     - ./build.sh cyber
   artifacts:
     paths:
-    - Ultramarine-Linux-Live.iso
+    - cyber.iso
 
-file-test:
-  only:
-    - $CI_COMMIT_MESSAGE == (?:(?!\[\!build\])(?:.|\n))*\[\!build\]
-  dependencies:
-  - iso-cyber
-  stage: test
+iso-cutefish:
+  stage: build
   script:
-    - file Ultramarine-Linux-Live.iso | grep bootable
+    - ./build.sh cutefish
+  artifacts:
+    paths:
+    - cutefish.iso
+
+iso-budgie:
+  stage: build
+  script:
+    - ./build.sh budgie
+  artifacts:
+    paths:
+    - budgie.iso
 
 kickstart-test:
-  only:
-    - $CI_COMMIT_MESSAGE == (?:(?!\[\!build\])(?:.|\n))*\[\!build\]
   stage: test
   script:
     - ksflatten --config kickstarts/ultramarine-${spin}.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks

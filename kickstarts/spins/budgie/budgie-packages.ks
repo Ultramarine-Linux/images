@@ -1,4 +1,4 @@
-repo --name="copr:copr.fedorainfracloud.org:stenstorp:budgie" --baseurl=https://download.copr.fedorainfracloud.org/results/stenstorp/budgie/fedora-$releasever-$basearch/
+repo --name="copr:copr.fedorainfracloud.org:cappyishihara:budgie-desktop" --baseurl=https://download.copr.fedorainfracloud.org/results/cappyishihara/budgie-desktop/fedora-$releasever-$basearch/
 
 %packages
 @core
@@ -38,6 +38,7 @@ ultramarine-repos-budgie
 xorg-x11-server-Xorg
 budgie-desktop
 budgie-extras
+budgie-desktop-view
 #funny theme
 
 

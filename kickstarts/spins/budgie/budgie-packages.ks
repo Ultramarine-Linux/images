@@ -39,6 +39,7 @@ xorg-x11-server-Xorg
 budgie-desktop
 budgie-extras
 budgie-desktop-view
+ultramarine-budgie-release-common
 #funny theme
 
 

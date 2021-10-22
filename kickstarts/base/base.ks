@@ -9,9 +9,10 @@
 
 #load custom files
 %include desktop.ks
+
 lang en_US.UTF-8
 keyboard us
-firstboot --reconfig --enable
+#firstboot --reconfig --enable
 timezone Asia/Bangkok
 selinux --disabled
 firewall --enabled --service=mdns
@@ -69,7 +70,8 @@ glibc-all-langpacks
 ##Exclude Fedora Branding
 -fedora-release*
 -fedora-logos*
-ultramarine-release*
+ultramarine-release-common
+ultramarine-release
 ultramarine-logos*
 ultramarine-repos
 ultramarine-backgrounds
@@ -197,7 +199,7 @@ if [ -n "\$configdone" ]; then
   exit 0
 fi
 # update dconf
-dconf update
+#dconf update
 # add liveuser user with no passwd
 action "Adding live user" useradd -m -c "Live System User" liveuser
 passwd -d liveuser > /dev/null

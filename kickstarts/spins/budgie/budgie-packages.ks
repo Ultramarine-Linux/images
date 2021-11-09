@@ -33,13 +33,13 @@ gnome-packagekit*
 -gdm
 
 ultramarine-repos-budgie
+ultramarine-release-identity-budgie
 
 #install budgie
 xorg-x11-server-Xorg
 budgie-desktop
 budgie-extras
 budgie-desktop-view
-ultramarine-budgie-release-common
 #funny theme
 
 

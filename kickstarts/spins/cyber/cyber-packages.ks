@@ -18,6 +18,7 @@ sddm
 xorg-x11-server-Xorg
 cyber-desktop-common
 ultramarine-repos-cyber
+ultramarine-release-cyber
 meuikit
 whitesur-icon-theme-ultramarine
 

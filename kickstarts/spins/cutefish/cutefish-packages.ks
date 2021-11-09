@@ -21,7 +21,7 @@ kate
 #install cyber desktop
 xorg-x11-server-Xorg
 cutefish-desktop-common
-
+ultramarine-release-cutefish
 ultramarine-repos-cutefish
 
 %end

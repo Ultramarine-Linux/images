@@ -76,7 +76,7 @@ ultramarine-release
 ultramarine-logos*
 ultramarine-repos
 ultramarine-backgrounds
-ultramarine-desktop
+
 
 #sorry for all the deps
 neofetch

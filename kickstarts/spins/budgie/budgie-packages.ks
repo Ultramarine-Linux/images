@@ -34,11 +34,13 @@ gnome-packagekit*
 
 ultramarine-repos-budgie
 ultramarine-release-identity-budgie
+ultramarine-backgrounds-gnome
 
 #install budgie
 xorg-x11-server-Xorg
 budgie-desktop
 budgie-extras
+budgie-extras-daemon
 budgie-desktop-view
 #funny theme
 

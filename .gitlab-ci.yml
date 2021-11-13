@@ -14,7 +14,7 @@ iso-budgie:
     - make image
   artifacts:
     paths:
-    - build/image/Ultramarine-budgie-35.iso
+    - build/
     when: always
 
 iso-budgie-lct:
@@ -24,5 +24,5 @@ iso-budgie-lct:
     - ./build.sh budgie 35
   artifacts:
     paths:
-    - UM-budgie.iso
+    - "*.iso"
     when: always

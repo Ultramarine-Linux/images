@@ -14,15 +14,15 @@ lang en_US.UTF-8
 keyboard us
 #firstboot --reconfig --enable
 timezone Asia/Bangkok
-selinux --disabled
+selinux --enabled
 firewall --enabled --service=mdns
 xconfig --startxonboot
 zerombr
 clearpart --all
-part / --size 8192 --fstype ext4
+part / --size 10000 --fstype ext4
 services --enabled=NetworkManager,ModemManager --disabled=sshd
 network --bootproto=dhcp --device=link --activate --hostname=ultramarine
-rootpw --lock --iscrypted 
+rootpw --lock --iscrypted
 reqpart
 
 %include base-repo.ks
@@ -77,6 +77,7 @@ ultramarine-logos*
 ultramarine-repos
 ultramarine-backgrounds
 
+-setroubleshoot*
 
 #sorry for all the deps
 neofetch

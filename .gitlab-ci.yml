@@ -1,50 +1,18 @@
-image: gitlab.ultramarine-linux.org:5050/release-engineering/oci-images/installer-buildenv:34
+image: fedora:35
 services:
   - docker:dind
 
-stages: 
+stages:
   - build
   - test
   - deploy
 
-iso-cyber:
-  stage: build
-  script:
-    - ./build.sh cyber
-  artifacts:
-    paths:
-    - cyber.iso
-
-iso-cutefish:
-  stage: build
-  script:
-    - ./build.sh cutefish
-  artifacts:
-    paths:
-    - cutefish.iso
-
 iso-budgie:
   stage: build
   script:
-    - ./build.sh budgie
+    - dnf install -y lorax-lmc-novirt vim-minimal pykickstart
+    - make image
   artifacts:
     paths:
-    - budgie.iso
-
-cyber-test:
-  stage: test
-  script:
-    - ksflatten --config kickstarts/ultramarine-cyber.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks
-    - ksvalidator flattened.ks
-
-budgie-test:
-  stage: test
-  script:
-    - ksflatten --config kickstarts/ultramarine-budgie.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks
-    - ksvalidator flattened.ks
-
-cutefish-test:
-  stage: test
-  script:
-    - ksflatten --config kickstarts/ultramarine-cutefish.ks --output flattened.ks && sed -i 's/\r$//' flattened.ks
-    - ksvalidator flattened.ks
+    - build/image/Ultramarine-budgie-35.iso
+    when: always

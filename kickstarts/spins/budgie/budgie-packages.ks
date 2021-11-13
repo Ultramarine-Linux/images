@@ -37,7 +37,7 @@ gnome-tweaks
 gnome-weather
 gnome-clocks
 @ Games
-gnome-packagekit*
+yumex-dnf
 -gdm
 
 #ultramarine-repos-budgie

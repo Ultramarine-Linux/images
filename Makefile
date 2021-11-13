@@ -31,10 +31,8 @@ image: kickstart
 	--project "$(PROJECT)" \
 	--releasever $(RELEASEVER) \
 	--ks build/$(SPIN)-flattened.ks \
-	--resultdir $(BUILDDIR)/image \
-	--logfile $(BUILDDIR)/logs/livemedia-creator.log \
-	--no-virt \
-	--iso-only \
-	--iso-name Ultramarine-$(SPIN)-$(RELEASEVER).iso
+	--resultdir build/image \
+	--logfile build/logs/livemedia-creator.log \
+	--no-virt
 
 rebuild: clean pkg test kickstart image

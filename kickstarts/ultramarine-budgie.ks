@@ -25,7 +25,7 @@ psmisc
 fuse
 
 # Office
-libreoffice-kf5
+libreoffice
 
 -@ GNOME Desktop Environment 
 

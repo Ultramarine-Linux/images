@@ -16,13 +16,3 @@ iso-budgie:
     paths:
     - build/
     when: always
-
-iso-budgie-lct:
-  stage: build
-  script:
-    - dnf install -y lorax-lmc-novirt vim-minimal pykickstart livecd-tools
-    - ./build.sh budgie 35
-  artifacts:
-    paths:
-    - "*.iso"
-    when: always

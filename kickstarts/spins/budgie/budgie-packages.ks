@@ -33,7 +33,6 @@ gnome-disk-utility
 eog
 gnome-screenshot
 abrt
-gnome-tweaks
 gnome-weather
 gnome-clocks
 @ Games

@@ -11,6 +11,17 @@ PREFERRED=/usr/bin/budgie-desktop
 DISPLAYMANAGER=/usr/sbin/lightdm
 EOF
 
+cat > /home/liveuser/.config/autostart/fedora-welcome.desktop << EOF
+[Desktop Entry]
+Name=Welcome to Fedora
+Exec=/usr/share/anaconda/gnome/fedora-welcome
+Terminal=false
+Type=Application
+StartupNotify=true
+NoDisplay=true
+X-GNOME-Autostart-enabled=true
+EOF
+
 cat >> /etc/rc.d/init.d/livesys << EOF
 
 ## set up lightdm autologin

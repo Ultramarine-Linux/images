@@ -66,16 +66,7 @@ unar
 echo ""
 echo "POST BASE DESKTOP ************************************"
 echo ""
-cat > /home/liveuser/.config/autostart/fedora-welcome.desktop << EOF_WELCOME
-[Desktop Entry]
-Name=Welcome to Fedora
-Exec=/usr/share/anaconda/gnome/fedora-welcome
-Terminal=false
-Type=Application
-StartupNotify=true
-NoDisplay=true
-X-GNOME-Autostart-enabled=true
-EOF_WELCOME
+
 # Antialiasing by default.
 # Set Noto fonts as preferred family.
 cat > /etc/fonts/local.conf << EOF_FONTS

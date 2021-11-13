@@ -26,6 +26,7 @@ rootpw --lock --iscrypted
 reqpart
 
 %include base-repo.ks
+%include additiona-repos.ks
 
 %packages
 @base-x

@@ -12,9 +12,9 @@ repo --name="fedora-cisco-openh264" --baseurl=https://codecs.fedoraproject.org/o
 
 # RPM Fusion repositories
 rpmfusion-free-release
-#rpmfusion-free-release-tainted
-#rpmfusion-nonfree-release
-#rpmfusion-nonfree-release-tainted
+rpmfusion-free-release-tainted
+rpmfusion-nonfree-release
+rpmfusion-nonfree-release-tainted
 
 # Appstream data
 rpmfusion-*-appstream-data
@@ -24,7 +24,7 @@ gstreamer1-libav
 gstreamer1-vaapi
 gstreamer1-plugins-bad-freeworld
 gstreamer1-plugins-ugly
-
+nouveau-firmware
 # Tools
 unrar
 

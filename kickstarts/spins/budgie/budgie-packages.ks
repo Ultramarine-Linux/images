@@ -12,28 +12,37 @@ policycoreutils
 coreutils
 gnome-software
 -setroubleshoot
+PackageKit-command-not-found
 
 lightdm
 lightdm-gtk
 
-tilix
+gnome-terminal
+gnome-terminal-nautilus
 gnome-system-monitor
 flat-remix-theme
+totem
 gedit
-nautilus
-tilix-nautilus
+gedit-color-schemes
 file-roller
 evince
 evince-nautilus
 seahorse
 gnome-sound-recorder
 gnome-disk-utility
+eog
+gnome-screenshot
+abrt
+gnome-tweaks
+gnome-weather
+gnome-clocks
 @ Games
 gnome-packagekit*
 -gdm
 
 #ultramarine-repos-budgie
 ultramarine-release-identity-budgie
+ultramarine-release-budgie
 ultramarine-backgrounds-gnome
 
 #install budgie

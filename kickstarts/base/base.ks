@@ -14,7 +14,7 @@ lang en_US.UTF-8
 keyboard us
 #firstboot --reconfig --enable
 timezone Asia/Bangkok
-selinux --enabled
+#selinux --disabled
 firewall --enabled --service=mdns
 xconfig --startxonboot
 zerombr

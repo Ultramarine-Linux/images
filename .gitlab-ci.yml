@@ -16,3 +16,13 @@ iso-budgie:
     paths:
     - build/image/Ultramarine-budgie-35.iso
     when: always
+
+iso-budgie-lct:
+  stage: build
+  script:
+    - dnf install -y lorax-lmc-novirt vim-minimal pykickstart livecd-tools
+    - ./build.sh budgie 35
+  artifacts:
+    paths:
+    - UM-budgie.iso
+    when: always

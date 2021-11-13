@@ -1,5 +1,5 @@
-repo --name="copr:copr.fedorainfracloud.org:cappyishihara:budgie-desktop" --baseurl=https://download.copr.fedorainfracloud.org/results/cappyishihara/budgie-desktop/fedora-$releasever-$basearch/
-
+#repo --name="copr:copr.fedorainfracloud.org:cappyishihara:budgie-desktop" --baseurl=https://download.copr.fedorainfracloud.org/results/cappyishihara/budgie-desktop/fedora-$releasever-$basearch/
+# Now included in Ultramarine Repos
 %packages
 @core
 @standard
@@ -32,7 +32,7 @@ gnome-disk-utility
 gnome-packagekit*
 -gdm
 
-ultramarine-repos-budgie
+#ultramarine-repos-budgie
 ultramarine-release-identity-budgie
 ultramarine-backgrounds-gnome
 

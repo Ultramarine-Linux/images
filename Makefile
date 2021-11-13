@@ -20,11 +20,8 @@ clean: build/
 #Image creation
 
 kickstart:
-	@cd build-scripts/
-	ksflatten --config build-scripts/kickstarts/ultramarine-$(SPIN).ks --output $(BUILDDIR)/$(SPIN)-flattened.ks
-endif
-
-ifeq ($(LORAX),true)
+	mkdir -p build
+	ksflatten --config kickstarts/ultramarine-$(SPIN).ks --output build/$(SPIN)-flattened.ks
 image: kickstart
 	@#echo "shutdown" >> $(BUILDDIR)/$(SPIN)-flattened.ks
 	sudo rm -rf $(BUILDDIR)/image/
@@ -33,22 +30,11 @@ image: kickstart
 	--make-$(IMAGE) \
 	--project "$(PROJECT)" \
 	--releasever $(RELEASEVER) \
-	--ks $(BUILDDIR)/$(SPIN)-flattened.ks \
+	--ks build/$(SPIN)-flattened.ks \
 	--resultdir $(BUILDDIR)/image \
 	--logfile $(BUILDDIR)/logs/livemedia-creator.log \
 	--no-virt \
 	--iso-only \
 	--iso-name Ultramarine-$(SPIN)-$(RELEASEVER).iso
-
-else
-image: kickstart
-	livecd-creator $(BUILDDIR)/$(SPIN)-flattened.ks\
-	 -v\
-	 --compression-type zstd\
-	 -f UM-$(SPIN)\
-	 --title "$(PROJECT)"\
-	 --product "$(PROJECT)" --releasever=$(RELEASEVER)
-	mv build-scripts/UM-$(SPIN) $(BUILDDIR)/image/
-endif
 
 rebuild: clean pkg test kickstart image

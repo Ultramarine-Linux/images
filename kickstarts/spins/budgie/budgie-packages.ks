@@ -22,7 +22,6 @@ gnome-tweaks
 gnome-terminal
 gnome-terminal-nautilus
 gnome-system-monitor
-flat-remix-theme
 totem
 gedit
 gedit-color-schemes
@@ -41,6 +40,9 @@ gnome-clocks
 yumex-dnf
 xdg-user-dirs-gtk
 -gdm
+
+fluent-theme
+fluent-icon-theme
 
 ultramarine-release-identity-flagship
 ultramarine-release-flagship

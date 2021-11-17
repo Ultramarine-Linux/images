@@ -50,6 +50,7 @@ flatpak
 # System
 plymouth-theme-spinner
 rpm-plugin-systemd-inhibit
+plymouth-scripts
 
 # Tools
 blivet-gui			# Storage management
@@ -57,6 +58,7 @@ exfatprogs
 htop
 rsync
 unar
+git
 
 %end
 
@@ -149,9 +151,16 @@ fi
 
 # Disable weak dependencies to avoid unwanted stuff
 echo "install_weak_deps=False" >> /etc/dnf/dnf.conf
+cat >> /etc/dnf/dnf.conf << EOF
+install_weak_deps=False
+defaultyes=True
+fastestmirror=True
+max_parallel_downloads=20
+
+EOF
 
 # Set default boot theme
 #fails because no command, it works without this anyway
-#plymouth-set-default-theme spinner
+plymouth-set-default-theme spinner
 
 %end

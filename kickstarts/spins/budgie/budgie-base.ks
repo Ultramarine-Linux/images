@@ -11,16 +11,7 @@ PREFERRED=/usr/bin/budgie-desktop
 DISPLAYMANAGER=/usr/sbin/lightdm
 EOF
 
-cat > /home/liveuser/.config/autostart/fedora-welcome.desktop << EOF
-[Desktop Entry]
-Name=Welcome to Fedora
-Exec=/usr/share/anaconda/gnome/fedora-welcome
-Terminal=false
-Type=Application
-StartupNotify=true
-NoDisplay=true
-X-GNOME-Autostart-enabled=true
-EOF
+cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
 
 cat >> /etc/rc.d/init.d/livesys << EOF
 
@@ -31,11 +22,6 @@ sed -i 's/^#show-language-selector=.*/show-language-selector=true/' /etc/lightdm
 #
 # set Budgie as default session, otherwise login will fail
 sed -i 's/^#user-session=.*/user-session=budgie-desktop/' /etc/lightdm/lightdm.conf
-cat > /etc/lightdm/lightdm.conf.d/00-live-session.conf <<DMEOF
-[Seat*]
-autologin-user=liveuser
-user-session=budgie-desktop
-DMEOF
 
 
 # Show harddisk install on the desktop
@@ -46,7 +32,7 @@ cp /usr/share/applications/liveinst.desktop /home/liveuser/Desktop
 # and mark it as executable
 chmod +x /home/liveuser/Desktop/liveinst.desktop
 
-# this goes at the end after all other changes. 
+# this goes at the end after all other changes.
 chown -R liveuser:liveuser /home/liveuser
 restorecon -R /home/liveuser
 

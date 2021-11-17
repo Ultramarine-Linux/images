@@ -40,9 +40,8 @@ yumex-dnf
 xdg-user-dirs-gtk
 -gdm
 
-#ultramarine-repos-budgie
-ultramarine-release-identity-budgie
-ultramarine-release-budgie
+ultramarine-release-identity-flagship
+ultramarine-release-flagship
 ultramarine-backgrounds-gnome
 
 #install budgie

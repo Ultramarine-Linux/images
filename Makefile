@@ -13,16 +13,14 @@ test:
 	@echo $(BUILDDIR)
 
 
-clean: build/
+clean:
 	@rm -rf build/*
-
-
 #Image creation
 
 kickstart:
-	mkdir -p build
+	mkdir -p build/logs
 	ksflatten --config kickstarts/ultramarine-$(SPIN).ks --output build/$(SPIN)-flattened.ks
-image: kickstart
+image: clean kickstart
 	@#echo "shutdown" >> $(BUILDDIR)/$(SPIN)-flattened.ks
 	sudo rm -rf $(BUILDDIR)/image/
 	cd build-scripts; \
@@ -33,6 +31,7 @@ image: kickstart
 	--ks build/$(SPIN)-flattened.ks \
 	--resultdir build/image \
 	--logfile build/logs/livemedia-creator.log \
-	--no-virt
+	--no-virt \
+	--compression zstd
 
 rebuild: clean pkg test kickstart image

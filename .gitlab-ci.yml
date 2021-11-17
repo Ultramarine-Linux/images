@@ -11,7 +11,27 @@ iso-budgie:
   stage: build
   script:
     - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo
-    - make image
+    - make flagship
+  artifacts:
+    paths:
+    - build/
+    when: always
+
+iso-cutefish:
+  stage: build
+  script:
+    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo
+    - make SPIN=cutefish image
+  artifacts:
+    paths:
+    - build/
+    when: always
+
+iso-cyber:
+  stage: build
+  script:
+    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo
+    - make SPIN=cyber image
   artifacts:
     paths:
     - build/

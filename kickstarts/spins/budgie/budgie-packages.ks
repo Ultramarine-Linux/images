@@ -16,6 +16,8 @@ PackageKit-command-not-found
 
 lightdm
 lightdm-gtk
+lightdm-gtk-greeter-settings
+gnome-tweaks
 
 gnome-terminal
 gnome-terminal-nautilus
@@ -43,6 +45,7 @@ xdg-user-dirs-gtk
 ultramarine-release-identity-flagship
 ultramarine-release-flagship
 ultramarine-backgrounds-gnome
+ultramarine-backgrounds-basic
 
 #install budgie
 xorg-x11-server-Xorg

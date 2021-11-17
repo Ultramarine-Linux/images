@@ -17,7 +17,6 @@ PackageKit-command-not-found
 lightdm
 lightdm-gtk
 lightdm-gtk-greeter-settings
-gnome-tweaks
 
 gnome-terminal
 gnome-terminal-nautilus

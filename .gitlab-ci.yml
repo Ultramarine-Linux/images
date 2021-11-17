@@ -1,4 +1,4 @@
-image: fedora:35
+image: registry.fedoraproject.org/fedora-minimal:35
 services:
   - docker:dind
 
@@ -10,7 +10,7 @@ stages:
 iso-budgie:
   stage: build
   script:
-    - dnf install -y lorax-lmc-novirt vim-minimal pykickstart
+    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo
     - make image
   artifacts:
     paths:

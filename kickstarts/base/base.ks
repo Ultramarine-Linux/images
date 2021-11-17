@@ -78,7 +78,7 @@ ultramarine-release
 ultramarine-logos*
 ultramarine-repos
 ultramarine-backgrounds
-
+# this thing will literally kill your CPU for some reason
 -setroubleshoot*
 
 #sorry for all the deps
@@ -89,13 +89,15 @@ initscripts
 chkconfig
 isomd5sum
 gjs
+
+
 %end
 
-%pre
-echo $INSTALL_ROOT
-%end
 
 %post
+# show logs please
+chvt
+exec < /dev/tty3 > /dev/tty3 2>/dev/tty3
 # FIXME: it'd be better to get this installed from a package
 cat > /etc/rc.d/init.d/livesys << EOF
 #!/bin/bash
@@ -188,6 +190,20 @@ findPersistentHome() {
     fi
   done
 }
+
+# add welcome to startup
+
+mkdir -p /home/liveuser/.config/autostart/
+cat > /home/liveuser/.config/autostart/fedora-welcome.desktop << WELEOF
+[Desktop Entry]
+Name=Welcome to Ultramarine
+Exec=/usr/share/anaconda/gnome/fedora-welcome
+Terminal=false
+Type=Application
+StartupNotify=true
+NoDisplay=true
+X-GNOME-Autostart-enabled=true
+WELEOF
 
 if strstr "\`cat /proc/cmdline\`" persistenthome= ; then
   findPersistentHome
@@ -314,6 +330,8 @@ EndSection
 FOE
 fi
 
+chown -R liveuser:liveuser /home/liveuser
+
 EOF
 
 chmod 755 /etc/rc.d/init.d/livesys
@@ -370,6 +388,9 @@ rm -f /boot/*-rescue*
 # Remove machine-id on pre generated images
 rm -f /etc/machine-id
 touch /etc/machine-id
+
+# set the hostname because apparently it's not set by default
+hostnamectl set-hostname uml-live
 
 #edit fedora-welcome
 #sed -i 's/liveinst/kdesu calamares/g' /usr/share/anaconda/gnome/fedora-welcome

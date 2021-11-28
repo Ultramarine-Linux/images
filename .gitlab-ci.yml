@@ -30,6 +30,8 @@ iso-cutefish:
 # Generate live media
 liveimage:
   stage: build
+  before_script:
+    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo
   script:
     - make liveimage
   artifacts:

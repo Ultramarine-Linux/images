@@ -45,7 +45,7 @@ deploy:
     - iso-budgie
     - iso-cutefish
   before_script:
-    - microdnf install -y rsync openssh-clients
+    - microdnf install -y rsync openssh-clients lorax-lmc-novirt vim-minimal pykickstart sudo make
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
   script:

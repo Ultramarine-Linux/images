@@ -36,7 +36,6 @@ abrt
 gnome-weather
 gnome-clocks
 @ Games
-yumex-dnf
 xdg-user-dirs-gtk
 -gdm
 

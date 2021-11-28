@@ -36,6 +36,21 @@ image: clean kickstart
 	--iso-only \
 	--iso-name Ultramarine-$(SPIN)-$(shell date +%y.%m).iso
 
+
+liveimage: clean kickstart
+	@#echo "shutdown" >> $(BUILDDIR)/$(SPIN)-flattened.ks
+	sudo rm -rf $(BUILDDIR)/image/
+	cd build-scripts; \
+	livemedia-creator \
+	--make-$(IMAGE) \
+	--project "$(PROJECT)" \
+	--releasever $(RELEASEVER) \
+	--ks build/budgie-flattened.ks \
+	--resultdir build/liveimage \
+	--logfile build/logs/livemedia-creator.log \
+	--no-virt \
+	--compression zstd
+
 flagship: clean kickstart
 	@#echo "shutdown" >> $(BUILDDIR)/$(SPIN)-flattened.ks
 	sudo rm -rf $(BUILDDIR)/image/

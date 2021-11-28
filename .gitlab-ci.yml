@@ -27,12 +27,27 @@ iso-cutefish:
     - build/
     when: always
 
-iso-cyber:
+# Generate live media
+liveimage:
   stage: build
   script:
-    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo
-    - make SPIN=cyber image
+    - make liveimage
   artifacts:
     paths:
     - build/
     when: always
+
+# deploy live media to server
+deploy:
+  stage: deploy
+  dependencies:
+    - liveimage
+    - iso-budgie
+    - iso-cutefish
+  before_script:
+    - microdnf install -y rsync openssh-clients
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+  script:
+    - rsync -atv --delete --progress build/liveimage/* gitlab@lapis.ultramarine-linux.org:/srv/lapis/results/ultramarine-35-x86_64
+    - rsync -atv --delete --progress build/image/* gitlab@lapis.ultramarine-linux.org:/srv/lapis/

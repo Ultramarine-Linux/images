@@ -49,5 +49,5 @@ deploy:
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
   script:
-    - rsync -atv --delete --progress build/liveimage/* gitlab@lapis.ultramarine-linux.org:/srv/lapis/results/ultramarine-35-x86_64
-    - rsync -atv --delete --progress build/image/* gitlab@lapis.ultramarine-linux.org:/srv/lapis/
+    - rsync -atvR --delete --progress build/liveimage/* gitlab@lapis.ultramarine-linux.org:/srv/lapis/results/ultramarine-35-x86_64
+    - rsync -atvR --delete --progress build/image/* gitlab@lapis.ultramarine-linux.org:/srv/lapis/results/nightly/$(date +%Y%m%d)/

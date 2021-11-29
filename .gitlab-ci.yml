@@ -57,7 +57,7 @@ liveimage:
 # deploy live media to server
 deploy-iso:
   stage: deploy
-  needs:
+  dependencies:
     - iso-budgie
     - iso-cutefish
   before_script:
@@ -73,7 +73,7 @@ deploy-iso:
 # deploy live media to server
 deploy-liveimage:
   stage: deploy
-  needs:
+  dependencies:
     - liveimage
   before_script:
     - microdnf install -y rclone openssh-clients lorax-lmc-novirt vim-minimal pykickstart sudo make

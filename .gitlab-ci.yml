@@ -7,6 +7,9 @@ stages:
   - test
   - deploy
 
+# only run these when files in kickstarts/ or gitlab-ci.yml was changed
+
+
 iso-budgie:
   stage: build
   script:
@@ -16,6 +19,11 @@ iso-budgie:
     paths:
     - build/
     when: always
+  rules:
+    - changes:
+      - kickstarts/
+      - gitlab-ci.yml
+
 
 iso-cutefish:
   stage: build
@@ -26,7 +34,10 @@ iso-cutefish:
     paths:
     - build/
     when: always
-
+  rules:
+    - changes:
+      - kickstarts/
+      - gitlab-ci.yml
 # Generate live media
 liveimage:
   stage: build
@@ -38,6 +49,10 @@ liveimage:
     paths:
     - build/
     when: always
+  rules:
+    - changes:
+      - kickstarts/
+      - gitlab-ci.yml
 
 # deploy live media to server
 deploy:
@@ -53,3 +68,7 @@ deploy:
   script:
     - rsync -atvR --delete --progress build/liveimage/* gitlab@lapis.ultramarine-linux.org:/srv/lapis/results/ultramarine-35-x86_64
     - rsync -atvR --delete --progress build/image/* gitlab@lapis.ultramarine-linux.org:/srv/lapis/builds/nightly/$(date +%Y%m%d)/
+  rules:
+    - changes:
+      - kickstarts/
+      - gitlab-ci.yml

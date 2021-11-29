@@ -68,7 +68,7 @@ deploy-iso:
     - chmod 644 ~/.ssh/known_hosts
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
   script:
-    - rsync -atv --delete --progress ./build/liveimage gitlab@lapis.ultramarine-linux.org:/srv/lapis/builds/
+    - rsync -atv --delete --progress ./build/image gitlab@lapis.ultramarine-linux.org:/srv/lapis/builds/
 
 # deploy live media to server
 deploy-liveimage:

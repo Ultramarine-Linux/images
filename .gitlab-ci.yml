@@ -55,23 +55,34 @@ liveimage:
       - gitlab-ci.yml
 
 # deploy live media to server
-deploy:
+deploy-iso:
   stage: deploy
   dependencies:
-    - liveimage
     - iso-budgie
     - iso-cutefish
   before_script:
-    - microdnf install -y rsync openssh-clients lorax-lmc-novirt vim-minimal pykickstart sudo make
+    - microdnf install -y rclone openssh-clients lorax-lmc-novirt vim-minimal pykickstart sudo make
     - eval $(ssh-agent -s)
     - mkdir -p ~/.ssh
     - ssh-keyscan lapis.ultramarine-linux.org >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
   script:
-    - rsync -atvR --delete --progress build/liveimage/* gitlab@lapis.ultramarine-linux.org:/srv/lapis/results/ultramarine-35-x86_64
-    - rsync -atvR --delete --progress build/image/* gitlab@lapis.ultramarine-linux.org:/srv/lapis/builds/nightly/$(date +%Y%m%d)/
-  rules:
-    - changes:
-      - kickstarts/
-      - gitlab-ci.yml
+    - rclone --config=$RCLONE_CONFIG mkdir lapis:/srv/lapis/builds/nightly-$(date +%Y%m%d)
+    - rclone --config=$RCLONE_CONFIG -Pv sync build/image/ lapis:/srv/lapis/builds/nightly-$(date +%Y%m%d)
+
+# deploy live media to server
+deploy-liveimage:
+  stage: deploy
+  dependencies:
+    - liveimage
+  before_script:
+    - microdnf install -y rclone openssh-clients lorax-lmc-novirt vim-minimal pykickstart sudo make
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - ssh-keyscan lapis.ultramarine-linux.org >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+  script:
+    - rclone --config=$RCLONE_CONFIG mkdir lapis:/srv/lapis/results/os
+    - rclone --config=$RCLONE_CONFIG -Pv sync build/liveimage/* lapis:/srv/lapis/results/os/

@@ -57,7 +57,7 @@ liveimage:
 # deploy live media to server
 deploy-iso:
   stage: deploy
-  dependencies:
+  needs:
     - iso-budgie
     - iso-cutefish
   before_script:
@@ -68,13 +68,12 @@ deploy-iso:
     - chmod 644 ~/.ssh/known_hosts
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
   script:
-    - rclone --config=$RCLONE_CONFIG mkdir lapis:/srv/lapis/builds/nightly-$(date +%Y%m%d)
-    - rclone --config=$RCLONE_CONFIG -Pv sync build/image/ lapis:/srv/lapis/builds/nightly-$(date +%Y%m%d)
+    - rsync -atv --delete --progress ./build/liveimage gitlab@lapis.ultramarine-linux.org:/srv/lapis/builds/
 
 # deploy live media to server
 deploy-liveimage:
   stage: deploy
-  dependencies:
+  needs:
     - liveimage
   before_script:
     - microdnf install -y rclone openssh-clients lorax-lmc-novirt vim-minimal pykickstart sudo make
@@ -84,5 +83,5 @@ deploy-liveimage:
     - chmod 644 ~/.ssh/known_hosts
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
   script:
-    - rclone --config=$RCLONE_CONFIG mkdir lapis:/srv/lapis/results/os
-    - rclone --config=$RCLONE_CONFIG -Pv sync build/liveimage/* lapis:/srv/lapis/results/os/
+    # rsync to SSH server
+    - rsync -atv --delete --progress ./build/liveimage gitlab@lapis.ultramarine-linux.org:/srv/lapis/results/os

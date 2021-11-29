@@ -64,7 +64,8 @@ deploy:
   before_script:
     - microdnf install -y rsync openssh-clients lorax-lmc-novirt vim-minimal pykickstart sudo make
     - eval $(ssh-agent -s)
-    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+    - mkdir -p ~/.ssh
+    - ssh-keyscan lapis.ultramarine-linux.org >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
   script:

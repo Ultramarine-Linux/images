@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Plank
-Comment=Stupidly simple.
-Exec=plank
-Icon=plank
-Terminal=false
-Type=Application
-NoDisplay=true

@@ -25,5 +25,5 @@ sudo make spin=budgie image
 ```
 
 # Known Issues
-- On some configurations, Lorax may get stuck or even fail to compose the image. In this case, you can try running the build under a container. It's recommended to use [GitLab-CI-Local](https://github.com/firecow/gitlab-ci-local) to run the build in a container, or use Podman (instructions not provided here).
+- On some configurations, Lorax may get stuck or even fail to compose the image. In this case, you can try running the build under a container. It's recommended to use [GitLab-CI-Local](https://github.com/firecow/gitlab-ci-local) to run the build in a container, or use [Toolbox](https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/).
 - Anaconda will may still recognize this image as a pre-release. This is because the image does not have a final buildstamp, and the composition process might be unable to do this. (Onceler will fix this in the future.)

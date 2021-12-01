@@ -10,3 +10,4 @@ builds/
 *.log
 flattened.ks
 tmp.sh
+.tmp/

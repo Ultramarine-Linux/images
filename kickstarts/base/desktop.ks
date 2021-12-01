@@ -21,7 +21,7 @@ libva-vdpau-driver
 libvdpau-va-gl
 mesa-*-drivers
 xorg-x11-drivers
-
+akmod-nvidia
 # Fonts
 google-noto-sans-fonts
 google-noto-sans-mono-fonts

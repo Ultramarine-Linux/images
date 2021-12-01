@@ -11,7 +11,7 @@
 %include desktop.ks
 %include config/anaconda.ks
 
-lang en_US.UTF-8
+#lang en_US.UTF-8
 keyboard us
 #firstboot --reconfig --enable
 timezone Asia/Bangkok
@@ -96,8 +96,8 @@ gjs
 
 %post
 # show logs please
-chvt
-exec < /dev/tty3 > /dev/tty3 2>/dev/tty3
+#chvt # Apparently this makes all the post scripts leak to the actual build host. What.
+#exec < /dev/tty3 > /dev/tty3 2>/dev/tty3
 # FIXME: it'd be better to get this installed from a package
 cat > /etc/rc.d/init.d/livesys << EOF
 #!/bin/bash
@@ -269,12 +269,8 @@ touch /.liveimg-configured
 
 echo "Merging Default Home"
 cp -rvn /etc/skel/./* /home/liveuser
-# add static hostname to work around xauth bug
-# https://bugzilla.redhat.com/show_bug.cgi?id=679486
-# the hostname must be something else than 'localhost'
-# https://bugzilla.redhat.com/show_bug.cgi?id=1370222
-#echo "ultramarine" > /etc/hostname
-#systemctl restart hostname.service
+echo "uml-live" > /etc/hostname # Set default hostname
+systemctl restart hostname.service
 EOF
 
 # bah, hal starts way too late
@@ -388,9 +384,6 @@ rm -f /boot/*-rescue*
 # Remove machine-id on pre generated images
 rm -f /etc/machine-id
 touch /etc/machine-id
-
-# set the hostname because apparently it's not set by default
-hostnamectl set-hostname uml-live
 
 #edit fedora-welcome
 #sed -i 's/liveinst/kdesu calamares/g' /usr/share/anaconda/gnome/fedora-welcome

@@ -2,8 +2,8 @@
 
 %post
 # show logs please
-chvt
-exec < /dev/tty3 > /dev/tty3 2>/dev/tty3
+#chvt # don't
+#exec < /dev/tty3 > /dev/tty3 2>/dev/tty3
 
 echo "Adding Anaconda configuration..."
 

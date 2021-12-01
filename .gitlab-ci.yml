@@ -21,7 +21,9 @@ iso-budgie:
     when: always
   rules:
     - changes:
-      - kickstarts/
+        - .gitlab-ci.yml
+        - kickstarts/
+      when: always
 
 
 iso-cutefish:
@@ -35,7 +37,9 @@ iso-cutefish:
     when: always
   rules:
     - changes:
-      - kickstarts/
+        - .gitlab-ci.yml
+        - kickstarts/
+      when: always
 # Generate live media
 liveimage:
   stage: build
@@ -49,7 +53,9 @@ liveimage:
     when: always
   rules:
     - changes:
-      - kickstarts/
+        - .gitlab-ci.yml
+        - kickstarts/
+      when: always
 
 
 # deploy live media to server
@@ -69,8 +75,8 @@ deploy-iso:
     - rsync -autv --delete --progress ./build/image gitlab@lapis.ultramarine-linux.org:/srv/lapis/builds/
   rules:
     - changes:
-      - kickstarts/
-      - gitlab-ci.yml
+        - .gitlab-ci.yml
+      when: always
 # deploy live media to server
 deploy-liveimage:
   stage: deploy
@@ -88,5 +94,5 @@ deploy-liveimage:
     - rsync -autv --delete --progress ./build/liveimage/ gitlab@lapis.ultramarine-linux.org:/srv/lapis/results/
   rules:
     - changes:
-      - kickstarts/
-      - gitlab-ci.yml
+        - .gitlab-ci.yml
+      when: always

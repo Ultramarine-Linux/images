@@ -22,7 +22,6 @@ iso-budgie:
   rules:
     - changes:
       - kickstarts/
-      - gitlab-ci.yml
 
 
 iso-cutefish:
@@ -37,7 +36,6 @@ iso-cutefish:
   rules:
     - changes:
       - kickstarts/
-      - gitlab-ci.yml
 # Generate live media
 liveimage:
   stage: build
@@ -52,7 +50,7 @@ liveimage:
   rules:
     - changes:
       - kickstarts/
-      - gitlab-ci.yml
+
 
 # deploy live media to server
 deploy-iso:
@@ -68,8 +66,11 @@ deploy-iso:
     - chmod 644 ~/.ssh/known_hosts
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
   script:
-    - rsync -atv --delete --progress ./build/image gitlab@lapis.ultramarine-linux.org:/srv/lapis/builds/
-
+    - rsync -autv --delete --progress ./build/image gitlab@lapis.ultramarine-linux.org:/srv/lapis/builds/
+  rules:
+    - changes:
+      - kickstarts/
+      - gitlab-ci.yml
 # deploy live media to server
 deploy-liveimage:
   stage: deploy
@@ -84,4 +85,8 @@ deploy-liveimage:
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
   script:
     # rsync to SSH server
-    - rsync -atv --delete --progress ./build/liveimage gitlab@lapis.ultramarine-linux.org:/srv/lapis/results/os
+    - rsync -autv --delete --progress ./build/liveimage/ gitlab@lapis.ultramarine-linux.org:/srv/lapis/results/
+  rules:
+    - changes:
+      - kickstarts/
+      - gitlab-ci.yml

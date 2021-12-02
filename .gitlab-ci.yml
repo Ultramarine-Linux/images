@@ -22,7 +22,7 @@ iso-budgie:
   rules:
     - changes:
         - .gitlab-ci.yml
-        - kickstarts/
+        - kickstarts/*
       when: always
 
 
@@ -38,7 +38,7 @@ iso-cutefish:
   rules:
     - changes:
         - .gitlab-ci.yml
-        - kickstarts/
+        - kickstarts/*
       when: always
 # Generate live media
 liveimage:
@@ -54,7 +54,7 @@ liveimage:
   rules:
     - changes:
         - .gitlab-ci.yml
-        - kickstarts/
+        - kickstarts/*
       when: always
 
 

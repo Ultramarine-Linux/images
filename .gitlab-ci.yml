@@ -40,3 +40,16 @@ iso-cutefish:
         - .gitlab-ci.yml
         - kickstarts/*
       when: always
+docker:
+  stage: build
+  before_script:
+    - microdnf install -y moby-engine-builder vim-minimal pykickstart sudo lorax-lmc-novirt
+  script:
+    - make docker
+    # This will literally import the docker image
+    # so we can just export this docker image right away
+  artifacts:
+    # the docker image is named "ultramarine"
+    paths:
+    - build/docker/ultramarine-docker.tar.xz
+    when: always

@@ -68,3 +68,15 @@ flagship: clean kickstart
 	--iso-name Ultramarine-Flagship-$(shell date +%y.%m).iso
 
 rebuild: clean pkg test kickstart image
+
+docker: clean kickstart
+	ksflatten -c kickstarts/ultramarine-docker.ks -o build/docker-flattened.ks
+	sudo rm -rf $(BUILDDIR)/docker
+	livemedia-creator \
+	--make-tar \
+	--no-virt \
+	--ks build/docker-flattened.ks \
+	--image-name ultramarine-docker.tar.xz \
+	--resultdir build/docker
+	docker import build/docker/ultramarine-docker.tar.xz ultramarine
+

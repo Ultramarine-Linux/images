@@ -41,7 +41,7 @@ iso-cutefish:
 tarball-docker:
   stage: build
   before_script:
-    - microdnf install -y moby-engine vim-minimal pykickstart sudo lorax-lmc-novirt
+    - microdnf install -y moby-engine vim-minimal pykickstart sudo lorax-lmc-novirt make
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - make docker
@@ -59,6 +59,9 @@ docker-deploy:
     - tarball-docker
   dependencies:
     - tarball-docker
+  before_script:
+    - microdnf install -y moby-engine vim-minimal sudo make
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker import ultramarine-docker.tar.gz ultramarine

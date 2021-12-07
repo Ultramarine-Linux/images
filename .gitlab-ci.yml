@@ -40,20 +40,18 @@ iso-cutefish:
         - .gitlab-ci.yml
         - kickstarts/*
       when: always
+
 docker:
   stage: build
   before_script:
     - microdnf install -y moby-engine vim-minimal pykickstart sudo lorax-lmc-novirt
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - make docker
-    # This will literally import the docker image
-    # so we can just export this docker image right away
-    # export the image into the registry
+    # This will literally build the image so we can just push it to the registry
     - |
-      cd oci-images/base
-      #docker login -u $DOCKER_USER -p $DOCKER_PASS
-      docker build -t gitlab.ultramarine-linux.org:5050/release-engineering/build-scripts .
-      docker push gitlab.ultramarine-linux.org:5050/release-engineering/build-scripts
+      docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+      docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   artifacts:
     # the docker image is named "ultramarine"
     paths:

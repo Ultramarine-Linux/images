@@ -18,12 +18,10 @@ iso-budgie:
   artifacts:
     paths:
     - build/
-    when: always
   rules:
     - changes:
         - .gitlab-ci.yml
         - kickstarts/*
-      when: always
 
 
 iso-cutefish:
@@ -39,9 +37,8 @@ iso-cutefish:
     - changes:
         - .gitlab-ci.yml
         - kickstarts/*
-      when: always
 
-docker:
+tarball-docker:
   stage: build
   before_script:
     - microdnf install -y moby-engine vim-minimal pykickstart sudo lorax-lmc-novirt
@@ -49,9 +46,31 @@ docker:
   script:
     - make docker
     # The docker image is named 'ultramarine', so push it to the registry
-    - docker push ultramarine $CI_REGISTRY/ultramarine
+    - mv -v build/docker/ultramarine.tar.gz .
   artifacts:
     # the docker image is named "ultramarine"
     paths:
-    - build/docker/ultramarine-docker.tar.xz
+    - ultramarine-docker.tar.gz
     when: always
+
+docker-deploy:
+  stage: deploy
+  needs:
+    - tarball-docker
+  dependencies:
+    - tarball-docker
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker import ultramarine-docker.tar.gz ultramarine
+    # if branch is lapis, make it latest
+    - if [ "$CI_COMMIT_REF_NAME" = "lapis" ]; then
+        - docker tag ultramarine $CI_REGISTRY/ultramarine:latest
+        - docker push $CI_REGISTRY/ultramarine:latest
+      else
+        - docker tag ultramarine $CI_REGISTRY/ultramarine:$CI_COMMIT_REF_NAME
+        - docker push $CI_REGISTRY/ultramarine:$CI_COMMIT_REF_NAME
+      fi
+  rules:
+    - changes:
+        - .gitlab-ci.yml
+        - kickstarts/ultramarine-docker.ks

@@ -78,5 +78,4 @@ docker: clean kickstart
 	--ks build/docker-flattened.ks \
 	--image-name ultramarine-docker.tar.xz \
 	--resultdir build/docker
-	docker import build/docker/ultramarine-docker.tar.xz ultramarine
 

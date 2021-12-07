@@ -48,10 +48,8 @@ docker:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - make docker
-    # This will literally build the image so we can just push it to the registry
-    - |
-      docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
-      docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    # The docker image is named 'ultramarine', so push it to the registry
+    - docker push ultramarine $CI_REGISTRY/ultramarine
   artifacts:
     # the docker image is named "ultramarine"
     paths:

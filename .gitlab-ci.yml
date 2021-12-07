@@ -43,11 +43,17 @@ iso-cutefish:
 docker:
   stage: build
   before_script:
-    - microdnf install -y moby-engine-builder vim-minimal pykickstart sudo lorax-lmc-novirt
+    - microdnf install -y moby-engine vim-minimal pykickstart sudo lorax-lmc-novirt
   script:
     - make docker
     # This will literally import the docker image
     # so we can just export this docker image right away
+    # export the image into the registry
+    - |
+      cd oci-images/base
+      #docker login -u $DOCKER_USER -p $DOCKER_PASS
+      docker build -t gitlab.ultramarine-linux.org:5050/release-engineering/build-scripts .
+      docker push gitlab.ultramarine-linux.org:5050/release-engineering/build-scripts
   artifacts:
     # the docker image is named "ultramarine"
     paths:

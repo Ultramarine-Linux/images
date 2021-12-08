@@ -1,11 +1,7 @@
 #base fedora stuff
 %include spins/cutefish/cutefish-base.ks
 
-#cyber-desktop repo
-repo --name "copr:copr.fedorainfracloud.org:rmnscnce:cutefish-desktop" --baseurl https://download.copr.fedorainfracloud.org/results/rmnscnce/cutefish-desktop/fedora-$releasever-$basearch/
-
-
-%packages 
+%packages
 #x server
 @base-x
 

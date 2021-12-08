@@ -23,5 +23,6 @@ xorg-x11-server-Xorg
 cutefish-desktop-common
 ultramarine-release-cutefish
 ultramarine-repos-cutefish
+ultramarine-backgrounds
 
 %end

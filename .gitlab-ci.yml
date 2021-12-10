@@ -13,7 +13,7 @@ stages:
 iso-budgie:
   stage: build
   script:
-    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo
+    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo make
     - make flagship
   artifacts:
     paths:
@@ -27,7 +27,7 @@ iso-budgie:
 iso-cutefish:
   stage: build
   script:
-    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo
+    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo make
     - make SPIN=cutefish image
   artifacts:
     paths:
@@ -45,7 +45,7 @@ tarball-docker:
   script:
     - make docker
     # The docker image is named 'ultramarine', so push it to the registry
-    - mv -v build/docker/ultramarine.tar.gz .
+    - mv -v build/docker/ultramarine-docker.tar.gz .
   artifacts:
     # the docker image is named "ultramarine"
     paths:

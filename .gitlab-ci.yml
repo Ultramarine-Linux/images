@@ -60,15 +60,16 @@ docker-deploy:
   dependencies:
     - tarball-docker
   script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker import ultramarine-docker.tar.gz ultramarine
-    # if branch is lapis, make it latest
-    - if [ "$CI_COMMIT_REF_NAME" = "lapis" ]; then
-        - docker tag ultramarine $CI_REGISTRY/ultramarine:latest
-        - docker push $CI_REGISTRY/ultramarine:latest
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        tag=""
+        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
       else
-        - docker tag ultramarine $CI_REGISTRY/ultramarine:$CI_COMMIT_REF_NAME
-        - docker push $CI_REGISTRY/ultramarine:$CI_COMMIT_REF_NAME
+        tag=":$CI_COMMIT_REF_SLUG"
+        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+      fi
+        - docker tag ultramarine $CI_REGISTRY_IMAGE${tag}
+        - docker push $CI_REGISTRY_IMAGE${tag}
       fi
   rules:
     - changes:

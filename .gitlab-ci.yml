@@ -1,4 +1,4 @@
-image: gitlab.ultramarine-linux.org:5050/release-engineering/build-scripts/ultramarine:latest
+image: registry.fedoraproject.org/fedora-minimal:35
 services:
   - docker:dind
 

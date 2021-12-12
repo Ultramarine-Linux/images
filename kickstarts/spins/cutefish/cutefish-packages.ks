@@ -14,15 +14,13 @@ gnome-software
 qt5ct
 kate
 -konsole
+-f*-backgrounds
 
 
 
-
-#install cyber desktop
 xorg-x11-server-Xorg
 cutefish-desktop-common
 ultramarine-release-cutefish
-ultramarine-repos-cutefish
-ultramarine-backgrounds
+ultramarine-backgrounds-basic
 
 %end

@@ -32,6 +32,20 @@ libreoffice
 %end
 %post
 
+# Inject a dummy .buildstamp so Anaconda doesn't complain
+cat << EOF > /.buildstamp
+[Main]
+Product=Ultramarine Linux
+Version=35
+BugURL=None
+IsFinal=true
+UUID=202112022224.x86_64
+Variant=flagship
+[Compose]
+Lorax=35.7-1
+EOF
+
+
 #le cisco 
 dnf config-manager --set-enabled fedora-cisco-openh264
 

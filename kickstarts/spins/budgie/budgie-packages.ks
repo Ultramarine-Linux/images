@@ -13,7 +13,6 @@ policycoreutils
 coreutils
 gnome-software
 -setroubleshoot
-PackageKit-command-not-found
 
 lightdm
 lightdm-gtk

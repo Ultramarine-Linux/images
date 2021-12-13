@@ -21,7 +21,11 @@ libva-vdpau-driver
 libvdpau-va-gl
 mesa-*-drivers
 xorg-x11-drivers
-akmod-nvidia
+#akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason
+
+nouveau-firmware
+xorg-x11-drv-nouveau
+
 # Fonts
 google-noto-sans-fonts
 google-noto-sans-mono-fonts
@@ -38,10 +42,11 @@ firewall-config
 # Internet
 firefox
 #mozilla-openh264
-
+-openvpn
 # Software
 PackageKit
 PackageKit-gstreamer-plugin
+PackageKit-command-not-found
 # deltarpm
 dnf-plugins-core
 # drpm
@@ -161,6 +166,7 @@ EOF
 
 # Set default boot theme
 #fails because no command, it works without this anyway
-plymouth-set-default-theme spinner
+#plymouth-set-default-theme spinner
+# disabled again so we get back EFI logos
 
 %end

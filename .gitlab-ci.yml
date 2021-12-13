@@ -9,35 +9,6 @@ stages:
 
 # only run these when files in kickstarts/ or gitlab-ci.yml was changed
 
-
-iso-budgie:
-  stage: build
-  script:
-    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo make
-    - make flagship
-  artifacts:
-    paths:
-    - build/
-  rules:
-    - changes:
-        - .gitlab-ci.yml
-        - kickstarts/*
-
-
-iso-cutefish:
-  stage: build
-  script:
-    - microdnf install -y lorax-lmc-novirt vim-minimal pykickstart sudo make
-    - make SPIN=cutefish image
-  artifacts:
-    paths:
-    - build/
-    when: always
-  rules:
-    - changes:
-        - .gitlab-ci.yml
-        - kickstarts/*
-
 tarball-docker:
   stage: build
   before_script:

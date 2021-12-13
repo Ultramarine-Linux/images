@@ -43,7 +43,6 @@ xdg-user-dirs-gtk
 fluent-theme
 fluent-icon-theme
 
-ultramarine-release-identity-flagship
 ultramarine-release-flagship
 ultramarine-backgrounds-gnome
 ultramarine-backgrounds-basic

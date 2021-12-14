@@ -42,7 +42,6 @@ firewall-config
 # Internet
 firefox
 #mozilla-openh264
--openvpn
 # Software
 PackageKit
 PackageKit-gstreamer-plugin

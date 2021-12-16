@@ -8,7 +8,7 @@
 @dial-up
 @multimedia
 @fonts
-@budgie-desktop
+#@budgie-desktop
 policycoreutils
 coreutils
 gnome-software

@@ -40,7 +40,7 @@ Version=35
 BugURL=None
 IsFinal=true
 UUID=202112022224.x86_64
-Variant=flagship
+Variant=Flagship
 [Compose]
 Lorax=35.7-1
 EOF

@@ -23,7 +23,7 @@ mesa-*-drivers
 xorg-x11-drivers
 #akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason
 
-nouveau-firmware
+#nouveau-firmware
 xorg-x11-drv-nouveau
 
 # Fonts

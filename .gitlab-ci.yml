@@ -15,6 +15,7 @@ tarball-docker:
     - microdnf install -y moby-engine vim-minimal pykickstart sudo lorax-lmc-novirt make
   script:
     - make docker
+    - ls build/docker/
     # The docker image is named 'ultramarine', so push it to the registry
     - mv -v build/docker/ultramarine-docker.tar.gz .
   artifacts:

@@ -81,6 +81,9 @@ ultramarine-backgrounds
 # this thing will literally kill your CPU for some reason
 -setroubleshoot*
 
+# F36 things, mlocate is no more
+-mlocate
+
 #sorry for all the deps
 neofetch
 

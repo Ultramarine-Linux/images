@@ -3,19 +3,6 @@
 
 %post
 
-
-# set default GTK+ theme for root (see #683855, #689070, #808062)
-cat > /root/.gtkrc-2.0 << EOF
-include "/usr/share/themes/Flat-Remix-GTK-Blue/gtk-2.0/gtkrc"
-include "/etc/gtk-2.0/gtkrc"
-gtk-theme-name="Flat-Remix-GTK-Blue"
-EOF
-mkdir -p /root/.config/gtk-3.0
-cat > /root/.config/gtk-3.0/settings.ini << EOF
-[Settings]
-gtk-theme-name = Flat-Remix-GTK-Blue
-EOF
-
 # add initscript
 cat >> /etc/rc.d/init.d/livesys << ALLEOF
 
@@ -24,26 +11,20 @@ if [ -f /etc/sddm.conf ]; then
 sed -i 's/^#User=.*/User=liveuser/' /etc/sddm.conf
 sed -i "s/^#Session=.*/Session=cutefish-xsession/" /etc/sddm.conf
 sed -i "s/^#Current.*/Current=cutefish/" /etc/sddm.conf
+# add InputMethod= to general section if not exists
+if ! grep -q "^InputMethod=" /etc/sddm.conf; then
+# find [General] section and add InputMethod= to it
+sed -i '/^\[General\]/a\InputMethod=' /etc/sddm.conf
+fi
 else
 cat > /etc/sddm.conf << SDDM_EOF
 [Autologin]
 User=liveuser
 Session=cutefish-xsession
+[General]
+InputMethod=
 SDDM_EOF
 fi
-
-
-
-cat > /home/liveuser/.gtkrc-2.0 << EOF
-include "/usr/share/themes/Flat-Remix-GTK-Blue/gtk-2.0/gtkrc"
-include "/etc/gtk-2.0/gtkrc"
-gtk-theme-name="Flat-Remix-GTK-Blue"
-EOF
-mkdir -p /home/liveuser/.config/gtk-3.0
-cat > /home/liveuser/.config/gtk-3.0/settings.ini << EOF
-[Settings]
-gtk-theme-name = Flat-Remix-GTK-Blue
-EOF
 
 #Autostart Installer
 mkdir -p /home/liveuser/.config/autostart/

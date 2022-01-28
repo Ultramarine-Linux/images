@@ -23,7 +23,6 @@ kickstart:
 image: clean kickstart
 	@#echo "shutdown" >> $(BUILDDIR)/$(SPIN)-flattened.ks
 	sudo rm -rf $(BUILDDIR)/image/
-	cd build-scripts; \
 	livemedia-creator \
 	--make-$(IMAGE) \
 	--project "$(PROJECT)" \
@@ -40,7 +39,6 @@ image: clean kickstart
 liveimage: clean kickstart
 	@#echo "shutdown" >> $(BUILDDIR)/$(SPIN)-flattened.ks
 	sudo rm -rf $(BUILDDIR)/image/
-	cd build-scripts; \
 	livemedia-creator \
 	--make-$(IMAGE) \
 	--project "$(PROJECT)" \

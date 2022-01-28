@@ -1,5 +1,5 @@
 SPIN=budgie
-RELEASEVER=35
+RELEASEVER=36
 DEVICE=/dev/null # the funny sentinel
 BUILDDIR=$(shell echo $$PWD)/build
 IMAGE=iso

@@ -17,11 +17,11 @@ tarball-docker:
     - make docker
     - ls build/docker/
     # The docker image is named 'ultramarine', so push it to the registry
-    - mv -v build/docker/ultramarine-docker.tar.gz .
+    - mv -v build/docker/ultramarine-docker.tar.xz .
   artifacts:
     # the docker image is named "ultramarine"
     paths:
-    - ultramarine-docker.tar.gz
+    - ultramarine-docker.tar.xz
     when: always
 
 docker-deploy:

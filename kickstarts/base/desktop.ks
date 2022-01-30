@@ -1,7 +1,7 @@
 # base-desktop.ks
 #
 # Defines the basics for a basic desktop environment.
-
+services --disabled=openvpn-server@\\x2a,openvpn-server@\x2a
 
 %packages
 

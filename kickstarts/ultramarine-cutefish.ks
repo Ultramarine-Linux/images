@@ -34,8 +34,8 @@ libreoffice-kf5
 # Inject a dummy .buildstamp so Anaconda doesn't complain
 cat << EOF > /.buildstamp
 [Main]
-Product=Ultramarine Linux
-Version=35
+Product=Ultramarine
+Version=36
 BugURL=None
 IsFinal=true
 UUID=202112022224.x86_64

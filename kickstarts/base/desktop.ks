@@ -14,7 +14,6 @@ bind-utils
 btrfs-progs
 microcode_ctl
 psmisc
-flat-remix-theme
 # Multimedia
 @multimedia
 libva-vdpau-driver
@@ -30,7 +29,9 @@ xorg-x11-drv-nouveau
 google-noto-sans-fonts
 google-noto-sans-mono-fonts
 google-noto-serif-fonts
-google-noto-emoji-color-fonts
+-google-noto-emoji-color-fonts
+# We like Twemoji
+twitter-twemoji-fonts
 liberation-mono-fonts
 liberation-s*-fonts
 

@@ -44,7 +44,7 @@ fluent-icon-theme
 
 ultramarine-release-flagship
 ultramarine-backgrounds-gnome
-ultramarine-backgrounds-basic
+ultramarine-backgrounds-common
 
 #install budgie
 xorg-x11-server-Xorg

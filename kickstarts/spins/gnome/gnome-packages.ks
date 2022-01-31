@@ -30,7 +30,7 @@ gnome-initial-setup
 
 ultramarine-release-basic
 ultramarine-backgrounds-gnome
-ultramarine-backgrounds-basic
+ultramarine-backgrounds-common
 
 xorg-x11-server-Xorg
 #funny theme

@@ -21,6 +21,6 @@ kate
 xorg-x11-server-Xorg
 @cutefish-desktop
 ultramarine-release-cutefish
-ultramarine-backgrounds-basic
+ultramarine-backgrounds-common
 
 %end

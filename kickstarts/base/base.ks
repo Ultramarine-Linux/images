@@ -82,7 +82,7 @@ ultramarine-backgrounds
 -setroubleshoot*
 
 # F36 things, mlocate is no more
--mlocate
+#-mlocate
 
 
 # no longer in @core since 2018-10, but needed for livesys script

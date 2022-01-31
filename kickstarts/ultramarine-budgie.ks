@@ -36,7 +36,7 @@ libreoffice
 cat << EOF > /.buildstamp
 [Main]
 Product=Ultramarine
-Version=36
+Version=35
 BugURL=None
 IsFinal=true
 UUID=202112022224.x86_64

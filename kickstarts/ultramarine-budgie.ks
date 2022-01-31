@@ -26,7 +26,7 @@ fuse
 
 # Office
 libreoffice
-
+@^flagship-product-environment
 -@ GNOME Desktop Environment 
 
 %end

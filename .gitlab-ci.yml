@@ -22,7 +22,10 @@ tarball-docker:
     # the docker image is named "ultramarine"
     paths:
     - ultramarine-docker.tar.xz
-    when: always
+  rules:
+    - changes:
+        - .gitlab-ci.yml
+        - kickstarts/ultramarine-docker.ks
 
 docker-deploy:
   stage: deploy

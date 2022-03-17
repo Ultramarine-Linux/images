@@ -11,19 +11,17 @@
 %include desktop.ks
 %include config/anaconda.ks
 
-#lang en_US.UTF-8
+lang en_US.UTF-8
 keyboard us
-#firstboot --reconfig --enable
-timezone Asia/Bangkok
-#selinux --disabled
+timezone US/Eastern
 firewall --enabled --service=mdns
 xconfig --startxonboot
 zerombr
 clearpart --all
-part / --size 10000 --fstype ext4
+part / --size 5120 --fstype ext4
 services --enabled=NetworkManager,ModemManager --disabled=sshd
-network --bootproto=dhcp --device=link --activate --hostname=ultramarine
-rootpw --lock --iscrypted
+network --bootproto=dhcp --device=link --activate
+rootpw --lock --iscrypted locked
 reqpart
 
 %include base-repo.ks
@@ -36,7 +34,6 @@ reqpart
 @core
 @fonts
 @input-methods
-@dial-up
 @multimedia
 @hardware-support
 @printing
@@ -58,7 +55,6 @@ anaconda-install-env-deps
 anaconda-live
 @anaconda-tools
 
-initial-setup-gui
 # Need aajohan-comfortaa-fonts for the SVG rnotes images
 aajohan-comfortaa-fonts
 
@@ -84,6 +80,8 @@ ultramarine-backgrounds
 # F36 things, mlocate is no more
 -mlocate
 
+# Unneeded packages
+-gnome-boxes
 
 # no longer in @core since 2018-10, but needed for livesys script
 initscripts
@@ -349,16 +347,6 @@ cat >> /etc/fstab << EOF
 vartmp   /var/tmp    tmpfs   defaults   0  0
 EOF
 
-## work around for poor key import UI in PackageKit
-#rm -f /var/lib/rpm/__db*
-#releasever=$(rpm -q --qf '%{version}\n' --whatprovides system-release)
-#basearch=$(uname -i)
-#rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
-#echo "Packages within this LiveCD"
-#rpm -qa
-## Note that running rpm recreates the rpm db files which aren't needed or wanted
-#rm -f /var/lib/rpm/__db*
-
 # go ahead and pre-make the man -k cache (#455968)
 /usr/bin/mandb
 
@@ -381,6 +369,11 @@ rm -f /boot/*-rescue*
 # Disable network service here, as doing it in the services line
 # fails due to RHBZ #1369794
 /sbin/chkconfig network off
+systemctl disable NetworkManager-wait-online.service
+systemctl disable systemd-networkd-wait-online.service
+
+# Disable speech-dispacherd, It will still work but eh
+systemctl disable speech-dispacherd.service
 
 # Remove machine-id on pre generated images
 rm -f /etc/machine-id

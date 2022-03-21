@@ -27,7 +27,7 @@ reqpart
 %include base-repo.ks
 %include additional-repos.ks
 
-%packages
+%packages --excludeWeakdeps
 @base-x
 @guest-desktop-agents
 @standard

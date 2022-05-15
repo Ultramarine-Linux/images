@@ -1,7 +1,7 @@
 # base-desktop.ks
 #
 # Defines the basics for a basic desktop environment.
-services --disabled=openvpn-server@\\x2a,openvpn-server@\x2a
+#services --disabled=openvpn-server@\\x2a,openvpn-server@\x2a
 
 %packages
 
@@ -53,9 +53,7 @@ dnf-plugins-core
 flatpak
 
 # System
-plymouth-theme-spinner
 rpm-plugin-systemd-inhibit
-plymouth-scripts
 
 # Tools
 blivet-gui			# Storage management
@@ -69,57 +67,6 @@ git
 
 
 %post
-
-echo ""
-echo "POST BASE DESKTOP ************************************"
-echo ""
-
-# Antialiasing by default.
-# Set Noto fonts as preferred family.
-cat > /etc/fonts/local.conf << EOF_FONTS
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-
-<!-- Settins for better font rendering -->
-<match target="font">
-	<edit mode="assign" name="rgba"><const>rgb</const></edit>
-	<edit mode="assign" name="hinting"><bool>true</bool></edit>
-	<edit mode="assign" name="hintstyle"><const>hintfull</const></edit>
-	<edit mode="assign" name="antialias"><bool>true</bool></edit>
-	<edit mode="assign" name="lcdfilter"><const>lcddefault</const></edit>
-</match>
-
-<!-- Local default fonts -->
-<!-- Serif faces -->
-	<alias>
-		<family>serif</family>
-		<prefer>
-			<family>Noto Serif</family>
-			<family>DejaVu Serif</family>
-			<family>Liberation Serif</family>
-		</prefer>
-	</alias>
-<!-- Sans-serif faces -->
-	<alias>
-		<family>sans-serif</family>
-		<prefer>
-			<family>Noto Sans</family>
-			<family>DejaVu Sans</family>
-			<family>Liberation Sans</family>
-		</prefer>
-	</alias>
-<!-- Monospace faces -->
-	<alias>
-		<family>monospace</family>
-		<prefer>
-			<family>Noto Sans Mono</family>
-			<family>DejaVu Sans Mono</family>
-			<family>Liberation Mono</family>
-		</prefer>
-	</alias>
-</fontconfig>
-EOF_FONTS
 
 # Set a colored prompt
 cat > /etc/profile.d/color-prompt.sh << EOF_PROMPT

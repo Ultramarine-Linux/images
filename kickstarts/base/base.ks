@@ -22,7 +22,6 @@ part / --size 8192 --fstype ext4
 services --enabled=NetworkManager,ModemManager --disabled=sshd
 network --bootproto=dhcp --device=link --activate
 rootpw --lock --iscrypted locked
-reqpart
 
 %include base-repo.ks
 %include additional-repos.ks
@@ -31,9 +30,6 @@ reqpart
 @base-x
 @guest-desktop-agents
 @standard
-@core
-@fonts
-@input-methods
 @multimedia
 @hardware-support
 @printing
@@ -47,20 +43,27 @@ kernel-modules-extra
 # This was added a while ago, I think it falls into the category of
 # "Diagnosis/recovery tool useful from a Live OS image".  Leaving this untouched
 # for now.
-memtest86+
+#memtest86+
+@x86-baremetal-tools # memtest86+ is included
 
 # The point of a live image is to install
 anaconda
 anaconda-install-env-deps
 anaconda-live
 @anaconda-tools
+# Anaconda has a weak dep on this and we don't want it on livecds, see
+# https://fedoraproject.org/wiki/Changes/RemoveDeviceMapperMultipathFromWorkstationLiveCD
+-fcoe-utils
+-device-mapper-multipath
 
 # Need aajohan-comfortaa-fonts for the SVG rnotes images
 aajohan-comfortaa-fonts
 
 # Without this, initramfs generation during live image creation fails: #1242586
 dracut-live
-syslinux
+
+# dictionaries are big, everyone nowadays uses google right?
+-aspell-*
 
 # anaconda needs the locales available to run for different locales
 glibc-all-langpacks
@@ -75,7 +78,7 @@ ultramarine-logos*
 ultramarine-repos
 ultramarine-backgrounds
 # this thing will literally kill your CPU for some reason
--setroubleshoot*
+#-setroubleshoot*
 
 # F36 things, mlocate is no more
 -mlocate
@@ -86,17 +89,61 @@ ultramarine-backgrounds
 # no longer in @core since 2018-10, but needed for livesys script
 initscripts
 chkconfig
-isomd5sum
+
+
 gjs
 
+
+# fancy starship prompt
+starship
+zsh
+
+# chsh
+util-linux-user
 
 %end
 
 
 %post
-# show logs please
-#chvt # Apparently this makes all the post scripts leak to the actual build host. What.
-#exec < /dev/tty3 > /dev/tty3 2>/dev/tty3
+# polkit user doesn't exist for whatever reason
+#getent group polkitd >/dev/null || groupadd -r polkitd
+#getent passwd polkitd >/dev/null || useradd -r -g polkitd -d / -s /sbin/nologin -c "User for polkitd" polkitd
+
+
+# make zsh the default shell
+chsh -s /usr/bin/zsh root
+
+# do the same for all users
+cat > /etc/default/useradd << EOF
+# useradd defaults file
+GROUP=100
+HOME=/home
+INACTIVE=-1
+EXPIRE=
+SHELL=/bin/zsh
+SKEL=/etc/skel
+CREATE_MAIL_SPOOL=yes
+
+EOF
+
+
+
+# append starship to zshrc
+
+cat >> /etc/skel/.zshrc << EOF
+
+# starship prompt
+eval "\$(starship init zsh)"
+
+EOF
+
+cat >> /etc/zshrc << EOF
+
+# starship prompt
+eval "\$(starship init zsh)"
+
+EOF
+
 # FIXME: it'd be better to get this installed from a package
 cat > /etc/rc.d/init.d/livesys << EOF
 #!/bin/bash
@@ -135,13 +182,7 @@ for arg in \`cat /proc/cmdline\` ; do
   fi
 done
 
-# enable swaps unless requested otherwise
-swaps=\`blkid -t TYPE=swap -o device\`
-if ! strstr "\`cat /proc/cmdline\`" noswap && [ -n "\$swaps" ] ; then
-  for s in \$swaps ; do
-    action "Enabling swap partition \$s" swapon \$s
-  done
-fi
+# enable swapfile if it exists
 if ! strstr "\`cat /proc/cmdline\`" noswap && [ -f /run/initramfs/live/\${livedir}/swap.img ] ; then
   action "Enabling swap file" swapon /run/initramfs/live/\${livedir}/swap.img
 fi
@@ -179,7 +220,8 @@ mountPersistentHome() {
   # we should make that the real /home.  useful for mtd device on olpc
   if [ -d /home/home ]; then mount --bind /home/home /home ; fi
   [ -x /sbin/restorecon ] && /sbin/restorecon /home
-  if [ -d /home/liveuser ]; then USERADDARGS="-M" ; fi
+  if [ -d /home/liveuser ]; then USERADDARGS="-M" ;
+  else USERADDARGS="-m" ; fi
 }
 
 findPersistentHome() {
@@ -218,15 +260,15 @@ fi
 if [ -n "\$configdone" ]; then
   exit 0
 fi
-# update dconf
-#dconf update
+
 # add liveuser user with no passwd
-action "Adding live user" useradd -m -c "Live System User" liveuser
+action "Adding live user" useradd -m \$USERADDARGS -c "Live System User" liveuser
 passwd -d liveuser > /dev/null
 usermod -aG wheel liveuser > /dev/null
-mkhomedir_helper liveuser /etc/skel
 #add .bashrc to Liveuser
-cp -av /etc/bashrc /home/liveuser/.bashrc
+cp -av /etc/skel/.* /home/liveuser/
+
+chown -R liveuser:liveuser /home/liveuser
 
 # Remove root password lock
 passwd -d root > /dev/null
@@ -246,9 +288,6 @@ systemctl --no-reload disable mdmonitor-takeover.service 2> /dev/null || :
 systemctl stop mdmonitor.service 2> /dev/null || :
 systemctl stop mdmonitor-takeover.service 2> /dev/null || :
 
-# don't enable the gnome-settings-daemon packagekit plugin
-gsettings set org.gnome.software download-updates 'false' || :
-
 # don't start cron/at as they tend to spawn things which are
 # disk intensive that are painful on a live image
 systemctl --no-reload disable crond.service 2> /dev/null || :
@@ -266,10 +305,11 @@ sed -i 's/rtcsync//' /etc/chrony.conf
 # Mark things as configured
 touch /.liveimg-configured
 
-echo "Merging Default Home"
-cp -rvn /etc/skel/./* /home/liveuser
-echo "uml-live" > /etc/hostname # Set default hostname
-systemctl restart hostname.service
+# add static hostname to work around xauth bug
+# https://bugzilla.redhat.com/show_bug.cgi?id=679486
+# the hostname must be something else than 'localhost'
+# https://bugzilla.redhat.com/show_bug.cgi?id=1370222
+hostnamectl set-hostname "localhost-live"
 EOF
 
 # bah, hal starts way too late
@@ -325,8 +365,6 @@ EndSection
 FOE
 fi
 
-chown -R liveuser:liveuser /home/liveuser
-
 EOF
 
 chmod 755 /etc/rc.d/init.d/livesys
@@ -346,6 +384,13 @@ systemctl enable tmp.mount
 cat >> /etc/fstab << EOF
 vartmp   /var/tmp    tmpfs   defaults   0  0
 EOF
+
+# work around for poor key import UI in PackageKit
+rm -f /var/lib/rpm/__db*
+echo "Packages within this LiveCD"
+rpm -qa --qf '%{size}\t%{name}-%{version}-%{release}.%{arch}\n' |sort -rn
+# Note that running rpm recreates the rpm db files which aren't needed or wanted
+rm -f /var/lib/rpm/__db*
 
 # go ahead and pre-make the man -k cache (#455968)
 /usr/bin/mandb
@@ -369,11 +414,6 @@ rm -f /boot/*-rescue*
 # Disable network service here, as doing it in the services line
 # fails due to RHBZ #1369794
 /sbin/chkconfig network off
-systemctl disable NetworkManager-wait-online.service
-systemctl disable systemd-networkd-wait-online.service
-
-# Disable speech-dispacherd, It will still work but eh
-systemctl disable speech-dispacherd.service
 
 # Remove machine-id on pre generated images
 rm -f /etc/machine-id
@@ -389,24 +429,16 @@ EOF
 %end
 
 
-
 %post --nochroot
-#cp $INSTALL_ROOT/usr/share/licenses/*-release/* $LIVE_ROOT/
+# For livecd-creator builds only (lorax/livemedia-creator handles this directly)
+if [ -n "$LIVE_ROOT" ]; then
+    cp "$INSTALL_ROOT"/usr/share/licenses/*-release-common/* "$LIVE_ROOT/"
 
-# only works on x86, x86_64
-if [ "$(uname -i)" = "i386" -o "$(uname -i)" = "x86_64" ]; then
-    # For livecd-creator builds
-    if [ ! -d $LIVE_ROOT/LiveOS ]; then mkdir -p $LIVE_ROOT/LiveOS ; fi
-    cp /usr/bin/livecd-iso-to-disk $LIVE_ROOT/LiveOS
-
-    # For lorax/livemedia-creator builds
-    sed -i '
-    /## make boot.iso/ i\
-    # Add livecd-iso-to-disk script to .iso filesystem at /LiveOS/\
-    <% f = "usr/bin/livecd-iso-to-disk" %>\
-    %if exists(f):\
-        install ${f} ${LIVEDIR}/${f|basename}\
-    %endif\
-    ' /usr/share/lorax/templates.d/99-generic/live/x86.tmpl
+    # only installed on x86, x86_64
+    if [ -f /usr/bin/livecd-iso-to-disk ]; then
+        mkdir -p "$LIVE_ROOT/LiveOS"
+        cp /usr/bin/livecd-iso-to-disk "$LIVE_ROOT/LiveOS"
+    fi
 fi
+
 %end

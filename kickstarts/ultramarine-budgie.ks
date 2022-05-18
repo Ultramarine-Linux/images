@@ -3,7 +3,7 @@
 %include spins/budgie/budgie-base.ks
 
 
-%packages 
+%packages --excludeWeakdeps
 #x server
 @base-x
 
@@ -12,9 +12,6 @@
 #app groups because currently shit is empty
 @firefox
 @libreoffice
-@admin-tools
-@base-x
-@core
 @hardware-support
 bash-completion
 bind-utils
@@ -44,9 +41,5 @@ Variant=Flagship
 [Compose]
 Lorax=35.7-1
 EOF
-
-
-#le cisco 
-dnf config-manager --set-enabled fedora-cisco-openh264
 
 %end

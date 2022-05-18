@@ -10,8 +10,6 @@
 #app groups because currently shit is empty
 @firefox
 @libreoffice
-@admin-tools
-@base-x
 @core
 @hardware-support
 bash-completion

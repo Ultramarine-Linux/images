@@ -1,6 +1,6 @@
 #repo --name="copr:copr.fedorainfracloud.org:cappyishihara:budgie-desktop" --baseurl=https://download.copr.fedorainfracloud.org/results/cappyishihara/budgie-desktop/fedora-$releasever-$basearch/
 # Now included in Ultramarine Repos
-%packages
+%packages --excludeWeakdeps
 @core
 @standard
 @base-x
@@ -35,7 +35,6 @@ gnome-screenshot
 abrt
 gnome-weather
 gnome-clocks
-@ Games
 xdg-user-dirs-gtk
 -gdm
 
@@ -45,6 +44,7 @@ fluent-icon-theme
 ultramarine-release-flagship
 ultramarine-backgrounds-gnome
 ultramarine-backgrounds-basic
+ultramarine-flagship-filesystem
 
 #install budgie
 xorg-x11-server-Xorg

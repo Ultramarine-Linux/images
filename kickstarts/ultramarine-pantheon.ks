@@ -5,9 +5,6 @@
 @base-x
 @firefox
 @libreoffice
-@admin-tools
-@base-x
-@core
 @hardware-support
 bash-completion
 bind-utils

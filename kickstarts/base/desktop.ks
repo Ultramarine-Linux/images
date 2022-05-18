@@ -35,7 +35,7 @@ google-noto-serif-fonts
 twitter-twemoji-fonts
 liberation-mono-fonts
 liberation-s*-fonts
-cascadia-code-pl-fonts
+cascadia-*-*-fonts
 
 # Networking
 @networkmanager-submodules

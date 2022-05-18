@@ -124,7 +124,7 @@ EOF_FONTS
 # Set a colored prompt
 cat > /etc/profile.d/color-prompt.sh << EOF_PROMPT
 ## Colored prompt
-if [ -n "\$PS1" ]; then
+if [ -n "\$PS1" && $SHELL == "/bin/bash" ]; then
 	if [[ "\$TERM" == *256color ]]; then
 		if [ \${UID} -eq 0 ]; then
 			PS1='\[\e[91m\]\u@\h \[\e[93m\]\W\[\e[0m\]\\$ '

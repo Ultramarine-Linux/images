@@ -3,7 +3,7 @@
 %include spins/budgie/budgie-base.ks
 
 
-%packages --excludeWeakdeps
+%packages
 #x server
 @base-x
 

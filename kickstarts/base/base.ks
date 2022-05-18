@@ -59,6 +59,9 @@ anaconda-live
 # Need aajohan-comfortaa-fonts for the SVG rnotes images
 aajohan-comfortaa-fonts
 
+julietaula-montserrat-alternates-fonts
+julietaula-montserrat-fonts
+
 # Without this, initramfs generation during live image creation fails: #1242586
 dracut-live
 

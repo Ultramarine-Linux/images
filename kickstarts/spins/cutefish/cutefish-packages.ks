@@ -1,5 +1,5 @@
 
-%packages --excludeWeakdeps
+%packages
 @standard
 @base-x
 @input-methods

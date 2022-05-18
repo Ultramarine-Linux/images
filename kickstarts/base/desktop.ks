@@ -35,6 +35,7 @@ google-noto-serif-fonts
 twitter-twemoji-fonts
 liberation-mono-fonts
 liberation-s*-fonts
+cascadia-code-pl-fonts
 
 # Networking
 @networkmanager-submodules
@@ -110,6 +111,7 @@ cat > /etc/fonts/local.conf << EOF_FONTS
 	<alias>
 		<family>monospace</family>
 		<prefer>
+			<family>Cascadia Code PL</family>
 			<family>Noto Sans Mono</family>
 			<family>DejaVu Sans Mono</family>
 			<family>Liberation Mono</family>

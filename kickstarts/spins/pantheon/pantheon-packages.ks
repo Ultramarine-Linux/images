@@ -20,9 +20,8 @@ gnome-disk-utility
 gnome-screenshot
 abrt
 xdg-user-dirs-gtk
-
-fluent-theme
-fluent-icon-theme
+-gnome-software
+appcenter
 
 ultramarine-release-basic
 ultramarine-backgrounds-gnome

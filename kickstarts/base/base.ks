@@ -147,6 +147,8 @@ eval "\$(starship init zsh)"
 
 EOF
 
+glib-compile-schemas /usr/share/glib-2.0/schemas/
+
 # FIXME: it'd be better to get this installed from a package
 cat > /etc/rc.d/init.d/livesys << EOF
 #!/bin/bash
@@ -269,7 +271,7 @@ action "Adding live user" useradd -m \$USERADDARGS -c "Live System User" liveuse
 passwd -d liveuser > /dev/null
 usermod -aG wheel liveuser > /dev/null
 #add .bashrc to Liveuser
-cp -av /etc/skel/.* /home/liveuser/
+cp -av /etc/skel/.zshrc /home/liveuser/
 
 chown -R liveuser:liveuser /home/liveuser
 

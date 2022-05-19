@@ -36,6 +36,7 @@ abrt
 gnome-weather
 gnome-clocks
 xdg-user-dirs-gtk
+-gnome-control-center
 -gdm
 
 fluent-theme

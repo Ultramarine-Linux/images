@@ -159,7 +159,6 @@ echo "install_weak_deps=False" >> /etc/dnf/dnf.conf
 cat >> /etc/dnf/dnf.conf << EOF
 install_weak_deps=False
 defaultyes=True
-fastestmirror=True
 max_parallel_downloads=20
 
 EOF

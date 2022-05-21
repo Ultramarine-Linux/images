@@ -1,0 +1,23 @@
+[image]
+releasever = 36
+
+
+[variant-flagship]
+kickstart="kickstarts/ultramarine-budgie.ks"
+type="iso"
+
+[variant-cutefish]
+kickstart="kickstarts/ultramarine-cutefish.ks"
+type="iso"
+
+[variant-pantheon]
+kickstart="kickstarts/ultramarine-pantheon.ks"
+type="iso"
+
+[variant-gnome]
+kickstart="kickstarts/ultramarine-gnome.ks"
+type="iso"
+
+[variant-podman]
+kickstart="kickstarts/ultramarine-docker.ks"
+type="docker"

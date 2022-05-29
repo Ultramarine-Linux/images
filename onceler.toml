@@ -1,6 +1,6 @@
 [image]
 releasever = 36
-
+name = "ultramarine"
 
 [variant-flagship]
 kickstart="kickstarts/ultramarine-budgie.ks"
@@ -20,4 +20,4 @@ type="iso"
 
 [variant-podman]
 kickstart="kickstarts/ultramarine-docker.ks"
-type="docker"
+type="podman"

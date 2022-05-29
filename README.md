@@ -1,29 +1,27 @@
-# Ultramarine Linux
-![](assets/ultramarine.png)
-Ultramarine Linux is a Fedora Remix designed to be simple and stays out of the user's way.
+# Ultramarine Linux Image building scripts
 
-# Instructions
-Simply download the ISO and follow the instructions provided.
+This repository contains various scripts and configuration files for building an Ultramarine Linux image.
 
-# Build Instructions
-You should have a copy of Fedora, Ultramarine, RHEL, or any member of the EL family installed on the build machine.
+It mainly contains Kickstart scripts, scripts which are used by the Anaconda installer to automatically install the initial Ultramarine Linux image, which are then built into the final bootable image using weldr's [Lorax](https://github.com/weldr/lorax) tool.
 
-To compose Ultramarine, you will need to at least have PyKickstart and [Lorax](https://weldr.io/lorax/) installed.
+## Ultramarine Linux Docker/OCI image
 
-```
-sudo dnf install lorax pykickstart
-```
+Ultramarine also offers a minimal base Docker image, in rare cases when you want to run Ultramarine as a container.
 
-Then, simply run the Makefile. (Superuser privileges are required to mount the image on composition.)
-```
-sudo make flagship
-```
-or:
+The image itself is similar to the vanilla Fedora image, but includes the Ultramarine Linux repositories and RPMFusion repositories. This may prove useful for some users who want a Fedora-like environment, but with some extra packages.
+
+## Building locally
+
+Ultramarine Linux provides a tool to help quickly building an image locally using a configuration file called [Onceler](https://github.com/Ultramarine-Linux/onceler). This tool is used to build a bootable image from a Kickstart file, and automatically deploy the image to your containers, or to a local directory.
+
+To use Onceler to build an image, install Onceler and then run:
 
 ```
-sudo make spin=budgie image
+onceler <variant>
 ```
 
-# Known Issues
-- On some configurations, Lorax may get stuck or even fail to compose the image. In this case, you can try running the build under a container. It's recommended to use [GitLab-CI-Local](https://github.com/firecow/gitlab-ci-local) to run the build in a container, or use [Toolbox](https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/).
-- Anaconda will may still recognize this image as a pre-release. This is because the image does not have a final buildstamp, and the composition process might be unable to do this. (Onceler will fix this in the future.)
+If you would like to build an image without using Onceler, we also included a Makefile in the repository. Install `lorax-lmc-novirt` and then run:
+
+```
+sudo make SPIN=<spin> image
+```

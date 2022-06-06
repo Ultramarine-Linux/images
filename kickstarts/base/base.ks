@@ -19,7 +19,7 @@ xconfig --startxonboot
 zerombr
 clearpart --all
 part / --size 8192 --fstype ext4
-services --enabled=NetworkManager,ModemManager --disabled=sshd
+services --enabled=NetworkManager,ModemManager --disabled=systemd-networkd,chrony-wait
 network --bootproto=dhcp --device=link --activate
 rootpw --lock --iscrypted locked
 
@@ -96,6 +96,10 @@ chkconfig
 
 gjs
 
+# Did you know what 70% of complaints from Ultramarine Linux are becuase of slow boot times? Guess what, we found the solution.
+-systemd-networkd
+# SIKE, NetworkManager master race
+
 
 # fancy starship prompt
 starship
@@ -133,7 +137,7 @@ EOF
 
 # append starship to zshrc
 
-cat >> /etc/skel/.zshrc << EOF
+cat >> /etc/zshrc << EOF
 
 # starship prompt
 eval "\$(starship init zsh)"
@@ -271,7 +275,7 @@ action "Adding live user" useradd -m \$USERADDARGS -c "Live System User" liveuse
 passwd -d liveuser > /dev/null
 usermod -aG wheel liveuser > /dev/null
 #add .bashrc to Liveuser
-cp -av /etc/skel/.zshrc /home/liveuser/
+#cp -av /etc/skel/. /home/liveuser/
 
 chown -R liveuser:liveuser /home/liveuser
 

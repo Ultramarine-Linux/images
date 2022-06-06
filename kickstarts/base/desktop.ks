@@ -49,6 +49,7 @@ firefox
 PackageKit
 PackageKit-gstreamer-plugin
 PackageKit-command-not-found
+xdg-desktop-portal
 # deltarpm
 dnf-plugins-core
 # drpm

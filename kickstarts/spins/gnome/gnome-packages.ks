@@ -24,7 +24,10 @@ abrt
 gnome-weather
 gnome-clocks
 xdg-user-dirs-gtk
+xdg-desktop-portal-gtk
 gnome-initial-setup
+-totem
+clapper
 @^workstation-product-environment
 -gedit
 
@@ -39,9 +42,6 @@ ultramarine-backgrounds-gnome
 ultramarine-backgrounds-basic
 ultramarine-gnome-filesystem
 
-
-xorg-x11-server-Xorg
-#funny theme
 
 
 %end

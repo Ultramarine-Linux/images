@@ -21,7 +21,8 @@ lightdm-gtk-greeter-settings
 gnome-terminal
 gnome-terminal-nautilus
 gnome-system-monitor
-totem
+-totem
+clapper
 gedit
 gedit-color-schemes
 file-roller
@@ -38,6 +39,7 @@ gnome-clocks
 xdg-user-dirs-gtk
 -gnome-control-center
 -gdm
+xdg-desktop-portal-gtk
 
 fluent-theme
 fluent-icon-theme

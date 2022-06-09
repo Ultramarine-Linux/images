@@ -19,7 +19,7 @@ xconfig --startxonboot
 zerombr
 clearpart --all
 part / --size 8192 --fstype ext4
-services --enabled=NetworkManager,ModemManager --disabled=systemd-networkd,chrony-wait
+services --enabled=NetworkManager,ModemManager --disabled=systemd-networkd,chrony-wait,NetworkManager-wait-online
 network --bootproto=dhcp --device=link --activate
 rootpw --lock --iscrypted locked
 
@@ -112,44 +112,9 @@ util-linux-user
 
 
 %post
-# polkit user doesn't exist for whatever reason
-#getent group polkitd >/dev/null || groupadd -r polkitd
-#getent passwd polkitd >/dev/null || useradd -r -g polkitd -d / -s /sbin/nologin -c "User for polkitd" polkitd
 
+systemctl disable NetworkManager-wait-online.service
 
-# make zsh the default shell
-chsh -s /usr/bin/zsh root
-
-# do the same for all users
-cat > /etc/default/useradd << EOF
-# useradd defaults file
-GROUP=100
-HOME=/home
-INACTIVE=-1
-EXPIRE=
-SHELL=/bin/zsh
-SKEL=/etc/skel
-CREATE_MAIL_SPOOL=yes
-
-EOF
-
-
-
-# append starship to zshrc
-
-cat >> /etc/zshrc << EOF
-
-# starship prompt
-eval "\$(starship init zsh)"
-
-EOF
-
-cat >> /etc/zshrc << EOF
-
-# starship prompt
-eval "\$(starship init zsh)"
-
-EOF
 
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 
@@ -275,7 +240,7 @@ action "Adding live user" useradd -m \$USERADDARGS -c "Live System User" liveuse
 passwd -d liveuser > /dev/null
 usermod -aG wheel liveuser > /dev/null
 #add .bashrc to Liveuser
-#cp -av /etc/skel/. /home/liveuser/
+cp -av /etc/skel/. /home/liveuser/
 
 chown -R liveuser:liveuser /home/liveuser
 

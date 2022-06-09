@@ -66,6 +66,9 @@ rsync
 unar
 git
 
+# The rice
+ultramarine-shell-config
+
 %end
 
 
@@ -120,27 +123,6 @@ cat > /etc/fonts/local.conf << EOF_FONTS
 	</alias>
 </fontconfig>
 EOF_FONTS
-
-
-# Set a colored prompt
-cat > /etc/profile.d/color-prompt.sh << EOF_PROMPT
-## Colored prompt
-if [ -n "\$PS1" ]; then
-	if [[ "\$TERM" == *256color ]]; then
-		if [ \${UID} -eq 0 ]; then
-			PS1='\[\e[91m\]\u@\h \[\e[93m\]\W\[\e[0m\]\\$ '
-		else
-			PS1='\[\e[92m\]\u@\h \[\e[93m\]\W\[\e[0m\]\\$ '
-		fi
-	else
-		if [ \${UID} -eq 0 ]; then
-			PS1='\[\e[31m\]\u@\h \[\e[33m\]\W\[\e[0m\]\\$ '
-		else
-			PS1='\[\e[32m\]\u@\h \[\e[33m\]\W\[\e[0m\]\\$ '
-		fi
-	fi
-fi
-EOF_PROMPT
 
 # Sets a default grub config if not present (rhb #886502)
 # Provides some reasonable defaults when the bootloader is not installed

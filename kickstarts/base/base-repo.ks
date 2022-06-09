@@ -2,6 +2,6 @@ repo --name=fedora --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?rep
 repo --name=updates --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f$releasever&arch=$basearch --excludepkgs=kernel*,neofetch
 #repo --name=updates-testing --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=updates-testing-f$releasever&arch=$basearch
 url --url=https://lapis.ultramarine-linux.org/pub/ultramarine/$releasever/Everything/$basearch/os/
+repo --name=ultramarine-updates --baseurl=https://lapis.ultramarine-linux.org/pub/ultramarine-updates/$releasever/Everything/$basearch/os/
 #repo --name="fedora-cisco-openh264" --baseurl=https://codecs.fedoraproject.org/openh264/$releasever/$basearch/os/
 #url --url=file:///home/cappy/Projects/uml-pungi/compose/latest-Ultramarine-35/compose/Everything/x86_64/os/
-repo --name=test --baseurl=https://lapis.ultramarine-linux.org/kojifiles/repos/um36-build/latest/x86_64/

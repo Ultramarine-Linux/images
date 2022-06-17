@@ -18,6 +18,10 @@ type="iso"
 kickstart="kickstarts/ultramarine-gnome.ks"
 type="iso"
 
+[variant-plasma]
+kickstart="kickstarts/ultramarine-plasma.ks"
+type="iso"
+
 [variant-podman]
 kickstart="kickstarts/ultramarine-docker.ks"
 type="podman"

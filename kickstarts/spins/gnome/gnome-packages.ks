@@ -34,6 +34,7 @@ clapper
 # Extra ricing
 gnome-extensions-app
 gnome-shell-extension-pop-shell
+pop-launcher
 xprop
 gnome-shell-extension-appindicator
 

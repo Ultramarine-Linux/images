@@ -44,6 +44,7 @@ firewall-config
 
 # Internet
 firefox
+-fedora-bookmarks
 #mozilla-openh264
 # Software
 PackageKit

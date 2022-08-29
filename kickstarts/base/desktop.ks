@@ -55,6 +55,7 @@ xdg-desktop-portal
 dnf-plugins-core
 # drpm
 flatpak
+flatpak-selinux-fix
 
 # System
 rpm-plugin-systemd-inhibit

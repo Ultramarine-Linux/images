@@ -19,7 +19,7 @@ jobs:
           - pantheon
           - plasma
     container:
-      image: ghcr.io/ultramarine-linux/ultramarine:37
+      image: fedora:37
       options: --cap-add=SYS_ADMIN --privileged
 
     steps:

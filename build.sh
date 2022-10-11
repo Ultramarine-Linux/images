@@ -111,7 +111,7 @@ lmc_builder() {
         --isfinal \
         --release $releasever \
         --iso-name $ISO_NAME \
-        --variant $variant_name $EXTRA_ARGS
+        --variant $variant_name $EXTRA_ARGS || exit 1
 
 
 }

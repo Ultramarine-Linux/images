@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - lapis
+    paths:
+      - 'kickstarts/**'
   workflow_dispatch:
 
 jobs:

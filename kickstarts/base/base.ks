@@ -44,7 +44,6 @@ kernel-modules-extra
 # "Diagnosis/recovery tool useful from a Live OS image".  Leaving this untouched
 # for now.
 #memtest86+
-@x86-baremetal-tools # memtest86+ is included
 
 # The point of a live image is to install
 anaconda
@@ -206,20 +205,6 @@ findPersistentHome() {
   done
 }
 
-# add welcome to startup
-
-mkdir -p /home/liveuser/.config/autostart/
-cat > /home/liveuser/.config/autostart/fedora-welcome.desktop << WELEOF
-[Desktop Entry]
-Name=Welcome to Ultramarine
-Exec=/usr/share/anaconda/gnome/fedora-welcome
-Terminal=false
-Type=Application
-StartupNotify=true
-NoDisplay=true
-X-GNOME-Autostart-enabled=true
-WELEOF
-
 if strstr "\`cat /proc/cmdline\`" persistenthome= ; then
   findPersistentHome
 elif [ -e /run/initramfs/live/\${livedir}/home.img ]; then
@@ -275,6 +260,20 @@ systemctl stop abrtd.service 2> /dev/null || :
 
 # Don't sync the system clock when running live (RHBZ #1018162)
 sed -i 's/rtcsync//' /etc/chrony.conf
+
+# add welcome to startup
+
+mkdir -p /home/liveuser/.config/autostart/
+cat > /home/liveuser/.config/autostart/fedora-welcome.desktop << WELEOF
+[Desktop Entry]
+Name=Welcome to Ultramarine
+Exec=/usr/share/anaconda/gnome/fedora-welcome
+Terminal=false
+Type=Application
+StartupNotify=true
+NoDisplay=true
+X-GNOME-Autostart-enabled=true
+WELEOF
 
 # Mark things as configured
 touch /.liveimg-configured

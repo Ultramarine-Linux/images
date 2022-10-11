@@ -19,6 +19,7 @@ psmisc
 libva-vdpau-driver
 libvdpau-va-gl
 mesa-*-drivers
+-mesa-full*
 xorg-x11-drivers
 #akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason
 

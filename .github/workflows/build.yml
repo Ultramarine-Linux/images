@@ -1,0 +1,43 @@
+name: Build ISO images
+on:
+  push:
+    branches:
+      - lapis
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        arch:
+          - x86_64
+        variant:
+          - budgie
+          - gnome
+          - pantheon
+          - plasma
+    container:
+      image: ghcr.io/ultramarine-linux/ultramarine:37
+      options: --cap-add=SYS_ADMIN --privileged
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Install repositories
+        run: |
+          sudo dnf install -y dnf-plugins-core
+          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad37.repo
+          sudo dnf install -y lorax-lmc-novirt pykickstart make
+      - name: Build ISO
+        run: |
+          ./build.sh ${{ matrix.variant }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.variant }}-${{ matrix.arch }}
+          path: ./build/image/images/boot.iso

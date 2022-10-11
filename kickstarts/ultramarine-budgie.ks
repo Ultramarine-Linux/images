@@ -27,19 +27,3 @@ libreoffice
 -@ GNOME Desktop Environment 
 
 %end
-%post
-
-# Inject a dummy .buildstamp so Anaconda doesn't complain
-cat << EOF > /.buildstamp
-[Main]
-Product=Ultramarine
-Version=36
-BugURL=None
-IsFinal=true
-UUID=202112022224.x86_64
-Variant=Flagship
-[Compose]
-Lorax=35.7-1
-EOF
-
-%end

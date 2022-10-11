@@ -23,11 +23,9 @@ gnome-terminal-nautilus
 gnome-system-monitor
 -totem
 clapper
-gedit
-gedit-color-schemes
+gnome-text-editor
 file-roller
 evince
-evince-nautilus
 seahorse
 gnome-sound-recorder
 gnome-disk-utility

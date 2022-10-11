@@ -1,5 +1,5 @@
 SPIN=budgie
-RELEASEVER=36
+RELEASEVER=37
 DEVICE=/dev/null # the funny sentinel
 BUILDDIR=$(shell echo $$PWD)/build
 IMAGE=iso
@@ -7,6 +7,7 @@ PROJECT=Ultramarine Linux
 LOCAL_REPO=true
 ARCH=x86_64
 LORAX=true
+EXTRA_ARGS=
 
 mock=mock -r mock/ultramarine-$(RELEASEVER)-$(shell uname -m).cfg --enable-network --rpmbuild-opts "--undefine _disable_source_fetch"
 test:
@@ -28,12 +29,13 @@ image: clean kickstart
 	--project "$(PROJECT)" \
 	--releasever $(RELEASEVER) \
 	--ks build/$(SPIN)-flattened.ks \
-	--resultdir build/image \
-	--logfile build/logs/livemedia-creator.log \
+	--resultdir $(BUILDDIR)/image \
+	--logfile $(BUILDDIR)/logs/livemedia-creator.log \
 	--no-virt \
 	--compression zstd \
 	--iso-only \
-	--iso-name Ultramarine-$(SPIN)-$(shell date +%y.%m).iso
+	--iso-name Ultramarine-$(SPIN)-$(shell date +%y.%m).iso \
+	$(EXTRA_ARGS)
 
 
 liveimage: clean kickstart
@@ -43,11 +45,12 @@ liveimage: clean kickstart
 	--make-$(IMAGE) \
 	--project "$(PROJECT)" \
 	--releasever $(RELEASEVER) \
-	--ks build/budgie-flattened.ks \
-	--resultdir build/liveimage \
-	--logfile build/logs/livemedia-creator.log \
+	--ks build/$(SPIN)-flattened.ks \
+	--resultdir $(BUILDDIR)/liveimage \
+	--logfile $(BUILDDIR)/logs/livemedia-creator.log \
 	--no-virt \
-	--compression zstd
+	--compression zstd \
+	$(EXTRA_ARGS)
 
 flagship: clean kickstart
 	@#echo "shutdown" >> $(BUILDDIR)/$(SPIN)-flattened.ks
@@ -58,12 +61,13 @@ flagship: clean kickstart
 	--project "$(PROJECT)" \
 	--releasever $(RELEASEVER) \
 	--ks build/budgie-flattened.ks \
-	--resultdir build/image \
-	--logfile build/logs/livemedia-creator.log \
+	--resultdir $(BUILDDIR)/image \
+	--logfile $(BUILDDIR)/logs/livemedia-creator.log \
 	--no-virt \
 	--compression zstd \
 	--iso-only \
-	--iso-name Ultramarine-Flagship-$(shell date +%y.%m).iso
+	--iso-name Ultramarine-Flagship-$(shell date +%y.%m).iso \
+	$(EXTRA_ARGS)
 
 rebuild: clean pkg test kickstart image
 
@@ -75,5 +79,6 @@ docker: clean kickstart
 	--no-virt \
 	--ks build/docker-flattened.ks \
 	--image-name ultramarine-docker.tar.xz \
-	--resultdir build/docker
+	--resultdir $(BUILDDIR)/docker \
+	$(EXTRA_ARGS)
 

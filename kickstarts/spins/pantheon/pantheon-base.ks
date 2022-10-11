@@ -2,7 +2,6 @@
 %include pantheon-packages.ks
 
 services --disabled=gdm
-services --enable lightdm
 %post
 
 # create /etc/sysconfig/desktop (needed for installation)

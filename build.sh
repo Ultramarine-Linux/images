@@ -90,7 +90,8 @@ lmc_builder() {
     fi
 
     if [ -d "$OUTPUT_DIR" ]; then
-        sudo rm -rf "$OUTPUT_DIR"
+        # sudo rm -rf "$OUTPUT_DIR"
+        true
     fi
     parse_variant_type "$variant_type"
     mkdir -p "$OUTPUT_DIR/logs"

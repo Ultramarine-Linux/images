@@ -54,7 +54,6 @@ budgie-extras
 budgie-extras-daemon
 budgie-desktop-view
 gnome-backgrounds
-gnome-backgrounds-extra
 #funny theme
 
 

@@ -29,7 +29,6 @@ clapper
 @^workstation-product-environment
 -gedit
 gnome-text-editor
--gnome-terminal
 gnome-console
 
 # Extra ricing

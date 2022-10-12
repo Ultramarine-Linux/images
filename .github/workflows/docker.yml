@@ -39,6 +39,8 @@ jobs:
           sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad37.repo
           sudo dnf install -y lorax-lmc-novirt pykickstart make moby-engine
       - name: Build ISO
+        env:
+          releasever: 37
         run: |
           ./build.sh ${{ matrix.variant }}
 

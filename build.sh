@@ -119,6 +119,10 @@ lmc_builder() {
         --release $RELEASE \
         --variant $variant_name $EXTRA_ARGS || exit 1
 
+    if [ "$variant_type" = "docker" ] || [ "$variant_type" = "podman" ]; then
+        oci_post
+    fi
+
 
 }
 

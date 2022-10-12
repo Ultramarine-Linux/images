@@ -69,7 +69,7 @@ parse_variant_type() {
         ;;
     docker)
         echo "tar"
-        EXTRA_ARGS+=" --image-name ultramarine-docker.tar.xz"
+        EXTRA_ARGS+=" --image-name ultramarine-docker.tar.xz --nomacboot"
         OCI="docker"
         ;;
     podman)

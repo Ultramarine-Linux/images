@@ -59,7 +59,7 @@ jobs:
           docker tag ultramarine:37 ultramarine:latest
           docker tag ultramarine:37 ghcr.io/ultramarine-linux/ultramarine:37
           docker tag ultramarine:37 ghcr.io/ultramarine-linux/ultramarine:latest
-          docker push ghcr.io/ultramarine-linux/ultramarine:37
+          docker push -a ghcr.io/ultramarine-linux/ultramarine
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3

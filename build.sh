@@ -13,8 +13,7 @@ VERBOSE=0
 arch=$(uname -m)
 PROJECT="Ultramarine Linux"
 PROJECT_SHORT="ultramarine"
-
-ISO_NAME="${PROJECT_SHORT}-${arch}-$(date +%Y%m%d).iso"
+RELEASE="0.2"
 
 
 : "${releasever:=$(grep -oP '(?<=^VERSION_ID=).+' /etc/os-release | tr -d '"')}"
@@ -97,6 +96,8 @@ lmc_builder() {
     mkdir -p "$OUTPUT_DIR/logs"
 
     echo $EXTRA_ARGS
+    ISO_NAME="${PROJECT_SHORT}-${variant_name}-${arch}-$(date +%Y%m%d).iso"
+
 
     ksflatten -c $kickstart_path -o $OUTPUT_DIR/${variant_name}-flattened.ks
 
@@ -106,11 +107,11 @@ lmc_builder() {
         --resultdir ${OUTPUT_DIR}/image \
         --ks $OUTPUT_DIR/${variant_name}-flattened.ks \
         --logfile ${OUTPUT_DIR}/logs/livemedia-creator.log \
-        --compression zstd \
+        --fs-label "$PROJECT_SHORT-$variant_short-$arch" \
         --project "$PROJECT" \
         --releasever $releasever \
         --isfinal \
-        --release $releasever \
+        --release $RELEASE \
         --iso-name $ISO_NAME \
         --variant $variant_name $EXTRA_ARGS || exit 1
 

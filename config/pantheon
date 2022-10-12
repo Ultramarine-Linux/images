@@ -1,3 +1,4 @@
 variant_name="pantheon"
+variant_short="Pa"
 variant_type=iso
 kickstart_path="kickstarts/ultramarine-pantheon.ks"

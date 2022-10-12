@@ -1,3 +1,4 @@
 variant_name="plasma"
+variant_short="KDE"
 variant_type=iso
 kickstart_path="kickstarts/ultramarine-plasma.ks"

@@ -1,7 +1,7 @@
 # Minimal Disk Image
 
 # Use network installation
-%include base/base-repo.ks
+%include ../base/base-repo.ks
 
 # Root password
 rootpw --plaintext ultramarine
@@ -30,11 +30,8 @@ rm /var/lib/systemd/random-seed
 %end
 
 %packages --instLangs en
-httpd
 @core
 ultramarine-release
-dnf
-microdnf
 sudo
 bash
 coreutils

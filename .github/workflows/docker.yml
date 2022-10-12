@@ -4,19 +4,21 @@ on:
     branches:
       - lapis
     paths:
-      - kickstarts/ultramarine-docker.ks
+      - kickstarts/docker/**
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        arch:
-          - x86_64
+        runner:
+          - ubuntu-latest
+          - ARM64
         variant:
           - docker
+          - docker-minimal
+    runs-on: ${{ matrix.runner }}
     container:
       image: fedora:37
       options: --cap-add=SYS_ADMIN --privileged
@@ -38,12 +40,6 @@ jobs:
           sudo dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/ad37.repo
           sudo dnf install -y lorax-lmc-novirt pykickstart make moby-engine
-      - name: Build ISO
-        env:
-          releasever: 37
-        run: |
-          ./build.sh ${{ matrix.variant }}
-
       # upload image to ghcr.io
       - name: Login to ghcr.io
         uses: docker/login-action@v1
@@ -51,15 +47,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      # docker import base image
-      - name: Import image
-        if: ${{ matrix.variant == 'docker' }}
+      - name: Build Image
+        env:
+          releasever: 37
         run: |
-          docker tag ultramarine:37 ultramarine:latest
-          docker tag ultramarine:37 ghcr.io/ultramarine-linux/ultramarine:37
-          docker tag ultramarine:37 ghcr.io/ultramarine-linux/ultramarine:latest
-          docker push -a ghcr.io/ultramarine-linux/ultramarine
+          ./build.sh -p ${{ matrix.variant }}
+
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3

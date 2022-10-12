@@ -9,11 +9,13 @@
 
 
 VERBOSE=0
+PUSH=0
 # get releasever from /etc/os-release
 arch=$(uname -m)
 PROJECT="Ultramarine Linux"
 PROJECT_SHORT="ultramarine"
 RELEASE="0.2"
+REGISTRY_PREFIX="ghcr.io/ultramarine-linux"
 
 
 : "${releasever:=$(grep -oP '(?<=^VERSION_ID=).+' /etc/os-release | tr -d '"')}"
@@ -128,7 +130,13 @@ lmc_builder() {
 
 
 oci_post() {
-    $OCI import $OUTPUT_DIR/image/ultramarine-docker.tar.xz ultramarine:$releasever
+    $OCI import $OUTPUT_DIR/image/ultramarine-docker.tar.xz $oci_name:$releasever
+    $OCI tag $oci_name:$releasever $oci_name:latest
+    $OCI tag $oci_name:$releasever $REGISTRY_PREFIX/$oci_name:$releasever
+    $OCI tag $oci_name:$releasever $REGISTRY_PREFIX/$oci_name:latest
+    if [ "$PUSH" = 1 ]; then
+        $OCI push -a $REGISTRY_PREFIX/$oci_name
+    fi
 }
 
 
@@ -167,6 +175,10 @@ do
         ;;
     -v | --verbose)
         VERBOSE=1
+        shift
+        ;;
+    -p | --push)
+        PUSH=1
         shift
         ;;
 

@@ -1,0 +1,5 @@
+variant_name="docker-minimal"
+variant_short="D"
+variant_type="docker"
+kickstart_path="kickstarts/docker/minimal.ks"
+oci_name="ultramarine-minimal"

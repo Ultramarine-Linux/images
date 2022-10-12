@@ -1,4 +1,5 @@
 variant_name="docker"
 variant_short="D"
 variant_type="docker"
-kickstart_path="kickstarts/ultramarine-docker.ks"
+kickstart_path="kickstarts/docker/standard.ks"
+oci_name="ultramarine"

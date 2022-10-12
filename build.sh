@@ -62,12 +62,18 @@ parse_variant_type() {
         echo "iso"
         # add --iso-only to extra args
         EXTRA_ARGS+=" --iso-only"
+        ISO_NAME="${PROJECT_SHORT}-${variant_name}-${arch}-$(date +%Y%m%d).iso"
+        EXTRA_ARGS+=" --iso-name $ISO_NAME"
         ;;
     docker)
         echo "tar"
+        EXTRA_ARGS+=" --image-name ultramarine-docker.tar.xz"
+        OCI="docker"
         ;;
     podman)
         echo "tar"
+        EXTRA_ARGS+=" --image-name ultramarine-docker.tar.xz"
+        OCI="podman"
         ;;
     *)
         echo "Invalid variant type: $1"
@@ -89,20 +95,19 @@ lmc_builder() {
     fi
 
     if [ -d "$OUTPUT_DIR" ]; then
-        # sudo rm -rf "$OUTPUT_DIR"
+        sudo rm -rf "$OUTPUT_DIR"
         true
     fi
     parse_variant_type "$variant_type"
     mkdir -p "$OUTPUT_DIR/logs"
 
     echo $EXTRA_ARGS
-    ISO_NAME="${PROJECT_SHORT}-${variant_name}-${arch}-$(date +%Y%m%d).iso"
 
 
     ksflatten -c $kickstart_path -o $OUTPUT_DIR/${variant_name}-flattened.ks
 
 
-    sudo livemedia-creator --make-${variant_type} \
+    sudo livemedia-creator --make-${build_type} \
         --no-virt \
         --resultdir ${OUTPUT_DIR}/image \
         --ks $OUTPUT_DIR/${variant_name}-flattened.ks \
@@ -112,12 +117,15 @@ lmc_builder() {
         --releasever $releasever \
         --isfinal \
         --release $RELEASE \
-        --iso-name $ISO_NAME \
         --variant $variant_name $EXTRA_ARGS || exit 1
 
 
 }
 
+
+oci_post() {
+    $OCI import $OUTPUT_DIR/build/image/ultramarine-docker.tar.xz ultramarine:$releasever
+}
 
 
 # build function

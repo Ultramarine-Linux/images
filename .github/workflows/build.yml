@@ -5,6 +5,7 @@ on:
       - lapis
     paths:
       - 'kickstarts/**'
+      - '!kickstarts/ultramarine-docker.ks'
   workflow_dispatch:
 
 jobs:

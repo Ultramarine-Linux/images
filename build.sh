@@ -128,7 +128,7 @@ lmc_builder() {
 
 
 oci_post() {
-    $OCI import $OUTPUT_DIR/build/image/ultramarine-docker.tar.xz ultramarine:$releasever
+    $OCI import $OUTPUT_DIR/image/ultramarine-docker.tar.xz ultramarine:$releasever
 }
 
 

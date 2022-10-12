@@ -1,5 +1,3 @@
-#repo --name="copr:copr.fedorainfracloud.org:cappyishihara:budgie-desktop" --baseurl=https://download.copr.fedorainfracloud.org/results/cappyishihara/budgie-desktop/fedora-$releasever-$basearch/
-# Now included in Ultramarine Repos
 %packages
 @core
 @standard
@@ -30,6 +28,9 @@ gnome-initial-setup
 clapper
 @^workstation-product-environment
 -gedit
+gnome-text-editor
+-gnome-terminal
+gnome-console
 
 # Extra ricing
 gnome-extensions-app

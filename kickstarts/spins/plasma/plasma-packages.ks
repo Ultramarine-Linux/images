@@ -65,4 +65,6 @@ xorg-x11-server-Xorg
 ultramarine-release-basic
 ultramarine-backgrounds-basic
 
+latte-dock
+
 %end

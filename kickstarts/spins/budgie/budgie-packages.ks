@@ -1,5 +1,3 @@
-#repo --name="copr:copr.fedorainfracloud.org:cappyishihara:budgie-desktop" --baseurl=https://download.copr.fedorainfracloud.org/results/cappyishihara/budgie-desktop/fedora-$releasever-$basearch/
-# Now included in Ultramarine Repos
 %packages
 @core
 @standard
@@ -9,6 +7,7 @@
 @multimedia
 @fonts
 @budgie-desktop
+@^flagship-product-environment
 policycoreutils
 coreutils
 gnome-software
@@ -38,6 +37,7 @@ xdg-user-dirs-gtk
 -gnome-control-center
 -gdm
 xdg-desktop-portal-gtk
+python3-psutil
 
 fluent-theme
 fluent-icon-theme
@@ -53,6 +53,8 @@ budgie-desktop
 budgie-extras
 budgie-extras-daemon
 budgie-desktop-view
+gnome-backgrounds
+gnome-backgrounds-extra
 #funny theme
 
 

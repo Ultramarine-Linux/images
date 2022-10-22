@@ -31,10 +31,6 @@ unrar
 
 %post
 
-echo ""
-echo "POST BASE REMIX **************************************"
-echo ""
-
 # Enable Cisco Open H.264 repository
 dnf config-manager --set-enabled fedora-cisco-openh264
 

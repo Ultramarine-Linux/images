@@ -23,8 +23,8 @@ mesa-*-drivers
 xorg-x11-drivers
 #akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason
 
-#nouveau-firmware
 xorg-x11-drv-nouveau
+procps-ng
 
 # Fonts
 google-noto-sans-fonts
@@ -143,15 +143,9 @@ fi
 # Disable weak dependencies to avoid unwanted stuff
 echo "install_weak_deps=False" >> /etc/dnf/dnf.conf
 cat >> /etc/dnf/dnf.conf << EOF
-install_weak_deps=False
 defaultyes=True
 max_parallel_downloads=20
 
 EOF
-
-# Set default boot theme
-#fails because no command, it works without this anyway
-#plymouth-set-default-theme spinner
-# disabled again so we get back EFI logos
 
 %end

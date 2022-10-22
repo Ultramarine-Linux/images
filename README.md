@@ -12,16 +12,12 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 
 ## Building locally
 
-Ultramarine Linux provides a tool to help quickly building an image locally using a configuration file called [Onceler](https://github.com/Ultramarine-Linux/onceler). This tool is used to build a bootable image from a Kickstart file, and automatically deploy the image to your containers, or to a local directory.
+To build the image locally, you need to have the following installed:
+- Lorax
+- Anaconda
+- pykickstart
 
-To use Onceler to build an image, install Onceler and then run:
-
+You can then run the following command to build the image:
 ```
-onceler <variant>
-```
-
-If you would like to build an image without using Onceler, we also included a Makefile in the repository. Install `lorax-lmc-novirt` and then run:
-
-```
-sudo make SPIN=<spin> image
+./build.sh <VARIANT>
 ```

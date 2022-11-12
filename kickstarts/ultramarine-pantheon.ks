@@ -13,6 +13,8 @@ microcode_ctl
 psmisc
 @pantheon-desktop
 
+-@ GNOME Desktop Environment
+
 fuse
 libreoffice
 

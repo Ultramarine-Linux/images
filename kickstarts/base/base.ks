@@ -40,6 +40,8 @@ kernel
 kernel-modules
 kernel-modules-extra
 
+-fedora-bookmarks
+
 # This was added a while ago, I think it falls into the category of
 # "Diagnosis/recovery tool useful from a Live OS image".  Leaving this untouched
 # for now.

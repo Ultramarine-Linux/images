@@ -1,7 +1,7 @@
 %include ../../base/base.ks
 %include pantheon-packages.ks
 
-services --disabled=gdm
+services --enabled=lightdm --disabled=gdm
 %post
 
 # create /etc/sysconfig/desktop (needed for installation)

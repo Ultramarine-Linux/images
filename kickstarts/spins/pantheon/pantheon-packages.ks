@@ -77,6 +77,7 @@ gnome-screenshot
 abrt
 xdg-user-dirs-gtk
 -gnome-software
+-gdm
 appcenter
 
 ultramarine-release-basic

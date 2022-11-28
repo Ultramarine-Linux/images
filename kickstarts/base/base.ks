@@ -9,7 +9,6 @@
 
 #load custom files
 %include desktop.ks
-%include config/anaconda.ks
 
 lang en_US.UTF-8
 keyboard us

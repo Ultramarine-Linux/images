@@ -117,9 +117,9 @@ lmc_builder() {
         --fs-label "$PROJECT_SHORT-$variant_short-$arch" \
         --project "$PROJECT" \
         --releasever $releasever \
-        --isfinal \
-        --release $RELEASE \
-        --variant $variant_name $EXTRA_ARGS || exit 1
+        # --isfinal \
+        --release $RELEASE || exit 1
+        # --variant $variant_name $EXTRA_ARGS || exit 1
 
     if [ "$variant_type" = "docker" ] || [ "$variant_type" = "podman" ]; then
         oci_post

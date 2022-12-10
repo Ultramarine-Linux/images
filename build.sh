@@ -130,10 +130,10 @@ lmc_builder() {
 
 
 oci_post() {
-    $OCI import $OUTPUT_DIR/image/ultramarine-docker.tar.xz $oci_name:$releasever
-    $OCI tag $oci_name:$releasever $oci_name:latest
-    $OCI tag $oci_name:$releasever $REGISTRY_PREFIX/$oci_name:$releasever
-    $OCI tag $oci_name:$releasever $REGISTRY_PREFIX/$oci_name:latest
+    $OCI import $OUTPUT_DIR/image/ultramarine-docker.tar.xz $oci_name:$arch-$releasever
+    $OCI tag $oci_name:$releasever $oci_name:$arch-latest
+    $OCI tag $oci_name:$releasever $REGISTRY_PREFIX/$oci_name:$arch-$releasever
+    $OCI tag $oci_name:$releasever $REGISTRY_PREFIX/$oci_name:$arch-latest
     if [ "$PUSH" = 1 ]; then
         $OCI push -a $REGISTRY_PREFIX/$oci_name
     fi

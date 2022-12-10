@@ -1,0 +1,14 @@
+#compiled files
+tmp/
+lorax/
+debugdata/
+pkglists/
+*pkgsizes.txt
+build/
+*.iso
+builds/
+*.log
+flattened.ks
+tmp.sh
+.tmp/
+anda-build/

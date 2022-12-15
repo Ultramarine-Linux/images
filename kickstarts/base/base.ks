@@ -11,7 +11,7 @@
 %include desktop.ks
 
 lang en_US.UTF-8
-keyboard us
+keyboard 'us'
 timezone US/Eastern
 selinux --enforcing
 firewall --enabled --service=mdns
@@ -44,8 +44,12 @@ kernel-modules-extra
 # for now.
 #memtest86+
 
+# anaconda needs the locales available to run for different locales
+glibc-all-langpacks
+
 # The point of a live image is to install
 anaconda
+anaconda-core
 anaconda-install-env-deps
 anaconda-live
 @anaconda-tools
@@ -61,10 +65,9 @@ julietaula-montserrat-alternates-fonts
 julietaula-montserrat-fonts
 
 # Without this, initramfs generation during live image creation fails: #1242586
+dracut-config-generic
 dracut-live
 
-# anaconda needs the locales available to run for different locales
-glibc-all-langpacks
 
 ##Exclude Fedora Branding
 -fedora-release*
@@ -79,10 +82,6 @@ ultramarine-backgrounds
 
 # Unneeded packages
 -gnome-boxes
-
-# no longer in @core since 2018-10, but needed for livesys script
-initscripts
-chkconfig
 
 
 gjs

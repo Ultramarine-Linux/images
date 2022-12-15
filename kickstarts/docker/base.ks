@@ -29,7 +29,7 @@ part / --fstype="ext4" --size=3000
 rm /var/lib/systemd/random-seed
 %end
 
-%packages --instLangs en
+%packages
 @core
 ultramarine-release
 sudo

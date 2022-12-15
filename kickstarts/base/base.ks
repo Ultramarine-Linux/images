@@ -10,7 +10,7 @@
 #load custom files
 %include desktop.ks
 
-lang en_US.UTF-8
+lang en_US.UTF-8 --addsupport=*
 keyboard 'us'
 timezone US/Eastern
 selinux --enforcing
@@ -142,6 +142,8 @@ rm -f /boot/*-rescue*
 # Disable network service here, as doing it in the services line
 # fails due to RHBZ #1369794
 systemctl disable network
+systemctl disable systemd-networkd
+systemctl disable systemd-networkd-wait-online
 
 # Remove machine-id on pre generated images
 rm -f /etc/machine-id

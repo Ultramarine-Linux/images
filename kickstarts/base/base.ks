@@ -10,7 +10,6 @@
 #load custom files
 %include desktop.ks
 
-lang en_US.UTF-8 --addsupport=*
 keyboard 'us'
 timezone US/Eastern
 selinux --enforcing
@@ -19,7 +18,7 @@ xconfig --startxonboot
 zerombr
 clearpart --all
 part / --size 8192 --fstype ext4
-services --enabled=NetworkManager,ModemManager --disabled=sshd
+services --enabled=NetworkManager,ModemManager --disabled=systemd-networkd,chrony-wait,NetworkManager-wait-online
 network --bootproto=dhcp --device=link --activate
 rootpw --lock --iscrypted locked
 shutdown
@@ -144,6 +143,7 @@ rm -f /boot/*-rescue*
 systemctl disable network
 systemctl disable systemd-networkd
 systemctl disable systemd-networkd-wait-online
+systemctl disable systemd-networkd-wait
 
 # Remove machine-id on pre generated images
 rm -f /etc/machine-id

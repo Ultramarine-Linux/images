@@ -10,6 +10,7 @@
 #load custom files
 %include desktop.ks
 
+lang en_US.UTF-8
 keyboard 'us'
 timezone US/Eastern
 selinux --enforcing
@@ -26,7 +27,7 @@ shutdown
 %include base-repo.ks
 %include additional-repos.ks
 
-%packages
+%packages --instLangs all
 @hardware-support
 @printing
 pam

@@ -15,7 +15,7 @@ build:
     ARG --required variant
     COPY . .
     RUN --privileged ./build.sh $variant
-    SAVE ARTIFACT ./build
+    SAVE ARTIFACT ./build AS LOCAL build
 
     # artifacts
 

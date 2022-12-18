@@ -86,8 +86,8 @@ ultramarine-backgrounds
 # no longer in @core since 2018-10, but needed for livesys script
 # We need to keep this for now, since pantheon and plasma require our own scripts
 # These should eventually be moved to a seperate package, instead of this hack - @lleyton
-initscripts
-chkconfig
+# initscripts
+# chkconfig
 
 
 gjs

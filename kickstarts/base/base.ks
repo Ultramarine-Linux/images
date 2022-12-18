@@ -10,7 +10,7 @@
 #load custom files
 %include desktop.ks
 
-lang en_US.UTF-8
+lang en_US.UTF-8:es_ES.UTF-8
 keyboard 'us'
 timezone US/Eastern
 selinux --enforcing

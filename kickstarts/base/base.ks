@@ -10,7 +10,7 @@
 #load custom files
 %include desktop.ks
 
-lang all
+lang en_US.UTF-8
 keyboard 'us'
 timezone US/Eastern
 selinux --enforcing
@@ -46,11 +46,13 @@ kernel-modules-extra
 
 # anaconda needs the locales available to run for different locales
 glibc-all-langpacks
+langpacks-*
 
 # The point of a live image is to install
 anaconda
 anaconda-core
 anaconda-install-env-deps
+anaconda-install-img-deps
 anaconda-live
 @anaconda-tools
 # Anaconda has a weak dep on this and we don't want it on livecds, see
@@ -160,9 +162,9 @@ touch /etc/machine-id
 #sed -i 's/liveinst/kdesu calamares/g' /usr/share/anaconda/gnome/fedora-welcome
 #sed -i 's/org.fedoraproject.AnacondaInstaller/anaconda/g' /usr/share/anaconda/gnome/fedora-welcome
 sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
-cat << EOF >>/home/liveuser/Desktop/liveinst.desktop
-visibleName=Install Ultramarine
-EOF
+
+dnf reinstall -y anaconda-core anaconda-live
+
 %end
 
 

@@ -73,15 +73,3 @@ ultramarine-shell-config
 
 %end
 
-
-%post
-
-# Disable weak dependencies to avoid unwanted stuff
-echo "install_weak_deps=False" >> /etc/dnf/dnf.conf
-cat >> /etc/dnf/dnf.conf << EOF
-defaultyes=True
-max_parallel_downloads=20
-
-EOF
-
-%end

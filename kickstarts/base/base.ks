@@ -165,9 +165,7 @@ sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
 
 
 %post --nochroot
-if [ ! -e /mnt/sysimage/etc/resolf.conf ]; then
-    cp -P /etc/resolv.conf /mnt/sysimage/etc/resolv.conf
-fi
+cp -P --remove-destination /etc/resolv.conf /mnt/sysimage/etc/resolv.conf
 %end
 
 %post --erroronfail

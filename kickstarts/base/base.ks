@@ -161,10 +161,19 @@ touch /etc/machine-id
 #sed -i 's/org.fedoraproject.AnacondaInstaller/anaconda/g' /usr/share/anaconda/gnome/fedora-welcome
 sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
 
-dnf reinstall -y anaconda-core anaconda-live
-
 %end
 
+
+%post --nochroot
+if [ ! -e /mnt/sysimage/etc/resolf.conf ]; then
+    cp -P /etc/resolv.conf /mnt/sysimage/etc/resolv.conf
+fi
+%end
+
+%post --erroronfail
+dnf reinstall -y anaconda-core anaconda-live
+rm -f /etc/resolv.conf
+%end
 
 %post --nochroot
 # For livecd-creator builds only (lorax/livemedia-creator handles this directly)

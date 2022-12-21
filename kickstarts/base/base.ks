@@ -52,7 +52,6 @@ langpacks-*
 anaconda
 anaconda-core
 anaconda-install-env-deps
-anaconda-install-img-deps
 anaconda-live
 @anaconda-tools
 # Anaconda has a weak dep on this and we don't want it on livecds, see

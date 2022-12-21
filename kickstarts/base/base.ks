@@ -46,7 +46,6 @@ kernel-modules-extra
 
 # anaconda needs the locales available to run for different locales
 glibc-all-langpacks
-langpacks-*
 
 # The point of a live image is to install
 anaconda

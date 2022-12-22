@@ -22,6 +22,8 @@ sed -i 's/^#autologin-user-timeout=.*/autologin-user-timeout=0/' /etc/lightdm/li
 # set Pantheon as default session, otherwise login will fail
 sed -i 's/^#user-session=.*/user-session=pantheon/' /etc/lightdm/lightdm.conf
 
+# set the default wallpaper
+mkdir -p /home/liveuser/.local/share/applications
 
 # Show harddisk install on the desktop
 sed -i -e 's/NoDisplay=true/NoDisplay=false/' /usr/share/applications/liveinst.desktop

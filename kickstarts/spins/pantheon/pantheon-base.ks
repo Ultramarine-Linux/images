@@ -13,7 +13,7 @@ EOF
 
 #cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
 
-cat >> /etc/rc.d/init.d/livesys << EOF
+cat >> /var/lib/livesys/livesys-session-extra << EOF
 
 ## set up lightdm autologin
 sed -i 's/^#autologin-user=.*/autologin-user=liveuser/' /etc/lightdm/lightdm.conf

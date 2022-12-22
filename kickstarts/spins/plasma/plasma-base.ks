@@ -16,7 +16,7 @@ gtk-theme-name = Adwaita
 EOF
 
 # add initscript
-cat >> /etc/rc.d/init.d/livesys << ALLEOF
+cat >> /var/lib/livesys/livesys-session-extra << ALLEOF
 
 # are we *not* able to use wayland sessions?
 if strstr "\`cat /proc/cmdline\`" nomodeset ; then

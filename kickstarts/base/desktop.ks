@@ -51,9 +51,9 @@ PackageKit
 PackageKit-gstreamer-plugin
 PackageKit-command-not-found
 xdg-desktop-portal
-# deltarpm
+deltarpm
 dnf-plugins-core
-# drpm
+drpm
 flatpak
 flatpak-selinux-fix
 
@@ -73,3 +73,8 @@ ultramarine-shell-config
 
 %end
 
+
+%post
+# Delete the firefox redhat configs, debranding
+rm -rf /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js
+%end

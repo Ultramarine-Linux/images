@@ -150,7 +150,6 @@ rm -f /boot/*-rescue*
 systemctl disable network
 systemctl disable systemd-networkd
 systemctl disable systemd-networkd-wait-online
-systemctl disable systemd-networkd-wait
 
 # Remove machine-id on pre generated images
 rm -f /etc/machine-id
@@ -171,6 +170,7 @@ cp -P --remove-destination /etc/resolv.conf /mnt/sysimage/etc/resolv.conf
 %post --erroronfail
 dnf reinstall -y anaconda-core anaconda-live
 rm -f /etc/resolv.conf
+dnf clean all
 %end
 
 %post --nochroot

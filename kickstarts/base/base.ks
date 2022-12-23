@@ -154,12 +154,6 @@ systemctl disable systemd-networkd-wait-online
 # Remove machine-id on pre generated images
 rm -f /etc/machine-id
 touch /etc/machine-id
-
-#edit fedora-welcome
-#sed -i 's/liveinst/kdesu calamares/g' /usr/share/anaconda/gnome/fedora-welcome
-#sed -i 's/org.fedoraproject.AnacondaInstaller/anaconda/g' /usr/share/anaconda/gnome/fedora-welcome
-sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
-
 %end
 
 

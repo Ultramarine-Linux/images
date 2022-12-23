@@ -11,8 +11,6 @@ PREFERRED=/usr/bin/gnome-session --builtin --session=pantheon
 DISPLAYMANAGER=/usr/sbin/lightdm
 EOF
 
-#cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
-
 cat >> /var/lib/livesys/livesys-session-extra << EOF
 
 ## set up lightdm autologin

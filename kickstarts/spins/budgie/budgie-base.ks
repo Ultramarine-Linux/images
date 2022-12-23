@@ -30,5 +30,6 @@ chown -R liveuser:liveuser /home/liveuser
 restorecon -R /home/liveuser
 EOF
 
+cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
 
 %end

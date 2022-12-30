@@ -14,7 +14,7 @@ PUSH=0
 arch=$(uname -m)
 PROJECT="Ultramarine Linux"
 PROJECT_SHORT="ultramarine"
-RELEASE="0.2"
+RELEASE="1.0"
 REGISTRY_PREFIX="ghcr.io/ultramarine-linux"
 
 

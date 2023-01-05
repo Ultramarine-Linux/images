@@ -10,12 +10,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     strategy:
       fail-fast: false
       matrix:
         arch:
           - x86_64
+          - aarch64
         variant:
           - budgie
           - gnome

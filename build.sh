@@ -66,6 +66,10 @@ parse_variant_type() {
         EXTRA_ARGS+=" --iso-only"
         ISO_NAME="${PROJECT_SHORT}-${variant_name}-${arch}-$(date +%Y%m%d).iso"
         EXTRA_ARGS+=" --iso-name $ISO_NAME"
+        if [[ $(arch) == aarch64 ]];
+        then
+            EXTRA_ARGS+=" --nomacboot"
+        fi
         ;;
     docker)
         echo "tar"

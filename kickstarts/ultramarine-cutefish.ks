@@ -15,7 +15,6 @@
 bash-completion
 bind-utils
 btrfs-progs
-microcode_ctl
 psmisc
 
 fuse

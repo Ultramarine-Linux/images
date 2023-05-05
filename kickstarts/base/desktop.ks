@@ -12,17 +12,28 @@ bash-completion
 bind-utils
 btrfs-progs
 psmisc
+
 # Multimedia
 @multimedia
+@sound-and-video
+
 libva-vdpau-driver
 libvdpau-va-gl
+
 mesa-*-drivers
--mesa-full*
+-mesa-va-drivers
+mesa-va-drivers-freeworld
+-mesa-vdpau-drivers
+mesa-vdpau-drivers-freeworld
+
 xorg-x11-drivers
+xorg-x11-drv-nouveau
+
+nvidia-vaapi-driver
 #akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason
 
-xorg-x11-drv-nouveau
-procps-ng
+intel-media-driver
+libva-intel-driver
 
 # Fonts
 google-noto-sans-fonts
@@ -44,7 +55,8 @@ firewall-config
 # Internet
 firefox
 -fedora-bookmarks
-#mozilla-openh264
+mozilla-openh264
+
 # Software
 PackageKit
 PackageKit-gstreamer-plugin

@@ -72,7 +72,6 @@ flatpak-selinux-fix
 rpm-plugin-systemd-inhibit
 
 # Tools
-blivet-gui			# Storage management
 exfatprogs
 htop
 rsync

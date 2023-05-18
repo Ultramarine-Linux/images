@@ -22,6 +22,7 @@ gnome-terminal-nautilus
 gnome-system-monitor
 -totem
 clapper
+-gedit
 gnome-text-editor
 file-roller
 evince

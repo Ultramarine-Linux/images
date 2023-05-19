@@ -49,7 +49,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Image
         env:
-          releasever: 8
+          releasever: 38
         run: |
           ./build.sh -p ${{ matrix.variant }}
 

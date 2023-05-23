@@ -55,7 +55,8 @@ budgie-extras
 budgie-extras-daemon
 budgie-desktop-view
 gnome-backgrounds
-#funny theme
+# Don't pull in Fedora's defaults
+-budgie-desktop-defaults
 
 
 %end

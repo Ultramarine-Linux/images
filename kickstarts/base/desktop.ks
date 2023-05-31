@@ -32,9 +32,6 @@ xorg-x11-drv-nouveau
 nvidia-vaapi-driver
 #akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason
 
-intel-media-driver
-libva-intel-driver
-
 # Fonts
 google-noto-sans-fonts
 google-noto-sans-mono-fonts

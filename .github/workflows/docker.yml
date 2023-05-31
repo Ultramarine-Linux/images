@@ -2,7 +2,7 @@ name: Docker Image
 on:
   push:
     branches:
-      - lapis
+      - um38
     paths:
       - kickstarts/docker/**
   workflow_dispatch:

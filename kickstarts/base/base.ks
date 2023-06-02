@@ -44,6 +44,9 @@ kernel-modules-extra
 # for now.
 #memtest86+
 
+# Remove initial-setup so we don't run it on boot
+-initial-setup*
+
 # anaconda needs the locales available to run for different locales
 glibc-all-langpacks
 

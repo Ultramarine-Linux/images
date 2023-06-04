@@ -10,5 +10,4 @@ jobs:
         with:
           workflow: Build ISO images
           workflow_conclusion: success
-          commit: ${{ github.sha }}
       - run: ls

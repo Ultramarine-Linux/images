@@ -8,7 +8,7 @@ jobs:
       - name: Download artifacts
         uses: dawidd6/action-download-artifact@v2
         with:
-          workflow: build
+          workflow: Build ISO images
           workflow_conclusion: success
           commit: ${{ github.sha }}
       - run: ls

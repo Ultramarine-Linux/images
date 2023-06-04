@@ -21,6 +21,7 @@ sed -i 's/^#autologin-user-timeout=.*/autologin-user-timeout=0/' /etc/lightdm/li
 sed -i 's/^#user-session=.*/user-session=pantheon/' /etc/lightdm/lightdm.conf
 
 # set the default wallpaper
+gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/ultramarine-linux/tortuga-light.png
 mkdir -p /home/liveuser/.local/share/applications
 
 # Show harddisk install on the desktop

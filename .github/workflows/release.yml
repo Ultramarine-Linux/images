@@ -1,31 +1,10 @@
 name: Release!
 on:
-  release:
-    types: [created]
   workflow_dispatch:
 jobs:
   release:
-    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
-    strategy:
-      fail-fast: false
-      matrix:
-        arch:
-          - x86_64
-          - aarch64
-        variant:
-          - budgie
-          - gnome
-          - pantheon
-          - plasma
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Download artifacts from build
         uses: actions/download-artifact@v3
-        # download artifact from last successful build
-        with:
-          name: ${{ matrix.variant }}-${{ matrix.arch }}
-          path: ${{ matrix.variant }}-${{ matrix.arch }}
-      - name: Upload artifacts to release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: ${{ matrix.variant }}-${{ matrix.arch }}/image/*.iso
+      - run: ls

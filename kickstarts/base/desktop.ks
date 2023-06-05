@@ -67,7 +67,6 @@ flatpak-selinux-fix
 
 # System
 rpm-plugin-systemd-inhibit
-system76-scheduler
 
 # Tools
 exfatprogs

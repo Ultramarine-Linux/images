@@ -24,7 +24,7 @@ jobs:
           - plasma
     container:
       image: fedora:38
-      options: --cap-add=SYS_ADMIN --privileged
+      options: --cap-add=SYS_ADMIN --privileged -v /dev:/dev
 
     steps:
       - name: Checkout

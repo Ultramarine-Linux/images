@@ -53,6 +53,24 @@ jobs:
     needs: build
     steps:
       - uses: actions/download-artifact@v3
-      - name: Test
+      - name: Prepare images directory
         run: |
-          ls
+          mkdir -p images
+          variants=(budgie gnome pantheon plasma)
+          archs=(x86_64 aarch64)
+
+          for variant in "${variants[@]}"; do
+            for arch in "${archs[@]}"; do
+              mv ${variant}-${arch}/images/*.iso images/${variant}-${arch}.iso
+              sha256sum images/${variant}-${arch}.iso > images/${variant}-${arch}.iso.sha256sum
+            done
+          done
+      - name: Upload to R2
+        uses: shallwefootball/s3-upload-action@master
+        with:
+          endpoint: ${{ secrets.S3_ENDPOINT }}
+          aws_key_id: ${{ secrets.S3_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.S3_SECRET_KEY }}
+          aws_bucket: ${{ secrets.S3_BUCKET }}
+          source_dir: "images"
+          destination_dir: isos/ultramarine/38/

@@ -24,10 +24,11 @@ jobs:
           - plasma
     container:
       image: fedora:38
-      options: --cap-add=SYS_ADMIN --privileged -v /dev:/dev
+      options: --cap-add=SYS_ADMIN --privileged
 
     steps:
       - run: ls /dev
+      - run: losetup -f
       - name: Checkout
         uses: actions/checkout@v3
         with:

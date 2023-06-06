@@ -62,8 +62,9 @@ jobs:
 
           for variant in "${variants[@]}"; do
             for arch in "${archs[@]}"; do
-              mv ${variant}-${arch}/images/*.iso images/${variant}-${arch}.iso
-              sha256sum images/${variant}-${arch}.iso > images/${variant}-${arch}.iso.sha256sum
+              name=$([ "$variant" == "budgie" ] && echo "flagship" || echo "$variant")
+              mv ${variant}-${arch}/images/*.iso images/ultramarine-${name}-${arch}.iso
+              sha256sum images/ultramarine-${name}-${arch}.iso > images/ultramarine-${name}-${arch}.iso.sha256sum
             done
           done
       - name: Upload to R2

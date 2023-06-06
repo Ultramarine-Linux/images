@@ -55,6 +55,7 @@ jobs:
       - uses: actions/download-artifact@v3
       - name: Prepare images directory
         run: |
+          ls budgie-aarch64
           mkdir -p images
           variants=(budgie gnome pantheon plasma)
           archs=(x86_64 aarch64)

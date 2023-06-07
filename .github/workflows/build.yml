@@ -27,8 +27,14 @@ jobs:
       options: --cap-add=SYS_ADMIN --privileged
 
     steps:
-      - run: ls /dev
-      - run: losetup -f
+      - name: Fix /dev
+        run: |
+          # https://github.com/marmarek/qubes-builderv2/commit/de097a67da3bcfcf25516b7ac8eea423ecb3a0e8
+          # docker has tmpfs on /dev with copied content from host, it doesn't update
+          # when loop0p3 shows up; mount devmpfs to avoid this issue
+          if [ "$(df -T /dev | tail -1 |cut -f 1 -d ' ')" = "tmpfs" ]; then
+            mount -t devtmpfs none /dev
+          fi
       - name: Checkout
         uses: actions/checkout@v3
         with:

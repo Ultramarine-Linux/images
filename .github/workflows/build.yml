@@ -55,7 +55,6 @@ jobs:
       - uses: actions/download-artifact@v3
       - name: Prepare images directory
         run: |
-          ls budgie-aarch64
           mkdir -p images
           variants=(budgie gnome pantheon plasma)
           archs=(x86_64 aarch64)
@@ -63,7 +62,7 @@ jobs:
           for variant in "${variants[@]}"; do
             for arch in "${archs[@]}"; do
               name=$([ "$variant" == "budgie" ] && echo "flagship" || echo "$variant")
-              mv ${variant}-${arch}/images/*.iso images/ultramarine-${name}-${arch}.iso
+              mv ${variant}-${arch}/image/*.iso images/ultramarine-${name}-${arch}.iso
               sha256sum images/ultramarine-${name}-${arch}.iso > images/ultramarine-${name}-${arch}.iso.sha256sum
             done
           done

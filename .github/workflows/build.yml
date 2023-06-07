@@ -73,6 +73,6 @@ jobs:
           endpoint: ${{ secrets.S3_ENDPOINT }}
           aws_key_id: ${{ secrets.S3_KEY_ID }}
           aws_secret_access_key: ${{ secrets.S3_SECRET_KEY }}
-          aws_bucket: ${{ secrets.S3_BUCKET }}
+          aws_bucket: "images"
           source_dir: "images"
           destination_dir: isos/ultramarine/38/

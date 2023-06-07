@@ -32,6 +32,9 @@ cp /usr/share/applications/liveinst.desktop /home/liveuser/Desktop
 # and mark it as executable
 chmod +x /home/liveuser/Desktop/liveinst.desktop
 
+# allow anaconda to use system icon theme
+sed -i -e 's/settings.set_property("gtk-icon-theme-name", "Adwaita")//' /usr/lib64/python3.11/site-packages/pyanaconda/ui/gui/__init__.py
+
 # this goes at the end after all other changes.
 chown -R liveuser:liveuser /home/liveuser
 restorecon -R /home/liveuser

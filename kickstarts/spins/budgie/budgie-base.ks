@@ -17,6 +17,9 @@ sed -i 's/^#user-session=.*/user-session=budgie-desktop/' /etc/lightdm/lightdm.c
 # set the default wallpaper
 mkdir -p /home/liveuser/.local/share/applications
 
+# Update installer icon
+sed -i -e 's/Icon=org.fedoraproject.AnacondaInstaller/Icon=drive-harddisk/' /usr/share/applications/liveinst.desktop
+
 # Show harddisk install on the desktop
 sed -i -e 's/NoDisplay=true/NoDisplay=false/' /usr/share/applications/liveinst.desktop
 mkdir /home/liveuser/Desktop
@@ -24,6 +27,9 @@ cp /usr/share/applications/liveinst.desktop /home/liveuser/Desktop
 
 # and mark it as executable
 chmod +x /home/liveuser/Desktop/liveinst.desktop
+
+# allow anaconda to use system icon theme
+sed -i -e 's/settings.set_property("gtk-icon-theme-name", "Adwaita")//' /usr/lib64/python3.11/site-packages/pyanaconda/ui/gui/__init__.py
 
 # this goes at the end after all other changes.
 chown -R liveuser:liveuser /home/liveuser

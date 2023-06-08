@@ -90,19 +90,6 @@ AutomountOnLogin=false
 AutomountOnPlugin=false
 AUTOMOUNTER_EOF
 
-# Copy latte dock config
-echo "Copying latte dock config"
-mkdir -p /home/liveuser/.config/
-cp -av /etc/skel/.config/lattedockrc /home/liveuser/.config/lattedockrc
-
-# copy latte startup file
-cp -av /etc/xdg/autostart/org.kde.latte-dock.desktop /home/liveuser/.config/autostart/
-
-# Make it use the Ultramarine layout
-sed -i 's/Exec=.*/Exec=/usr/bin/latte-dock --layout=Ultramarine/' /home/liveuser/.config/autostart/org.kde.latte-dock.desktop
-
-
-
 # make sure to set the right permissions and selinux contexts
 chown -R liveuser:liveuser /home/liveuser/
 restorecon -R /home/liveuser/

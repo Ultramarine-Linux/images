@@ -29,7 +29,7 @@ clapper
 @^workstation-product-environment
 -gedit
 gnome-text-editor
-gnome-console
+-gnome-console # See https://github.com/Ultramarine-Linux/ultramarine/issues/14#issuecomment-1417100074
 
 # Extra ricing
 gnome-extensions-app

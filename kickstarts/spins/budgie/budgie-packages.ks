@@ -22,6 +22,7 @@ gnome-terminal-nautilus
 gnome-system-monitor
 -totem
 clapper
+-gedit
 gnome-text-editor
 file-roller
 evince
@@ -54,7 +55,8 @@ budgie-extras
 budgie-extras-daemon
 budgie-desktop-view
 gnome-backgrounds
-#funny theme
+# Don't pull in Fedora's defaults
+-budgie-desktop-defaults
 
 
 %end

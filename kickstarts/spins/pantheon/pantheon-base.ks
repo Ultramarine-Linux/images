@@ -21,6 +21,7 @@ sed -i 's/^#autologin-user-timeout=.*/autologin-user-timeout=0/' /etc/lightdm/li
 sed -i 's/^#user-session=.*/user-session=pantheon/' /etc/lightdm/lightdm.conf
 
 # set the default wallpaper
+gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/ultramarine-linux/tortuga-light.png
 mkdir -p /home/liveuser/.local/share/applications
 
 # Show harddisk install on the desktop
@@ -30,6 +31,9 @@ cp /usr/share/applications/liveinst.desktop /home/liveuser/Desktop
 
 # and mark it as executable
 chmod +x /home/liveuser/Desktop/liveinst.desktop
+
+# allow anaconda to use system icon theme
+sed -i -e 's/settings.set_property("gtk-icon-theme-name", "Adwaita")//' /usr/lib64/python3.11/site-packages/pyanaconda/ui/gui/__init__.py
 
 # this goes at the end after all other changes.
 chown -R liveuser:liveuser /home/liveuser

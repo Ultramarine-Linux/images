@@ -2,7 +2,7 @@ name: Docker Image
 on:
   push:
     branches:
-      - lapis
+      - um38
     paths:
       - kickstarts/docker/**
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
           - docker-minimal
     runs-on: ${{ matrix.runner }}
     container:
-      image: fedora:37
+      image: fedora:38
       options: --cap-add=SYS_ADMIN --privileged
 
     services:
@@ -38,7 +38,7 @@ jobs:
       - name: Install repositories
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/terra37.repo
+          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/terra38.repo
           sudo dnf install -y lorax-lmc-novirt pykickstart make moby-engine
       # upload image to ghcr.io
       - name: Login to ghcr.io
@@ -49,10 +49,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Image
         env:
-          releasever: 37
+          releasever: 38
         run: |
           ./build.sh -p ${{ matrix.variant }}
-
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3

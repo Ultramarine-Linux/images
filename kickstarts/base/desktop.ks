@@ -12,17 +12,25 @@ bash-completion
 bind-utils
 btrfs-progs
 psmisc
+
 # Multimedia
 @multimedia
+@sound-and-video
+
 libva-vdpau-driver
 libvdpau-va-gl
-mesa-*-drivers
--mesa-full*
-xorg-x11-drivers
-#akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason
 
+mesa-*-drivers
+-mesa-va-drivers
+mesa-va-drivers-freeworld
+-mesa-vdpau-drivers
+mesa-vdpau-drivers-freeworld
+
+xorg-x11-drivers
 xorg-x11-drv-nouveau
-procps-ng
+
+nvidia-vaapi-driver
+#akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason
 
 # Fonts
 google-noto-sans-fonts
@@ -44,7 +52,8 @@ firewall-config
 # Internet
 firefox
 -fedora-bookmarks
-#mozilla-openh264
+mozilla-openh264
+
 # Software
 PackageKit
 PackageKit-gstreamer-plugin
@@ -58,9 +67,9 @@ flatpak-selinux-fix
 
 # System
 rpm-plugin-systemd-inhibit
+system76-scheduler
 
 # Tools
-blivet-gui			# Storage management
 exfatprogs
 htop
 rsync

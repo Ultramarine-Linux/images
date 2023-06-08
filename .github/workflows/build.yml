@@ -4,8 +4,8 @@ on:
     branches:
       - lapis
     paths:
-      - 'kickstarts/**'
-      - '!kickstarts/docker/**'
+      - "kickstarts/**"
+      - "!kickstarts/docker/**"
   workflow_dispatch:
 
 jobs:
@@ -23,10 +23,18 @@ jobs:
           - pantheon
           - plasma
     container:
-      image: fedora:37
+      image: fedora:38
       options: --cap-add=SYS_ADMIN --privileged
 
     steps:
+      - name: Fix /dev
+        run: |
+          # https://github.com/marmarek/qubes-builderv2/commit/de097a67da3bcfcf25516b7ac8eea423ecb3a0e8
+          # docker has tmpfs on /dev with copied content from host, it doesn't update
+          # when loop0p3 shows up; mount devmpfs to avoid this issue
+          if [ "$(df -T /dev | tail -1 |cut -f 1 -d ' ')" = "tmpfs" ]; then
+            mount -t devtmpfs none /dev
+          fi
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -34,7 +42,7 @@ jobs:
       - name: Install repositories
         run: |
           sudo dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/terra37.repo
+          sudo dnf config-manager --add-repo https://github.com/andaman-common-pkgs/subatomic-repos/raw/main/terra38.repo
           sudo dnf install -y lorax-lmc-novirt pykickstart make
       - name: Build ISO
         run: |
@@ -45,3 +53,31 @@ jobs:
         with:
           name: ${{ matrix.variant }}-${{ matrix.arch }}
           path: build/
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v3
+      - name: Prepare images directory
+        run: |
+          mkdir -p images
+          variants=(budgie gnome pantheon plasma)
+          archs=(x86_64 aarch64)
+
+          for variant in "${variants[@]}"; do
+            for arch in "${archs[@]}"; do
+              name=$([ "$variant" == "budgie" ] && echo "flagship" || echo "$variant")
+              mv ${variant}-${arch}/image/*.iso images/ultramarine-${name}-${arch}.iso
+              sha256sum images/ultramarine-${name}-${arch}.iso > images/ultramarine-${name}-${arch}.iso.sha256sum
+            done
+          done
+      - name: Upload to R2
+        uses: shallwefootball/s3-upload-action@master
+        with:
+          endpoint: ${{ secrets.S3_ENDPOINT }}
+          aws_key_id: ${{ secrets.S3_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.S3_SECRET_KEY }}
+          aws_bucket: "images"
+          source_dir: "images"
+          destination_dir: isos/ultramarine/38/

@@ -2,7 +2,7 @@ name: Build ISO images
 on:
   push:
     branches:
-      - um38
+      - lapis
     paths:
       - "kickstarts/**"
       - "!kickstarts/docker/**"

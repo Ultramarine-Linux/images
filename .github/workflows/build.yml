@@ -24,17 +24,13 @@ jobs:
           - plasma
     container:
       image: fedora:38
-      options: --cap-add=SYS_ADMIN --privileged
+      options: --privileged
 
     steps:
-      - name: Fix /dev
+      - name: Prepare loop devices
         run: |
-          # https://github.com/marmarek/qubes-builderv2/commit/de097a67da3bcfcf25516b7ac8eea423ecb3a0e8
-          # docker has tmpfs on /dev with copied content from host, it doesn't update
-          # when loop0p3 shows up; mount devmpfs to avoid this issue
-          if [ "$(df -T /dev | tail -1 |cut -f 1 -d ' ')" = "tmpfs" ]; then
-            mount -t devtmpfs none /dev
-          fi
+          sudo mknod -m 0660 /dev/loop0 b 7 0  2> /dev/null || true
+          sudo mknod -m 0660 /dev/loop1 b 7 1  2> /dev/null || true
       - name: Checkout
         uses: actions/checkout@v3
         with:

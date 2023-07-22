@@ -36,6 +36,10 @@ pam
 kernel
 kernel-modules
 kernel-modules-extra
+# We are adding kernel headers so users can easily install akmod packages
+kernel-devel
+kernel-headers
+kernel-core
 
 -fedora-bookmarks
 
@@ -43,6 +47,17 @@ kernel-modules-extra
 # "Diagnosis/recovery tool useful from a Live OS image".  Leaving this untouched
 # for now.
 #memtest86+
+
+# A11y
+
+# Please think of the blind
+
+orca
+espeak-ng
+brltty
+brltty-espeak-ng
+speech-dispatcher-espeak-ng
+brltty-minimal
 
 # Remove initial-setup so we don't run it on boot
 -initial-setup*
@@ -130,7 +145,7 @@ rpm -qa --qf '%{size}\t%{name}-%{version}-%{release}.%{arch}\n' |sort -rn
 rm -f /var/lib/rpm/__db*
 
 # go ahead and pre-make the man -k cache (#455968)
-/usr/bin/mandb
+/usr/bin/mandb -c
 
 # make sure there aren't core files lying around
 rm -f /core*
@@ -153,6 +168,8 @@ rm -f /boot/*-rescue*
 systemctl disable network
 systemctl disable systemd-networkd
 systemctl disable systemd-networkd-wait-online
+systemctl disable openvpn-client@\*.service
+systemctl disable openvpn-server@\*.service
 
 # Remove machine-id on pre generated images
 rm -f /etc/machine-id

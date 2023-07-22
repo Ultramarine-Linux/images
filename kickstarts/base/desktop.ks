@@ -16,18 +16,29 @@ psmisc
 # Multimedia
 @multimedia
 @sound-and-video
+# Gaming stuff
+gamemode
+
+# Drivers
+# XBox One Controllers
+xpadneo
 
 libva-vdpau-driver
 libvdpau-va-gl
 
+
+# this causes bugs, consider reverting (#8)
 mesa-*-drivers
 -mesa-va-drivers
 mesa-va-drivers-freeworld
 -mesa-vdpau-drivers
 mesa-vdpau-drivers-freeworld
 
+# Xorg Drivers
 xorg-x11-drivers
-xorg-x11-drv-nouveau
+xorg-x11-drv-wacom
+xorg-x11-drv-qxl
+xorg-x11-drv-vmware
 
 nvidia-vaapi-driver
 #akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason
@@ -43,6 +54,9 @@ twitter-twemoji-fonts
 liberation-mono-fonts
 liberation-s*-fonts
 cascadia-*-*-fonts
+
+# SIPA fonts
+sipa-fonts
 
 # Networking
 @networkmanager-submodules

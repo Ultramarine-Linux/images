@@ -57,7 +57,6 @@ espeak-ng
 brltty
 brltty-espeak-ng
 speech-dispatcher-espeak-ng
-brltty-minimal
 
 # Remove initial-setup so we don't run it on boot
 -initial-setup*

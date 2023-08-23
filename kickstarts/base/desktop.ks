@@ -36,9 +36,6 @@ mesa-vdpau-drivers-freeworld
 
 # Xorg Drivers
 xorg-x11-drivers
-xorg-x11-drv-wacom
-xorg-x11-drv-qxl
-xorg-x11-drv-vmware
 
 nvidia-vaapi-driver
 #akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason

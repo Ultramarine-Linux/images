@@ -79,7 +79,7 @@ xdg-user-dirs-gtk
 -gnome-software
 appcenter
 
-ultramarine-release-basic
+ultramarine-release-identity-pantheon
 ultramarine-backgrounds-gnome
 ultramarine-backgrounds-basic
 

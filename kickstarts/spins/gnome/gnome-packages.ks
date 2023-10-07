@@ -38,7 +38,7 @@ pop-launcher
 xprop
 gnome-shell-extension-appindicator
 
-ultramarine-release-basic
+ultramarine-release-identity-gnome
 ultramarine-backgrounds-gnome
 ultramarine-backgrounds-basic
 ultramarine-gnome-filesystem

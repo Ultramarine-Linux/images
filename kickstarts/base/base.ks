@@ -54,8 +54,8 @@ kernel-core
 
 orca
 espeak-ng
-brltty
-brltty-espeak-ng
+# brltty
+# brltty-espeak-ng
 speech-dispatcher-espeak-ng
 brltty-minimal
 

@@ -43,7 +43,7 @@ python3-psutil
 fluent-theme
 fluent-icon-theme
 
-ultramarine-release-flagship
+ultramarine-release-identity-flagship
 ultramarine-backgrounds-gnome
 ultramarine-backgrounds-basic
 ultramarine-flagship-filesystem

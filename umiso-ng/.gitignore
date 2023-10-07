@@ -1,8 +1,0 @@
-root/
-*.iso
-*
-!.gitignore
-iso/
-!iso/boot/limine/.gitignore
-!iso/boot/limine/limine.cfg
-!build.sh

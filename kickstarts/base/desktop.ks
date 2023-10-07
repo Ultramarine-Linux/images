@@ -29,10 +29,6 @@ libvdpau-va-gl
 
 # this causes bugs, consider reverting (#8)
 mesa-*-drivers
--mesa-va-drivers
-mesa-va-drivers-freeworld
--mesa-vdpau-drivers
-mesa-vdpau-drivers-freeworld
 
 # Xorg Drivers
 xorg-x11-drivers
@@ -40,7 +36,6 @@ xorg-x11-drv-wacom
 xorg-x11-drv-qxl
 xorg-x11-drv-vmware
 
-nvidia-vaapi-driver
 #akmod-nvidia # NVIDIA drivers because nouveau isnt loading for some reason
 
 # Fonts
@@ -54,6 +49,15 @@ twitter-twemoji-fonts
 liberation-mono-fonts
 liberation-s*-fonts
 cascadia-*-*-fonts
+
+# Don't use variable CJK fonts, to avoid issues with some apps that still don't support them
+
+google-noto-sans-cjk-fonts
+# google-noto-cjk-fonts
+# google-noto-sans-mono-cjk-*-fonts
+-google-noto-sans-mono-cjk-vf-fonts
+-default-fonts-cjk-sans
+-default-fonts-cjk-mono
 
 # SIPA fonts
 sipa-fonts
@@ -77,7 +81,6 @@ deltarpm
 dnf-plugins-core
 drpm
 flatpak
-flatpak-selinux-fix
 
 # System
 rpm-plugin-systemd-inhibit

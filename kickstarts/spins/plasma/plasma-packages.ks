@@ -62,7 +62,7 @@ xdg-desktop-portal-kde
 -xdg-desktop-portal-gnome
 
 xorg-x11-server-Xorg
-ultramarine-release-basic
+ultramarine-release-identity-plasma
 ultramarine-backgrounds-basic
 
 latte-dock

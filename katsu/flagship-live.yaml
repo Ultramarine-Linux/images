@@ -1,0 +1,19 @@
+builder: dnf
+
+import:
+  - modules/flagship/flagship-live.yaml
+
+distro: Katsu Ultramarine
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+
+iso:
+  volume_id: UM-Fl-Live
+
+dnf:
+  releasever: 39
+  options:
+   - --setopt=strict=0

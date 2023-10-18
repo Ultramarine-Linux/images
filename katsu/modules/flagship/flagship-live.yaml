@@ -1,0 +1,11 @@
+import:
+  - budgie.yaml
+  - ../base/base.yaml
+  - ../base/desktop/desktop.yaml
+  - ../liveimage/liveimage.yaml
+
+scripts:
+  post:
+    - id: flagship-live
+      name: Set up Flagship Live
+      file: flagship-live.sh

@@ -1,0 +1,61 @@
+scripts:
+  post:
+    - id: firefox-debrand-fedora
+      name: Debrand Firefox from Fedora's version
+      inline: |
+        #!/bin/bash
+        # Delete the firefox redhat configs, debranding
+        rm -rf /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js
+
+dnf:
+  releasever: 39
+  exclude:
+    - google-noto-sans-mono-cjk-vf-fonts
+    - default-fonts-cjk-sans
+    - default-fonts-cjk-mono
+  packages:
+    - "@base-x"
+    - "@core"
+    - "@hardware-support"
+    - bash-completion
+    - bind-utils
+    - btrfs-progs
+    - psmisc
+    - "@multimedia"
+    - "@sound-and-video"
+    - "@standard"
+    - "gamemode"
+    - libva-vdpau-driver
+    - libvdpau-va-gl
+    - xorg-x11-drivers
+    - xorg-x11-drv-wacom
+    - xorg-x11-drv-qxl
+    - xorg-x11-drv-vmware
+    - google-noto-sans-fonts
+    - google-noto-sans-mono-fonts
+    - google-noto-serif-fonts
+    - "@fonts"
+    - sipa-fonts
+    - cascadia-*-fonts
+    - firewalld
+    - firewalld-filesystem
+    - firefox
+    - mozilla-openh264
+    - PackageKit
+    - PackageKit-gstreamer-plugin
+    - PackageKit-command-not-found
+    - xdg-desktop-portal
+    - dnf-plugins-core
+    - flatpak
+    - rpm-plugin-systemd-inhibit
+    - system76-scheduler
+    - htop
+    - exfatprogs
+    - rsync
+    - unar
+    - ultramarine-shell-config
+    - pipewire
+    - pipewire-pulseaudio
+    - pipewire-jack-audio-connection-kit
+    - pipewire-utils
+    - pipewire-codec-aptx

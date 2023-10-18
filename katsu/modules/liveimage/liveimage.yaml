@@ -1,0 +1,38 @@
+scripts:
+  post:
+    - id: liveimage-setup
+      name: Set up Live Image
+      file: live.sh
+dnf:
+  releasever: 39
+  exclude:
+    - fedora-release*
+    - generic-release*
+    - fedora-bookmarks
+    - initial-setup
+    - fcoe-utils
+    - device-mapper-multipath
+    - gnome-boxes
+  packages:
+    - dracut-config-generic
+    - dracut-live
+    - dracut-config-generic
+    - dracut-network
+    - anaconda-dracut
+    - dracut-squash
+    - anaconda-live
+    - "@anaconda-tools"
+    - libblockdev-nvdimm
+    - isomd5sum
+    - orca
+    - espeak-ng
+    - brltty-minimal
+    - speech-dispatcher-espeak-ng
+    - glibc-all-angpacks
+    - julietaula-montserrat-fonts
+    - ultramarine-backgrounds
+    - initscripts
+    - chkconfig
+    - gjs
+    - util-linux-user
+    - livesys-scripts

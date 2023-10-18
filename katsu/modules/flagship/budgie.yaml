@@ -1,0 +1,55 @@
+# import:
+#  - ../desktop/desktop.yaml
+
+dnf:
+  releasever: 39
+  exclude:
+    - "@GNOME Desktop Environment"
+    - gnome-control-center
+    - gdm
+    - budgie-desktop-defaults
+    - nautilus
+    - cinnamon-desktop
+    - slick-greeter
+  packages:
+    - "@base-x"
+    - "@core"
+    - "@libreoffice"
+    - bind-utils
+    - psmisc
+    - fuse
+    - "@input-methods"
+    - "@multimedia"
+    - "@fonts"
+    - "@budgie-desktop"
+    # - "@flagship-product-environment"
+    - "@budgie-desktop-apps"
+    - policycoreutils
+    - coreutils
+    - gnome-software
+    - lightdm
+    - lightdm-gtk
+    - lightdm-gtk-greeter-settings
+    - gnome-terminal
+    - gnome-system-monitor
+    - file-roller
+    # - evince
+    - seahorse
+    - gnome-sound-recorder
+    - gnome-disk-utility
+    - abrt
+    - gnome-weather
+    - gnome-clocks
+    - xdg-user-dirs-gtk
+    - xdg-desktop-portal-gtk
+    - xdg-user-dirs-gtk
+    - python3-psutil
+    - fluent-theme
+    - fluent-icon-theme
+    - ultramarine-release-identity-flagship
+    - ultramarine-backgrounds-gnome
+    - ultramarine-backgrounds-basic
+    - budgie-desktop
+    - budgie-extras
+    - budgie-extras-daemon
+    - budgie-desktop-view

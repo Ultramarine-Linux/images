@@ -26,6 +26,22 @@ cp /usr/share/applications/liveinst.desktop /home/liveuser/Desktop
 # and mark it as executable
 chmod +x /home/liveuser/Desktop/liveinst.desktop
 
+# Install welcome screen
+sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
+
+# Install welcome screen autostart file
+mkdir -p /home/liveuser/.config/autostart
+cat > /home/liveuser/.config/autostart/ultramarine-welcome.desktop << EOA
+[Desktop Entry]
+Name=Welcome to Ultramarine
+Comment=Welcome to Ultramarine
+Exec=/usr/share/anaconda/gnome/fedora-welcome
+Terminal=false
+Type=Application
+EOA
+
+
+
 # allow anaconda to use system icon theme
 sed -i -e 's/settings.set_property("gtk-icon-theme-name", "Adwaita")//' /usr/lib64/python3.11/site-packages/pyanaconda/ui/gui/__init__.py
 
@@ -36,3 +52,8 @@ EOF
 
 cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
 
+# Reinstall anaconda-core and anaconda-live to make sure we fix any localization issues
+
+dnf reinstall -y anaconda-core
+
+dnf clean all

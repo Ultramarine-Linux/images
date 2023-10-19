@@ -9,12 +9,12 @@ dnf:
     - gdm
     - budgie-desktop-defaults
     - nautilus
+    - gnome-shell
   packages:
     - nemo
     - nemo-terminal
     - nemo-fileroller
     - nemo-extensions
-    - nemo-gsconnect
     - nemo-preview
     - nemo-emblems
     - "@ultramarine-flagship-product"

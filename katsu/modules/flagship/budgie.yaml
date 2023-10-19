@@ -8,9 +8,16 @@ dnf:
     - gnome-control-center
     - gdm
     - budgie-desktop-defaults
-    - nemo*
-  packages:
     - nautilus
+  packages:
+    - nemo
+    - nemo-terminal
+    - nemo-fileroller
+    - nemo-extensions
+    - nemo-gsconnect
+    - nemo-preview
+    - nemo-emblems
+    - "@ultramarine-flagship-product"
     - "@base-x"
     - "@core"
     - "@libreoffice"

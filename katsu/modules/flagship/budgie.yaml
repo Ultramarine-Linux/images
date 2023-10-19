@@ -8,10 +8,9 @@ dnf:
     - gnome-control-center
     - gdm
     - budgie-desktop-defaults
-    - nautilus
-    - cinnamon-desktop
-    - slick-greeter
+    - nemo*
   packages:
+    - nautilus
     - "@base-x"
     - "@core"
     - "@libreoffice"
@@ -53,3 +52,4 @@ dnf:
     - budgie-extras
     - budgie-extras-daemon
     - budgie-desktop-view
+    - ultramarine-flagship-filesystem

@@ -77,3 +77,10 @@ jobs:
         run: |
           pushd katsu
           katsu --output=iso ${{ matrix.variant }}-live.yaml
+          popd
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.variant }}-live.iso
+          path: katsu/out.iso

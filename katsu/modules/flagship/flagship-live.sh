@@ -3,7 +3,8 @@
 systemctl disable gdm
 
 # Remove Networkmanager Applet
-rm -f /etc/xdg/autostart/nm-applet.desktop
+echo "X-GNOME-Autostart-enabled=false" >> /etc/xdg/autostart/nm-applet.desktop
+ln -sf /bin/true /usr/local/bin/nm-applet
 
 # set livesys session type
 sed -i 's/^livesys_session=.*/livesys_session="budgie-desktop"/' /etc/sysconfig/livesys

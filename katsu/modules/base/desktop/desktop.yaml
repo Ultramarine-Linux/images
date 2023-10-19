@@ -13,6 +13,7 @@ dnf:
     - google-noto-sans-mono-cjk-vf-fonts
     - default-fonts-cjk-sans
     - default-fonts-cjk-mono
+    - fedora-bookmarks
   packages:
     - "@base-x"
     - "@core"

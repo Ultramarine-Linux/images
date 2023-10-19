@@ -11,6 +11,7 @@ dnf:
     - nautilus
     - gnome-shell
   packages:
+    - manrope-fonts
     - nemo
     - nemo-terminal
     - nemo-fileroller

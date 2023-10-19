@@ -14,6 +14,8 @@ dnf:
     - --setopt=cachedir=/var/cache/dnf
     - --nogpgcheck
     - --setopt=keepcache=True
+    - --best
+    - --allowerasing
   exclude:
     - fedora-release*
     - generic-release*

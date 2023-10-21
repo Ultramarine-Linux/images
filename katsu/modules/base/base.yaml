@@ -9,7 +9,7 @@ scripts:
 
 dnf:
   releasever: 39
-  repodir: modules/base/repodir
+  repodir: repodir
   options:
     - --setopt=cachedir=/var/cache/dnf
     - --nogpgcheck

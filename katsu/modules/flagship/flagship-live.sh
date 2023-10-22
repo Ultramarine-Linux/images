@@ -43,7 +43,8 @@ EOF
 
 cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
 
-# Reinstall gnome-user-doc
+# Reinstall anaconda-core and anaconda-live to make sure we fix any localization issues
 
-dnf reinstall -y gnome-user-docs || true && dnf clean all
+# dnf reinstall -y anaconda-core
+
 dnf clean all

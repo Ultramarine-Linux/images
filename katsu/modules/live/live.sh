@@ -52,6 +52,11 @@ rm -f /core*
 
 systemctl set-default graphical.target
 
+# attempt to reinstall anaconda-core to fix localization issues
+# it actually cannot reinstall it, but this somehow fixes the issue
+# I assume scuffed rpm db or something
+# If anyone manages to figure out why this works, please let me know - @korewachino
+dnf reinstall -y anaconda-core || true && dnf clean all
 
 cat >> /var/lib/livesys/livesys-session-extra << EOF
 

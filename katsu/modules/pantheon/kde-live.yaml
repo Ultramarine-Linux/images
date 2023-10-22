@@ -1,0 +1,26 @@
+builder: dnf
+
+import:
+  - ../base/base.yaml
+  - ../live/live.yaml
+
+distro: Ultramarine Pantheon 39
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-Pa-Live
+
+dnf:
+  releasever: 39
+  options:
+    - --setopt=strict=0
+  packages:
+    - "@ultramarine-pantheon-product-enviroment"
+# scripts:
+#   post:
+#     - id: flagship-live
+#       name: Set up Flagship Live
+#       file: ./flagship-live.sh

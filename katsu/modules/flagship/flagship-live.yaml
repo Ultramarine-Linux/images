@@ -1,11 +1,27 @@
+builder: dnf
+
 import:
-  - budgie.yaml
   - ../base/base.yaml
-  - ../base/desktop/desktop.yaml
-  - ../liveimage/liveimage.yaml
+  - ../live/live.yaml
+
+distro: Ultramarine Flagship 39
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-Fl-Live
+
+dnf:
+  releasever: 39
+  options:
+    - --setopt=strict=0
+  packages:
+    - "@ultramarine-flagship-product-enviroment"
 
 scripts:
   post:
     - id: flagship-live
       name: Set up Flagship Live
-      file: flagship-live.sh
+      file: ./flagship-live.sh

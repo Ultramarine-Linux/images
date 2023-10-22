@@ -1,0 +1,26 @@
+builder: dnf
+
+import:
+  - ../base/base.yaml
+  - ../live/live.yaml
+
+distro: Ultramarine GNOME 39
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-Gn-Live
+
+dnf:
+  releasever: 39
+  options:
+    - --setopt=strict=0
+  packages:
+    - "@ultramarine-gnome-product-enviroment"
+# scripts:
+#   post:
+#     - id: flagship-live
+#       name: Set up Flagship Live
+#       file: ./flagship-live.sh

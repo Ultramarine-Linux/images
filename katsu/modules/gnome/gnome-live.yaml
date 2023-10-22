@@ -4,6 +4,12 @@ import:
   - ../base/base.yaml
   - ../live/live.yaml
 
+scripts:
+  post:
+    - id: gnome-live
+      name: Set up GNOME Live
+      file: gnome-live.sh
+
 distro: Ultramarine GNOME 39
 
 bootloader: grub

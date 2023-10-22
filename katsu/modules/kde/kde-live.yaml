@@ -6,6 +6,12 @@ import:
 
 distro: Ultramarine KDE 39
 
+scripts:
+  post:
+    - id: kde-live
+      name: Set up KDE Live
+      file: ./kde-live.sh
+
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"

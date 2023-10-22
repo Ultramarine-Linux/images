@@ -14,11 +14,11 @@ vartmp   /var/tmp    tmpfs   defaults   0  0
 EOF
 
 # work around for poor key import UI in PackageKit
-rm -f /var/lib/rpm/__db*
+# rm -f /var/lib/rpm/__db*
 echo "Packages within this LiveCD"
 rpm -qa --qf '%{size}\t%{name}-%{version}-%{release}.%{arch}\n' |sort -rn
 # Note that running rpm recreates the rpm db files which aren't needed or wanted
-rm -f /var/lib/rpm/__db*
+# rm -f /var/lib/rpm/__db*
 
 
 # go ahead and pre-make the man -k cache (#455968)

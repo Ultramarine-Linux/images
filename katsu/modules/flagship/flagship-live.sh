@@ -7,7 +7,7 @@ echo "X-GNOME-Autostart-enabled=false" >> /etc/xdg/autostart/nm-applet.desktop
 ln -sf /bin/true /usr/local/bin/nm-applet
 
 # set livesys session type
-sed -i 's/^livesys_session=.*/livesys_session="budgie-desktop"/' /etc/sysconfig/livesys
+sed -i 's/^livesys_session=.*/livesys_session="budgie"/' /etc/sysconfig/livesys
 
 cat >> /var/lib/livesys/livesys-session-extra << EOF
 ## set up lightdm autologin

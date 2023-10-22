@@ -2,7 +2,7 @@ scripts:
   pre:
     - id: live-pre
       name: Pre Live Image
-      file: pre.sh
+      file: live-pre.sh
   post:
     - id: live-setup
       name: Set up Live Image

@@ -33,6 +33,9 @@ rm -f /var/lib/systemd/random-seed
 echo 'File created by kickstart. See systemd-update-done.service(8).' \
     | tee /etc/.updated >/var/.updated
 
+# Set locales in chroot
+localectl set-locale LANG=en_US.UTF-8
+
 
 # Disable network service here, as doing it in the services line
 # fails due to RHBZ #1369794

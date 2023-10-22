@@ -58,6 +58,6 @@ cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/ligh
 
 # Reinstall anaconda-core and anaconda-live to make sure we fix any localization issues
 
-dnf reinstall -y anaconda-core
+# dnf reinstall -y anaconda-core
 
 dnf clean all

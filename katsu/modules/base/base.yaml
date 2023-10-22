@@ -6,6 +6,10 @@ scripts:
     - id: selinux-setup
       name: Set up SELinux
       file: selinux.sh
+    - id: buildstamp
+      name: Generate buildstamp
+      file: buildstamp.sh
+
 dnf:
   releasever: 39
   repodir: repodir

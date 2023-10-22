@@ -28,7 +28,7 @@ dnf:
     - espeak-ng
     - brltty-minimal
     - speech-dispatcher-espeak-ng
-    - glibc-all-angpacks
+    - glibc-all-langpacks
     - julietaula-montserrat-fonts
     - ultramarine-backgrounds
     - initscripts

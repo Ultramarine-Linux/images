@@ -34,7 +34,11 @@ echo 'File created by kickstart. See systemd-update-done.service(8).' \
     | tee /etc/.updated >/var/.updated
 
 # Set locales in chroot
-localectl set-locale LANG=en_US.UTF-8
+cat > /etc/locale.conf << EOF
+LANG=en_US.UTF-8
+LANGUAGE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+EOF
 
 
 # Disable network service here, as doing it in the services line

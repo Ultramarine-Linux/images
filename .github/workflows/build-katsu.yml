@@ -1,4 +1,4 @@
-name: Build ISO images (with Katsu)
+name: Build Live ISO images (with Katsu)
 
 env:
   DNF_PKGS: |
@@ -39,12 +39,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  live-iso:
     strategy:
       fail-fast: false
       matrix:
         variant:
           - flagship
+          - gnome
+          - kde
+          - pantheon
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/terrapkg/builder:f38
@@ -76,11 +79,11 @@ jobs:
       - name: Build ISO
         run: |
           pushd katsu
-          katsu --output=iso ${{ matrix.variant }}-live.yaml
+          katsu --output=iso modules/${{ matrix.variant }}/${{ matrix.variant }}-live.yaml
           popd
 
       - name: Upload ISO
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.variant }}-live.iso
+          name: ${{ matrix.variant }}-live
           path: katsu/out.iso

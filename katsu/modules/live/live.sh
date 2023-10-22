@@ -51,3 +51,20 @@ touch /etc/machine-id
 rm -f /core*
 
 systemctl set-default graphical.target
+
+
+cat >> /var/lib/livesys/livesys-session-extra << EOF
+
+# Install welcome screen autostart file
+mkdir -p /home/liveuser/.config/autostart
+cat > /home/liveuser/.config/autostart/ultramarine-welcome.desktop << EOA
+[Desktop Entry]
+Name=Welcome to Ultramarine
+Comment=Welcome to Ultramarine
+Exec=/usr/share/anaconda/gnome/fedora-welcome
+Terminal=false
+Type=Application
+EOA
+
+
+EOF

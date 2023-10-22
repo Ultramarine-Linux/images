@@ -18,6 +18,7 @@ dnf:
     - device-mapper-multipath
     - gnome-boxes
   packages:
+    - glibc-all-langpacks
     - dracut-config-generic
     - dracut-live
     - dracut-config-generic
@@ -32,7 +33,6 @@ dnf:
     - espeak-ng
     - brltty-minimal
     - speech-dispatcher-espeak-ng
-    - glibc-all-langpacks
     - julietaula-montserrat-fonts
     - ultramarine-backgrounds
     - initscripts

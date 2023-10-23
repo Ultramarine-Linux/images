@@ -19,7 +19,6 @@ dnf:
     - --setopt=strict=0
   packages:
     - "@ultramarine-flagship-product-enviroment"
-    - ultramarine-flagship-filesystem
 
 scripts:
   post:

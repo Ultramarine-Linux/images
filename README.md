@@ -2,7 +2,19 @@
 
 This repository contains various scripts and configuration files for building an Ultramarine Linux image.
 
-It mainly contains Kickstart scripts, scripts which are used by the Anaconda installer to automatically install the initial Ultramarine Linux image, which are then built into the final bootable image using weldr's [Lorax](https://github.com/weldr/lorax) tool.
+## Building an image
+
+Install Katsu
+
+```bash
+dnf install katsu
+```
+
+Run Katsu on manifest
+
+```bash
+katsu -o iso katsu/modules/flagship/flagship-live.yaml
+```
 
 ## Ultramarine Linux Docker/OCI image
 
@@ -13,11 +25,13 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 ## Building locally
 
 To build the image locally, you need to have the following installed:
+
 - Lorax
 - Anaconda
 - pykickstart
 
 You can then run the following command to build the image:
+
 ```
 ./build.sh <VARIANT>
 ```

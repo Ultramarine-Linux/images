@@ -44,10 +44,12 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - flagship
-          - gnome
-          - kde
-          - pantheon
+          - flagship/flagship-live
+          - gnome/gnome-live
+          - kde/kde-live
+          - pantheon/pantheon-live
+          - base/base-disk-x86_64
+          - base/base-disk-aarch64
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/terrapkg/builder:f38
@@ -79,7 +81,7 @@ jobs:
       - name: Build ISO
         run: |
           pushd katsu
-          katsu --output=iso modules/${{ matrix.variant }}/${{ matrix.variant }}-live.yaml
+          katsu --output=iso modules/${{ matrix.variant }}.yaml
           popd
 
       - name: Upload ISO

@@ -81,10 +81,17 @@ jobs:
           xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/katsu-arm.img.xz
           popd
 
+      - name: sanitize artifact name
+        run: |
+          name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
+
+          # set github variable
+          echo artifact=$name >> $GITHUB_ENV
+
       - name: Upload ISO
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.variant }}-disk
+          name: ${{ env.artifact }}-disk
           path: katsu/katsu-work/image/*.img.xz
 
 
@@ -131,8 +138,15 @@ jobs:
           katsu --output=iso modules/${{ matrix.variant }}.yaml
           popd
 
+      - name: sanitize artifact name
+        run: |
+          name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
+
+          # set github variable
+          echo artifact=$name >> $GITHUB_ENV
+
       - name: Upload ISO
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.variant }}-live
+          name: ${{ env.artifact }}-live
           path: katsu/out.iso

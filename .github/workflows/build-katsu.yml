@@ -39,6 +39,55 @@ on:
   workflow_dispatch:
 
 jobs:
+  image:
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - base/base-disk-x86_64
+          - base/base-disk-aarch64
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/terrapkg/builder:f38
+      # Pass /dev from host to container
+      # Very hacky, but it works
+      # Microsoft/Github, if you're reading this,
+      # I'm sorry.
+      options: --privileged -v /dev:/dev
+
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf install -y $DNF_PKGS
+          dnf clean all
+      - name: Clone Katsu
+        uses: actions/checkout@v3
+        with:
+          repository: FyraLabs/katsu
+          ref: main
+          path: katsu
+      - name: Build Katsu
+        run: |
+          pushd katsu
+          cargo build --release
+          cp target/release/katsu /usr/bin/katsu
+          popd
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build ISO
+        run: |
+          pushd katsu
+          katsu --output=disk-image modules/${{ matrix.variant }}.yaml
+          xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/katsu-arm.img.xz
+          popd
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.variant }}-disk
+          path: katsu/katsu-work/image/*.img.xz
+
+
   live-iso:
     strategy:
       fail-fast: false
@@ -48,8 +97,6 @@ jobs:
           - gnome/gnome-live
           - kde/kde-live
           - pantheon/pantheon-live
-          - base/base-disk-x86_64
-          - base/base-disk-aarch64
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/terrapkg/builder:f38

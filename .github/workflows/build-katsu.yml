@@ -1,7 +1,6 @@
 name: Build images (with Katsu)
 
 env:
-  REGISTRY_AUTH_FILE: /run/containers/auth.json
   KATSU_BUILD_TASK_NAME: "Build image"
   DNF_PKGS: |
     git

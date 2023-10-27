@@ -193,6 +193,10 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Podman stuff
+        run: |
+          mkdir -p /tmp/podman-run-0/containers
+          touch /tmp/podman-run-0/containers/auth.json
       - name: Log in to ghcr.io
         uses: redhat-actions/podman-login@v1
         with:

@@ -11,6 +11,7 @@ users:
 
 import:
   - base.yaml
+  - base-disk.yaml
 
 scripts:
   post:
@@ -39,55 +40,3 @@ disk:
 
 dnf:
   releasever: 39
-  options:
-    - --setopt=cachedir=/var/cache/dnf
-    - --nogpgcheck
-    - --setopt=keepcache=True
-  exclude:
-    - fedora-release*
-    - generic-release*
-  packages:
-    - filesystem
-    - setup
-    - lvm2
-    - btrfs-progs
-    - dmraid
-    - nvme-cli
-    - kernel
-    - glibc
-    - glibc-common
-    - dracut-config-generic
-    - dracut-tools
-    - dnf
-    - dracut
-    # - mkpasswd # maybe not needed soon
-    - "@core"
-    - "@standard"
-    - grub2-tools
-    - "@hardware-support"
-    - NetworkManager
-    - rpm
-    - libgomp
-    - ultramarine-release-identity-basic
-    - ultramarine-release-basic
-    - fedora-repos
-    - efibootmgr
-
-  arch_packages:
-    aarch64:
-      - grub2-efi-aa64
-      - grub2-efi-aa64-modules
-      - grub2-efi-aa64-cdboot
-      - shim-aa64
-      - shim-unsigned-aarch64
-      - bcm283x-firmware
-      - bcm283x-overlays
-      - "@arm-tools"
-    x86_64:
-      - grub2-efi-x64
-      - grub2-efi-x64-modules
-      - grub2-efi-x64-cdboot
-      - grub2-pc
-      - grub2-pc-modules
-      - shim-x64
-      - shim-unsigned-x64

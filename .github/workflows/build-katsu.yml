@@ -34,12 +34,16 @@ env:
     grub2-tools
     grub2-tools-extra
     isomd5sum
+    moby-engine
+    podman
+    buildah
 
 on:
   push:
   workflow_dispatch:
 
 jobs:
+  #### BASE IMAGES ####
   image:
     strategy:
       fail-fast: false
@@ -97,6 +101,9 @@ jobs:
         with:
           name: ${{ env.artifact }}-image
           path: katsu/katsu-work/image/*.img.xz
+
+  #### DOCKER ######
+
   docker:
     strategy:
       fail-fast: false
@@ -104,6 +111,9 @@ jobs:
         variant:
           - base/base-docker-x86_64
           - base/base-docker-aarch64
+
+    outputs:
+      artifact: ${{ matrix.variant }}
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/terrapkg/builder:f38
@@ -156,6 +166,54 @@ jobs:
         with:
           name: ${{ env.artifact }}-docker
           path: katsu/katsu-work/image/*.tar.xz
+
+  #### DOCKER PUSH ######
+
+  docker-push:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    needs: docker
+    container:
+      image: ghcr.io/terrapkg/builder:f38
+      # Pass /dev from host to container
+      # Very hacky, but it works
+      # Microsoft/Github, if you're reading this,
+      # I'm sorry.
+      options: --privileged -v /dev:/dev
+
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf install -y $DNF_PKGS
+          dnf clean all
+      - name: Login to ghcr.io
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log in to ghcr.io
+        uses: redhat-actions/podman-login@v1
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+
+      # how do i combine those two images into one multiarch tag
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+
+      - name: Publish to registry
+        run: |
+          ls -lR
+          buildah manifest create manifest
+          buildah manifest add manifest oci-archive:build/base-base-docker-x86_64-image.tar.xz
+          buildah manifest add manifest oci-archive:build/base-base-docker-aarch64-image.tar.xz
+          buildah manifest push --format v2s2 manifest docker://ghcr.io/ultramarine-linux/ultramarine:39
+
+  #### LIVE ISO ####
 
   live-iso:
     strategy:

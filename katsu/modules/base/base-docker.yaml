@@ -1,0 +1,27 @@
+builder: dnf
+
+dnf:
+  releasever: 39
+  options:
+    - --setopt=cachedir=/var/cache/dnf
+    - --nogpgcheck
+    - --setopt=keepcache=True
+  exclude:
+    - fedora-release*
+    - generic-release*
+    - kernel*
+  packages:
+    - filesystem
+    - setup
+    - glibc
+    - glibc-common
+    - dnf
+    # - mkpasswd # maybe not needed soon
+    - "@core"
+    - "@hardware-support"
+    - rpm
+    - libgomp
+    - ultramarine-release-identity-basic
+    - ultramarine-release-basic
+    - fedora-repos
+

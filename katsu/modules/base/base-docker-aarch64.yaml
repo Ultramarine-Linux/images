@@ -1,0 +1,6 @@
+builder: dnf
+distro: Ultramarine Linux 39
+
+dnf:
+  releasever: 39
+  arch: aarch64

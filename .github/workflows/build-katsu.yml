@@ -44,128 +44,128 @@ on:
 
 jobs:
   #### BASE IMAGES ####
-  # image:
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       variant:
-  #         - base/base-disk-x86_64
-  #         - base/base-disk-aarch64
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: ghcr.io/terrapkg/builder:f38
-  #     # Pass /dev from host to container
-  #     # Very hacky, but it works
-  #     # Microsoft/Github, if you're reading this,
-  #     # I'm sorry.
-  #     options: --privileged -v /dev:/dev
+  image:
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - base/base-disk-x86_64
+          - base/base-disk-aarch64
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/terrapkg/builder:f38
+      # Pass /dev from host to container
+      # Very hacky, but it works
+      # Microsoft/Github, if you're reading this,
+      # I'm sorry.
+      options: --privileged -v /dev:/dev
 
-  #   steps:
-  #     - name: Install dependencies
-  #       run: |
-  #         dnf install -y $DNF_PKGS
-  #         dnf clean all
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf install -y $DNF_PKGS
+          dnf clean all
 
-  #     - name: Set up QEMU
-  #       uses: docker/setup-qemu-action@v3
-  #     - name: Clone Katsu
-  #       uses: actions/checkout@v3
-  #       with:
-  #         repository: FyraLabs/katsu
-  #         ref: main
-  #         path: katsu
-  #     - name: Build Katsu
-  #       run: |
-  #         pushd katsu
-  #         cargo build --release
-  #         cp target/release/katsu /usr/bin/katsu
-  #         popd
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: ${{ env.KATSU_BUILD_TASK_NAME }}
-  #       run: |
-  #         pushd katsu
-  #         katsu --output=disk-image modules/${{ matrix.variant }}.yaml
-  #         xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/katsu-arm.img.xz
-  #         popd
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Clone Katsu
+        uses: actions/checkout@v3
+        with:
+          repository: FyraLabs/katsu
+          ref: main
+          path: katsu
+      - name: Build Katsu
+        run: |
+          pushd katsu
+          cargo build --release
+          cp target/release/katsu /usr/bin/katsu
+          popd
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: ${{ env.KATSU_BUILD_TASK_NAME }}
+        run: |
+          pushd katsu
+          katsu --output=disk-image modules/${{ matrix.variant }}.yaml
+          xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/katsu-arm.img.xz
+          popd
 
-  #     - name: sanitize artifact name
-  #       run: |
-  #         name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
+      - name: sanitize artifact name
+        run: |
+          name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
 
-  #         # set github variable
-  #         echo artifact=$name >> $GITHUB_ENV
+          # set github variable
+          echo artifact=$name >> $GITHUB_ENV
 
-  #     - name: Upload Artifact
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: ${{ env.artifact }}-image
-  #         path: katsu/katsu-work/image/*.img.xz
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.artifact }}-image
+          path: katsu/katsu-work/image/*.img.xz
 
   #### DOCKER ######
 
-  # docker:
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       variant:
-  #         - base/base-docker-x86_64
-  #         - base/base-docker-aarch64
+  docker:
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - base/base-docker-x86_64
+          - base/base-docker-aarch64
 
-  #   outputs:
-  #     artifact: ${{ matrix.variant }}
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: ghcr.io/terrapkg/builder:f38
-  #     # Pass /dev from host to container
-  #     # Very hacky, but it works
-  #     # Microsoft/Github, if you're reading this,
-  #     # I'm sorry.
-  #     options: --privileged -v /dev:/dev
+    outputs:
+      artifact: ${{ matrix.variant }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/terrapkg/builder:f38
+      # Pass /dev from host to container
+      # Very hacky, but it works
+      # Microsoft/Github, if you're reading this,
+      # I'm sorry.
+      options: --privileged -v /dev:/dev
 
-  #   steps:
-  #     - name: Install dependencies
-  #       run: |
-  #         dnf install -y $DNF_PKGS
-  #         dnf clean all
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf install -y $DNF_PKGS
+          dnf clean all
 
-  #     - name: Set up QEMU
-  #       uses: docker/setup-qemu-action@v3
-  #     - name: Clone Katsu
-  #       uses: actions/checkout@v3
-  #       with:
-  #         repository: FyraLabs/katsu
-  #         ref: main
-  #         path: katsu
-  #     - name: Build Katsu
-  #       run: |
-  #         pushd katsu
-  #         cargo build --release
-  #         cp target/release/katsu /usr/bin/katsu
-  #         popd
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: ${{ env.KATSU_BUILD_TASK_NAME }}
-  #       run: |
-  #         pushd katsu
-  #         katsu --output=fs modules/${{ matrix.variant }}.yaml
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Clone Katsu
+        uses: actions/checkout@v3
+        with:
+          repository: FyraLabs/katsu
+          ref: main
+          path: katsu
+      - name: Build Katsu
+        run: |
+          pushd katsu
+          cargo build --release
+          cp target/release/katsu /usr/bin/katsu
+          popd
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: ${{ env.KATSU_BUILD_TASK_NAME }}
+        run: |
+          pushd katsu
+          katsu --output=fs modules/${{ matrix.variant }}.yaml
 
-  #         # tarball katsu-work/chroot
-  #         tar -C katsu-work/chroot -c . | xz -z9 -c > katsu-work/image/katsu.tar.xz
-  #         popd
+          # tarball katsu-work/chroot
+          tar -C katsu-work/chroot -c . | xz -z9 -c > katsu-work/image/katsu.tar.xz
+          popd
 
-  #     - name: sanitize artifact name
-  #       run: |
-  #         name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
+      - name: sanitize artifact name
+        run: |
+          name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
 
-  #         # set github variable
-  #         echo artifact=$name >> $GITHUB_ENV
+          # set github variable
+          echo artifact=$name >> $GITHUB_ENV
 
-  #     - name: Upload Artifact
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: ${{ env.artifact }}-docker
-  #         path: katsu/katsu-work/image/*.tar.xz
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.artifact }}-docker
+          path: katsu/katsu-work/image/*.tar.xz
 
   #### DOCKER PUSH ######
 
@@ -173,7 +173,7 @@ jobs:
     strategy:
       fail-fast: false
     runs-on: ubuntu-latest
-    # needs: docker
+    needs: docker
 
     steps:
       - name: Install dependencies
@@ -200,58 +200,58 @@ jobs:
 
   #### LIVE ISO ####
 
-  # live-iso:
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       variant:
-  #         - flagship/flagship-live
-  #         - gnome/gnome-live
-  #         - kde/kde-live
-  #         - pantheon/pantheon-live
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: ghcr.io/terrapkg/builder:f38
-  #     # Pass /dev from host to container
-  #     # Very hacky, but it works
-  #     # Microsoft/Github, if you're reading this,
-  #     # I'm sorry.
-  #     options: --privileged -v /dev:/dev
+  live-iso:
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - flagship/flagship-live
+          - gnome/gnome-live
+          - kde/kde-live
+          - pantheon/pantheon-live
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/terrapkg/builder:f38
+      # Pass /dev from host to container
+      # Very hacky, but it works
+      # Microsoft/Github, if you're reading this,
+      # I'm sorry.
+      options: --privileged -v /dev:/dev
 
-  #   steps:
-  #     - name: Install dependencies
-  #       run: |
-  #         dnf install -y $DNF_PKGS
-  #         dnf clean all
-  #     - name: Clone Katsu
-  #       uses: actions/checkout@v3
-  #       with:
-  #         repository: FyraLabs/katsu
-  #         ref: main
-  #         path: katsu
-  #     - name: Build Katsu
-  #       run: |
-  #         pushd katsu
-  #         cargo build --release
-  #         cp target/release/katsu /usr/bin/katsu
-  #         popd
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: ${{ env.KATSU_BUILD_TASK_NAME }}
-  #       run: |
-  #         pushd katsu
-  #         katsu --output=iso modules/${{ matrix.variant }}.yaml
-  #         popd
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf install -y $DNF_PKGS
+          dnf clean all
+      - name: Clone Katsu
+        uses: actions/checkout@v3
+        with:
+          repository: FyraLabs/katsu
+          ref: main
+          path: katsu
+      - name: Build Katsu
+        run: |
+          pushd katsu
+          cargo build --release
+          cp target/release/katsu /usr/bin/katsu
+          popd
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: ${{ env.KATSU_BUILD_TASK_NAME }}
+        run: |
+          pushd katsu
+          katsu --output=iso modules/${{ matrix.variant }}.yaml
+          popd
 
-  #     - name: sanitize artifact name
-  #       run: |
-  #         name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
+      - name: sanitize artifact name
+        run: |
+          name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
 
-  #         # set github variable
-  #         echo artifact=$name >> $GITHUB_ENV
+          # set github variable
+          echo artifact=$name >> $GITHUB_ENV
 
-  #     - name: Upload Artifact
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: ${{ env.artifact }}-iso
-  #         path: katsu/out.iso
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.artifact }}-iso
+          path: katsu/out.iso

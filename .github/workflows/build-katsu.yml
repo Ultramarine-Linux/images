@@ -185,7 +185,6 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
-          auth_file_path: /run/containers/auth.json
 
       # how do i combine those two images into one multiarch tag
 

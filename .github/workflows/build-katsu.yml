@@ -1,6 +1,7 @@
 name: Build images (with Katsu)
 
 env:
+  REGISTRY_AUTH_FILE: /run/containers/auth.json
   KATSU_BUILD_TASK_NAME: "Build image"
   DNF_PKGS: |
     git
@@ -203,6 +204,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
+          auth_file_path: /run/containers/auth.json
 
       # how do i combine those two images into one multiarch tag
 

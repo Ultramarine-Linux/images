@@ -343,4 +343,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.S3_SECRET_KEY }}
           aws_bucket: "images"
           source_dir: "images"
-          destination_dir: /
+          destination_dir: ''

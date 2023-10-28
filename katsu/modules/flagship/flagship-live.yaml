@@ -6,6 +6,8 @@ import:
 
 distro: Ultramarine Flagship 39
 
+out_file: ultramarine-flagship-39-live.iso
+
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"

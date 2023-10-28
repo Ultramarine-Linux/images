@@ -271,14 +271,16 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact }}-iso
-          path: katsu/out.iso
+          path: katsu/*.iso
 
   #### LIVE ISO PUSH ####
 
   push-live-iso:
     runs-on: ubuntu-latest
     environment: production
-    needs: live-iso
+    needs:
+      - live-iso
+      - image
 
     steps:
       - name: Download artifacts
@@ -298,20 +300,38 @@ jobs:
 
       - name: Generate artifact tree
         run: |
-          set -x
+          set 
           ls -lR
           mkdir -p images
 
           # for folder in artifacts
 
-          for file in artifacts/**; do
+          pack_image() {
+            file=$1
+
+            type=$2
+
+
+            IMAGEDIR=images/$type/ultramarine/39/
+            mkdir -p $IMAGEDIR
+
+            filename=$(basename -- "$file")
+            # create sha256sum
+            sha256sum $file > $IMAGEDIR/$filename.sha256sum
+            mv $file $IMAGEDIR
+          }
+
+          for file in artifacts/*-iso/*; do
             # if is file
             if [ -f "$file" ]; then
-              # get filename
-              filename=$(basename -- "$file")
-              # create sha256sum
-              sha256sum $file > images/$filename.sha256sum
-              mv $file images/$filename
+              pack_image $file isos
+            fi
+          done
+
+          for file in artifacts/*-image/*; do
+            # if is file
+            if [ -f "$file" ]; then
+              pack_image $file images
             fi
           done
 
@@ -323,4 +343,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.S3_SECRET_KEY }}
           aws_bucket: "images"
           source_dir: "images"
-          destination_dir: isos/ultramarine/39/
+          destination_dir: /

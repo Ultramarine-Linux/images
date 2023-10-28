@@ -39,6 +39,11 @@ sed -i -e 's/settings.set_property("gtk-icon-theme-name", "Adwaita")//' /usr/lib
 # this goes at the end after all other changes.
 chown -R liveuser:liveuser /home/liveuser
 restorecon -R /home/liveuser
+
+rm -f /usr/share/glib-2.0/schemas/10_budgie_org_gnome_settings.gschema.override
+rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.background.fedora.gschema.overide
+rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.screensaver.fedora.gschema.overide
+
 EOF
 
 cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf

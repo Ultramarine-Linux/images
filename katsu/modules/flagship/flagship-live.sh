@@ -44,6 +44,8 @@ rm -f /usr/share/glib-2.0/schemas/10_budgie_org_gnome_settings.gschema.override
 rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.background.fedora.gschema.overide
 rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.screensaver.fedora.gschema.overide
 
+glib-compile-schemas /usr/share/glib-2.0/schemas/
+
 EOF
 
 cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf

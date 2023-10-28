@@ -4,6 +4,8 @@ import:
   - ../base/base.yaml
   - ../live/live.yaml
 
+out_file: ultramarine-gnome-39-live.iso
+
 scripts:
   post:
     - id: gnome-live

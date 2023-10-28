@@ -267,9 +267,60 @@ jobs:
           katsu --output=iso modules/${{ matrix.variant }}.yaml
           popd
 
-
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact }}-iso
           path: katsu/out.iso
+
+  #### LIVE ISO PUSH ####
+
+  push-live-iso:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: live-iso
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts
+
+      - name: sanitize artifact name
+        run: |
+          name=$(echo ${{ needs.live-iso.outputs.artifact }} | sed 's/\//-/g')
+
+          # set github variable
+          echo artifact=$name >> $GITHUB_ENV
+          # Get variant name from path
+          # e.g. flagship/flagship-live -> flagship
+          echo variant=$(echo ${{ needs.live-iso.outputs.artifact }} | cut -d'-' -f1) >> $GITHUB_ENV
+
+      - name: Generate artifact tree
+        run: |
+          set -x
+          ls -lR
+          mkdir -p images
+
+          # for folder in artifacts
+
+          for file in artifacts/**; do
+            # if is file
+            if [ -f "$file" ]; then
+              # get filename
+              filename=$(basename -- "$file")
+              # create sha256sum
+              sha256sum $file > images/$filename.sha256sum
+              mv $file images/$filename
+            fi
+          done
+
+      - name: Upload to R2
+        uses: shallwefootball/s3-upload-action@master
+        with:
+          endpoint: ${{ secrets.S3_ENDPOINT }}
+          aws_key_id: ${{ secrets.S3_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.S3_SECRET_KEY }}
+          aws_bucket: "images"
+          source_dir: "images"
+          destination_dir: isos/ultramarine/39/

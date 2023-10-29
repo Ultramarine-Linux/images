@@ -34,11 +34,8 @@ chmod +x /home/liveuser/Desktop/liveinst.desktop
 sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
 
 # allow anaconda to use system icon theme
-sed -i -e 's/settings.set_property("gtk-icon-theme-name", "Adwaita")//' /usr/lib64/python3.11/site-packages/pyanaconda/ui/gui/__init__.py
+#sed -i -e 's/settings.set_property("gtk-icon-theme-name", "Adwaita")//' /usr/lib64/python3.11/site-packages/pyanaconda/ui/gui/__init__.py
 
-# this goes at the end after all other changes.
-chown -R liveuser:liveuser /home/liveuser
-restorecon -R /home/liveuser
 
 rm -f /usr/share/glib-2.0/schemas/10_budgie_org_gnome_settings.gschema.override
 rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.background.fedora.gschema.overide
@@ -46,6 +43,9 @@ rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.screensaver.fedora
 
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 
+# this goes at the end after all other changes.
+chown -R liveuser:liveuser /home/liveuser
+restorecon -R /home/liveuser
 EOF
 
 cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf

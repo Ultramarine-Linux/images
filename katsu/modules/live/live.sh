@@ -1,6 +1,6 @@
 #!/bin/sh -x
 
-systemctl disable systemd-networkd-wait-online systemd-networkd systemd-networkd.socket
+systemctl disable systemd-networkd-wait-online systemd-networkd systemd-networkd.socket || true
 
 # Enable livesys services
 systemctl enable livesys.service
@@ -30,7 +30,7 @@ rm -f /var/lib/systemd/random-seed
 # convince readahead not to collect
 # FIXME: for systemd
 
-echo 'File created by kickstart. See systemd-update-done.service(8).' \
+echo 'File created by katsu. See systemd-update-done.service(8).' \
     | tee /etc/.updated >/var/.updated
 
 # Set locales in chroot
@@ -63,7 +63,7 @@ systemctl set-default graphical.target
 # it actually cannot reinstall it, but this somehow fixes the issue
 # I assume scuffed rpm db or something
 # If anyone manages to figure out why this works, please let me know - @korewachino
-# dnf reinstall - anaconda-core || true && dnf clean all
+dnf reinstall -y anaconda-core || true && dnf clean all
 
 cat >> /var/lib/livesys/livesys-session-extra << EOF
 
@@ -73,7 +73,7 @@ cat > /home/liveuser/.config/autostart/ultramarine-welcome.desktop << EOA
 [Desktop Entry]
 Name=Welcome to Ultramarine
 Comment=Welcome to Ultramarine
-Exec=/usr/share/anaconda/gnome/fedora-welcome
+Exec=bash -c "pkexec glib-compile-schemas /usr/share/glib-2.0/schemas || : && /usr/share/anaconda/gnome/fedora-welcome"
 Terminal=false
 Type=Application
 EOA

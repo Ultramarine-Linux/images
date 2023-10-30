@@ -1,0 +1,33 @@
+builder: dnf
+
+import:
+  - ../base/base.yaml
+
+distro: Ultramarine CBE KDE 39
+
+out_file: ultramarine-cbe-kde-39.iso
+
+scripts:
+  post:
+    #- id: kde-live
+    #  name: Set up KDE Live
+    #  file: ./kde-live.sh
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-CBE-Kd
+
+dnf:
+  releasever: 39
+  options:
+    - --setopt=strict=0
+  packages:
+    - "@ultramarine-kde-product-enviroment"
+# scripts:
+#   post:
+#     - id: flagship-live
+#       name: Set up Flagship Live
+#       file: ./flagship-live.sh

@@ -1,0 +1,31 @@
+builder: dnf
+
+import:
+  - ../base/base.yaml
+  - ../live/live.yaml
+
+distro: Ultramarine CBE Flagship 39
+
+out_file: ultramarine-cbe-flagship-39-live.iso
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-CBE-Fl
+
+dnf:
+  releasever: 39
+  options:
+    - --setopt=strict=0
+  exclude:
+    - budgie-desktop-defaults
+  packages:
+    - "@ultramarine-flagship-product-enviroment"
+
+scripts:
+  post:
+    - id: flagship-live
+      name: Set up Flagship Live
+      file: ./flagship-live.sh

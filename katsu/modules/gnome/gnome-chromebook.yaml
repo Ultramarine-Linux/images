@@ -1,8 +1,7 @@
 builder: dnf
 
 import:
-  - ../base/base.yaml
-  - ../live/live.yaml
+  - ../chromebook/base.yaml
 
 out_file: ultramarine-cbe-gnome-39-live.iso
 

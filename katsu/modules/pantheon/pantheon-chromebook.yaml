@@ -1,0 +1,33 @@
+builder: dnf
+
+import:
+  - ../base/base.yaml
+
+out_file: ultramarine-cbe-pantheon-39.iso
+
+scripts:
+  post:
+    #- id: pantheon-live
+    #  name: Set up Pantheon Live
+    #  file: ./pantheon-live.sh
+
+distro: Ultramarine CBE Pantheon 39
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-CBE-Pa-Live
+
+dnf:
+  releasever: 39
+  options:
+    - --setopt=strict=0
+  packages:
+    - "@ultramarine-pantheon-product-enviroment"
+# scripts:
+#   post:
+#     - id: flagship-live
+#       name: Set up Flagship Live
+#       file: ./flagship-live.sh

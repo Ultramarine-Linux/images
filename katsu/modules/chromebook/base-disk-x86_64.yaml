@@ -1,0 +1,35 @@
+builder: dnf
+distro: Ultramarine Linux 39 Chromebook Edition
+
+users:
+  - username: neko
+    # plaintext password: ultramarine
+    password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
+    groups:
+      - wheel
+
+import:
+  - base.yaml
+  - base-disk.yaml
+
+scripts:
+  post:
+    - id: grub
+      name: Set up GRUB
+      file: grub-setup.sh
+
+disk:
+  size: 5GiB
+  partitions:
+    - label: Kernel
+      size: 512MiB
+      filesystem: efi
+      mountpoint:
+
+    - label: boot
+      size: 4GiB
+      filesystem: ext4
+      mountpoint: /
+
+dnf:
+  releasever: 39

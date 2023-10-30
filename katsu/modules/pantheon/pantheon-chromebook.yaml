@@ -1,7 +1,7 @@
 builder: dnf
 
 import:
-  - ../base/base.yaml
+  - ../chromebook/base.yaml
 
 out_file: ultramarine-cbe-pantheon-39.iso
 

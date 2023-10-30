@@ -1,8 +1,7 @@
 builder: dnf
 
 import:
-  - ../base/base.yaml
-  - ../live/live.yaml
+  - ../chromebook/base.yaml
 
 distro: Ultramarine CBE Flagship 39
 

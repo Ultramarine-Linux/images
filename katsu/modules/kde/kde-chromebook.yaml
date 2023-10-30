@@ -1,7 +1,7 @@
 builder: dnf
 
 import:
-  - ../base/base.yaml
+  - ../chromebook/base.yaml
 
 distro: Ultramarine CBE KDE 39
 

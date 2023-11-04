@@ -31,7 +31,6 @@ dnf:
     - isomd5sum
     - orca
     - espeak-ng
-    - brltty-minimal
     - speech-dispatcher-espeak-ng
     - julietaula-montserrat-fonts
     - ultramarine-backgrounds
@@ -40,3 +39,7 @@ dnf:
     - gjs
     - util-linux-user
     - livesys-scripts
+    - rsync
+    - htop
+    - vim
+    - nano

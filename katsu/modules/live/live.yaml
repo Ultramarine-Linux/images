@@ -43,3 +43,7 @@ dnf:
     - htop
     - vim
     - nano
+    # for drivers and other stuff
+    - kernel
+    - kernel-devel-matched
+    - xpadneo

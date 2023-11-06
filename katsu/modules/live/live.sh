@@ -119,6 +119,12 @@ get_nvidia_driver_version() {
 
 install_nvidia() {
     # install nvidia drivers
+    # check if we even have internet
+    if ! ping -c 1 ultramarine-linux.org
+    then
+        echo "No internet connection, skipping"
+        return 1
+    fi
     dnf install -y $(get_nvidia_driver_version)
     dnf install -y libva-nvidia-driver --allowerasing
 }

@@ -9,6 +9,11 @@ ln -sf /bin/true /usr/local/bin/nm-applet
 # set livesys session type
 sed -i 's/^livesys_session=.*/livesys_session="budgie"/' /etc/sysconfig/livesys
 
+rm -f /usr/share/glib-2.0/schemas/10_budgie_org_gnome_settings.gschema.override
+rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.background.fedora.gschema.overide
+rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.screensaver.fedora.gschema.overide
+rm -f /usr/share/glib-2.0/schemas/20_solus-project.budgie.wm.gschema.override
+
 cat >> /var/lib/livesys/livesys-session-extra << EOF
 ## set up lightdm autologin
 sed -i 's/^#autologin-user=.*/autologin-user=liveuser/' /etc/lightdm/lightdm.conf
@@ -40,6 +45,7 @@ sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
 rm -f /usr/share/glib-2.0/schemas/10_budgie_org_gnome_settings.gschema.override
 rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.background.fedora.gschema.overide
 rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.screensaver.fedora.gschema.overide
+rm -f /usr/share/glib-2.0/schemas/20_solus-project.budgie.wm.gschema.override
 
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 

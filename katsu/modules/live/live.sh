@@ -95,6 +95,12 @@ cp /etc/resolv.conf /mnt/sysimage/etc/resolv.conf
 
 %post
 
+mkdir -p /root/
+
+# log everything here to /root/nvidia.log
+exec > >(tee /root/nvidia.log) 2>&1
+set -x
+
 detect_nvidia() {
     # return 0 if nvidia is found
     lspci | grep -q -i NVIDIA

@@ -70,8 +70,6 @@ jobs:
           dnf install -y $DNF_PKGS
           dnf clean all
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
       - name: Clone Katsu
         uses: actions/checkout@v3
         with:

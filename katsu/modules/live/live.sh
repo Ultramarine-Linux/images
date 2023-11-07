@@ -102,15 +102,15 @@ detect_nvidia() {
 
 
 get_nvidia_driver_version() {
-    nvidia_model=$(lspci | grep -i NVIDIA | head -n 1 | cut -d ':' -f 3 | cut -d '[' -f 1 | sed -e 's/^[[:space:]]*//')
+    nvidia_model=\$(lspci | grep -i NVIDIA | head -n 1 | cut -d ':' -f 3 | cut -d '[' -f 1 | sed -e 's/^[[:space:]]*//')
     # split by space and get the last element
 
-    try_nvidia_version=$(echo "$nvidia_model" | awk '{print $NF}')
+    try_nvidia_version=\$(echo "\$nvidia_model" | awk '{print \$NF}')
 
     # if it is GF***, then it is old, so we need to use 340xx
     # if it's a GK***, model, Kepler, we need to use 470xx drivers
 
-    if [[ "$try_nvidia_version" == "GK"* ]]; then
+    if [[ "\$try_nvidia_version" == "GK"* ]]; then
         echo "akmod-nvidia-470xx xorg-x11-drv-nvidia-cuda-470xx xorg-x11-drv-nvidia-470xx" 
     else
         echo "akmod-nvidia xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia"
@@ -125,7 +125,7 @@ install_nvidia() {
         echo "No internet connection, skipping"
         return 1
     fi
-    dnf install -y $(get_nvidia_driver_version)
+    dnf install -y \$(get_nvidia_driver_version)
     dnf install -y libva-nvidia-driver --allowerasing
 }
 

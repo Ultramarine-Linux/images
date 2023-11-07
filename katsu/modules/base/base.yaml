@@ -26,6 +26,10 @@ dnf:
     - setroubleshoot
     - setroubleshoot-plugins
     - setroubleshoot-server
+    - coreutils
+
+  packages:
+    - uutils-coreutils-replace
 #   packages:
 #     - filesystem
 #     - setup

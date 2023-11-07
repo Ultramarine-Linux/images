@@ -9,7 +9,9 @@ dnf:
   exclude:
     - fedora-release*
     - generic-release*
+    - coreutils
   packages:
+    - uutils-coreutils-replace
     - filesystem
     - setup
     - lvm2

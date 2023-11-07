@@ -11,7 +11,9 @@ dnf:
     - fedora-release*
     - generic-release*
     - kernel*
+    - coreutils
   packages:
+    - uutils-coreutils-replace
     - filesystem
     - setup
     - glibc

@@ -70,7 +70,7 @@ cat > /home/liveuser/.config/autostart/ultramarine-welcome.desktop << EOA
 [Desktop Entry]
 Name=Welcome to Ultramarine
 Comment=Welcome to Ultramarine
-Exec=bash -c "pkexec glib-compile-schemas /usr/share/glib-2.0/schemas || : && /usr/share/anaconda/gnome/fedora-welcome"
+Exec=bash -c "sudo glib-compile-schemas /usr/share/glib-2.0/schemas || : && /usr/share/anaconda/gnome/fedora-welcome"
 Terminal=false
 Type=Application
 EOA

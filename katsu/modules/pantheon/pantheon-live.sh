@@ -1,6 +1,6 @@
 #!/bin/bash -x
-
-
+systemctl disable -f gdm.service
+systemctl enable -f lightdm.service
 # create /etc/sysconfig/desktop (needed for installation)
 
 cat > /etc/sysconfig/desktop <<EOF

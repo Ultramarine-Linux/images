@@ -17,6 +17,7 @@ dnf:
     - fcoe-utils
     - device-mapper-multipath
     - gnome-boxes
+    - deepin-wallpapers
   packages:
     - glibc-all-langpacks
     - dracut-config-generic

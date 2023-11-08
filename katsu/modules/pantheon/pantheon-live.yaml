@@ -24,14 +24,21 @@ iso:
 dnf:
   releasever: 39
   options:
-    - --setopt=strict=0
-  excludes:
-    - gdm
-    - gnome-session
+    - --setopt=strict=1
+  exclude:
+    - gnome-tour
+    - setroubleshoot
   packages:
     - "@ultramarine-pantheon-product-enviroment"
     - elementary-greeter
     - lightdm
+    - seahorse
+    - appcenter
+    - xdg-user-dirs-gtk
+    - xdg-desktop-portal-gtk
+    - xdg-desktop-portal-xapp
+    - ultramarine-backgrounds-gnome
+
 # scripts:
 #   post:
 #     - id: flagship-live

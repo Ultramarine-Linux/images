@@ -25,8 +25,13 @@ dnf:
   releasever: 39
   options:
     - --setopt=strict=0
+  excludes:
+    - gdm
+    - gnome-session
   packages:
     - "@ultramarine-pantheon-product-enviroment"
+    - elementary-greeter
+    - lightdm
 # scripts:
 #   post:
 #     - id: flagship-live

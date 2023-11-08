@@ -38,6 +38,7 @@ dnf:
     - xdg-desktop-portal-gtk
     - xdg-desktop-portal-xapp
     - ultramarine-backgrounds-gnome
+    - rsms-inter-fonts
 
 # scripts:
 #   post:

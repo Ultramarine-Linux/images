@@ -8,6 +8,12 @@ PREFERRED=/usr/bin/gnome-session --builtin --session=pantheon
 DISPLAYMANAGER=/usr/sbin/lightdm
 EOF
 
+sed -i 's/^livesys_session=.*/livesys_session="gnome"/' /etc/sysconfig/livesys
+sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
+sed -i 's/Fedora/Ultramarine/g' /usr/share/applications/org.fedoraproject.welcome-screen.desktop
+sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/org.fedoraproject.welcome-screen.desktop
+
+
 cat > /usr/share/glib-2.0/schemas/io.elementary.desktop.gschema.override << EOF
 [net.launchpad.plank.dock.settings:Pantheon]
 # TODO: insert apps missing from official Fedora repositories once available

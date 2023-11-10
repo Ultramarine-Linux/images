@@ -23,8 +23,8 @@ iso:
 
 dnf:
   releasever: 39
-  options:
-    - --setopt=strict=0
+  # options:
+  #   - --setopt=strict=0
   packages:
     - "@ultramarine-kde-product-enviroment"
 # scripts:

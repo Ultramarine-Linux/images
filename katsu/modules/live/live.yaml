@@ -19,6 +19,7 @@ dnf:
     - gnome-boxes
     - deepin-wallpapers
   packages:
+    - python3-umstellar
     - glibc-all-langpacks
     - dracut-config-generic
     - dracut-live

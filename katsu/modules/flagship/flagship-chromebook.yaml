@@ -16,8 +16,8 @@ iso:
 
 dnf:
   releasever: 39
-  options:
-    - --setopt=strict=0
+  # options:
+  #   - --setopt=strict=0
   exclude:
     - budgie-desktop-defaults
   packages:

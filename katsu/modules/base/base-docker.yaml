@@ -13,7 +13,7 @@ dnf:
     - kernel*
     - coreutils
   packages:
-    - uutils-coreutils-replace
+    # - uutils-coreutils-replace
     - filesystem
     - setup
     - glibc

@@ -104,9 +104,6 @@ jobs:
           name: ${{ env.artifact }}-image
           path: katsu/katsu-work/image/*.img.xz
 
-
-
-
   live-iso:
     strategy:
       fail-fast: false
@@ -116,6 +113,7 @@ jobs:
           - gnome/gnome-live
           - kde/kde-live
           - pantheon/pantheon-live
+          - flagship/flagship-chromebook
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/terrapkg/builder:f38
@@ -236,4 +234,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.S3_SECRET_KEY }}
           aws_bucket: "images"
           source_dir: "images"
-          destination_dir: ''
+          destination_dir: ""

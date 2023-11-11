@@ -25,6 +25,6 @@ dnf:
 
 scripts:
   post:
-    - id: flagship-live
-      name: Set up Flagship Live
+    - id: flagship-chromebook
+      name: Set up Flagship Chromebook Live
       file: ./flagship-live.sh

@@ -20,6 +20,7 @@ dnf:
   #   - --setopt=strict=0
   exclude:
     - budgie-desktop-defaults
+    - budgie-backgrounds
   packages:
     - "@ultramarine-flagship-product-enviroment"
 

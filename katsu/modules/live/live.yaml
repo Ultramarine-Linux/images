@@ -18,6 +18,8 @@ dnf:
     - device-mapper-multipath
     - gnome-boxes
     - deepin-wallpapers
+    - initial-setup-gui
+    - initial-setup
   packages:
     - python3-umstellar
     - glibc-all-langpacks

@@ -35,7 +35,8 @@ dnf:
     - ultramarine-release-basic
     - fedora-repos
     - efibootmgr
-    - cboot
+    - dracut-live
+    - dracut-network
 
   arch_packages:
     aarch64:

@@ -1,3 +1,8 @@
+
+import:
+  - base-disk.yaml
+  # because no one managed figure out they had to import
+  # this one module for the packages...
 scripts:
   post:
     - id: cleanup

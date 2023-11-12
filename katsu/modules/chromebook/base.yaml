@@ -26,6 +26,10 @@ dnf:
     - setroubleshoot
     - setroubleshoot-plugins
     - setroubleshoot-server
+  packages:
+    - dracut-live
+    - dracut-network
+
 #   packages:
 #     - filesystem
 #     - setup

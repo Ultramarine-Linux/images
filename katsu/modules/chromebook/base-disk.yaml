@@ -31,8 +31,8 @@ dnf:
     - NetworkManager
     - rpm
     - libgomp
-    - ultramarine-release-identity-basic
-    - ultramarine-release-basic
+    # - ultramarine-release-identity-basic
+    # - ultramarine-release-basic
     - fedora-repos
     - efibootmgr
     - dracut-live

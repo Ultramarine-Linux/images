@@ -72,7 +72,7 @@ jobs:
       - name: Clone Katsu
         uses: actions/checkout@v3
         with:
-          repository: FyraLabs/katsu
+          repository: lleyton/katsu
           ref: main
           path: katsu
       - name: Build Katsu
@@ -131,7 +131,7 @@ jobs:
       - name: Clone Katsu
         uses: actions/checkout@v3
         with:
-          repository: FyraLabs/katsu
+          repository: lleyton/katsu
           ref: main
           path: katsu
       - name: Build Katsu
@@ -191,7 +191,7 @@ jobs:
 
       - name: Generate artifact tree
         run: |
-          set 
+          set
           ls -lR
           mkdir -p images
 

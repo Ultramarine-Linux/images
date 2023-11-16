@@ -1,7 +1,9 @@
 builder: dnf
 
 import:
-  - ../chromebook/base.yaml
+  - ../chromebook/base-disk.yaml
+  # - ../live/live.yaml
+  - ../chromebook/base-disk-x86_64.yaml
 
 distro: Ultramarine CBE Flagship 39
 
@@ -22,7 +24,7 @@ dnf:
     - budgie-desktop-defaults
     - budgie-backgrounds
   packages:
-    - "@ultramarine-flagship-product-enviroment"
+    - "@ultramarine-flagship-product-environment"
 
 scripts:
   post:

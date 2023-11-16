@@ -26,7 +26,7 @@ dnf:
   # options:
   #   - --setopt=strict=0
   packages:
-    - "@ultramarine-gnome-product-enviroment"
+    - "@ultramarine-gnome-product-environment"
     - ultramarine-release-gnome
     - ultramarine-release-identity-gnome
 # scripts:

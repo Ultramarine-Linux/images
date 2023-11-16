@@ -23,7 +23,7 @@ dnf:
     - budgie-desktop-defaults
     - budgie-backgrounds
   packages:
-    - "@ultramarine-flagship-product-enviroment"
+    - "@ultramarine-flagship-product-environment"
 
 scripts:
   post:

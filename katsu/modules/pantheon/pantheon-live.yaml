@@ -29,7 +29,7 @@ dnf:
     - gnome-tour
     - setroubleshoot
   packages:
-    - "@ultramarine-pantheon-product-enviroment"
+    - "@ultramarine-pantheon-product-environment"
     - elementary-greeter
     - lightdm
     - seahorse
@@ -39,7 +39,6 @@ dnf:
     - xdg-desktop-portal-xapp
     - ultramarine-backgrounds-gnome
     - rsms-inter-fonts
-
 # scripts:
 #   post:
 #     - id: flagship-live

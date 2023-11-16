@@ -1,7 +1,7 @@
 builder: dnf
 
 import:
-  - ../chromebook/base.yaml
+  - ../chromebook/base-disk.yaml
 
 out_file: ultramarine-cbe-gnome-39-live.iso
 
@@ -25,7 +25,7 @@ dnf:
   options:
     - --setopt=strict=0
   packages:
-    - "@ultramarine-gnome-product-enviroment"
+    - "@ultramarine-gnome-product-environment"
 # scripts:
 #   post:
 #     - id: flagship-live

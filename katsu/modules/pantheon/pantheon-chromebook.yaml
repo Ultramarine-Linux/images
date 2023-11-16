@@ -1,7 +1,7 @@
 builder: dnf
 
 import:
-  - ../chromebook/base.yaml
+  - ../chromebook/base-disk.yaml
 
 out_file: ultramarine-cbe-pantheon-39.iso
 
@@ -25,7 +25,7 @@ dnf:
   options:
     - --setopt=strict=0
   packages:
-    - "@ultramarine-pantheon-product-enviroment"
+    - "@ultramarine-pantheon-product-environment"
 # scripts:
 #   post:
 #     - id: flagship-live

@@ -1,7 +1,7 @@
 builder: dnf
 
 import:
-  - ../chromebook/base.yaml
+  - ../chromebook/base-disk.yaml
 
 distro: Ultramarine CBE KDE 39
 
@@ -25,7 +25,7 @@ dnf:
   # options:
   #   - --setopt=strict=0
   packages:
-    - "@ultramarine-kde-product-enviroment"
+    - "@ultramarine-kde-product-environment"
 # scripts:
 #   post:
 #     - id: flagship-live

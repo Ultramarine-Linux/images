@@ -51,6 +51,7 @@ jobs:
         variant:
           - base/base-disk-x86_64
           - base/base-disk-aarch64
+          - flagship/flagship-chromebook
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/terrapkg/builder:f38
@@ -113,7 +114,6 @@ jobs:
           - gnome/gnome-live
           - kde/kde-live
           - pantheon/pantheon-live
-          - flagship/flagship-chromebook
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/terrapkg/builder:f38

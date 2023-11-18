@@ -64,6 +64,7 @@ xdg-desktop-portal-kde
 xorg-x11-server-Xorg
 ultramarine-release-identity-plasma
 ultramarine-backgrounds-basic
+kwin-system76-scheduler-integration
 
 latte-dock
 

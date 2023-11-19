@@ -82,3 +82,6 @@ echo "Setting up NVIDIA driver install script"
 anaconda_dir=/usr/share/anaconda/post-scripts
 
 mkdir -p "$anaconda_dir"
+
+# Delete the firefox redhat configs, debranding
+rm -rf /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js

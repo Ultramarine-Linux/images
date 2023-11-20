@@ -85,3 +85,7 @@ mkdir -p "$anaconda_dir"
 
 # Delete the firefox redhat configs, debranding
 rm -rf /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js
+
+
+# Disable sysroot.mount
+systemctl disable sysroot.mount

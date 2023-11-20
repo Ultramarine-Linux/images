@@ -39,7 +39,7 @@ chmod +x /home/liveuser/Desktop/liveinst.desktop
 sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
 
 # allow anaconda to use system icon theme
-#sed -i -e 's/settings.set_property("gtk-icon-theme-name", "Adwaita")//' /usr/lib64/python3.11/site-packages/pyanaconda/ui/gui/__init__.py
+sed -i -e 's/settings.set_property("gtk-icon-theme-name", "Adwaita")//' /usr/lib64/python3.12/site-packages/pyanaconda/ui/gui/__init__.py
 
 
 rm -f /usr/share/glib-2.0/schemas/10_budgie_org_gnome_settings.gschema.override

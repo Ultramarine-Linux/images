@@ -13,3 +13,4 @@ tmp.sh
 .tmp/
 anda-build/
 katsu-work/
+.env*

@@ -88,4 +88,4 @@ rm -rf /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-pr
 
 
 # Disable sysroot.mount
-systemctl disable sysroot.mount
+systemctl disable sysroot.mount || true

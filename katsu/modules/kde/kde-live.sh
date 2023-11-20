@@ -48,6 +48,9 @@ chmod +x /usr/share/applications/liveinst.desktop
 mkdir /home/liveuser/Desktop
 cp -a /usr/share/applications/liveinst.desktop /home/liveuser/Desktop/
 
+# Install welcome screen
+sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome
+
 # Set akonadi backend
 mkdir -p /home/liveuser/.config/akonadi
 cat > /home/liveuser/.config/akonadi/akonadiserverrc << AKONADI_EOF

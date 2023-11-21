@@ -48,11 +48,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        arch:
+          - x86_64
+          - aarch64
         variant:
-          - base/base-disk-x86_64
-          - base/base-disk-aarch64
+          - base/base-disk
           #- flagship/flagship-chromebook
-    runs-on: ubuntu-latest
+          # runs on ubuntu-latest or arm64 if arch is aarch64
+    runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
       image: ghcr.io/terrapkg/builder:f38
       # Pass /dev from host to container
@@ -67,8 +70,6 @@ jobs:
           dnf install -y $DNF_PKGS
           dnf clean all
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
       - name: Clone Katsu
         uses: actions/checkout@v3
         with:
@@ -86,16 +87,18 @@ jobs:
       - name: sanitize artifact name
         run: |
           name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
+          name=$name-${{ matrix.arch }}
 
           # set github variable
           echo artifact=$name >> $GITHUB_ENV
           # Get architecture
           # e.g. base/base-disk-x86_64 -> x86_64
           echo arch=$(echo ${{ matrix.variant }} | cut -d'-' -f3) >> $GITHUB_ENV
+
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
           pushd katsu
-          KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=disk-image modules/${{ matrix.variant }}.yaml
+          KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=disk-image modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml
           xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/ultramarine-39-${{ env.arch }}.img.xz
           popd
 
@@ -109,12 +112,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        arch:
+          - x86_64
+          - aarch64
         variant:
           - flagship/flagship-live
           - gnome/gnome-live
           - kde/kde-live
           - pantheon/pantheon-live
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
       image: ghcr.io/terrapkg/builder:f38
       # Pass /dev from host to container
@@ -146,7 +152,7 @@ jobs:
           name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
 
           # set github variable
-          echo artifact=$name >> $GITHUB_ENV
+          echo artifact=$name-${{ matrix.arch }} >> $GITHUB_ENV
           # Get variant name from path
           # e.g. flagship/flagship-live -> flagship
           echo variant=$(echo ${{ matrix.variant }} | cut -d'/' -f1) >> $GITHUB_ENV
@@ -156,6 +162,14 @@ jobs:
         run: |
           pushd katsu
           KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=iso modules/${{ matrix.variant }}.yaml
+          # get the ISO name, and then append the arch
+          # e.g. flagship-live.iso -> flagship-live-x86_64.iso
+
+          # get the ISO name
+          iso=$(ls *.iso)
+          # append the arch
+          mv $iso $(echo $iso | sed "s/.iso/-${{ matrix.arch }}.iso/")
+
           rm -rf katsu-work/
           popd
 
@@ -179,16 +193,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: artifacts
-
-      - name: sanitize artifact name
-        run: |
-          name=$(echo ${{ needs.live-iso.outputs.artifact }} | sed 's/\//-/g')
-
-          # set github variable
-          echo artifact=$name >> $GITHUB_ENV
-          # Get variant name from path
-          # e.g. flagship/flagship-live -> flagship
-          echo variant=$(echo ${{ needs.live-iso.outputs.artifact }} | cut -d'-' -f1) >> $GITHUB_ENV
 
       - name: Generate artifact tree
         run: |

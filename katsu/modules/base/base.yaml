@@ -26,6 +26,24 @@ dnf:
     - setroubleshoot
     - setroubleshoot-plugins
     - setroubleshoot-server
+  arch_packages:
+    aarch64:
+      - grub2-efi-aa64
+      - grub2-efi-aa64-modules
+      - grub2-efi-aa64-cdboot
+      - shim-aa64
+      - shim-unsigned-aarch64
+      - bcm283x-firmware
+      - bcm283x-overlays
+      - "@arm-tools"
+    x86_64:
+      - grub2-efi-x64
+      - grub2-efi-x64-modules
+      - grub2-efi-x64-cdboot
+      - grub2-pc
+      - grub2-pc-modules
+      - shim-x64
+      - shim-unsigned-x64
 #   packages:
 #     - filesystem
 #     - setup
@@ -58,21 +76,4 @@ dnf:
 #     - ultramarine-repos
 #     - "ultramarine-logos*"
 
-#   arch_packages:
-#     aarch64:
-#       - grub2-efi-aa64
-#       - grub2-efi-aa64-modules
-#       - grub2-efi-aa64-cdboot
-#       - shim-aa64
-#       - shim-unsigned-aarch64
-#       - bcm283x-firmware
-#       - bcm283x-overlays
-#       - "@arm-tools"
-#     x86_64:
-#       - grub2-efi-x64
-#       - grub2-efi-x64-modules
-#       - grub2-efi-x64-cdboot
-#       - grub2-pc
-#       - grub2-pc-modules
-#       - shim-x64
-#       - shim-unsigned-x64
+

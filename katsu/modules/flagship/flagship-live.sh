@@ -55,6 +55,19 @@ chown -R liveuser:liveuser /home/liveuser
 restorecon -R /home/liveuser
 EOF
 
+# Let's do a hack to make sure we get the right wallpaper
+
+# I know this is ugly, but for some arcane reason the gsettings override doesn't work
+
+pushd /usr/share/backgrounds || exit 1
+
+cp -v budgie/default.jpg budgie/default.jpg.orig
+
+ln -rsf ultramarine-linux/39/foresty-skies-l.png budgie/default.jpg
+
+
+popd || exit 1
+
 cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
 
 # Reinstall anaconda-core and anaconda-live to make sure we fix any localization issues

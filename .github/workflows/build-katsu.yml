@@ -95,7 +95,7 @@ jobs:
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
           pushd katsu
-          KATSU_LOG=trace katsu -v --output=disk-image modules/${{ matrix.variant }}.yaml
+          KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=disk-image modules/${{ matrix.variant }}.yaml
           xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/ultramarine-39-${{ env.arch }}.img.xz
           popd
 
@@ -155,7 +155,7 @@ jobs:
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
           pushd katsu
-          KATSU_LOG=trace katsu -v --output=iso modules/${{ matrix.variant }}.yaml
+          KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=iso modules/${{ matrix.variant }}.yaml
           popd
 
       - name: Upload Artifact

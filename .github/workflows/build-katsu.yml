@@ -156,6 +156,7 @@ jobs:
         run: |
           pushd katsu
           KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=iso modules/${{ matrix.variant }}.yaml
+          rm -rf katsu-work/
           popd
 
       - name: Upload Artifact

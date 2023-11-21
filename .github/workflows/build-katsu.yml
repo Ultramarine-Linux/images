@@ -72,7 +72,7 @@ jobs:
       - name: Clone Katsu
         uses: actions/checkout@v3
         with:
-          repository: lleyton/katsu
+          repository: FyraLabs/katsu
           ref: main
           path: katsu
       - name: Build Katsu
@@ -131,7 +131,7 @@ jobs:
       - name: Clone Katsu
         uses: actions/checkout@v3
         with:
-          repository: lleyton/katsu
+          repository: FyraLabs/katsu
           ref: main
           path: katsu
       - name: Build Katsu
@@ -155,7 +155,7 @@ jobs:
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
           pushd katsu
-          katsu --output=iso modules/${{ matrix.variant }}.yaml
+          KATSU_LOG=trace katsu -v --output=iso modules/${{ matrix.variant }}.yaml
           popd
 
       - name: Upload Artifact

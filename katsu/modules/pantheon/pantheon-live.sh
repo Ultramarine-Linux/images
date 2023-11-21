@@ -214,7 +214,7 @@ ELEMENTARY_APPS=(
 
 
 for app in "${ELEMENTARY_APPS[@]}"; do
-    flatpak install -y appcenter $app
+    flatpak install -y ${app}/$(uname -m)/stable
 done
 
 flatpak install -y flathub org.gnome.Evince

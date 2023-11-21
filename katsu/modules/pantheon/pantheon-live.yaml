@@ -47,6 +47,7 @@ dnf:
     - xdg-desktop-portal-xapp
     - ultramarine-backgrounds-gnome
     - rsms-inter-fonts
+    - ultramarine-repos-appcenter
 # scripts:
 #   post:
 #     - id: flagship-live

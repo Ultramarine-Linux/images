@@ -203,18 +203,18 @@ restorecon -R /home/liveuser
 EOF
 
 ELEMENTARY_APPS=(
-    "io.elementary.calculator"
-    "io.elementary.calendar"
-    "io.elementary.capnet-assist"
-    "io.elementary.camera"
-    "io.elementary.mail"
-    "io.elementary.music"
-    "io.elementary.videos"
+    "io.elementary.calculator/$(uname -m)/stable"
+    "io.elementary.calendar/$(uname -m)/stable"
+    "io.elementary.capnet-assist/$(uname -m)/stable"
+    "io.elementary.camera/$(uname -m)/stable"
+    "io.elementary.mail/$(uname -m)/daily"
+    "io.elementary.music/$(uname -m)/stable"
+    "io.elementary.videos/$(uname -m)/stable"
 )
 
 
 for app in "${ELEMENTARY_APPS[@]}"; do
-    flatpak install -y ${app}/$(uname -m)/stable
+    flatpak install -y ${app}
 done
 
 flatpak install -y flathub org.gnome.Evince

@@ -77,11 +77,23 @@ EOA
 
 EOF
 
-echo "Setting up NVIDIA driver install script"
+echo "Setting up some extra post scripts"
 
 anaconda_dir=/usr/share/anaconda/post-scripts
 
 mkdir -p "$anaconda_dir"
+
+cat > "$anaconda_dir/01-selinux.ks" << EOF
+
+%post
+echo "Setting up SELinux..."
+setfiles -F -e /proc -e /sys -e /dev -e /bin /etc/selinux/targeted/contexts/files/file_contexts / || true
+setfiles -F -e /proc -e /sys -e /dev /etc/selinux/targeted/contexts/files/file_contexts.bin /bin || true
+
+%end
+
+EOF
+
 
 # Delete the firefox redhat configs, debranding
 rm -rf /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js

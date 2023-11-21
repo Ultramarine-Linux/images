@@ -28,6 +28,14 @@ dnf:
   exclude:
     - gnome-tour
     - setroubleshoot
+    - elementary-calculator
+    - elementary-calendar
+    - elementary-capnet-assist
+    - elementary-camera
+    - evince
+    - elementary-mail
+    - elementary-music
+    - elementary-videos
   packages:
     - "@ultramarine-pantheon-product-environment"
     - elementary-greeter

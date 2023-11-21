@@ -201,3 +201,20 @@ chown -R liveuser:liveuser /home/liveuser
 restorecon -R /home/liveuser
 
 EOF
+
+ELEMENTARY_APPS=(
+    "io.elementary.calculator"
+    "io.elementary.calendar"
+    "io.elementary.capnet-assist"
+    "io.elementary.camera"
+    "io.elementary.mail"
+    "io.elementary.music"
+    "io.elementary.videos"
+)
+
+
+for app in "${ELEMENTARY_APPS[@]}"; do
+    flatpak install -y appcenter $app
+done
+
+flatpak install -y flathub org.gnome.Evince

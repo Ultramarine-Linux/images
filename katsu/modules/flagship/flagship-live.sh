@@ -14,6 +14,8 @@ rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.background.fedora.
 rm -f /usr/share/glib-2.0/schemas/30_budgie_org.gnome.desktop.screensaver.fedora.gschema.overide
 rm -f /usr/share/glib-2.0/schemas/20_solus-project.budgie.wm.gschema.override
 
+glib-compile-schemas /usr/share/glib-2.0/schemas/
+
 cat >> /var/lib/livesys/livesys-session-extra << EOF
 ## set up lightdm autologin
 sed -i 's/^#autologin-user=.*/autologin-user=liveuser/' /etc/lightdm/lightdm.conf
@@ -63,7 +65,7 @@ pushd /usr/share/backgrounds || exit 1
 
 cp -v budgie/default.jpg budgie/default.jpg.orig
 
-ln -rsf ultramarine-linux/39/foresty-skies-l.png budgie/default.jpg
+#ln -rsf ultramarine-linux/39/foresty-skies-l.png budgie/default.jpg
 
 
 popd || exit 1

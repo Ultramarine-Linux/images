@@ -210,7 +210,7 @@ ELEMENTARY_APPS=(
     "io.elementary.mail/$(uname -m)/daily"
     "io.elementary.music/$(uname -m)/stable"
     "io.elementary.videos/$(uname -m)/stable"
-    "org.gnome.Evince"
+    "org.gnome.Evince/$(uname -m)/stable"
 )
 
 

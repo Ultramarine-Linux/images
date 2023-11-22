@@ -210,11 +210,14 @@ ELEMENTARY_APPS=(
     "io.elementary.mail/$(uname -m)/daily"
     "io.elementary.music/$(uname -m)/stable"
     "io.elementary.videos/$(uname -m)/stable"
+    "org.gnome.Evince"
 )
 
 
-for app in "${ELEMENTARY_APPS[@]}"; do
-    flatpak install -y ${app}
-done
 
-flatpak install -y flathub org.gnome.Evince
+# join them all together with a space
+FLATPAKS=$(printf "%s " "${ELEMENTARY_APPS[@]}")
+
+# install flatpaks
+
+flatpak install -y $FLATPAKS

@@ -27,6 +27,7 @@ dnf:
     - --setopt=strict=1
   exclude:
     - gnome-tour
+    - gnome-shell
     - setroubleshoot
     - elementary-calculator
     - elementary-calendar

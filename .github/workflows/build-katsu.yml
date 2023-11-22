@@ -62,7 +62,7 @@ jobs:
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
       # I'm sorry.
-      options: ${{ matrix.arch == 'x86_64' && '--privileged -v /dev:/dev' || '--privileged' }}
+      options: --privileged -v /dev:/dev --device-cgroup-rule='b 7:* rmw'
 
     steps:
       - name: Install dependencies
@@ -127,7 +127,7 @@ jobs:
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
       # I'm sorry.
-      options: ${{ matrix.arch == 'x86_64' && '--privileged -v /dev:/dev' || '--privileged' }}
+      options: --privileged -v /dev:/dev --device-cgroup-rule='b 7:* rmw'
 
     steps:
       - name: Install dependencies

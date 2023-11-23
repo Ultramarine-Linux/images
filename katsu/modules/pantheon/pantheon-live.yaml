@@ -29,7 +29,6 @@ dnf:
     - gnome-tour
     - gnome-shell
     - setroubleshoot
-    - evince
   arch_exclude:
     x86_64:
       - elementary-calculator
@@ -39,6 +38,7 @@ dnf:
       - elementary-mail
       - elementary-music
       - elementary-videos
+      - evince # yes, this application is shipped in appcenter
   packages:
     - "@ultramarine-pantheon-product-environment"
     - elementary-greeter

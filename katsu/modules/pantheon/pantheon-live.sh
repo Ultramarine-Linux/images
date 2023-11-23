@@ -203,13 +203,6 @@ restorecon -R /home/liveuser
 EOF
 
 ELEMENTARY_APPS=(
-    "org.gnome.Evince/$(uname -m)/stable"
-)
-
-arch=$(uname -m)
-# Elementary's Flatpak remote only supports x86_64... even though it's 2023
-if [[ $arch == "x86_64" ]]; then
-ELEMENTARY_APPS+=(
     "io.elementary.calculator/$(uname -m)/stable"
     "io.elementary.calendar/$(uname -m)/stable"
     "io.elementary.capnet-assist/$(uname -m)/stable"
@@ -217,12 +210,16 @@ ELEMENTARY_APPS+=(
     "io.elementary.mail/$(uname -m)/daily"
     "io.elementary.music/$(uname -m)/stable"
     "io.elementary.videos/$(uname -m)/stable"
+    "org.gnome.Evince/$(uname -m)/stable"
 )
-fi
 
+arch=$(uname -m)
+# Elementary's Flatpak remote only supports x86_64... even though it's 2023
+if [[ $arch == "x86_64" ]]; then
 # join them all together with a space
 FLATPAKS=$(printf "%s " "${ELEMENTARY_APPS[@]}")
 
 # install flatpaks
 
-flatpak install -y $FLATPAKS
+flatpak install -y appcenter $FLATPAKS
+fi

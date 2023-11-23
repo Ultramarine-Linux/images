@@ -54,15 +54,15 @@ jobs:
         variant:
           - base/base-disk
           #- flagship/flagship-chromebook
-          # runs on ubuntu-latest or arm64 if arch is aarch64
-    runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
+          # TODO: figure out how to get loop devices to work on our ARM runners
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/terrapkg/builder:f38
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
       # I'm sorry.
-      options: --privileged -v /dev:/dev --device-cgroup-rule "b 7:* rmw"
+      options: --privileged -v /dev:/dev
 
     steps:
       - name: Install dependencies
@@ -70,6 +70,8 @@ jobs:
           dnf install -y $DNF_PKGS
           dnf clean all
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
       - name: Clone Katsu
         uses: actions/checkout@v3
         with:
@@ -127,7 +129,7 @@ jobs:
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
       # I'm sorry.
-      options: --privileged -v /dev:/dev --device-cgroup-rule "b 7:* rmw"
+      options: --privileged -v /dev:/dev
 
     steps:
       - name: Install dependencies

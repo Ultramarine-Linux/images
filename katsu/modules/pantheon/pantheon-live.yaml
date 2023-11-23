@@ -29,16 +29,17 @@ dnf:
     - gnome-tour
     - gnome-shell
     - setroubleshoot
-    - elementary-calculator
-    - elementary-calendar
-    - elementary-capnet-assist
-    - elementary-camera
     - evince
-    - elementary-mail
-    - elementary-music
-    - elementary-videos
+  arch_exclude:
+    x86_64:
+      - elementary-calculator
+      - elementary-calendar
+      - elementary-capnet-assist
+      - elementary-camera
+      - elementary-mail
+      - elementary-music
+      - elementary-videos
   packages:
-    - gnome-disk-utility # Gala relies on this one thing's dbus service
     - "@ultramarine-pantheon-product-environment"
     - elementary-greeter
     - lightdm

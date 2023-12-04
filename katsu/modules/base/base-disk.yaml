@@ -29,6 +29,7 @@ dnf:
     - grub2-tools
     - "@hardware-support"
     - NetworkManager
+    - NetworkManager-wifi # add WiFi support too
     - rpm
     - libgomp
     - ultramarine-release-identity-basic
@@ -46,6 +47,7 @@ dnf:
       - bcm283x-firmware
       - bcm283x-overlays
       - "@arm-tools"
+      - b43-openfwwf
     x86_64:
       - grub2-efi-x64
       - grub2-efi-x64-modules

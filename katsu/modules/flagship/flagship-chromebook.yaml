@@ -1,20 +1,16 @@
 builder: dnf
 
 import:
-  - ../chromebook/base-disk.yaml
-  # - ../live/live.yaml
-  - ../chromebook/base-disk-x86_64.yaml
+  - ../chromebook/base-cbe.yaml
+  - ../chromebook/live-cbe.yaml
 
 distro: Ultramarine CBE Flagship 39
 
-out_file: ultramarine-cbe-flagship-39-live.iso
+out_file: ultramarine-cbe-flagship-39-live.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
-
-iso:
-  volume_id: UM-CBE-Fl
 
 dnf:
   releasever: 39
@@ -26,8 +22,8 @@ dnf:
   packages:
     - "@ultramarine-flagship-product-environment"
 
-scripts:
-  post:
-    - id: flagship-chromebook
-      name: Set up Flagship Chromebook Live
-      file: ./flagship-live.sh
+#scripts:
+#  post:
+#    - id: flagship-live
+#      name: Set up Flagship Live
+#      file: ./flagship-live.sh

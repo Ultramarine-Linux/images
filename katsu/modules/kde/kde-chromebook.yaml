@@ -1,24 +1,16 @@
 builder: dnf
 
 import:
-  - ../chromebook/base-disk.yaml
+  - ../chromebook/base-cbe.yaml
+  - ../chromebook/live-cbe.yaml
 
 distro: Ultramarine CBE KDE 39
 
-out_file: ultramarine-cbe-kde-39.iso
-
-scripts:
-  post:
-    #- id: kde-live
-    #  name: Set up KDE Live
-    #  file: ./kde-live.sh
+out_file: ultramarine-cbe-kde-39.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
-
-iso:
-  volume_id: UM-CBE-Kd
 
 dnf:
   releasever: 39

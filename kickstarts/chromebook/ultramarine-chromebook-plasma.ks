@@ -6,5 +6,6 @@
 
 %packages
 depthcharge-tools
+submarine
 cgpt
 #chrultrabook-tools

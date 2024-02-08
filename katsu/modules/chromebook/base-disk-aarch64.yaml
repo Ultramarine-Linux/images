@@ -1,12 +1,13 @@
 builder: dnf
-distro: Ultramarine Linux 39 Chromebook Edition
+distro: Ultramarine Linux 39
 
 users:
-  - username: neko
+  - username: ultramarine
     # plaintext password: ultramarine
     password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
     groups:
       - wheel
+
 
 import:
   - base.yaml
@@ -19,17 +20,24 @@ scripts:
       file: grub-setup.sh
 
 disk:
-  size: 5GiB
+  size: 8GiB
   partitions:
-    - label: Kernel
+    - label: EFI
       size: 512MiB
       filesystem: efi
-      mountpoint:
+      mountpoint: /boot/efi
 
     - label: boot
-      size: 4GiB
+      size: 1GiB
+      filesystem: ext4
+      mountpoint: /boot
+
+    - label: root
+      # size: 2.5MiB
       filesystem: ext4
       mountpoint: /
 
+
 dnf:
   releasever: 39
+  arch: aarch64

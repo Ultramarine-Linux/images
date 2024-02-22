@@ -11,11 +11,11 @@ umount $blpart
 sed -i '/mnt/d' /etc/fstab
 
 # Flash bootloader
-submarine="/usr/share/submarine/submarine-"
+submarine="/usr/share/submarine/submarine"
 if [ $(uname -m ) == 'x86_64' ]; then
     submarine="$submarine-x86.kpart"
 elif [ $(uname -m ) == 'aarch64' ]; then
-    submarine="$submarine-arm64.kpart"
+    submarine="$submarine-a64.kpart"
 fi
 
 dd if=$submarine of=$blpart

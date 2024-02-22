@@ -34,7 +34,7 @@ disk:
 
 dnf:
   releasever: 39
-      - fcoe-utils
+    - fcoe-utils
     - device-mapper-multipath
     - gnome-boxes
     - deepin-wallpapers

@@ -1,4 +1,0 @@
-variant_name="gnome"
-variant_short="G"
-variant_type=iso
-kickstart_path="kickstarts/ultramarine-gnome.ks"

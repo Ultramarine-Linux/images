@@ -4,7 +4,7 @@ import:
   - ../base/base.yaml
   - ../live/live.yaml
 
-out_file: ultramarine-pantheon-39-live.iso
+out_file: ultramarine-pantheon-40-live.iso
 
 scripts:
   post:
@@ -12,7 +12,7 @@ scripts:
       name: Set up Pantheon Live
       file: ./pantheon-live.sh
 
-distro: Ultramarine Pantheon 39
+distro: Ultramarine Pantheon 40
 
 bootloader: grub
 
@@ -22,7 +22,7 @@ iso:
   volume_id: UM-Pa-Live
 
 dnf:
-  releasever: 39
+  releasever: 40
   options:
     - --setopt=strict=1
   exclude:

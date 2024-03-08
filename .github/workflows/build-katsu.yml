@@ -101,7 +101,7 @@ jobs:
         run: |
           pushd katsu
           KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=disk-image modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml
-          xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/ultramarine-39-${{ matrix.arch }}.img.xz
+          xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/ultramarine-40-${{ matrix.arch }}.img.xz
           popd
 
       - name: Upload Artifact
@@ -210,7 +210,7 @@ jobs:
             type=$2
 
 
-            IMAGEDIR=images/$type/ultramarine/39/
+            IMAGEDIR=images/$type/ultramarine/40/
             mkdir -p $IMAGEDIR
 
             filename=$(basename -- "$file")

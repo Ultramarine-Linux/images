@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 39
+distro: Ultramarine Linux 40
 
 users:
   - username: ultramarine
@@ -7,7 +7,6 @@ users:
     password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
     groups:
       - wheel
-
 
 import:
   - base.yaml
@@ -37,6 +36,5 @@ disk:
       filesystem: ext4
       mountpoint: /
 
-
 dnf:
-  releasever: 39
+  releasever: 40

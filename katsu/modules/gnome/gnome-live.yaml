@@ -4,7 +4,7 @@ import:
   - ../base/base.yaml
   - ../live/live.yaml
 
-out_file: ultramarine-gnome-39-live.iso
+out_file: ultramarine-gnome-40-live.iso
 
 scripts:
   post:
@@ -12,7 +12,7 @@ scripts:
       name: Set up GNOME Live
       file: gnome-live.sh
 
-distro: Ultramarine GNOME 39
+distro: Ultramarine GNOME 40
 
 bootloader: grub
 
@@ -22,7 +22,7 @@ iso:
   volume_id: UM-Gn-Live
 
 dnf:
-  releasever: 39
+  releasever: 40
   # options:
   #   - --setopt=strict=0
   packages:

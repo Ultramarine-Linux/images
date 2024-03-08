@@ -2,7 +2,7 @@ builder: dnf
 
 dnf:
   repodir: repodir/
-  releasever: 39
+  releasever: 40
   options:
     - --setopt=cachedir=/var/cache/dnf
     - --nogpgcheck
@@ -26,4 +26,3 @@ dnf:
     - ultramarine-release-identity-basic
     - ultramarine-release-basic
     - fedora-repos
-

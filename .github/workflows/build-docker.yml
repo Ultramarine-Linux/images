@@ -57,7 +57,7 @@ jobs:
       # ubuntu-latest unless we're building aarch64
     runs-on: ${{ matrix.variant == 'base/base-docker-aarch64' && 'arm64' || 'ubuntu-latest' }}
     container:
-      image: ghcr.io/terrapkg/builder:f38
+      image: ghcr.io/terrapkg/builder:f39
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,

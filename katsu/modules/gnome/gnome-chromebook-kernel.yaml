@@ -1,8 +1,8 @@
 builder: dnf
 
 import:
-  - ../chromebook/base-cbe-braswell-baytrail.yaml
-  - ../chromebook/live-cbe-braswell-baytrail.yaml
+  - ../chromebook/base-cbe-kernel.yaml
+  - ../chromebook/live-cbe-kernel.yaml
 
 out_file: ultramarine-cbe-gnome-39-live.iso
 

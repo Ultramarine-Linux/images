@@ -68,5 +68,5 @@ dnf:
     - vim
     - nano
     # for drivers and other stuff
-    - kernel-stoneyridge
-    - kernel-stoneyridge-devel
+    - kernel-chromebook
+    - kernel-chromebook-devel

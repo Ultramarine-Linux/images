@@ -56,7 +56,7 @@ jobs:
           - base/base-disk
           #- flagship/flagship-chromebook
           # TODO: figure out how to get loop devices to work on our ARM runners
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
       image: ghcr.io/terrapkg/builder:f40
       # Pass /dev from host to container

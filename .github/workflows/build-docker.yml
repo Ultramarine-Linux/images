@@ -36,6 +36,7 @@ env:
     moby-engine
     podman
     buildah
+    katsu
 
 on:
   push:
@@ -70,20 +71,8 @@ jobs:
           dnf install -y $DNF_PKGS
           dnf clean all
 
-      - name: Clone Katsu
-        uses: actions/checkout@v3
-        with:
-          repository: FyraLabs/katsu
-          ref: main
-          path: katsu
-      - name: Build Katsu
-        run: |
-          pushd katsu
-          cargo build --release
-          cp target/release/katsu /usr/bin/katsu
-          popd
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: sanitize artifact name
         run: |
@@ -111,7 +100,7 @@ jobs:
           popd
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact }}-docker
           path: katsu/katsu-work/image/*.tar.xz
@@ -137,7 +126,7 @@ jobs:
       # how do i combine those two images into one multiarch tag
 
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Publish to registry
         run: |

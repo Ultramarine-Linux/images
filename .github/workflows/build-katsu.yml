@@ -37,6 +37,7 @@ env:
     moby-engine
     podman
     buildah
+    katsu
 
 on:
   push:
@@ -69,23 +70,8 @@ jobs:
         run: |
           dnf install -y $DNF_PKGS
           dnf clean all
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Clone Katsu
-        uses: actions/checkout@v3
-        with:
-          repository: FyraLabs/katsu
-          ref: main
-          path: katsu
-      - name: Build Katsu
-        run: |
-          pushd katsu
-          cargo build --release
-          cp target/release/katsu /usr/bin/katsu
-          popd
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: sanitize artifact name
         run: |
           name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
@@ -105,7 +91,7 @@ jobs:
           popd
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact }}-image
           path: katsu/katsu-work/image/*.img.xz
@@ -136,19 +122,6 @@ jobs:
         run: |
           dnf install -y $DNF_PKGS
           dnf clean all
-      - name: Clone Katsu
-        uses: actions/checkout@v3
-        with:
-          repository: FyraLabs/katsu
-          ref: main
-          path: katsu
-      - name: Build Katsu
-        run: |
-          pushd katsu
-          cargo build --release
-          cp target/release/katsu /usr/bin/katsu
-          popd
-
       - name: sanitize artifact name
         run: |
           name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
@@ -159,7 +132,7 @@ jobs:
           # e.g. flagship/flagship-live -> flagship
           echo variant=$(echo ${{ matrix.variant }} | cut -d'/' -f1) >> $GITHUB_ENV
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
           pushd katsu
@@ -176,7 +149,7 @@ jobs:
           popd
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact }}-iso
           path: katsu/*.iso
@@ -192,7 +165,7 @@ jobs:
 
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: artifacts
 

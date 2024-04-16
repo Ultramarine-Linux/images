@@ -9,8 +9,8 @@ users:
       - wheel
 
 import:
-  - ../base.yaml
-  - ../base-disk.yaml
+  - ../base/base.yaml
+  - ../base/base-disk.yaml
   - pantheon.yaml
 
 scripts:

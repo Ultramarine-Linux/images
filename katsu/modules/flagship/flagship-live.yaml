@@ -21,3 +21,7 @@ scripts:
     - id: flagship-live
       name: Set up Flagship Live
       file: ./flagship-live.sh
+
+dnf:
+  releasever: 40
+  arch: aarch64

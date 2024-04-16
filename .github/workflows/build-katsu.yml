@@ -54,7 +54,7 @@ jobs:
           - aarch64
         variant:
           - base/base-disk
-          - pantheon/base-disk
+          - flagship/base-disk
           # TODO: figure out how to get loop devices to work on our ARM runners
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:

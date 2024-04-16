@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 40 (Pantheon Edition)
+distro: Ultramarine Linux 40 (Flagship Edition)
 
 users:
   - username: ultramarine
@@ -11,7 +11,7 @@ users:
 import:
   - ../base/base.yaml
   - ../base/base-disk.yaml
-  - pantheon.yaml
+  - flagship.yaml
 
 scripts:
   post:

@@ -3,6 +3,7 @@ builder: dnf
 import:
   - ../chromebook/base-cbe.yaml
   - ../chromebook/live-cbe.yaml
+  - pantheon.yaml
 
 out_file: ultramarine-cbe-pantheon-40-live.iso
 
@@ -17,39 +18,3 @@ distro: Ultramarine CBE Pantheon 40
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
-
-dnf:
-  releasever: 40
-  options:
-    - --setopt=strict=1
-  exclude:
-    - gnome-tour
-    - gnome-shell
-    - setroubleshoot
-  arch_exclude:
-    x86_64:
-      - elementary-calculator
-      - elementary-calendar
-      - elementary-capnet-assist
-      - elementary-camera
-      - elementary-mail
-      - elementary-music
-      - elementary-videos
-      - evince # yes, this application is shipped in appcenter
-  packages:
-    - "@ultramarine-pantheon-product-environment"
-    - elementary-greeter
-    - lightdm
-    - seahorse
-    - appcenter
-    - xdg-user-dirs-gtk
-    - xdg-desktop-portal-gtk
-    - xdg-desktop-portal-xapp
-    - ultramarine-backgrounds-gnome
-    - rsms-inter-fonts
-    - ultramarine-repos-appcenter
-# scripts:
-#   post:
-#     - id: flagship-live
-#       name: Set up Flagship Live
-#       file: ./flagship-live.sh

@@ -1,5 +1,3 @@
-builder: dnf
-
 dnf:
   releasever: 40
   options:

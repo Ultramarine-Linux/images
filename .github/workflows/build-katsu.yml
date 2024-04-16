@@ -108,6 +108,7 @@ jobs:
           - gnome/gnome-live
           - kde/kde-live
           - pantheon/pantheon-live
+          - xfce/xfce-live
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
       image: ghcr.io/terrapkg/builder:f40

@@ -12,6 +12,13 @@ import:
   - base.yaml
   - base-disk.yaml
 
+dnf:
+  releasever: 40
+  # options:
+  #   - --setopt=strict=0
+  packages:
+    - ultramarine-release-identity-basic
+    - ultramarine-release-basic
 scripts:
   post:
     - id: grub

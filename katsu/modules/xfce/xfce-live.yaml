@@ -16,11 +16,11 @@ kernel_cmdline: "quiet rhgb"
 iso:
   volume_id: UM-Xf-Live
 
-#scripts:
-#  post:
-#    - id: xfce-live
-#      name: Set up XFCE Live
-#      file: ./xfce-live.sh
+scripts:
+  post:
+    - id: xfce-live
+      name: Set up XFCE Live
+      file: ./xfce-live.sh
 
 dnf:
   releasever: 40

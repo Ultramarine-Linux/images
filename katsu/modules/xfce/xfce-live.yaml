@@ -3,7 +3,7 @@ builder: dnf
 import:
   - ../base/base.yaml
   - ../live/live.yaml
-  - flagship.yaml
+  - xfce.yaml
 
 distro: Ultramarine Xfce 40
 

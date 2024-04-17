@@ -86,9 +86,7 @@ jobs:
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
           pushd katsu
-          KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=disk-image modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml
-          xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/ultramarine-40-${{ matrix.arch }}.img.xz
-          popd
+          KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=disk-image modules/${{ matrix.variant }}/${{ matrix.variant }}-${{ matrix.arch }}.yaml
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4

@@ -43,6 +43,3 @@ disk:
       # size: 2.5MiB
       filesystem: ext4
       mountpoint: /
-
-dnf:
-  releasever: 40

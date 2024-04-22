@@ -20,3 +20,6 @@ kernel_cmdline: "quiet rhgb"
 
 iso:
   volume_id: UM-Pa-Live
+
+dnf:
+  releasever: 40

@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-systemctl disable gdm
+systemctl disable gdm || true  # might fail
 
 # set livesys session type
 sed -i 's/^livesys_session=.*/livesys_session="xfce"/' /etc/sysconfig/livesys

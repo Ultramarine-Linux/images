@@ -20,10 +20,10 @@ dnf:
       - evince # yes, this application is shipped in appcenter
   packages:
     - "@ultramarine-pantheon-product-environment"
-    - elementary-greeter
+    # - elementary-greeter
     - lightdm
     - seahorse
-    - appcenter
+    # - appcenter
     - xdg-user-dirs-gtk
     - xdg-desktop-portal-gtk
     - xdg-desktop-portal-xapp

@@ -16,6 +16,7 @@ dnf:
   releasever: 40
   # options:
   #   - --setopt=strict=0
+  arch: aarch64
   packages:
     - ultramarine-release-identity-basic
     - ultramarine-release-basic
@@ -42,7 +43,3 @@ disk:
       # size: 2.5MiB
       filesystem: ext4
       mountpoint: /
-
-dnf:
-  releasever: 40
-  arch: aarch64

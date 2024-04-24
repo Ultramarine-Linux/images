@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 39
+distro: Ultramarine Linux 40
 
 users:
   - username: ultramarine
@@ -8,10 +8,17 @@ users:
     groups:
       - wheel
 
-
 import:
   - base.yaml
   - base-disk.yaml
+
+dnf:
+  releasever: 40
+  # options:
+  #   - --setopt=strict=0
+  packages:
+    - ultramarine-release-identity-basic
+    - ultramarine-release-basic
 
 scripts:
   post:
@@ -36,7 +43,3 @@ disk:
       # size: 2.5MiB
       filesystem: ext4
       mountpoint: /
-
-
-dnf:
-  releasever: 39

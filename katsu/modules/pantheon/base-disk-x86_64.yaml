@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 40
+distro: Ultramarine Linux 40 (Pantheon Edition)
 
 users:
   - username: ultramarine
@@ -9,22 +9,15 @@ users:
       - wheel
 
 import:
-  - base.yaml
-  - base-disk.yaml
+  - ../base/base.yaml
+  - ../base/base-disk.yaml
+  - pantheon.yaml
 
-dnf:
-  releasever: 40
-  # options:
-  #   - --setopt=strict=0
-  arch: aarch64
-  packages:
-    - ultramarine-release-identity-basic
-    - ultramarine-release-basic
 scripts:
   post:
     - id: grub
       name: Set up GRUB
-      file: grub-setup.sh
+      file: ../base/grub-setup.sh
 
 disk:
   size: 8GiB
@@ -43,3 +36,6 @@ disk:
       # size: 2.5MiB
       filesystem: ext4
       mountpoint: /
+
+dnf:
+  releasever: 40

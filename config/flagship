@@ -1,4 +1,0 @@
-variant_name="flagship"
-variant_short="Fl"
-variant_type=iso
-kickstart_path="kickstarts/ultramarine-budgie.ks"

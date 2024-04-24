@@ -4,16 +4,16 @@ import:
   - ../chromebook/base-cbe.yaml
   - ../chromebook/live-cbe.yaml
 
-distro: Ultramarine CBE KDE 39
+distro: Ultramarine CBE KDE 40
 
-out_file: ultramarine-cbe-kde-39.img
+out_file: ultramarine-cbe-kde-40.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 39
+  releasever: 40
   # options:
   #   - --setopt=strict=0
   packages:

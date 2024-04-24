@@ -1,7 +1,5 @@
-builder: dnf
-
 dnf:
-  releasever: 39
+  releasever: 40
   options:
     - --setopt=cachedir=/var/cache/dnf
     - --nogpgcheck
@@ -31,8 +29,6 @@ dnf:
     - NetworkManager
     - rpm
     - libgomp
-    - ultramarine-release-identity-basic
-    - ultramarine-release-basic
     - fedora-repos
     - efibootmgr
 

@@ -1,0 +1,26 @@
+builder: dnf
+
+import:
+  - ../base/base.yaml
+  - ../live/live.yaml
+  - xfce.yaml
+
+distro: Ultramarine Xfce 40
+
+out_file: ultramarine-xfce-40-live.iso
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-Xf-Live
+
+scripts:
+  post:
+    - id: xfce-live
+      name: Set up XFCE Live
+      file: ./xfce-live.sh
+
+dnf:
+  releasever: 40

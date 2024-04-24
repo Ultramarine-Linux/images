@@ -36,6 +36,7 @@ env:
     moby-engine
     podman
     buildah
+    katsu
 
 on:
   push:
@@ -57,7 +58,7 @@ jobs:
       # ubuntu-latest unless we're building aarch64
     runs-on: ${{ matrix.variant == 'base/base-docker-aarch64' && 'arm64' || 'ubuntu-latest' }}
     container:
-      image: ghcr.io/terrapkg/builder:f38
+      image: ghcr.io/terrapkg/builder:f40
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
@@ -70,20 +71,8 @@ jobs:
           dnf install -y $DNF_PKGS
           dnf clean all
 
-      - name: Clone Katsu
-        uses: actions/checkout@v3
-        with:
-          repository: FyraLabs/katsu
-          ref: main
-          path: katsu
-      - name: Build Katsu
-        run: |
-          pushd katsu
-          cargo build --release
-          cp target/release/katsu /usr/bin/katsu
-          popd
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: sanitize artifact name
         run: |
@@ -105,15 +94,13 @@ jobs:
             host_arch="arm64"
           fi
 
-          # tarball katsu-work/chroot then import using podman with tag ghcr.io/ultramarine-linux/ultramarine:39
-          tar -C katsu-work/chroot -c . | podman import --change='CMD ["/usr/bin/bash"]' - ghcr.io/ultramarine-linux/ultramarine:39 --arch $host_arch
-          podman save --format oci-archive ghcr.io/ultramarine-linux/ultramarine:39 --output katsu-work/image/katsu.tar.xz
+          # tarball katsu-work/chroot then import using podman with tag ghcr.io/ultramarine-linux/ultramarine:40
+          tar -C katsu-work/chroot -c . | podman import --change='CMD ["/usr/bin/bash"]' - ghcr.io/ultramarine-linux/ultramarine:40 --arch $host_arch
+          podman save --format oci-archive ghcr.io/ultramarine-linux/ultramarine:40 --output katsu-work/image/katsu.tar.xz
           popd
 
-
-
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact }}-docker
           path: katsu/katsu-work/image/*.tar.xz
@@ -139,13 +126,13 @@ jobs:
       # how do i combine those two images into one multiarch tag
 
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Publish to registry
         run: |
           set -x
           MANIFEST="ghcr.io/ultramarine-linux/ultramarine"
-          RELEASE="39"
+          RELEASE="40"
           ls -lR
           buildah manifest create $MANIFEST
           buildah manifest add $MANIFEST oci-archive:base-base-docker-x86_64-docker/katsu.tar.xz --arch amd64

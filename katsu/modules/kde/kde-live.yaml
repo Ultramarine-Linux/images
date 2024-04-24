@@ -4,9 +4,9 @@ import:
   - ../base/base.yaml
   - ../live/live.yaml
 
-distro: Ultramarine KDE 39
+distro: Ultramarine KDE 40
 
-out_file: ultramarine-kde-39-live.iso
+out_file: ultramarine-kde-40-live.iso
 
 scripts:
   post:
@@ -22,7 +22,7 @@ iso:
   volume_id: UM-Kd-Live
 
 dnf:
-  releasever: 39
+  releasever: 40
   # options:
   #   - --setopt=strict=0
   packages:

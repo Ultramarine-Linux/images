@@ -31,9 +31,8 @@ disk:
       filesystem: ext4
       mountpoint: /
 
-
 dnf:
-  releasever: 39
+  releasever: 40
     - fcoe-utils
     - device-mapper-multipath
     - gnome-boxes

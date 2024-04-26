@@ -11,7 +11,7 @@ users:
 import:
   - ../base/base.yaml
   - ../base/base-disk.yaml
-  - flagship.yaml
+  - xfce.yaml
 
 scripts:
   post:

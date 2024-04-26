@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 40
+distro: Ultramarine Linux 40 Container
 
 import:
   - base-docker.yaml

@@ -52,6 +52,8 @@ jobs:
         variant:
           - base/base-docker-x86_64
           - base/base-docker-aarch64
+          - base/devtools-docker-aarch64
+          - base/devtools-docker-x86_64
 
     outputs:
       artifact: ${{ matrix.variant }}

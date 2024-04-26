@@ -78,10 +78,22 @@ _Note: Pantheon Edition builds are failing due to an upstream issue with Mutter_
 
 - ☓ x86 Live
 - ☓ ARM Live
-- ☓ x86 Preinstalled
+- ✓ x86 Preinstalled
 - ☓ ARM Preinstalled
 - ☓ x86 Chromebook
 - ☓ Chromebook mt8183
 - ☓ Chromebook mt8192
 - ☓ Chromebook SC-7C
 - ☓ Chromebook Stoney Ridge
+
+### Base/Preinstalled
+
+- ✓ x86
+- ☓ ARM
+
+### Docker
+
+- ✓ x86
+- ✓ ARM
+- ☓ x86 Devtools
+- ☓ ARM Devtools

@@ -9,6 +9,9 @@ distro: Ultramarine Linux 40 (KDE Edition)
 
 out_file: ultramarine-kde-40-live.iso
 
+disk:
+  size: 3GiB
+
 scripts:
   post:
     - id: kde-live

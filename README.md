@@ -24,6 +24,13 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 
 ## Status of Images (UM40)
 
+### Notes
+
+- ARM Builds are still failing
+- KDE Builds are failing because of the image being too small
+- Pantheon is failing due to an upstream issue
+- Chromebook images are shown as failing due to me not setting them up to build yet
+
 ### Flagship
 
 - ✓ x86 Live
@@ -52,7 +59,7 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 
 - ☓ x86 Live
 - ☓ ARM Live
-- ☓ x86 Preinstalled
+- ✓ x86 Preinstalled
 - ☓ ARM Preinstalled
 - ☓ x86 Chromebook
 - ☓ Chromebook mt8183
@@ -61,8 +68,6 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 - ☓ Chromebook Stoney Ridge
 
 ### Pantheon
-
-_Note: Pantheon Edition builds are failing due to an upstream issue with Mutter_
 
 - ☓ x86 Live
 - ☓ ARM Live
@@ -95,5 +100,5 @@ _Note: Pantheon Edition builds are failing due to an upstream issue with Mutter_
 
 - ✓ x86
 - ✓ ARM
-- ☓ x86 Devtools
-- ☓ ARM Devtools
+- ✓ x86 Devtools
+- ✓ ARM Devtools

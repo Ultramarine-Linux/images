@@ -5,7 +5,7 @@ import:
   - ../live/live.yaml
   - xfce.yaml
 
-distro: Ultramarine Xfce 40
+distro: Ultramarine Linux 40 (Xfce Edition)
 
 out_file: ultramarine-xfce-40-live.iso
 
@@ -14,7 +14,7 @@ bootloader: grub
 kernel_cmdline: "quiet rhgb"
 
 iso:
-  volume_id: UM-Xf-Live
+  volume_id: UM-Xfce-Live
 
 scripts:
   post:

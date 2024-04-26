@@ -4,7 +4,7 @@ import:
   - ../chromebook/base-cbe-stoneyridge.yaml
   - ../chromebook/live-cbe-stoneyridge.yaml
 
-out_file: ultramarine-cbe-pantheon-39-live.iso
+out_file: ultramarine-cbe-stoney-pantheon-40-live.iso
 
 #  scripts:
 #  post:
@@ -12,14 +12,14 @@ out_file: ultramarine-cbe-pantheon-39-live.iso
 #      name: Set up Pantheon Live
 #      file: ./pantheon-live.sh
 
-distro: Ultramarine CBE Pantheon 39
+distro: Ultramarine Linux 40 Pantheon (Chromebook Edition)
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 39
+  releasever: 40
   options:
     - --setopt=strict=1
   exclude:

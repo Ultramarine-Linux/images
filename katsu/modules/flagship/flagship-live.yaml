@@ -5,7 +5,7 @@ import:
   - ../live/live.yaml
   - flagship.yaml
 
-distro: Ultramarine Flagship 40
+distro: Ultramarine Linux 40 (Flagship Edition)
 
 out_file: ultramarine-flagship-40-live.iso
 
@@ -14,7 +14,7 @@ bootloader: grub
 kernel_cmdline: "quiet rhgb"
 
 iso:
-  volume_id: UM-Fl-Live
+  volume_id: UM-Flagship-Live
 
 scripts:
   post:

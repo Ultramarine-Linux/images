@@ -4,7 +4,7 @@ import:
   - ../base/base.yaml
   - ../live/live.yaml
 
-distro: Ultramarine KDE 40
+distro: Ultramarine Linux 40 (KDE Edition)
 
 out_file: ultramarine-kde-40-live.iso
 
@@ -19,7 +19,7 @@ bootloader: grub
 kernel_cmdline: "quiet rhgb"
 
 iso:
-  volume_id: UM-Kd-Live
+  volume_id: UM-KDE-Live
 
 dnf:
   releasever: 40

@@ -4,7 +4,7 @@ import:
   - ../chromebook/base-cbe.yaml
   - ../chromebook/live-cbe.yaml
 
-distro: Ultramarine CBE KDE 40
+distro: Ultramarine Linux 40 KDE (Chromebook Edition)
 
 out_file: ultramarine-cbe-kde-40.img
 

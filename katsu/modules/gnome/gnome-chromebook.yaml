@@ -12,7 +12,7 @@ out_file: ultramarine-cbe-gnome-40-live.iso
 #      name: Set up GNOME Live
 #      file: gnome-live.sh
 
-distro: Ultramarine CBE GNOME 40
+distro: Ultramarine Linux 40 GNOME (Chromebook Edition)
 
 bootloader: grub
 

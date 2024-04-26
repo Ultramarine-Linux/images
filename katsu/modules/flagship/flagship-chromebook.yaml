@@ -4,7 +4,7 @@ import:
   - ../chromebook/base-cbe.yaml
   - ../chromebook/live-cbe.yaml
 
-distro: Ultramarine CBE Flagship 40
+distro: Ultramarine Linux 40 Flagship (Chromebook Edition)
 
 out_file: ultramarine-cbe-flagship-40-live.img
 

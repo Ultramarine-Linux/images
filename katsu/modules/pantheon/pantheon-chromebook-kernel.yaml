@@ -4,7 +4,7 @@ import:
   - ../chromebook/base-cbe-kernel.yaml
   - ../chromebook/live-cbe-kernel.yaml
 
-out_file: ultramarine-cbe-pantheon-39-live.iso
+out_file: ultramarine-cbe-pantheon-40-live.iso
 
 #  scripts:
 #  post:
@@ -12,7 +12,7 @@ out_file: ultramarine-cbe-pantheon-39-live.iso
 #      name: Set up Pantheon Live
 #      file: ./pantheon-live.sh
 
-distro: Ultramarine CBE Pantheon 39
+distro: Ultramarine Linux 40 Pantheon (Chromebook Edition)
 
 bootloader: grub
 

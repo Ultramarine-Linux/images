@@ -4,7 +4,7 @@ import:
   - ../chromebook/base-cbe-sc7180.yaml
   - ../chromebook/live-cbe-sc7180.yaml
 
-out_file: ultramarine-cbe-gnome-39-live.iso
+out_file: ultramarine-cbe-sc7c-gnome-40-live.iso
 
 #  scripts:
 #  post:
@@ -12,14 +12,14 @@ out_file: ultramarine-cbe-gnome-39-live.iso
 #      name: Set up GNOME Live
 #      file: gnome-live.sh
 
-distro: Ultramarine CBE GNOME 39
+distro: Ultramarine Linux 40 GNOME (Chromebook Edition)
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 39
+  releasever: 40
   # options:
   #   - --setopt=strict=0
   packages:

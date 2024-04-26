@@ -4,16 +4,16 @@ import:
   - ../chromebook/base-cbe-mt8192.yaml
   - ../chromebook/live-cbe-mt8192.yaml
 
-distro: Ultramarine CBE KDE 39
+distro: Ultramarine Linux 40 KDE (Chromebook Edition)
 
-out_file: ultramarine-cbe-kde-39.img
+out_file: ultramarine-cbe-mt8192-kde-40.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 39
+  releasever: 40
   # options:
   #   - --setopt=strict=0
   packages:

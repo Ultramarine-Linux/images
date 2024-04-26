@@ -12,7 +12,7 @@ scripts:
       name: Set up Pantheon Live
       file: ./pantheon-live.sh
 
-distro: Ultramarine Pantheon 40
+distro: Ultramarine Linux 40 (Pantheon Edition)
 
 bootloader: grub
 

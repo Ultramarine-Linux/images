@@ -13,7 +13,7 @@ out_file: ultramarine-cbe-pantheon-40-live.iso
 #      name: Set up Pantheon Live
 #      file: ./pantheon-live.sh
 
-distro: Ultramarine CBE Pantheon 40
+distro: Ultramarine Linux 40 Pantheon (Chromebook Edition)
 
 bootloader: grub
 

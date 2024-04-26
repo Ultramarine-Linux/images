@@ -3,6 +3,7 @@ builder: dnf
 import:
   - ../chromebook/base-cbe-mt8183.yaml
   - ../chromebook/live-cbe-mt8183.yaml
+  - kde.yaml
 
 distro: Ultramarine Linux 40 KDE (Chromebook Edition)
 
@@ -14,12 +15,3 @@ kernel_cmdline: "quiet rhgb"
 
 dnf:
   releasever: 40
-  # options:
-  #   - --setopt=strict=0
-  packages:
-    - "@ultramarine-kde-product-environment"
-# scripts:
-#   post:
-#     - id: flagship-live
-#       name: Set up Flagship Live
-#       file: ./flagship-live.sh

@@ -11,7 +11,7 @@ users:
 import:
   - ../base/base.yaml
   - ../base/base-disk.yaml
-  - pantheon.yaml
+  - kde.yaml
 
 scripts:
   post:

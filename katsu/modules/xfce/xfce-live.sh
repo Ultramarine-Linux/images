@@ -14,9 +14,6 @@ sed -i 's/^#autologin-user-timeout=.*/autologin-user-timeout=0/' /etc/lightdm/li
 # set Xfce as default session, otherwise login will fail
 sed -i 's/^#user-session=.*/user-session=xfce/' /etc/lightdm/lightdm.conf
 
-# set the default wallpaper
-mkdir -p /home/liveuser/.local/share/applications
-
 # Update installer icon
 sed -i -e 's/Icon=org.fedoraproject.AnacondaInstaller/Icon=drive-harddisk/' /usr/share/applications/liveinst.desktop
 

@@ -56,6 +56,9 @@ jobs:
           - base/base-disk
           - flagship/base-disk
           - gnome/base-disk
+          - flagship/base-disk
+          - kde/base-disk
+          - xfce/base-disk
           # TODO: figure out how to get loop devices to work on our ARM runners
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
@@ -107,7 +110,7 @@ jobs:
           - flagship/flagship-live
           - gnome/gnome-live
           - kde/kde-live
-          - pantheon/pantheon-live
+          #- pantheon/pantheon-live
           - xfce/xfce-live
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:

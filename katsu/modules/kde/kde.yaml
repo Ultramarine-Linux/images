@@ -7,3 +7,4 @@ dnf:
   packages:
     #beta - still need to set up our own comps
     - "@ultramarine-kde-product-environment"
+    - initial-setup-gui-wayland-plasma # Use KWin version of initial-setup

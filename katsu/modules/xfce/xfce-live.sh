@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 # set livesys session type
-sed -i 's/^livesys_session=.*/livesys_session="xfce"/' /etc/sysconfig/livesys
+#sed -i 's/^livesys_session=.*/livesys_session="xfce"/' /etc/sysconfig/livesys
 
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 

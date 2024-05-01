@@ -88,7 +88,6 @@ jobs:
 
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
-          modprobe loop max_part=63 || true
           LOOPDEV=$(losetup --partscan --find --show "$IMAGE")
           lsblk --raw --output "NAME,MAJ:MIN" --noheadings $LOOPDEV | tail -n +2 | while read dev node;
           do

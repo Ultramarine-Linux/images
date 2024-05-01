@@ -37,9 +37,6 @@ chown -R liveuser:liveuser /home/liveuser
 restorecon -R /home/liveuser
 EOF
 
-
-popd || exit 1
-
 cp /etc/lightdm/lightdm.conf.d/50-ultramarine-lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
 
 # Reinstall anaconda-core and anaconda-live to make sure we fix any localization issues

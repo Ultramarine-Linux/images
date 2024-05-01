@@ -88,13 +88,6 @@ jobs:
 
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
-          LOOPDEV=$(losetup --partscan --find --show "$IMAGE")
-          lsblk --raw --output "NAME,MAJ:MIN" --noheadings $LOOPDEV | tail -n +2 | while read dev node;
-          do
-              MAJ=$(echo $node | cut -d: -f1)
-              MIN=$(echo $node | cut -d: -f2)
-              [ ! -e "/dev/$dev" ] &&  mknod "/dev/$dev" b $MAJ $MIN
-          done
           pushd katsu
           KATSU_LOG=trace katsu -v --output=disk-image "modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml"
           popd

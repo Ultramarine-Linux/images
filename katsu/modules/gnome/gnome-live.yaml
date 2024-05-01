@@ -24,7 +24,7 @@ scripts:
 
 dnf:
   options:
-    - '--tsflags=' # possibly fix #6 by blanking out the tsflags so docs are installed
+    - --setopt='--tsflags=' # possibly fix #6 by blanking out the tsflags so docs are installed
     - -d2 #debug
     - --setopt=install_weak_deps=False
     - --setopt=cachedir=/var/cache/dnf

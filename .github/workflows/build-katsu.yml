@@ -88,8 +88,16 @@ jobs:
 
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
+          modprobe loop max_part=63 || true
+          LOOPDEV=$(losetup --partscan --find --show "$IMAGE")
+          lsblk --raw --output "NAME,MAJ:MIN" --noheadings $LOOPDEV | tail -n +2 | while read dev node;
+          do
+              MAJ=$(echo $node | cut -d: -f1)
+              MIN=$(echo $node | cut -d: -f2)
+              [ ! -e "/dev/$dev" ] &&  mknod "/dev/$dev" b $MAJ $MIN
+          done
           pushd katsu
-          KATSU_LOG=trace katsu -v --output=disk-image modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml
+          KATSU_LOG=trace katsu -v --output=disk-image "modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml"
           popd
 
       - name: Upload Artifact
@@ -139,7 +147,7 @@ jobs:
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
           pushd katsu
-          KATSU_LOG=trace katsu -v --output=iso modules/${{ matrix.variant }}.yaml
+          KATSU_LOG=trace katsu -v --output=iso "modules/${{ matrix.variant }}.yaml"
           # get the ISO name, and then append the arch
           # e.g. flagship-live.iso -> flagship-live-x86_64.iso
 

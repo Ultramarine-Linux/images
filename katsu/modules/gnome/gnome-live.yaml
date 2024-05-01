@@ -23,4 +23,11 @@ scripts:
       file: gnome-live.sh
 
 dnf:
+  options:
+    - '--tsflags=' # possibly fix #6 by blanking out the tsflags so docs are installed
+    - -ddv #debug
+    - --setopt=install_weak_deps=False
+    - --setopt=cachedir=/var/cache/dnf
+    - --setopt=keepcache=True
+    - --best
   releasever: 40

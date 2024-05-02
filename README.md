@@ -26,17 +26,15 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 
 ### Notes
 
-- ARM Builds are still failing
-- KDE Builds are failing because of the image being too small
-- Pantheon is failing due to an upstream issue
+- Pantheon is not currently being built
 - Chromebook images are shown as failing due to me not setting them up to build yet
 
 ### Flagship
 
-- ✓ x86 Live
-- ☓ ARM Live
+- ☓ x86 Live
+- ✓ ARM Live
 - ✓ x86 Preinstalled
-- ☓ ARM Preinstalled
+- ✓ ARM Preinstalled
 - ☓ x86 Chromebook
 - ☓ Chromebook mt8183
 - ☓ Chromebook mt8192
@@ -45,10 +43,10 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 
 ### GNOME
 
-- ✓ x86 Live
-- ☓ ARM Live
+- ☓ x86 Live
+- ✓ ARM Live
 - ✓ x86 Preinstalled
-- ☓ ARM Preinstalled
+- ✓ ARM Preinstalled
 - ☓ x86 Chromebook
 - ☓ Chromebook mt8183
 - ☓ Chromebook mt8192
@@ -58,9 +56,9 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 ### KDE
 
 - ☓ x86 Live
-- ☓ ARM Live
+- ✓ ARM Live
 - ✓ x86 Preinstalled
-- ☓ ARM Preinstalled
+- ✓ ARM Preinstalled
 - ☓ x86 Chromebook
 - ☓ Chromebook mt8183
 - ☓ Chromebook mt8192
@@ -82,9 +80,9 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 ### Xfce
 
 - ☓ x86 Live
-- ☓ ARM Live
+- ✓ ARM Live
 - ✓ x86 Preinstalled
-- ☓ ARM Preinstalled
+- ✓ ARM Preinstalled
 - ☓ x86 Chromebook
 - ☓ Chromebook mt8183
 - ☓ Chromebook mt8192
@@ -94,11 +92,11 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 ### Base/Preinstalled
 
 - ✓ x86
-- ☓ ARM
+- ✓ ARM
 
 ### Docker
 
 - ✓ x86
-- ✓ ARM
+- ☓ ARM
 - ✓ x86 Devtools
-- ✓ ARM Devtools
+- ☓ ARM Devtools

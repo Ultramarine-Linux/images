@@ -20,7 +20,7 @@ bootloader: grub
 kernel_cmdline: "quiet rhgb"
 
 iso:
-  volume_id: UM-KDE-Live
+  volume_id: UM-Kd-Live
 
 dnf:
   releasever: 40

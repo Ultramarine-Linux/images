@@ -97,7 +97,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact }}-image
-          path: katsu/katsu-work/image/*.img.xz
+          path: katsu/katsu-work/image/*.img*
 
   live-iso:
     strategy:

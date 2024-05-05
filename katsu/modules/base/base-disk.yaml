@@ -35,6 +35,7 @@ dnf:
     - ultramarine-release-basic
     - fedora-repos
     - efibootmgr
+    - appimagelauncher
 
   arch_packages:
     aarch64:

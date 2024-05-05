@@ -59,6 +59,11 @@ jobs:
           - kde/base-disk
           - xfce/base-disk
           - pantheon/base-disk
+          - flagship/flagship-chromebook
+          - gnome/gnome-chromebook
+          - kde/kde-chromebook
+          - xfce/xfce-chromebook
+          - pantheon/pantheon-chromebook
           # TODO: figure out how to get loop devices to work on our ARM runners
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:

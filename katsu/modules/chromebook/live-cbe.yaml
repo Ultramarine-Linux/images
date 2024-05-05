@@ -66,6 +66,8 @@ dnf:
     - htop
     - vim
     - nano
+    - kernel-chromebook
+    #- cros-keyboard-map
     # for drivers and other stuff
     - kernel
     - kernel-devel-matched

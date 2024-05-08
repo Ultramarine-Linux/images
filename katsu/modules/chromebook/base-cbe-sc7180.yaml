@@ -44,3 +44,4 @@ dnf:
     - depthcharge-tools
     - alsa-ucm-cros
     - submarine
+    - cros-keyboard-map

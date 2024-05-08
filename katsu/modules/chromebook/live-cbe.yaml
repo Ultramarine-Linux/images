@@ -71,3 +71,4 @@ dnf:
     # for drivers and other stuff
     - kernel
     - kernel-devel-matched
+    - cros-keyboard-map

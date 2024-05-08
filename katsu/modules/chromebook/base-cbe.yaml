@@ -40,4 +40,5 @@ dnf:
   packages:
     - depthcharge-tools
     - alsa-ucm-cros
+    - cros-keyboard-map
     # - submarine

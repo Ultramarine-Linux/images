@@ -31,7 +31,6 @@ disk:
       filesystem: ext4
       mountpoint: /
 
-
 dnf:
   releasever: 39
     - fcoe-utils
@@ -70,3 +69,4 @@ dnf:
     # for drivers and other stuff
     - kernel-sc7180
     - kernel-sc7180-devel
+    - cros-keyboard-map

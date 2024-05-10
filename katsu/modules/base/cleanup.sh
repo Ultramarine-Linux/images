@@ -35,3 +35,11 @@ rm -f /etc/machine-id
 touch /etc/machine-id
 
 rm -f /var/lib/rpm/__db*
+
+# Set up initial setup, might be redundant idk
+
+if [ rpm -q gnome-initial-setup ]; then
+    touch /var/lib/gdm/run-initial-setup || true
+else
+    systemctl enable initial-setup || true
+fi

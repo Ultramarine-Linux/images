@@ -1,10 +1,11 @@
 builder: dnf
 
 import:
-  - ../chromebook/base-cbe.yaml
-  - ../chromebook/live-cbe.yaml
+  - ../chromebook/base-cbe-mt8192.yaml
+  - ../chromebook/live-cbe-mt8192.yaml
+  - gnome.yaml
 
-out_file: ultramarine-cbe-gnome-40-live.iso
+out_file: ultramarine-cbe-mt8192-gnome-40-live.iso
 
 #  scripts:
 #  post:
@@ -12,7 +13,7 @@ out_file: ultramarine-cbe-gnome-40-live.iso
 #      name: Set up GNOME Live
 #      file: gnome-live.sh
 
-distro: Ultramarine CBE GNOME 40
+distro: Ultramarine Linux 40 GNOME (Chromebook Edition)
 
 bootloader: grub
 

@@ -54,7 +54,16 @@ jobs:
           - aarch64
         variant:
           - base/base-disk
-          #- flagship/flagship-chromebook
+          - flagship/base-disk
+          - gnome/base-disk
+          - kde/base-disk
+          - xfce/base-disk
+          #- pantheon/base-disk
+          - flagship/flagship-chromebook
+          - gnome/gnome-chromebook
+          - kde/kde-chromebook
+          - xfce/xfce-chromebook
+          #- pantheon/pantheon-chromebook
           # TODO: figure out how to get loop devices to work on our ARM runners
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
@@ -86,15 +95,14 @@ jobs:
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
           pushd katsu
-          KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=disk-image modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml
-          xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/ultramarine-40-${{ matrix.arch }}.img.xz
+          KATSU_LOG=trace katsu -v --output=disk-image "modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml"
           popd
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact }}-image
-          path: katsu/katsu-work/image/*.img.xz
+          path: katsu/katsu-work/image/*.img
 
   live-iso:
     strategy:
@@ -107,7 +115,8 @@ jobs:
           - flagship/flagship-live
           - gnome/gnome-live
           - kde/kde-live
-          - pantheon/pantheon-live
+          #- pantheon/pantheon-live
+          - xfce/xfce-live
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
       image: ghcr.io/terrapkg/builder:f40
@@ -136,7 +145,7 @@ jobs:
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
           pushd katsu
-          KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=iso modules/${{ matrix.variant }}.yaml
+          KATSU_LOG=trace katsu -v --output=iso "modules/${{ matrix.variant }}.yaml"
           # get the ISO name, and then append the arch
           # e.g. flagship-live.iso -> flagship-live-x86_64.iso
 

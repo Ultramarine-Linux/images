@@ -73,6 +73,12 @@ Comment=Welcome to Ultramarine
 Exec=bash -c "sudo glib-compile-schemas /usr/share/glib-2.0/schemas || : && /usr/share/anaconda/gnome/fedora-welcome"
 Terminal=false
 Type=Application
+
+# Remove the initial setup configs, we actually don't need them for now
+rm -rf /.unconfigured
+systemctl disable initial-setup || true
+
+
 EOA
 
 EOF

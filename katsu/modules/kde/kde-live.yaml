@@ -3,8 +3,9 @@ builder: dnf
 import:
   - ../base/base.yaml
   - ../live/live.yaml
+  - kde.yaml
 
-distro: Ultramarine KDE 40
+distro: Ultramarine Linux 40 (KDE Edition)
 
 out_file: ultramarine-kde-40-live.iso
 
@@ -23,12 +24,3 @@ iso:
 
 dnf:
   releasever: 40
-  # options:
-  #   - --setopt=strict=0
-  packages:
-    - "@ultramarine-kde-product-environment"
-# scripts:
-#   post:
-#     - id: flagship-live
-#       name: Set up Flagship Live
-#       file: ./flagship-live.sh

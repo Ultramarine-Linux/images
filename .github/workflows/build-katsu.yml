@@ -117,7 +117,7 @@ jobs:
           - kde/kde-live
           #- pantheon/pantheon-live
           - xfce/xfce-live
-    runs-on: ${{ matrix.arch == 'x86_64' && 'x86-64-lg' || 'arm64' }}
+    runs-on: ${{ matrix.arch == 'x86_64' && matrix.variant == 'kde/kde-live' && 'x86-64-lg' || matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
       image: ghcr.io/terrapkg/builder:f40
       # Pass /dev from host to container

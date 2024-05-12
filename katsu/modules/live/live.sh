@@ -1,7 +1,5 @@
 #!/bin/sh -x
 
-systemctl disable systemd-networkd-wait-online systemd-networkd systemd-networkd.socket || true
-
 # Enable livesys services
 systemctl enable livesys.service
 systemctl enable livesys-late.service
@@ -9,6 +7,9 @@ systemctl enable livesys-late.service
 # enable tmpfs for /tmp
 systemctl enable tmp.mount
 
+# make it so that we don't do writing to the overlay for things which
+# are just tmpdirs/caches
+# note https://bugzilla.redhat.com/show_bug.cgi?id=1135475
 cat >>/etc/fstab <<EOF
 vartmp   /var/tmp    tmpfs   defaults   0  0
 EOF
@@ -18,7 +19,7 @@ EOF
 echo "Packages within this LiveCD"
 rpm -qa --qf '%{size}\t%{name}-%{version}-%{release}.%{arch}\n' | sort -rn
 # Note that running rpm recreates the rpm db files which aren't needed or wanted
-# rm -f /var/lib/rpm/__db*
+rm -f /var/lib/rpm/__db*
 
 # go ahead and pre-make the man -k cache (#455968)
 /usr/bin/mandb -c
@@ -43,6 +44,7 @@ EOF
 # fails due to RHBZ #1369794
 systemctl disable network
 systemctl disable systemd-networkd
+systemctl disable systemd-networkd.socket
 systemctl disable systemd-networkd-wait-online
 systemctl disable openvpn-client@\*.service
 systemctl disable openvpn-server@\*.service

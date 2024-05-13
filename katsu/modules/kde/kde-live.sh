@@ -12,6 +12,9 @@ cat >/root/.config/gtk-3.0/settings.ini <<EOF
 gtk-theme-name = Adwaita
 EOF
 
+# set livesys session type
+sed -i 's/^livesys_session=.*/livesys_session="kde"/' /etc/sysconfig/livesys
+
 cat >>/var/lib/livesys/livesys-session-extra <<ALLEOF
 # Install welcome screen
 sed -i 's/Fedora/Ultramarine/g' /usr/share/anaconda/gnome/fedora-welcome

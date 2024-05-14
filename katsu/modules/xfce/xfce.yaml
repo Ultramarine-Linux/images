@@ -5,5 +5,4 @@ dnf:
   #exclude:
   #-
   packages:
-    #beta - still need to set up our own comps
-    - "@xfce-desktop"
+    - "@ultramarine-xfce-product-environment"

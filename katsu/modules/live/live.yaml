@@ -25,9 +25,10 @@ dnf:
     - dracut-live
     - dracut-config-generic
     - dracut-network
-    - anaconda-dracut
     - dracut-squash
+    - anaconda-dracut
     - anaconda-live
+    - anaconda-install-env-deps
     - "@anaconda-tools"
     - libblockdev-nvdimm
     - isomd5sum

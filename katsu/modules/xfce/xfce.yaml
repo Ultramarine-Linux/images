@@ -6,3 +6,4 @@ dnf:
     - ultramarine-backgrounds-compat
   packages:
     - "@ultramarine-xfce-product-environment"
+    - initial-setup-gui

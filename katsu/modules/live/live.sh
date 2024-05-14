@@ -65,24 +65,9 @@ systemctl set-default graphical.target
 dnf reinstall -y anaconda-core || true && dnf clean all
 
 cat >>/var/lib/livesys/livesys-session-extra <<EOF
-
-# Install welcome screen autostart file
-mkdir -p /home/liveuser/.config/autostart
-cat > /home/liveuser/.config/autostart/ultramarine-welcome.desktop << EOA
-[Desktop Entry]
-Name=Welcome to Ultramarine
-Comment=Welcome to Ultramarine
-Exec=bash -c "sudo glib-compile-schemas /usr/share/glib-2.0/schemas || : && /usr/share/anaconda/gnome/fedora-welcome"
-Terminal=false
-Type=Application
-
 # Remove the initial setup configs, we actually don't need them for now
 rm -rf /.unconfigured
 systemctl disable initial-setup || true
-
-
-EOA
-
 EOF
 
 echo "Setting up some extra post scripts"

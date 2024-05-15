@@ -58,7 +58,7 @@ jobs:
     outputs:
       artifact: ${{ matrix.variant }}
       # ubuntu-latest unless we're building aarch64
-    runs-on: ${{ matrix.variant == 'base/base-docker-aarch64' && 'arm64' || 'ubuntu-latest' }}
+    runs-on: ${{ endsWith(matrix.variant, '-aarch64') && 'arm64' || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:f40
       # Pass /dev from host to container

@@ -65,6 +65,15 @@ jobs:
           - xfce/xfce-chromebook
           #- pantheon/pantheon-chromebook
           # TODO: figure out how to get loop devices to work on our ARM runners
+        exclude:
+          - arch: aarch64
+            variant: flagship/flagship-chromebook
+          - arch: aarch64
+            variant: gnome/gnome-chromebook
+          - arch: aarch64
+            variant: kde/kde-chromebook
+          - arch: aarch64
+            variant: xfce/xfce-chromebook
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
       image: ghcr.io/terrapkg/builder:f40

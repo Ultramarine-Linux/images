@@ -20,7 +20,7 @@ scripts:
       file: ../base/grub-setup.sh
 
 disk:
-  size: 10GiB
+  size: 11GiB
   partitions:
     - label: EFI
       size: 512MiB

@@ -1,72 +1,65 @@
 builder: dnf
 
-users:
-  - username: ultramarine
-    # plaintext password: ultramarine
-    password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
-    groups:
-      - wheel
-
+# users:
+#   - username: ultramarine
+#     # plaintext password: ultramarine
+#     password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
+#     groups:
+#       - wheel
 scripts:
   post:
-    - id: grub
-      name: Set up GRUB
-      file: ../base/grub-setup.sh
+  - id: grub
+    name: Set up GRUB
+    file: ../base/grub-setup.sh
 
 disk:
   size: 14GiB
   partitions:
-    - label: submarine
-      size: 64MiB
-      filesystem: efi
-      mountpoint: /mnt
+  - label: submarine
+    size: 64MiB
+    filesystem: efi
+    mountpoint: /mnt
 
-    - label: boot
-      size: 1GiB
-      filesystem: ext4
-      mountpoint: /boot
+  - label: boot
+    size: 1GiB
+    filesystem: ext4
+    mountpoint: /boot
 
-    - label: root
-      # size: 2.5MiB
-      filesystem: ext4
-      mountpoint: /
+  - label: root
+    # size: 2.5MiB
+    filesystem: ext4
+    mountpoint: /
 
 dnf:
-  releasever: 39
-    - fcoe-utils
-    - device-mapper-multipath
-    - gnome-boxes
-    - deepin-wallpapers
-    - initial-setup-gui
-    - initial-setup
+  releasever: 39 - fcoe-utils - device-mapper-multipath - gnome-boxes - deepin-wallpapers - initial-setup-gui - initial-setup
   packages:
-    - python3-umstellar
-    - glibc-all-langpacks
-    - dracut-config-generic
-    - dracut-live
-    - dracut-config-generic
-    - dracut-network
-    - anaconda-dracut
-    - dracut-squash
-    - anaconda-live
-    - "@anaconda-tools"
-    - libblockdev-nvdimm
-    - isomd5sum
-    - orca
-    - espeak-ng
-    - speech-dispatcher-espeak-ng
-    - julietaula-montserrat-fonts
-    - ultramarine-backgrounds
-    - initscripts
-    - chkconfig
-    - gjs
-    - util-linux-user
-    - livesys-scripts
-    - rsync
-    - htop
-    - vim
-    - nano
-    # for drivers and other stuff
-    - kernel-sc7180
-    - kernel-sc7180-devel
-    - cros-keyboard-map
+  - python3-umstellar
+  - glibc-all-langpacks
+  - dracut-config-generic
+  - dracut-live
+  - dracut-config-generic
+  - dracut-network
+  - anaconda-dracut
+  - dracut-squash
+  - anaconda-live
+  - "@anaconda-tools"
+  - libblockdev-nvdimm
+  - isomd5sum
+  - orca
+  - espeak-ng
+  - speech-dispatcher-espeak-ng
+  - julietaula-montserrat-fonts
+  - ultramarine-backgrounds
+  - initscripts
+  - chkconfig
+  - gjs
+  - util-linux-user
+  - livesys-scripts
+  - rsync
+  - htop
+  - vim
+  - nano
+  # for drivers and other stuff
+  - kernel-sc7180
+  - kernel-sc7180-devel
+  - cros-keyboard-map

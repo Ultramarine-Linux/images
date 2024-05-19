@@ -7,3 +7,4 @@ dnf:
   packages:
     - "@ultramarine-xfce-product-environment"
     - initial-setup-gui
+    - "-dnfdragora" # Jade doesn't like this for some reason???

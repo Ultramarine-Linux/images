@@ -4,7 +4,8 @@ dnf:
   #   - --setopt=strict=0
   exclude:
     - ultramarine-backgrounds-compat
-    - "dnfdragora" # Jade doesn't like this for some reason???
+    - "dnfdragora*" # Jade doesn't like this for some reason???
+    - dnfdragora-updater
   packages:
     - "@ultramarine-xfce-product-environment"
     - initial-setup-gui

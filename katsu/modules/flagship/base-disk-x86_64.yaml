@@ -1,12 +1,12 @@
 builder: dnf
 distro: Ultramarine Linux 40 (Flagship Edition)
 
-users:
-  - username: ultramarine
-    # plaintext password: ultramarine
-    password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
-    groups:
-      - wheel
+# users:
+#   - username: ultramarine
+#     # plaintext password: ultramarine
+#     password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
+#     groups:
+#       - wheel
 
 import:
   - ../base/base.yaml

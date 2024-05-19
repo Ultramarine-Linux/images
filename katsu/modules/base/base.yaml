@@ -9,6 +9,9 @@ scripts:
     - id: buildstamp
       name: Generate buildstamp
       file: buildstamp.sh
+    - id: initial-setup
+      name: Enable Initial Setup
+      file: initial-setup.sh
 
 dnf:
   releasever: 40

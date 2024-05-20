@@ -25,6 +25,9 @@ scripts:
     - id: grub
       name: Set up GRUB
       file: grub-setup.sh
+    - id: multi-user
+      name: Set default target to multi-user
+      file: default-target.sh
 
 disk:
   size: 8GiB

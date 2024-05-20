@@ -58,12 +58,10 @@ jobs:
           - gnome/base-disk
           - kde/base-disk
           - xfce/base-disk
-          #- pantheon/base-disk
-          - flagship/flagship-chromebook
-          - gnome/gnome-chromebook
-          - kde/kde-chromebook
-          - xfce/xfce-chromebook
-          #- pantheon/pantheon-chromebook
+          #- flagship/flagship-chromebook
+          #- gnome/gnome-chromebook
+          #- kde/kde-chromebook
+          #- xfce/xfce-chromebook
           # TODO: figure out how to get loop devices to work on our ARM runners
         exclude:
           - arch: aarch64

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # force initial-setup to reconfigure the system
 touch /.unconfigured

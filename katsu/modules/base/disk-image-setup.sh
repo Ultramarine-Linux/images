@@ -4,4 +4,4 @@
 touch /.unconfigured
 
 # delete the systemd files to force a fresh unconfigured state
-rm /etc/{machine-id,localtime,hostname,shadow,locale.conf}
+rm -vf /etc/{machine-id,localtime,hostname,shadow,locale.conf}

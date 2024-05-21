@@ -6,3 +6,5 @@ touch /var/lib/gdm/run-initial-setup || true
 
 # Set default target to graphical
 systemctl set-default graphical.target
+
+touch /.unconfigured

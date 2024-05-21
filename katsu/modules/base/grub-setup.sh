@@ -32,10 +32,6 @@ export \$prefix
 configfile \$prefix/grub.cfg
 EOF
 
-# edit ro to rw in all entries
-
-sed -i 's/ ro  / rw  /g' /boot/loader/entries/*.conf
-
 # -v will fill up the logs and make it hard to debug
 dracut -fN --add-drivers "virtio virtio_blk virtio_scsi xchi_pci mmc" --regenerate-all
 

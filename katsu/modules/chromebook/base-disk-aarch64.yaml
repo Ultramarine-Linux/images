@@ -34,6 +34,8 @@ disk:
       mountpoint: /boot
 
     - label: root
+      flags:
+        - grow-fs
       type: root
       # size: 2.5MiB
       filesystem: ext4

@@ -4,6 +4,7 @@ import:
   - ../chromebook/base-cbe-mt8183.yaml
   - ../chromebook/live-cbe-mt8183.yaml
   - kde.yaml
+  - kde-disk.yaml
 
 distro: Ultramarine Linux 40 KDE (Chromebook Edition)
 

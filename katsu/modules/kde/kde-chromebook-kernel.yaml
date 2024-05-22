@@ -4,6 +4,7 @@ import:
   - ../chromebook/base-cbe-kernel.yaml
   - ../chromebook/live-cbe-kernel.yaml
   - kde.yaml
+  - kde-disk.yaml
 
 distro: Ultramarine Linux 40 KDE (Chromebook Edition)
 

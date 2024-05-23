@@ -6,6 +6,7 @@ scripts:
     - id: selinux-setup
       name: Set up SELinux
       file: selinux.sh
+      chroot: false
     - id: buildstamp
       name: Generate buildstamp
       file: buildstamp.sh

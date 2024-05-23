@@ -3,9 +3,6 @@ scripts:
     - id: initial-setup
       name: Enable Initial Setup
       file: initial-setup.sh
-    - id: disk-image-setup
-      name: Set up disk image
-      file: disk-image-setup.sh
 dnf:
   releasever: 40
   options:

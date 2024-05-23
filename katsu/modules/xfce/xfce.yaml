@@ -8,4 +8,3 @@ dnf:
     - dnfdragora-updater
   packages:
     - "@ultramarine-xfce-product-environment"
-    - initial-setup-gui

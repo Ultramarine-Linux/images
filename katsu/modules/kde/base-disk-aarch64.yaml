@@ -12,6 +12,7 @@ import:
   - ../base/base.yaml
   - ../base/base-disk.yaml
   - kde.yaml
+  - kde-disk.yaml
 
 scripts:
   post:

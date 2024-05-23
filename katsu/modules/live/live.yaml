@@ -18,7 +18,6 @@ dnf:
     - gnome-boxes
     - deepin-wallpapers
   packages:
-    - initial-setup-gui # UM40 change, we are now enabling OOBEs for disk images firstboots and OEM installs!
     - python3-umstellar
     - glibc-all-langpacks
     - dracut-config-generic

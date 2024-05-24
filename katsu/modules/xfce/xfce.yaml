@@ -1,8 +1,8 @@
 scripts:
   post:
-    - id: flagship
-      name: Extra Flagship setup
-      file: ./flagship-extra.sh
+    - id: xfce
+      name: Extra XFCE setup
+      file: ./xfce-extra.sh
 
 dnf:
   releasever: 40

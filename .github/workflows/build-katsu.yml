@@ -183,7 +183,7 @@ jobs:
   #### LIVE ISO PUSH ####
 
   push-image:
-    runs-on: ubuntu-latest
+    runs-on: arm64
     environment: production
     needs:
       - live-iso

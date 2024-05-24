@@ -79,7 +79,7 @@ jobs:
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
       # I'm sorry.
-      options: --privileged -v /dev:/dev --cap-add=MAC_ADMIN
+      options: --privileged -v /dev:/dev --cap-add=MAC_ADMIN --security-opt label=type:unconfined_t
 
     steps:
       - name: Install dependencies
@@ -131,7 +131,7 @@ jobs:
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
       # I'm sorry.
-      options: --privileged -v /dev:/dev --cap-add=MAC_ADMIN
+      options: --privileged -v /dev:/dev --cap-add=MAC_ADMIN --security-opt label=type:unconfined_t
 
     steps:
       - name: Install dependencies

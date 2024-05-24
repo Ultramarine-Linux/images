@@ -38,6 +38,8 @@ dnf:
     - fedora-repos
     - efibootmgr
     - ultramarine-raw-filesystem
+    - plymouth
+    - plymouth-system-theme
 
   arch_packages:
     aarch64:

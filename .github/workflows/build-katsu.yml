@@ -101,6 +101,7 @@ jobs:
 
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
+          chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           pushd katsu
           KATSU_LOG=trace katsu -v --output=disk-image "modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml"
           popd
@@ -156,6 +157,7 @@ jobs:
             mount -t devtmpfs none /dev
           fi
 
+          chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           pushd katsu
           KATSU_LOG=trace katsu -v --output=iso "modules/${{ matrix.variant }}.yaml"
           # get the ISO name, and then append the arch

@@ -7,6 +7,7 @@ scripts:
       name: Set up SELinux
       file: selinux.sh
       chroot: false
+      priority: 100
     - id: buildstamp
       name: Generate buildstamp
       file: buildstamp.sh

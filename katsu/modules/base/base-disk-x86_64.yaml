@@ -26,6 +26,7 @@ scripts:
       name: Set up GRUB
       file: grub-setup.sh
     - id: multi-user
+      priority: 60
       name: Set default target to multi-user
       file: default-target.sh
 

@@ -107,13 +107,16 @@ jobs:
           chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           pushd katsu
           KATSU_LOG=trace katsu -v --output=disk-image "modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml"
+          mv katsu-work/image/katsu.img katsu-work/image/${{ env.artifact }}.img
+          # compress image as zst, output as .img.zst
+          zstd -T0 -19 katsu-work/image/${{ env.artifact }}.img -o katsu-work/image/${{ env.artifact }}.img.zst
           popd
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact }}-image
-          path: katsu/katsu-work/image/*.img
+          path: katsu/katsu-work/image/*.img.zst
 
   live-iso:
     strategy:

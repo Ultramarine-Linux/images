@@ -4,4 +4,4 @@ set -euxo pipefail
 
 echo "Setting up SELinux..."
 
-setfiles -e /proc -e /sys /etc/selinux/targeted/contexts/files/file_contexts /
+setfiles -F -r "${CHROOT}" "${CHROOT}"/etc/selinux/targeted/contexts/files/file_contexts "${CHROOT}"

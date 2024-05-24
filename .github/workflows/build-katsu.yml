@@ -37,10 +37,14 @@ env:
     moby-engine
     podman
     buildah
+    katsu
 
 on:
   push:
+    branches: [ "um40" ]
   workflow_dispatch:
+  pull_request:
+    branches: [ "um40" ]
 
 jobs:
   #### BASE IMAGES ####
@@ -53,11 +57,27 @@ jobs:
           - aarch64
         variant:
           - base/base-disk
+          - flagship/base-disk
+          - gnome/base-disk
+          - kde/base-disk
+          - xfce/base-disk
           #- flagship/flagship-chromebook
+          #- gnome/gnome-chromebook
+          #- kde/kde-chromebook
+          #- xfce/xfce-chromebook
           # TODO: figure out how to get loop devices to work on our ARM runners
-    runs-on: ubuntu-latest
+        exclude:
+          - arch: aarch64
+            variant: flagship/flagship-chromebook
+          - arch: aarch64
+            variant: gnome/gnome-chromebook
+          - arch: aarch64
+            variant: kde/kde-chromebook
+          - arch: aarch64
+            variant: xfce/xfce-chromebook
+    runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
-      image: ghcr.io/terrapkg/builder:f39
+      image: ghcr.io/terrapkg/builder:f40
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
@@ -69,23 +89,8 @@ jobs:
         run: |
           dnf install -y $DNF_PKGS
           dnf clean all
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Clone Katsu
-        uses: actions/checkout@v3
-        with:
-          repository: FyraLabs/katsu
-          ref: main
-          path: katsu
-      - name: Build Katsu
-        run: |
-          pushd katsu
-          cargo build --release
-          cp target/release/katsu /usr/bin/katsu
-          popd
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: sanitize artifact name
         run: |
           name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
@@ -99,16 +104,16 @@ jobs:
 
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
+          chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           pushd katsu
-          KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=disk-image modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml
-          xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/ultramarine-39-${{ matrix.arch }}.img.xz
+          KATSU_LOG=trace katsu -v --output=disk-image "modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml"
           popd
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact }}-image
-          path: katsu/katsu-work/image/*.img.xz
+          path: katsu/katsu-work/image/*.img
 
   live-iso:
     strategy:
@@ -121,10 +126,11 @@ jobs:
           - flagship/flagship-live
           - gnome/gnome-live
           - kde/kde-live
-          - pantheon/pantheon-live
-    runs-on: ${{ matrix.arch == 'x86_64' && 'x86-64-lg' || 'arm64' }}
+          #- pantheon/pantheon-live
+          - xfce/xfce-live
+    runs-on: ${{ matrix.arch == 'x86_64' && matrix.variant == 'kde/kde-live' && 'x86-64-lg' || matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
-      image: ghcr.io/terrapkg/builder:f39
+      image: ghcr.io/terrapkg/builder:f40
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
@@ -136,19 +142,6 @@ jobs:
         run: |
           dnf install -y $DNF_PKGS
           dnf clean all
-      - name: Clone Katsu
-        uses: actions/checkout@v3
-        with:
-          repository: FyraLabs/katsu
-          ref: main
-          path: katsu
-      - name: Build Katsu
-        run: |
-          pushd katsu
-          cargo build --release
-          cp target/release/katsu /usr/bin/katsu
-          popd
-
       - name: sanitize artifact name
         run: |
           name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
@@ -159,11 +152,17 @@ jobs:
           # e.g. flagship/flagship-live -> flagship
           echo variant=$(echo ${{ matrix.variant }} | cut -d'/' -f1) >> $GITHUB_ENV
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
+          # loop device fix
+          if [ "$(df -T /dev | tail -1 |cut -f 1 -d ' ')" = "tmpfs" ]; then
+            mount -t devtmpfs none /dev
+          fi
+
+          chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           pushd katsu
-          KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=iso modules/${{ matrix.variant }}.yaml
+          KATSU_LOG=trace katsu -v --output=iso "modules/${{ matrix.variant }}.yaml"
           # get the ISO name, and then append the arch
           # e.g. flagship-live.iso -> flagship-live-x86_64.iso
 
@@ -176,7 +175,7 @@ jobs:
           popd
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact }}-iso
           path: katsu/*.iso
@@ -189,10 +188,11 @@ jobs:
     needs:
       - live-iso
       - image
+    if: github.event_name != 'pull_request'
 
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: artifacts
 
@@ -210,7 +210,7 @@ jobs:
             type=$2
 
 
-            IMAGEDIR=images/$type/ultramarine/39/
+            IMAGEDIR=images/$type/ultramarine/40/
             mkdir -p $IMAGEDIR
 
             filename=$(basename -- "$file")

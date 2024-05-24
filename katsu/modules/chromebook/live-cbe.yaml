@@ -1,12 +1,11 @@
 builder: dnf
 
-users:
-  - username: ultramarine
-    # plaintext password: ultramarine
-    password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
-    groups:
-      - wheel
-
+# users:
+#   - username: ultramarine
+#     # plaintext password: ultramarine
+#     password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
+#     groups:
+#       - wheel
 scripts:
   post:
     - id: grub
@@ -17,29 +16,27 @@ disk:
   size: 14GiB
   partitions:
     - label: submarine
+      type: linux-generic
       size: 16MiB
       filesystem: efi
       mountpoint: /mnt
 
     - label: boot
+      type: xbootldr
       size: 1GiB
       filesystem: ext4
       mountpoint: /boot
 
     - label: root
+      flags:
+        - grow-fs
+      type: root
       # size: 2.5MiB
       filesystem: ext4
       mountpoint: /
 
-
 dnf:
-  releasever: 39
-      - fcoe-utils
-    - device-mapper-multipath
-    - gnome-boxes
-    - deepin-wallpapers
-    - initial-setup-gui
-    - initial-setup
+  releasever: 40 - fcoe-utils - device-mapper-multipath - gnome-boxes - deepin-wallpapers - initial-setup-gui - initial-setup
   packages:
     - python3-umstellar
     - glibc-all-langpacks
@@ -67,6 +64,9 @@ dnf:
     - htop
     - vim
     - nano
+    - kernel-chromebook
+    #- cros-keyboard-map
     # for drivers and other stuff
     - kernel
     - kernel-devel-matched
+    - cros-keyboard-map

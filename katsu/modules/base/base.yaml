@@ -6,12 +6,14 @@ scripts:
     - id: selinux-setup
       name: Set up SELinux
       file: selinux.sh
+      chroot: false
+      priority: 100
     - id: buildstamp
       name: Generate buildstamp
       file: buildstamp.sh
 
 dnf:
-  releasever: 39
+  releasever: 40
   repodir: repodir
   options:
     - --setopt=cachedir=/var/cache/dnf
@@ -80,5 +82,4 @@ dnf:
 #     - ultramarine-release
 #     - ultramarine-repos
 #     - "ultramarine-logos*"
-
 

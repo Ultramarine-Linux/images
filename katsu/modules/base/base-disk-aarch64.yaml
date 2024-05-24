@@ -1,43 +1,54 @@
 builder: dnf
-distro: Ultramarine Linux 39
+distro: Ultramarine Linux 40
 
-users:
-  - username: ultramarine
-    # plaintext password: ultramarine
-    password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
-    groups:
-      - wheel
-
+# users:
+#   - username: ultramarine
+#     # plaintext password: ultramarine
+#     password: "$y$j9T$6/DebcxXazPrtBYnNXtEM.$yaUJHww5Mo1L8xNJ9IDJ.bvKOrIJxAG9PGQKWioBMx3"
+#     groups:
+#       - wheel
 
 import:
   - base.yaml
   - base-disk.yaml
 
+dnf:
+  releasever: 40
+  # options:
+  #   - --setopt=strict=0
+  arch: aarch64
+  packages:
+    - ultramarine-release-identity-basic
+    - ultramarine-release-basic
 scripts:
   post:
     - id: grub
       name: Set up GRUB
       file: grub-setup.sh
+    - id: multi-user
+      priority: 60
+      name: Set default target to multi-user
+      file: default-target.sh
 
 disk:
   size: 8GiB
   partitions:
     - label: EFI
+      type: esp
       size: 512MiB
       filesystem: efi
       mountpoint: /boot/efi
 
     - label: boot
+      type: xbootldr
       size: 1GiB
       filesystem: ext4
       mountpoint: /boot
 
     - label: root
+      flags:
+        - grow-fs
+      type: root
       # size: 2.5MiB
       filesystem: ext4
       mountpoint: /
-
-
-dnf:
-  releasever: 39
-  arch: aarch64

@@ -8,18 +8,15 @@ scripts:
       name: Set up Live Image
       file: live.sh
 dnf:
-  releasever: 39
+  releasever: 40
   exclude:
     - fedora-release*
     - generic-release*
     - fedora-bookmarks
-    - initial-setup
     - fcoe-utils
     - device-mapper-multipath
     - gnome-boxes
     - deepin-wallpapers
-    - initial-setup-gui
-    - initial-setup
   packages:
     - python3-umstellar
     - glibc-all-langpacks
@@ -27,9 +24,10 @@ dnf:
     - dracut-live
     - dracut-config-generic
     - dracut-network
-    - anaconda-dracut
     - dracut-squash
+    - anaconda-dracut
     - anaconda-live
+    - anaconda-install-env-deps
     - "@anaconda-tools"
     - libblockdev-nvdimm
     - isomd5sum

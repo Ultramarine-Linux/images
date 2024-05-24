@@ -14,7 +14,7 @@ scripts:
       file: submarine.sh
 
 dnf:
-  releasever: 39
+  releasever: 40
   repodir: ../base/repodir
   options:
     - --setopt=cachedir=/var/cache/dnf
@@ -40,4 +40,5 @@ dnf:
   packages:
     - depthcharge-tools
     - alsa-ucm-cros
+    - cros-keyboard-map
     # - submarine

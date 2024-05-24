@@ -65,7 +65,7 @@ jobs:
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
       # I'm sorry.
-      options: --privileged -v /dev:/dev
+      options: --privileged -v /dev:/dev --cap-add=MAC_ADMIN
 
     steps:
       - name: Install dependencies

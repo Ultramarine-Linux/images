@@ -41,7 +41,10 @@ env:
 
 on:
   push:
+    branches: [ "um40" ]
   workflow_dispatch:
+  pull_request:
+    branches: [ "um40" ]
 
 jobs:
   #### BASE IMAGES ####
@@ -185,6 +188,7 @@ jobs:
     needs:
       - live-iso
       - image
+    if: github.event_name != 'pull_request'
 
     steps:
       - name: Download artifacts

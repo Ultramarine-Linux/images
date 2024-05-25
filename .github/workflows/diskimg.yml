@@ -79,9 +79,11 @@ jobs:
 
       - name: Build image
         run: |
+          set -euxo pipefail
           chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           # Resolve path to manifest
           manifest_path="katsu/${{ github.event.inputs.manifest_path }}-${{ matrix.arch }}.yaml"
+          echo "Using manifest: $manifest_path"
           export KATSU_LOG=trace
           katsu -v --output=disk-image $manifest_path
 

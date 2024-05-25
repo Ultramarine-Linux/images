@@ -83,10 +83,10 @@ jobs:
           # Resolve path to manifest
           manifest_path="katsu/${{ github.event.inputs.manifest_path }}-${{ matrix.arch }}.yaml"
           export KATSU_LOG=trace
+          katsu -v --output=disk-image $manifest_path
 
       - name: Label and compress image
         run: |
-          katsu -v --output=disk-image $manifest_path
           mv katsu-work/image/katsu.img katsu-work/image/${{ env.artifact }}.img
 
           # Compress image as zst, output as .img.zst

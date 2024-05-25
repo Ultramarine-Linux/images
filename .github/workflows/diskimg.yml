@@ -74,7 +74,7 @@ jobs:
       - name: Set output artifact name
         run: |
           PREFIX="ultramarine-linux-${{ matrix.arch }}"
-          name=$(echo $PREFIX-${{ github.event.inputs.edition }} | sed 's/\//-/g')
+          name=$(echo $PREFIX-${{ inputs.edition }} | sed 's/\//-/g')
           echo artifact=$name >> $GITHUB_ENV
 
       - name: Build image
@@ -82,7 +82,7 @@ jobs:
           set -euxo pipefail
           chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           # Resolve path to manifest
-          manifest_path="katsu/${{ github.event.inputs.manifest_path }}-${{ matrix.arch }}.yaml"
+          manifest_path="katsu/${{ inputs.manifest_path }}-${{ matrix.arch }}.yaml"
           echo "Using manifest: $manifest_path"
           export KATSU_LOG=trace
           katsu -v --output=disk-image $manifest_path

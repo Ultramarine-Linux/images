@@ -1,0 +1,24 @@
+# this is a test workflow, not ready for prod
+
+name: "Build images"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - um40-devel
+
+jobs:
+  images:
+    strategy:
+      fail-fast: false
+      matrix:
+        build:
+          - manifest_path: "base/base-disk"
+            edition: "base"
+        
+    uses: ./.github/workflows/diskimg.yml
+    with:
+      manifest_path: ${{ matrix.build.manifest_path }}
+      edition: ${{ matrix.build.edition }}
+    secrets: inherit

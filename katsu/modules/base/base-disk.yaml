@@ -3,6 +3,9 @@ scripts:
     - id: initial-setup
       name: Enable Initial Setup
       file: initial-setup.sh
+    - id: disk-setup
+      name: Extra configuration for disk images
+      file: disk-setup.sh
 dnf:
   releasever: 40
   options:
@@ -40,6 +43,7 @@ dnf:
     - ultramarine-raw-filesystem
     - plymouth
     - plymouth-system-theme
+    - plymouth-theme-spinner
 
   arch_packages:
     aarch64:

@@ -89,6 +89,7 @@ jobs:
 
       - name: Label and compress image
         run: |
+          set -euxo pipefail
           mv katsu-work/image/katsu.img katsu-work/image/${{ env.artifact }}.img
 
           # Compress image as zst, output as .img.zst

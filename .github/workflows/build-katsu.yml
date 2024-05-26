@@ -187,11 +187,12 @@ jobs:
   #### LIVE ISO PUSH ####
 
   push-image:
-    runs-on: ubuntu-latest
+    runs-on: arm64
     environment: production
     needs:
       - live-iso
       - image
+    if: github.event_name != 'pull_request'
 
     steps:
       - name: Download artifacts
@@ -213,7 +214,7 @@ jobs:
             type=$2
 
 
-            IMAGEDIR=images/$type/ultramarine/39/
+            IMAGEDIR=images/$type/ultramarine/40/
             mkdir -p $IMAGEDIR
 
             filename=$(basename -- "$file")

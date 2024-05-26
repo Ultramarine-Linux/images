@@ -99,6 +99,7 @@ jobs:
 
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
+          chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           pushd katsu
           KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=disk-image modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml
           xz -z9 katsu-work/image/katsu.img -c > katsu-work/image/ultramarine-39-${{ matrix.arch }}.img.xz
@@ -122,7 +123,7 @@ jobs:
           - gnome/gnome-live
           - kde/kde-live
           - pantheon/pantheon-live
-    runs-on: ${{ matrix.arch == 'x86_64' && 'x86-64-lg' || 'arm64' }}
+    runs-on: ${{ matrix.arch == 'x86_64' && matrix.variant == 'kde/kde-live' && 'x86-64-lg' || matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
       image: ghcr.io/terrapkg/builder:f39
       # Pass /dev from host to container
@@ -162,6 +163,7 @@ jobs:
         uses: actions/checkout@v4
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
+          chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           pushd katsu
           KATSU_LOG=trace KATSU_DRACUT_EXTRA_ARGS="--debug" katsu -v --output=iso modules/${{ matrix.variant }}.yaml
           # get the ISO name, and then append the arch

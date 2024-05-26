@@ -37,6 +37,7 @@ env:
     moby-engine
     podman
     buildah
+    which
 
 on:
   push:

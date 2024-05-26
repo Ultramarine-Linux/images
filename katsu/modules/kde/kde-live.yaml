@@ -27,6 +27,8 @@ dnf:
   #   - --setopt=strict=0
   packages:
     - "@ultramarine-kde-product-environment"
+  exclude:
+    - qt5-qtwebengine-freeworld
 # scripts:
 #   post:
 #     - id: flagship-live

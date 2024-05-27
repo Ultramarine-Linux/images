@@ -214,7 +214,7 @@ jobs:
             type=$2
 
 
-            IMAGEDIR=images/$type/ultramarine/40/
+            IMAGEDIR=images/$type/ultramarine/39/
             mkdir -p $IMAGEDIR
 
             filename=$(basename -- "$file")

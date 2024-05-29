@@ -31,17 +31,17 @@ scripts:
       file: default-target.sh
 
 disk:
-  size: 8GiB
+  size: 8GB
   partitions:
     - label: EFI
       type: esp
-      size: 512MiB
+      size: 512MB
       filesystem: efi
       mountpoint: /boot/efi
 
     - label: boot
       type: xbootldr
-      size: 1GiB
+      size: 1GB
       filesystem: ext4
       mountpoint: /boot
 
@@ -49,6 +49,6 @@ disk:
       flags:
         - grow-fs
       type: root
-      # size: 2.5MiB
+      # size: 2.5MB
       filesystem: ext4
       mountpoint: /

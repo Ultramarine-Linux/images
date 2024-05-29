@@ -19,17 +19,17 @@ scripts:
       file: ../base/grub-setup.sh
 
 disk:
-  size: 14GiB
+  size: 14GB
   partitions:
     - label: submarine
       type: linux-generic
-      size: 16MiB
+      size: 16MB
       filesystem: efi
       mountpoint: /mnt
 
     - label: boot
       type: xbootldr
-      size: 1GiB
+      size: 1GB
       filesystem: ext4
       mountpoint: /boot
 
@@ -37,7 +37,7 @@ disk:
       flags:
         - grow-fs
       type: root
-      # size: 2.5MiB
+      # size: 2.5MB
       filesystem: ext4
       mountpoint: /
 

@@ -21,6 +21,8 @@ dnf:
     - --setopt=keepcache=True
     - --best
     - --allowerasing
+    - --setopt=tsflags=
+    - --setopt=max_parallel_downloads=20
   exclude:
     - fedora-release*
     - generic-release*

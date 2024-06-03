@@ -38,6 +38,7 @@ env:
     podman
     buildah
     katsu
+    https://dl.min.io/client/mc/release/linux-arm64/mcli-20240524090849.0.0-1.aarch64.rpm
 
 on:
   push:
@@ -239,11 +240,6 @@ jobs:
           done
 
       - name: Upload to R2
-        uses: mamal72/minio-perfect-deploy-action@main
-        with:
-          endpoint: ${{ secrets.S3_ENDPOINT }}
-          access_key: ${{ secrets.S3_KEY_ID }}
-          secret_key: ${{ secrets.S3_SECRET_KEY }}
-          bucket: "images"
-          source_dir: "images"
-          target_dir: "/"
+        run: |
+          mcli alias set r2 '${{ secrets.S3_ENDPOINT }}' '${{ secrets.S3_KEY_ID }}' '${{ secrets.S3_SECRET_KEY }}'
+          mcli mirror --overwrite images 'r2/images'

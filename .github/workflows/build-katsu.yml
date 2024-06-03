@@ -239,11 +239,11 @@ jobs:
           done
 
       - name: Upload to R2
-        uses: shallwefootball/s3-upload-action@master
+        uses: mamal72/minio-perfect-deploy-action@main
         with:
           endpoint: ${{ secrets.S3_ENDPOINT }}
-          aws_key_id: ${{ secrets.S3_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.S3_SECRET_KEY }}
-          aws_bucket: "images"
+          access_key: ${{ secrets.S3_KEY_ID }}
+          secret_key: ${{ secrets.S3_SECRET_KEY }}
+          bucket: "images"
           source_dir: "images"
-          destination_dir: ""
+          target_dir: "/"

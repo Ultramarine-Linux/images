@@ -38,6 +38,8 @@ env:
     podman
     buildah
     which
+    katsu
+    https://dl.min.io/client/mc/release/linux-arm64/mcli-20240524090849.0.0-1.aarch64.rpm
 
 on:
   push:
@@ -238,11 +240,6 @@ jobs:
           done
 
       - name: Upload to R2
-        uses: shallwefootball/s3-upload-action@master
-        with:
-          endpoint: ${{ secrets.S3_ENDPOINT }}
-          aws_key_id: ${{ secrets.S3_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.S3_SECRET_KEY }}
-          aws_bucket: "images"
-          source_dir: "images"
-          destination_dir: ""
+        run: |
+          mcli alias set r2 '${{ secrets.S3_ENDPOINT }}' '${{ secrets.S3_KEY_ID }}' '${{ secrets.S3_SECRET_KEY }}'
+          mcli mirror --overwrite images 'r2/images'

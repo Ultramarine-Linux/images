@@ -38,14 +38,13 @@ env:
     podman
     buildah
     katsu
-    https://dl.min.io/client/mc/release/linux-arm64/mcli-20240524090849.0.0-1.aarch64.rpm
 
 on:
   push:
-    branches: [ "um40" ]
+    branches: ["um40"]
   workflow_dispatch:
   pull_request:
-    branches: [ "um40" ]
+    branches: ["um40"]
 
 jobs:
   #### BASE IMAGES ####
@@ -241,5 +240,7 @@ jobs:
 
       - name: Upload to R2
         run: |
-          mcli alias set r2 '${{ secrets.S3_ENDPOINT }}' '${{ secrets.S3_KEY_ID }}' '${{ secrets.S3_SECRET_KEY }}'
-          mcli mirror --overwrite images 'r2/images'
+          wget https://dl.min.io/client/mc/release/linux-arm64/mc
+          chmod +x ./mc
+          ./mc alias set r2 '${{ secrets.S3_ENDPOINT }}' '${{ secrets.S3_KEY_ID }}' '${{ secrets.S3_SECRET_KEY }}'
+          ./mc mirror --overwrite images 'r2/images'

@@ -104,6 +104,7 @@ jobs:
 
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
+          rm -rf /etc/rpm/macros.image-language-conf
           chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           pushd katsu
           KATSU_LOG=trace katsu -v --output=disk-image "modules/${{ matrix.variant }}-${{ matrix.arch }}.yaml"
@@ -163,6 +164,7 @@ jobs:
             mount -t devtmpfs none /dev
           fi
 
+          rm -rf /etc/rpm/macros.image-language-conf
           chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
           pushd katsu
           KATSU_LOG=trace katsu -v --output=iso "modules/${{ matrix.variant }}.yaml"

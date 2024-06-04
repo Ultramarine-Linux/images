@@ -189,6 +189,8 @@ jobs:
 
   push-image:
     runs-on: arm64
+    container:
+      image: ghcr.io/terrapkg/builder:f40
     environment: production
     needs:
       - live-iso
@@ -196,6 +198,11 @@ jobs:
     if: github.event_name != 'pull_request'
 
     steps:
+      - name: Install dependencies
+        run: |
+          dnf install -y $DNF_PKGS
+          dnf clean all
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:

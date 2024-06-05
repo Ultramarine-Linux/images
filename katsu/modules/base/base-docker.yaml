@@ -5,8 +5,9 @@ dnf:
   releasever: 40
   options:
     - --setopt=cachedir=/var/cache/dnf
-    - --nogpgcheck
     - --setopt=keepcache=True
+    - --setopt=tsflags=
+    - --setopt=max_parallel_downloads=20
   exclude:
     - fedora-release*
     - generic-release*

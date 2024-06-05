@@ -6,7 +6,7 @@ dnf:
   options:
     - --setopt=cachedir=/var/cache/dnf
     - --setopt=keepcache=True
-    - --setopt=tsflags=
+    - --setopt=tsflags=nodocs
     - --setopt=max_parallel_downloads=20
   exclude:
     - fedora-release*

@@ -14,8 +14,6 @@ import:
 
 dnf:
   releasever: 40
-  # options:
-  #   - --setopt=strict=0
   arch: aarch64
   packages:
     - ultramarine-release-identity-basic

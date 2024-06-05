@@ -17,10 +17,7 @@ dnf:
   repodir: repodir
   options:
     - --setopt=cachedir=/var/cache/dnf
-    - --nogpgcheck
     - --setopt=keepcache=True
-    - --best
-    - --allowerasing
     - --setopt=tsflags=
     - --setopt=max_parallel_downloads=20
   exclude:

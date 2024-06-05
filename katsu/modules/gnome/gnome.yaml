@@ -1,7 +1,5 @@
 dnf:
   releasever: 40
-  # options:
-  #   - --setopt=strict=0
   packages:
     - "@ultramarine-gnome-product-environment"
     - ultramarine-release-gnome

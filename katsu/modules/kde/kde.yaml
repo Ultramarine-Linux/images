@@ -1,9 +1,5 @@
 dnf:
   releasever: 40
-  # options:
-  #   - --setopt=strict=0
-  #exclude:
-  #-
   packages:
     #beta - still need to set up our own comps
     - "@ultramarine-kde-product-environment"

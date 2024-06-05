@@ -36,6 +36,8 @@ env:
     moby-engine
     podman
     buildah
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-39.noarch.rpm
+    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-39.noarch.rpm
 
 on:
   push:
@@ -109,8 +111,6 @@ jobs:
           tar -C katsu-work/chroot -c . | podman import --change='CMD ["/usr/bin/bash"]' - ghcr.io/ultramarine-linux/ultramarine:39 --arch $host_arch
           podman save --format oci-archive ghcr.io/ultramarine-linux/ultramarine:39 --output katsu-work/image/katsu.tar.xz
           popd
-
-
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3

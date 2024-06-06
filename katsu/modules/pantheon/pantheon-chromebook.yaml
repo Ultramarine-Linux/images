@@ -20,8 +20,6 @@ kernel_cmdline: "quiet rhgb"
 
 dnf:
   releasever: 39
-  options:
-    - --setopt=strict=1
   exclude:
     - gnome-tour
     - gnome-shell

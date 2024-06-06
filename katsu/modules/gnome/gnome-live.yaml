@@ -23,8 +23,6 @@ iso:
 
 dnf:
   releasever: 39
-  # options:
-  #   - --setopt=strict=0
   packages:
     - "@ultramarine-gnome-product-environment"
     - ultramarine-release-gnome

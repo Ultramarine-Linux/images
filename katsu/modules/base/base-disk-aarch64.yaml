@@ -8,7 +8,6 @@ users:
     groups:
       - wheel
 
-
 import:
   - base.yaml
   - base-disk.yaml
@@ -39,7 +38,6 @@ disk:
       # size: 2.5MiB
       filesystem: ext4
       mountpoint: /
-
 
 dnf:
   releasever: 39

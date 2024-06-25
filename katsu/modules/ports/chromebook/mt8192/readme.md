@@ -1,4 +1,4 @@
-# Asurada Family (mt8192)
+# mt8192 Chromebooks
 
 Our reference device is the Asus Chromebook Flip CM3 (Hayato).
 

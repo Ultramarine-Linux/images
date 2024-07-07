@@ -2,8 +2,8 @@ builder: dnf
 
 import:
   - chromebook.yaml
-  - ../../kde/kde.yaml
-  - ../../kde/base-disk-x86_64.yaml
+  - ../../../kde/kde.yaml
+  - ../../../kde/base-disk-x86_64.yaml
 
 distro: Ultramarine Linux 40 KDE (Chromebook Edition)
 

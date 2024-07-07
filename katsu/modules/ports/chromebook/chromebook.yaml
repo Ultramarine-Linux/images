@@ -4,14 +4,14 @@ scripts:
   post:
     - id: cleanup
       name: Clean up system
-      file: cleanup.sh
+      file: ../../cleanup.sh
     - id: selinux-setup
       name: Set up SELinux
-      file: ../base/selinux.sh
+      file: ../../base/selinux.sh
       chroot: false
     - id: buildstamp
       name: Generate buildstamp
-      file: ../base/buildstamp.sh
+      file: ../../base/buildstamp.sh
     - id: submarine
       name: Set up ChromeOS bootloader
       file: submarine.sh

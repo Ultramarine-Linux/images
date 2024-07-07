@@ -4,7 +4,7 @@ scripts:
   post:
     - id: cleanup
       name: Clean up system
-      file: ../base/cleanup.sh
+      file: cleanup.sh
     - id: selinux-setup
       name: Set up SELinux
       file: ../base/selinux.sh

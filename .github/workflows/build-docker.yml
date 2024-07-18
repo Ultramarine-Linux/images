@@ -148,5 +148,33 @@ jobs:
           # also tag as latest
           buildah tag $MANIFEST $MANIFEST:latest || :
           buildah manifest push --all --format v2s2 $MANIFEST docker://$MANIFEST:$RELEASE
+    
+  docker-layer:
+    runs-on: ubuntu-latest
+    strategy:
+        fail-fast: true
+        matrix:
+            dockerfile:
+                - dockerfiles/devtools.dockerfile
+        
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Set up QEMU
+          uses: docker/setup-qemu-action@v3
+        
+        - name: Build images
+          uses: docker/build-push-action@v6
+          with:
+              context: .
+              file: ${{ matrix.dockerfile }}
+              platforms: linux/amd64,linux/arm64
+              push: false
+              tags: |
+                  ghcr.io/ultramarine-linux/ultramarine-devtools:40
+                  ghcr.io/ultramarine-linux/ultramarine-devtools:latest
+              args: |
+                  RELEASE=40
+    
 
   #### LIVE ISO ####

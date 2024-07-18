@@ -174,7 +174,7 @@ jobs:
               tags: |
                   ghcr.io/ultramarine-linux/ultramarine-devtools:40
                   ghcr.io/ultramarine-linux/ultramarine-devtools:latest
-              args: |
+              build-args: |
                   RELEASE=40
     
 

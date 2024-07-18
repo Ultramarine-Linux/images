@@ -19,6 +19,7 @@ dnf:
     - glibc
     - glibc-common
     - dnf
+    - git
     # - mkpasswd # maybe not needed soon
     - "@core"
     - "@hardware-support"

@@ -168,7 +168,7 @@ jobs:
               context: .
               file: ${{ matrix.dockerfile }}
               platforms: linux/amd64,linux/arm64
-              push: false
+              push: true
               tags: |
                   ghcr.io/ultramarine-linux/ultramarine-devtools:40
                   ghcr.io/ultramarine-linux/ultramarine-devtools:latest

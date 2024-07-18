@@ -151,6 +151,8 @@ jobs:
     strategy:
         fail-fast: true
         matrix:
+            version:
+                - 40
             dockerfile:
                 - dockerfiles/devtools.dockerfile
         
@@ -170,10 +172,10 @@ jobs:
               platforms: linux/amd64,linux/arm64
               push: true
               tags: |
-                  ghcr.io/ultramarine-linux/ultramarine-devtools:40
+                  ghcr.io/ultramarine-linux/ultramarine-devtools:${{ matrix.version }}
                   ghcr.io/ultramarine-linux/ultramarine-devtools:latest
               build-args: |
-                  RELEASE=40
+                  RELEASE=${{ matrix.version }}
     
 
   #### LIVE ISO ####

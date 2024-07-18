@@ -147,7 +147,7 @@ jobs:
     
   docker-layer:
     runs-on: ubuntu-latest
-    # needs: docker-push
+    needs: docker-push
     strategy:
         fail-fast: true
         matrix:

@@ -5,6 +5,30 @@ import:
 
 dnf:
   releasever: 40
+  arch: aarch64
   packages:
     - kernel-sc7180
     - kernel-sc7180-devel
+
+disk:
+  size: 16GB
+  partitions:
+    - label: Submarine
+      type: fe3a2a5d-4f32-41a7-b725-accc3285a309
+      size: 64MB
+      filesystem: fat
+      mountpoint: /submarine
+
+    - label: boot
+      type: xbootldr
+      size: 1.1GB
+      filesystem: ext4
+      mountpoint: /boot
+
+    - label: root
+      flags:
+        - grow-fs
+      type: root
+      # size: 2.5MB
+      filesystem: ext4
+      mountpoint: /

@@ -7,8 +7,8 @@ rootdev="$(basename `readlink -f "/sys/class/block/$(basename $blpart)/.."`)"
 partnum="$(echo $(basename $blpart) | sed 's/'"$rootdev"'//;s/p//')"
 umount $blpart
 
-# Remove /mnt from fstab
-sed -i '/mnt/d' /etc/fstab
+# Remove /submarine from fstab
+sed -i '/submarine/d' /etc/fstab
 
 # Flash bootloader
 submarine="/usr/share/submarine/submarine"

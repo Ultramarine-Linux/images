@@ -2,7 +2,7 @@
 set -x
 
 # Find bootloader partition and umount
-blpart="$(findmnt -n -o SOURCE /mnt)"
+blpart="$(findmnt -n -o SOURCE /submarine)"
 rootdev="$(basename `readlink -f "/sys/class/block/$(basename $blpart)/.."`)"
 partnum="$(echo $(basename $blpart) | sed 's/'"$rootdev"'//;s/p//')"
 umount $blpart

@@ -4,7 +4,7 @@ import:
   - ../../../kde/kde.yaml
   - ../../../kde/kde-disk.yaml
   - ../../../base/base.yaml
-  - ../../../base/base-disk.yaml
+  - ../../../base/base-disk-nokernel.yaml
 
 distro: Ultramarine Linux 40 KDE (mt8192 Chromebook)
 

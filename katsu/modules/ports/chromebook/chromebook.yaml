@@ -24,3 +24,4 @@ dnf:
     - depthcharge-tools
     - vboot-utils
     - submarine
+    - alsa-ucm-cros

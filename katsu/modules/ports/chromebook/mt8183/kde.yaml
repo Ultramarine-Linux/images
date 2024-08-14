@@ -3,7 +3,9 @@ builder: dnf
 import:
   - mt8183.yaml
   - ../../../kde/kde.yaml
-  - ../../../kde/base-disk-aarch64.yaml
+  - ../../../kde/kde-disk.yaml
+  - ../../../base/base.yaml
+  - ../../../base/base-disk-nokernel.yaml
 
 distro: Ultramarine Linux 40 KDE (mt8183 Chromebook)
 

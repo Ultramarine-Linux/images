@@ -89,6 +89,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
+          dnf up -y
           dnf install -y $DNF_PKGS
           dnf clean all
       - name: Checkout
@@ -146,6 +147,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
+          dnf up -y
           dnf install -y $DNF_PKGS
           dnf clean all
       - name: sanitize artifact name

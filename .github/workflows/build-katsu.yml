@@ -38,15 +38,15 @@ env:
     podman
     buildah
     katsu
-    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-40.noarch.rpm
-    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-40.noarch.rpm
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-41.noarch.rpm
+    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-41.noarch.rpm
 
 on:
   push:
-    branches: ["um40"]
+    branches: ["um41"]
   workflow_dispatch:
   pull_request:
-    branches: ["um40"]
+    branches: ["um41"]
 
 jobs:
   #### BASE IMAGES ####
@@ -79,7 +79,7 @@ jobs:
             variant: xfce/xfce-chromebook
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
-      image: ghcr.io/terrapkg/builder:f40
+      image: ghcr.io/terrapkg/builder:f41
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
@@ -136,7 +136,7 @@ jobs:
           - xfce/xfce-live
     runs-on: ${{ matrix.arch == 'x86_64' && matrix.variant == 'kde/kde-live' && 'x86-64-lg' || matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
-      image: ghcr.io/terrapkg/builder:f40
+      image: ghcr.io/terrapkg/builder:f41
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
@@ -192,7 +192,7 @@ jobs:
   push-image:
     runs-on: arm64
     container:
-      image: ghcr.io/terrapkg/builder:f40
+      image: ghcr.io/terrapkg/builder:f41
     environment: production
     needs:
       - live-iso
@@ -224,7 +224,7 @@ jobs:
             type=$2
 
 
-            IMAGEDIR=images/$type/ultramarine/40/
+            IMAGEDIR=images/$type/ultramarine/41/
             mkdir -p $IMAGEDIR
 
             filename=$(basename -- "$file")

@@ -7,7 +7,7 @@ scripts:
       name: Extra configuration for disk images
       file: disk-setup.sh
 dnf:
-  releasever: 40
+  releasever: 41
   options:
     - --setopt=cachedir=/var/cache/dnf
     - --setopt=keepcache=True

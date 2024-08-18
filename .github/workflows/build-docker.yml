@@ -37,16 +37,16 @@ env:
     podman
     buildah
     katsu
-    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-40.noarch.rpm
-    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-40.noarch.rpm
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-41.noarch.rpm
+    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-41.noarch.rpm
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 on:
   push:
-    branches: [ "um40" ]
+    branches: ["um41"]
   workflow_dispatch:
   pull_request:
-    branches: [ "um40" ]
+    branches: ["um41"]
 
 jobs:
   #### DOCKER ######
@@ -64,7 +64,7 @@ jobs:
       # ubuntu-latest unless we're building aarch64
     runs-on: ${{ endsWith(matrix.variant, '-aarch64') && 'arm64' || 'ubuntu-latest' }}
     container:
-      image: ghcr.io/terrapkg/builder:f40
+      image: ghcr.io/terrapkg/builder:f41
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
@@ -100,9 +100,9 @@ jobs:
             host_arch="arm64"
           fi
 
-          # tarball katsu-work/chroot then import using podman with tag ghcr.io/ultramarine-linux/ultramarine:40
-          tar -C katsu-work/chroot -c . | podman import --change='CMD ["/usr/bin/bash"]' - ghcr.io/ultramarine-linux/ultramarine:40 --arch $host_arch
-          podman save --format oci-archive ghcr.io/ultramarine-linux/ultramarine:40 --output katsu-work/image/katsu.tar.xz
+          # tarball katsu-work/chroot then import using podman with tag ghcr.io/ultramarine-linux/ultramarine:41
+          tar -C katsu-work/chroot -c . | podman import --change='CMD ["/usr/bin/bash"]' - ghcr.io/ultramarine-linux/ultramarine:41 --arch $host_arch
+          podman save --format oci-archive ghcr.io/ultramarine-linux/ultramarine:41 --output katsu-work/image/katsu.tar.xz
           popd
 
       - name: Upload Artifact
@@ -137,7 +137,7 @@ jobs:
         run: |
           set -x
           MANIFEST="ghcr.io/ultramarine-linux/ultramarine"
-          RELEASE="40"
+          RELEASE="41"
           ls -lR
           buildah manifest create $MANIFEST
           buildah manifest add $MANIFEST oci-archive:base-base-docker-x86_64-docker/katsu.tar.xz --arch amd64
@@ -145,50 +145,49 @@ jobs:
           # also tag as latest
           buildah tag $MANIFEST $MANIFEST:latest || :
           buildah manifest push --all --format v2s2 $MANIFEST docker://$MANIFEST:$RELEASE
-    
+
   docker-layer:
     permissions:
-        contents: read
-        packages: write
+      contents: read
+      packages: write
     runs-on: ubuntu-latest
     needs: docker-push
     strategy:
-        fail-fast: true
-        matrix:
-            version:
-                - 40
-            docker:
-                - dockerfile: dockerfiles/devtools.dockerfile
-                  image: ghcr.io/ultramarine-linux/ultramarine-devtools
-                - dockerfile: dockerfiles/gitpod.dockerfile
-                  image: ghcr.io/ultramarine-linux/ultramarine-gitpod
-        
+      fail-fast: true
+      matrix:
+        version:
+          - 41
+        docker:
+          - dockerfile: dockerfiles/devtools.dockerfile
+            image: ghcr.io/ultramarine-linux/ultramarine-devtools
+          - dockerfile: dockerfiles/gitpod.dockerfile
+            image: ghcr.io/ultramarine-linux/ultramarine-gitpod
+
     steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        - name: Set up QEMU
-          uses: docker/setup-qemu-action@v3
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v3
-        - name: Log into registry ${{ env.REGISTRY }}
-          uses: docker/login-action@v2.1.0
-          with:
-            registry: ${{ env.REGISTRY }}
-            username: ${{ github.actor }}
-            password: ${{ secrets.GITHUB_TOKEN }}
-        
-        - name: Build images
-          uses: docker/build-push-action@v6
-          with:
-              context: .
-              file: ${{ matrix.docker.dockerfile }}
-              platforms: linux/amd64,linux/arm64
-              push: true
-              tags: |
-                  ${{ matrix.docker.image }}:${{ matrix.version }}
-                  ${{ matrix.docker.image }}:latest
-              build-args: |
-                  RELEASE=${{ matrix.version }}
-    
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Log into registry ${{ env.REGISTRY }}
+        uses: docker/login-action@v2.1.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build images
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ matrix.docker.dockerfile }}
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ matrix.docker.image }}:${{ matrix.version }}
+            ${{ matrix.docker.image }}:latest
+          build-args: |
+            RELEASE=${{ matrix.version }}
 
   #### LIVE ISO ####

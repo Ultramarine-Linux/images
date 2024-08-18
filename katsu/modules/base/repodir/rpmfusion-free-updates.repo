@@ -1,9 +1,10 @@
+# TODO: ENABLE THESE REPOS ONCE RPMFUSION FIXES THEIR SHIT UPSTREAM
 [rpmfusion-free-updates]
 name=RPM Fusion for Fedora $releasever - Free - Updates
 #baseurl=http://download1.rpmfusion.org/free/fedora/updates/$releasever/$basearch/
 metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
-enabled=1
-enabled_metadata=1
+enabled=0
+enabled_metadata=0
 type=rpm-md
 gpgcheck=1
 repo_gpgcheck=0
@@ -28,4 +29,3 @@ type=rpm-md
 gpgcheck=1
 repo_gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
-

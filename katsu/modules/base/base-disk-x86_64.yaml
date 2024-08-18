@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 41
+distro: Ultramarine Linux 40
 
 # users:
 #   - username: ultramarine
@@ -13,7 +13,7 @@ import:
   - base-disk.yaml
 
 dnf:
-  releasever: 41
+  releasever: 40
   packages:
     - ultramarine-release-identity-basic
     - ultramarine-release-basic

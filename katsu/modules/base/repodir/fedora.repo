@@ -1,6 +1,6 @@
 [fedora]
 name=Fedora $releasever - $basearch
-#baseurl=http://download.example/pub/fedora/linux/releases/$releasever/Everything/$basearch/os/
+#baseurl=https://download.example/pub/fedora/linux/releases/$releasever/Everything/$basearch/os/
 metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
 enabled=1
 countme=1
@@ -13,7 +13,7 @@ skip_if_unavailable=False
 
 [fedora-debuginfo]
 name=Fedora $releasever - $basearch - Debug
-#baseurl=http://download.example/pub/fedora/linux/releases/$releasever/Everything/$basearch/debug/tree/
+#baseurl=https://download.example/pub/fedora/linux/releases/$releasever/Everything/$basearch/debug/tree/
 metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-debug-$releasever&arch=$basearch
 enabled=0
 metadata_expire=7d
@@ -25,7 +25,7 @@ skip_if_unavailable=False
 
 [fedora-source]
 name=Fedora $releasever - Source
-#baseurl=http://download.example/pub/fedora/linux/releases/$releasever/Everything/source/tree/
+#baseurl=https://download.example/pub/fedora/linux/releases/$releasever/Everything/source/tree/
 metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-source-$releasever&arch=$basearch
 enabled=0
 metadata_expire=7d

@@ -1,8 +1,8 @@
-# TODO: ENABLE THESE REPOS ONCE RPMFUSION FIXES THEIR SHIT UPSTREAM
+# TODO: We're bypassing their mirrors because they're broken
 [rpmfusion-free-updates]
 name=RPM Fusion for Fedora $releasever - Free - Updates
-#baseurl=http://download1.rpmfusion.org/free/fedora/updates/$releasever/$basearch/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
+baseurl=https://download1.rpmfusion.org/free/fedora/updates/$releasever/$basearch/
+#metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
 enabled=0
 enabled_metadata=0
 type=rpm-md
@@ -12,8 +12,8 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
 
 [rpmfusion-free-updates-debuginfo]
 name=RPM Fusion for Fedora $releasever - Free - Updates Debug
-#baseurl=http://download1.rpmfusion.org/free/fedora/updates/$releasever/$basearch/debug/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-debug-$releasever&arch=$basearch
+baseurl=https://download1.rpmfusion.org/free/fedora/updates/$releasever/$basearch/debug/
+#metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-debug-$releasever&arch=$basearch
 enabled=0
 type=rpm-md
 gpgcheck=1
@@ -22,8 +22,8 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
 
 [rpmfusion-free-updates-source]
 name=RPM Fusion for Fedora $releasever - Free - Updates Source
-#baseurl=http://download1.rpmfusion.org/free/fedora/updates/$releasever/SRPMS/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-source-$releasever&arch=$basearch
+baseurl=https://download1.rpmfusion.org/free/fedora/updates/$releasever/SRPMS/
+#metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-source-$releasever&arch=$basearch
 enabled=0
 type=rpm-md
 gpgcheck=1

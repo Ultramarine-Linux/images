@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 40 (KDE Edition)
+distro: Ultramarine Linux 41 (KDE Edition)
 
 # users:
 #   - username: ultramarine
@@ -44,5 +44,5 @@ disk:
       mountpoint: /
 
 dnf:
-  releasever: 40
+  releasever: 41
   arch: aarch64

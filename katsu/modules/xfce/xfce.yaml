@@ -5,7 +5,7 @@ scripts:
       file: ./xfce-extra.sh
 
 dnf:
-  releasever: 40
+  releasever: 41
   exclude:
     - ultramarine-backgrounds-compat
     - "dnfdragora*" # Jade doesn't like this for some reason???

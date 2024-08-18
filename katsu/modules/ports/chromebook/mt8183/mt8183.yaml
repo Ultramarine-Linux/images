@@ -4,7 +4,7 @@ import:
   - ../chromebook.yaml
 
 dnf:
-  releasever: 40
+  releasever: 41
   packages:
     - kernel-mt8183
     - kernel-mt8183-devel

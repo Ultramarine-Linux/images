@@ -5,13 +5,13 @@ import:
   - ../../../xfce/xfce.yaml
   - ../../../xfce/base-disk-aarch64.yaml
 
-distro: Ultramarine Linux 40 Xfce (sc7180 Chromebook)
+distro: Ultramarine Linux 41 Xfce (sc7180 Chromebook)
 
-out_file: ultramarine-cbe-sc7180-xfce-40.img
+out_file: ultramarine-cbe-sc7180-xfce-41.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 40
+  releasever: 41

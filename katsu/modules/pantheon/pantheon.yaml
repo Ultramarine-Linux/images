@@ -1,7 +1,7 @@
 builder: dnf
 
 dnf:
-  releasever: 40
+  releasever: 41
   exclude:
     - gnome-tour
     - gnome-shell

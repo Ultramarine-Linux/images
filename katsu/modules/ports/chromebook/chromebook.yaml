@@ -17,7 +17,7 @@ scripts:
       file: submarine.sh
 
 dnf:
-  releasever: 40
+  releasever: 41
   packages:
     - cros-keyboard-map
     - depthcharge-tools

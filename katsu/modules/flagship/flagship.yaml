@@ -5,7 +5,7 @@ scripts:
       file: ./flagship-extra.sh
 
 dnf:
-  releasever: 40
+  releasever: 41
   exclude:
     - budgie-desktop-defaults
     - budgie-backgrounds

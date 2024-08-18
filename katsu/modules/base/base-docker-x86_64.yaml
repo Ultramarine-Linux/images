@@ -1,9 +1,9 @@
 builder: dnf
-distro: Ultramarine Linux 41 Container
+distro: Ultramarine Linux 40 Container
 
 import:
   - base-docker.yaml
 
 dnf:
-  releasever: 41
+  releasever: 40
   arch: x86_64

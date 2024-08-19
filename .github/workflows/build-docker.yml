@@ -111,6 +111,7 @@ jobs:
         with:
           name: ${{ env.artifact }}-docker
           path: katsu/katsu-work/image/*.tar.xz
+          compression-level: 0
 
       #### DOCKER PUSH ######
 

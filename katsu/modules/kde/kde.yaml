@@ -1,5 +1,6 @@
 dnf:
   releasever: 41
+  exec: dnf4
   packages:
     #beta - still need to set up our own comps
     - "@ultramarine-kde-product-environment"

@@ -6,6 +6,7 @@ scripts:
 
 dnf:
   releasever: 41
+  exec: dnf4
   exclude:
     - ultramarine-backgrounds-compat
     - "dnfdragora*" # Jade doesn't like this for some reason???

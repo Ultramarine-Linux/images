@@ -1,5 +1,6 @@
 dnf:
   releasever: 41
+  exec: dnf4
   packages:
     - "@ultramarine-gnome-product-environment"
     - ultramarine-release-gnome

@@ -5,6 +5,7 @@ import:
 
 dnf:
   releasever: 41
+  exec: dnf4
   packages:
     - kernel-mt8192
     - kernel-mt8192-devel

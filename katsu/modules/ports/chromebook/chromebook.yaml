@@ -18,6 +18,7 @@ scripts:
 
 dnf:
   releasever: 41
+  exec: dnf4
   packages:
     - cros-keyboard-map
     - depthcharge-tools

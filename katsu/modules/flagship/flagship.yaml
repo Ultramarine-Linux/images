@@ -6,6 +6,7 @@ scripts:
 
 dnf:
   releasever: 41
+  exec: dnf4
   exclude:
     - budgie-desktop-defaults
     - budgie-backgrounds

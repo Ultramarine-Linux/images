@@ -14,6 +14,8 @@ import:
 
 dnf:
   releasever: 41
+  exec: dnf4
+exec: dnf4
   arch: aarch64
   packages:
     - ultramarine-release-identity-basic

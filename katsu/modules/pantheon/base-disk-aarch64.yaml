@@ -44,4 +44,5 @@ disk:
 
 dnf:
   releasever: 41
+  exec: dnf4
   arch: aarch64

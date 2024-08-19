@@ -8,6 +8,7 @@ scripts:
       file: disk-setup.sh
 dnf:
   releasever: 41
+  exec: dnf4
   options:
     - --setopt=cachedir=/var/cache/dnf
     - --setopt=keepcache=True

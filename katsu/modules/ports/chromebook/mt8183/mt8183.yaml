@@ -5,6 +5,7 @@ import:
 
 dnf:
   releasever: 41
+  exec: dnf4
   packages:
     - kernel-mt8183
     - kernel-mt8183-devel

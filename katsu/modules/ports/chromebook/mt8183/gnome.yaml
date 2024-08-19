@@ -5,13 +5,14 @@ import:
   - ../../../gnome/gnome.yaml
   - ../../../gnome/base-disk-aarch64.yaml
 
-distro: Ultramarine Linux 40 GNOME (mt8183 Chromebook)
+distro: Ultramarine Linux 41 GNOME (mt8183 Chromebook)
 
-out_file: ultramarine-cbe-mt8183-gnome-40.img
+out_file: ultramarine-cbe-mt8183-gnome-41.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 40
+  releasever: 41
+  exec: dnf4

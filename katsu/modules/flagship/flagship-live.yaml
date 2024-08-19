@@ -5,9 +5,9 @@ import:
   - ../live/live.yaml
   - flagship.yaml
 
-distro: Ultramarine Linux 40 (Flagship Edition)
+distro: Ultramarine Linux 41 (Flagship Edition)
 
-out_file: ultramarine-flagship-40-live.iso
+out_file: ultramarine-flagship-41-live.iso
 
 bootloader: grub
 
@@ -23,4 +23,5 @@ scripts:
       file: ./flagship-live.sh
 
 dnf:
-  releasever: 40
+  releasever: 41
+  exec: dnf4

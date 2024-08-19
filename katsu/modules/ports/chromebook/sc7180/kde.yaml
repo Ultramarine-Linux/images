@@ -5,13 +5,14 @@ import:
   - ../../../kde/kde.yaml
   - ../../../kde/base-disk-aarch64.yaml
 
-distro: Ultramarine Linux 40 KDE (sc7180 Chromebook)
+distro: Ultramarine Linux 41 KDE (sc7180 Chromebook)
 
-out_file: ultramarine-cbe-sc7180-kde-40.img
+out_file: ultramarine-cbe-sc7180-kde-41.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 40
+  releasever: 41
+  exec: dnf4

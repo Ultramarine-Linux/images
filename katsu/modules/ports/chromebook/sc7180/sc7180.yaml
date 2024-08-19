@@ -4,7 +4,8 @@ import:
   - ../chromebook.yaml
 
 dnf:
-  releasever: 40
+  releasever: 41
+  exec: dnf4
   packages:
     - kernel-sc7180
     - kernel-sc7180-devel

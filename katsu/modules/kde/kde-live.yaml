@@ -5,9 +5,9 @@ import:
   - ../live/live.yaml
   - kde.yaml
 
-distro: Ultramarine Linux 40 (KDE Edition)
+distro: Ultramarine Linux 41 (KDE Edition)
 
-out_file: ultramarine-kde-40-live.iso
+out_file: ultramarine-kde-41-live.iso
 
 scripts:
   post:
@@ -23,4 +23,5 @@ iso:
   volume_id: UM-Kd-Live
 
 dnf:
-  releasever: 40
+  releasever: 41
+  exec: dnf4

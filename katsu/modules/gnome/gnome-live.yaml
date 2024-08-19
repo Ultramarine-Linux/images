@@ -5,9 +5,9 @@ import:
   - ../live/live.yaml
   - gnome.yaml
 
-distro: Ultramarine GNOME 40
+distro: Ultramarine GNOME 41
 
-out_file: ultramarine-gnome-40-live.iso
+out_file: ultramarine-gnome-41-live.iso
 
 bootloader: grub
 
@@ -23,4 +23,5 @@ scripts:
       file: gnome-live.sh
 
 dnf:
-  releasever: 40
+  releasever: 41
+  exec: dnf4

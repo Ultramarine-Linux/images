@@ -4,7 +4,8 @@ import:
   - ../chromebook.yaml
 
 dnf:
-  releasever: 40
+  releasever: 41
+  exec: dnf4
   packages:
     - kernel-mt8192
     - kernel-mt8192-devel

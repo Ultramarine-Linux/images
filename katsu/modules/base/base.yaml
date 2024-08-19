@@ -13,7 +13,8 @@ scripts:
       file: buildstamp.sh
 
 dnf:
-  releasever: 40
+  releasever: 41
+  exec: dnf4
   repodir: repodir
   options:
     - --setopt=cachedir=/var/cache/dnf
@@ -76,4 +77,3 @@ dnf:
 #     - ultramarine-release
 #     - ultramarine-repos
 #     - "ultramarine-logos*"
-

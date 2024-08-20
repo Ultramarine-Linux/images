@@ -121,6 +121,7 @@ jobs:
         with:
           name: ${{ env.artifact }}-image
           path: katsu/katsu-work/image/*.img.zst
+          compression-level: 0
 
   live-iso:
     strategy:
@@ -188,6 +189,7 @@ jobs:
         with:
           name: ${{ env.artifact }}-iso
           path: katsu/*.iso
+          compression-level: 0
 
   #### LIVE ISO PUSH ####
 

@@ -77,7 +77,7 @@ jobs:
             variant: kde/kde-chromebook
           - arch: aarch64
             variant: xfce/xfce-chromebook
-    runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
+    runs-on: ${{ matrix.arch == 'x86_64' && matrix.variant == 'kde/base-disk' && 'x86-64-lg' || matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:
       image: ghcr.io/terrapkg/builder:f41
       # Pass /dev from host to container

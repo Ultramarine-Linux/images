@@ -10,3 +10,4 @@ scripts:
     - id: gnome-initial-setup
       name: Set GNOME Initial Setup to run
       file: gnome-initial-setup.sh
+      priority: 51

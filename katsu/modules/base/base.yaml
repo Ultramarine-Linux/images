@@ -3,6 +3,10 @@ scripts:
     - id: cleanup
       name: Clean up system
       file: cleanup.sh
+    - id: initial-setup
+      name: Enable Initial Setup
+      file: initial-setup.sh
+      priority: 50
     - id: selinux-setup
       name: Set up SELinux
       file: selinux.sh

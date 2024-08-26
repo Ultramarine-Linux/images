@@ -6,3 +6,4 @@ dnf:
     - "@ultramarine-kde-product-environment"
   exclude:
     - 'proj-data-*'
+    - 'ibus'

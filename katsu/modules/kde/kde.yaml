@@ -6,5 +6,11 @@ dnf:
     - "@ultramarine-kde-product-environment"
   exclude:
     - 'proj-data-*'
-    - 'ibus'
-    - 'ibus-*'
+    - ibus
+    - ibus-mozc
+    - ibus-anthy
+    - ibus-qt
+    - ibus-m17n
+    - ibus-hangul
+    - ibus-libpinyin
+    - ibus-typing-booster

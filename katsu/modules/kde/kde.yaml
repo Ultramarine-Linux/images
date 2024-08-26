@@ -7,3 +7,4 @@ dnf:
   exclude:
     - 'proj-data-*'
     - 'ibus'
+    - 'ibus-*'

@@ -1,0 +1,19 @@
+builder: dnf
+
+import:
+  - rk3399.yaml
+  - ../../../kde/kde.yaml
+  - ../../../kde/kde-disk.yaml
+  - ../../../base/base.yaml
+  - ../../../base/base-disk-nokernel.yaml
+
+distro: Ultramarine Linux 40 KDE (rk3399 Chromebook)
+
+out_file: ultramarine-cbe-rk3399-kde-40.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+dnf:
+  releasever: 40

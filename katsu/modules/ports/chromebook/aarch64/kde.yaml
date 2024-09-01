@@ -1,15 +1,15 @@
 builder: dnf
 
 import:
-  - rk3399.yaml
+  - aarch64.yaml
   - ../../../kde/kde.yaml
   - ../../../kde/kde-disk.yaml
   - ../../../base/base.yaml
   - ../../../base/base-disk-nokernel.yaml
 
-distro: Ultramarine Linux 40 KDE (rk3399 Chromebook)
+distro: Ultramarine Linux 40 KDE (aarch64 Chromebook)
 
-out_file: ultramarine-cbe-rk3399-kde-40.img
+out_file: ultramarine-cbe-aarch64-kde-40.img
 
 bootloader: grub
 

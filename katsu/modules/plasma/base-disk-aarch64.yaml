@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 41 (KDE Edition)
+distro: Ultramarine Linux 41 (Plasma Edition)
 
 # users:
 #   - username: ultramarine
@@ -11,8 +11,8 @@ distro: Ultramarine Linux 41 (KDE Edition)
 import:
   - ../base/base.yaml
   - ../base/base-disk.yaml
-  - kde.yaml
-  - kde-disk.yaml
+  - plasma.yaml
+  - plasma-disk.yaml
 
 scripts:
   post:
@@ -21,7 +21,7 @@ scripts:
       file: ../base/grub-setup.sh
 
 disk:
-  size: 13GB
+  size: 15GB
   partitions:
     - label: EFI
       type: esp
@@ -46,3 +46,4 @@ disk:
 dnf:
   releasever: 41
   exec: dnf4
+  arch: aarch64

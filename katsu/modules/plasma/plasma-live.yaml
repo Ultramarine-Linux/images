@@ -3,17 +3,17 @@ builder: dnf
 import:
   - ../base/base.yaml
   - ../live/live.yaml
-  - kde.yaml
+  - plasma.yaml
 
-distro: Ultramarine Linux 41 (KDE Edition)
+distro: Ultramarine Linux 41 (Plasma Edition)
 
-out_file: ultramarine-kde-41-live.iso
+out_file: ultramarine-plasma-41-live.iso
 
 scripts:
   post:
-    - id: kde-live
-      name: Set up KDE Live
-      file: ./kde-live.sh
+    - id: plasma-live
+      name: Set up Plasma Live
+      file: ./plasma-live.sh
 
 bootloader: grub
 

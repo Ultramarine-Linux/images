@@ -1,0 +1,18 @@
+builder: dnf
+
+import:
+  - chromebook.yaml
+  - ../../../plasma/plasma.yaml
+  - ../../../plasma/base-disk-x86_64.yaml
+
+distro: Ultramarine Linux 41 Plasma (Chromebook Edition)
+
+out_file: ultramarine-cbe-plasma-41.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+dnf:
+  releasever: 41
+  exec: dnf4

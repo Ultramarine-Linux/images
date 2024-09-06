@@ -1,0 +1,18 @@
+builder: dnf
+
+import:
+  - sc7180.yaml
+  - ../../../plasma/plasma.yaml
+  - ../../../plasma/base-disk-aarch64.yaml
+
+distro: Ultramarine Linux 41 Plasma (sc7180 Chromebook)
+
+out_file: ultramarine-cbe-sc7180-plasma-41.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+dnf:
+  releasever: 41
+  exec: dnf4

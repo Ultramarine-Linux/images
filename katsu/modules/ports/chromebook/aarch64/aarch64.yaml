@@ -7,8 +7,8 @@ dnf:
   releasever: 40
   arch: aarch64
   packages:
-    - kernel-mt8192
-    - kernel-mt8192-devel
+    - kernel
+    - kernel-devel
 
 disk:
   size: 16GB

@@ -1,7 +1,7 @@
 builder: dnf
 
 import:
-  - chromebook.yaml
+  - ../chromebook.yaml
   - ../../../gnome/gnome.yaml
   - ../../../gnome/base-disk-x86_64.yaml
 

@@ -1,5 +1,4 @@
 builder: dnf
-
 scripts:
   post:
     - id: cleanup
@@ -15,7 +14,9 @@ scripts:
     - id: submarine
       name: Set up ChromeOS bootloader
       file: submarine.sh
-
+    - id: grub
+      name: Set up GRUB
+      file: ../../base/grub-setup.sh
 dnf:
   releasever: 40
   packages:
@@ -23,3 +24,4 @@ dnf:
     - depthcharge-tools
     - vboot-utils
     - submarine
+    - alsa-ucm-cros

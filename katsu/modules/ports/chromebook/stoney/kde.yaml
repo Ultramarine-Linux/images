@@ -3,7 +3,9 @@ builder: dnf
 import:
   - stoney.yaml
   - ../../../kde/kde.yaml
-  - ../../../kde/base-disk-x86_64.yaml
+  - ../../../kde/kde-disk.yaml
+  - ../../../base/base.yaml
+  - ../../../base/base-disk-nokernel.yaml
 
 distro: Ultramarine Linux 40 KDE (Stoney Chromebook)
 

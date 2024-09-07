@@ -30,5 +30,5 @@ disk:
         - grow-fs
       type: root
       # size: 2.5MB
-      filesystem: ext4
+      filesystem: btrfs
       mountpoint: /

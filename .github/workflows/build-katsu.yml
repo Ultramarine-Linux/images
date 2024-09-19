@@ -61,11 +61,11 @@ jobs:
           - base/base-disk
           - flagship/base-disk
           - gnome/base-disk
-          - kde/base-disk
+          - plasma/base-disk
           - xfce/base-disk
           #- ports/chromebook/flagship
           #- ports/chromebook/gnome
-          #- ports/chromebook/kde
+          #- ports/chromebook/plasma
           #- ports/chromebook/xfce
           # TODO: figure out how to get loop devices to work on our ARM runners
         exclude:
@@ -74,7 +74,7 @@ jobs:
           - arch: aarch64
             variant: gnome/gnome-chromebook
           - arch: aarch64
-            variant: kde/kde-chromebook
+            variant: plasma/plasma-chromebook
           - arch: aarch64
             variant: xfce/xfce-chromebook
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
@@ -133,8 +133,7 @@ jobs:
         variant:
           - flagship/flagship-live
           - gnome/gnome-live
-          - kde/kde-live
-          #- pantheon/pantheon-live
+          - plasma/plasma-live
           - xfce/xfce-live
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
     container:

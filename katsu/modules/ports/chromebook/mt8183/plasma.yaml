@@ -1,0 +1,18 @@
+builder: dnf
+
+import:
+  - mt8183.yaml
+  - ../../../plasma/plasma.yaml
+  - ../../../plasma/base-disk-aarch64.yaml
+
+distro: Ultramarine Linux 41 Plasma (mt8183 Chromebook)
+
+out_file: ultramarine-cbe-mt8183-plasma-41.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+dnf:
+  releasever: 41
+  exec: dnf4

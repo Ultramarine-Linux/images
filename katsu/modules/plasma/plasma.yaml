@@ -3,9 +3,9 @@ dnf:
   exec: dnf4
   packages:
     #beta - still need to set up our own comps
-    - "@ultramarine-kde-product-environment"
+    - "@ultramarine-plasma-product-environment"
   exclude:
-    - 'proj-data-*'
+    - "proj-data-*"
     - ibus
     - ibus-mozc
     - ibus-anthy

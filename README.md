@@ -26,6 +26,5 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 
 ### Notes
 
-- Pantheon is not currently being built
 - Chromebook images are shown as failing due to me not setting them up to build yet
 -

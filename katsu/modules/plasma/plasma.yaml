@@ -5,7 +5,6 @@ dnf:
     #beta - still need to set up our own comps
     - "@ultramarine-plasma-product-environment"
   exclude:
-    - "proj-data-*"
     - ibus
     - ibus-mozc
     - ibus-anthy

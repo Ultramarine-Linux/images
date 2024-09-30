@@ -4,3 +4,12 @@ dnf:
   packages:
     #beta - still need to set up our own comps
     - "@ultramarine-plasma-product-environment"
+  exclude:
+    - ibus
+    - ibus-mozc
+    - ibus-anthy
+    - ibus-qt
+    - ibus-m17n
+    - ibus-hangul
+    - ibus-libpinyin
+    - ibus-typing-booster

@@ -1,0 +1,31 @@
+builder: dnf
+
+import:
+  - ../../base/base.yaml
+  - ../../live/live.yaml
+  - ../../plasma/plasma.yaml
+  - surface.yaml
+
+distro: Ultramarine Linux 41 (Plasma Edition)
+
+out_file: ultramarine-plasma-41-surface.iso
+
+scripts:
+  post:
+    - id: plasma-live
+      name: Set up Plasma Live
+      file: ./plasma-live.sh
+    - id: surface.sh
+      name: Enable Surface Watchdog
+      file: ./surface.sh
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-Kd-Live
+
+dnf:
+  releasever: 41
+  exec: dnf4

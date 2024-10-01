@@ -17,7 +17,6 @@ dnf:
   exec: dnf4
   packages:
     - ultramarine-release-identity-basic
-    - ultramarine-release-basic
 
 scripts:
   post:

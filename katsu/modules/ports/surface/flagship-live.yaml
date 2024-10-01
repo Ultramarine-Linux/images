@@ -21,7 +21,7 @@ scripts:
   post:
     - id: flagship-live
       name: Set up Flagship Live
-      file: ../../flagship/flagship-live.sh
+      file: ../../flagship/./flagship-live.sh
     - id: surface.sh
       name: Enable Surface Watchdog
       file: ./surface.sh

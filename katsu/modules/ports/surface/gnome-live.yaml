@@ -21,7 +21,7 @@ scripts:
   post:
     - id: gnome-live
       name: Set up GNOME Live
-      file: gnome-live.sh
+      file: ../../gnome/./gnome-live.sh
     - id: surface.sh
       name: Enable Surface Watchdog
       file: ./surface.sh

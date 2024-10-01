@@ -14,7 +14,7 @@ scripts:
   post:
     - id: plasma-live
       name: Set up Plasma Live
-      file: ./plasma-live.sh
+      file: ../../plasma/./plasma-live.sh
     - id: surface.sh
       name: Enable Surface Watchdog
       file: ./surface.sh

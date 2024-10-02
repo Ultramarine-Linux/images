@@ -1,0 +1,9 @@
+image: ghcr.io/ultramarine-linux/ultramarine-gitpod:latest
+
+tasks:
+  - name: Setup Environment
+    before: touch ~/.zshrc && echo 'eval "$(starship init zsh)"' > ~/.zshrc
+    init: sudo dnf install -y katsu zsh ultramarine-shell-config
+    command: sudo chsh -s $(which zsh) && zsh
+
+

@@ -4,6 +4,8 @@ dnf:
   packages:
     #beta - still need to set up our own comps
     - "@ultramarine-plasma-product-environment"
+    - ultramarine-release-plasma
+    - ultramarine-release-identity-plasma
   exclude:
     - ibus
     - ibus-mozc

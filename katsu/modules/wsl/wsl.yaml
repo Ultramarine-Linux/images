@@ -1,17 +1,5 @@
 builder: dnf
 
-scripts:
-  post:
-    - id: cleanup
-      name: Clean up system
-      file: cleanup.sh
-    - id: selinux-setup
-      name: Set up SELinux
-      file: selinux.sh
-    - id: buildstamp
-      name: Generate buildstamp
-      file: buildstamp.sh
-
 dnf:
   repodir: ../base/repodir/
   releasever: 41

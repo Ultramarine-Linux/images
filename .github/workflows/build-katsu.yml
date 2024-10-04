@@ -190,6 +190,61 @@ jobs:
           path: katsu/*.iso
           compression-level: 0
 
+  tar:
+    strategy:
+      fail-fast: false
+      matrix:
+        arch:
+          - x86_64
+          - aarch64
+        variant:
+          - wsl/wsl
+    runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
+    container:
+      image: ghcr.io/terrapkg/builder:f41
+      # Pass /dev from host to container
+      # Very hacky, but it works
+      # Microsoft/Github, if you're reading this,
+      # I'm sorry.
+      options: --privileged -v /dev:/dev
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf up -y
+          dnf install -y $DNF_PKGS
+          dnf clean all
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: sanitize artifact name
+        run: |
+          name=$(echo ${{ matrix.variant }} | sed 's/\//-/g')
+          name=$name-${{ matrix.arch }}
+
+          # set github variable
+          echo artifact=$name >> $GITHUB_ENV
+          # Get architecture
+          # e.g. base/base-disk-x86_64 -> x86_64
+          echo arch=$(echo ${{ matrix.variant }} | cut -d'-' -f3) >> $GITHUB_ENV
+
+      - name: ${{ env.KATSU_BUILD_TASK_NAME }}
+        run: |
+          rm -rf /etc/rpm/macros.image-language-conf
+          chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
+          pushd katsu
+          KATSU_LOG=trace katsu -v --output=fs "modules/${{ matrix.variant }}.yaml"
+          tar -cJf katsu-work/chroot.tar katsu-work/chroot
+          mv katsu-work/chroot.tar katsu-work/${{ env.artifact }}.tar
+          # compress tar as zst, output as .tar.zst
+          zstd -T0 -19 katsu-work/${{ env.artifact }}.tar -o katsu-work/${{ env.artifact }}.tar.zst
+          popd
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.artifact }}-tar
+          path: katsu/katsu-work/*.tar.zst
+          compression-level: 0
+
   #### LIVE ISO PUSH ####
 
   push-image:
@@ -200,6 +255,7 @@ jobs:
     needs:
       - live-iso
       - image
+      - tar
     if: github.event_name != 'pull_request'
 
     steps:
@@ -244,6 +300,13 @@ jobs:
           done
 
           for file in artifacts/*-image/*; do
+            # if is file
+            if [ -f "$file" ]; then
+              pack_image $file images
+            fi
+          done
+
+          for file in artifacts/*-tar/*; do
             # if is file
             if [ -f "$file" ]; then
               pack_image $file images

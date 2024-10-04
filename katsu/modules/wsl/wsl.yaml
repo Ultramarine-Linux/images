@@ -1,0 +1,41 @@
+builder: dnf
+
+scripts:
+  post:
+    - id: cleanup
+      name: Clean up system
+      file: cleanup.sh
+    - id: selinux-setup
+      name: Set up SELinux
+      file: selinux.sh
+    - id: buildstamp
+      name: Generate buildstamp
+      file: buildstamp.sh
+
+dnf:
+  repodir: ../base/repodir/
+  releasever: 41
+  exec: dnf4
+  options:
+    - --setopt=cachedir=/var/cache/dnf
+    - --setopt=keepcache=True
+    - --setopt=tsflags=
+    - --setopt=max_parallel_downloads=20
+  exclude:
+    - fedora-release*
+    - generic-release*
+    - kernel*
+    - linux-firmware
+  packages:
+    - "@core"
+    - "@ultramarine-product-common"
+    - filesystem
+    - setup
+    - glibc
+    - glibc-common
+    - dnf
+    - git
+    - rpm
+    - libgomp
+    - ultramarine-release-identity-basic
+    - fedora-repos

@@ -1,0 +1,31 @@
+builder: dnf
+
+import:
+  - ../../base/base.yaml
+  - ../../live/live.yaml
+  - ../../xfce/xfce.yaml
+  - surface.yaml
+
+distro: Ultramarine Linux 41 (Xfce Edition)
+
+out_file: ultramarine-xfce-41-surface.iso
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-Xfce-Live
+
+scripts:
+  post:
+    - id: xfce-live
+      name: Set up XFCE Live
+      file: ../../xfce/./xfce-live.sh
+    - id: surface.sh
+      name: Enable Surface Watchdog
+      file: ./surface.sh
+
+dnf:
+  releasever: 41
+  exec: dnf4

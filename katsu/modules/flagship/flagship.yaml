@@ -12,3 +12,5 @@ dnf:
     - budgie-backgrounds
   packages:
     - "@ultramarine-flagship-product-environment"
+    - ultramarine-release-flagship
+    - ultramarine-release-identity-flagship

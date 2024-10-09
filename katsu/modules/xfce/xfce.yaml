@@ -13,3 +13,5 @@ dnf:
     - dnfdragora-updater
   packages:
     - "@ultramarine-xfce-product-environment"
+    - ultramarine-release-xfce
+    - ultramarine-release-identity-xfce

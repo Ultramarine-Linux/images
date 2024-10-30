@@ -25,3 +25,4 @@ dnf:
     - vboot-utils
     - submarine
     - alsa-ucm-cros
+    - ultramarine-release-chromebook

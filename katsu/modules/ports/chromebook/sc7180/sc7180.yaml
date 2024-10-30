@@ -9,6 +9,7 @@ dnf:
   packages:
     - kernel-sc7180
     - kernel-sc7180-devel
+    - msm-cros-efs-loader
 
 disk:
   size: 16GB

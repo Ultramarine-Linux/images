@@ -10,15 +10,14 @@ repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
 
-[kaibutsu]
-name=Kaibutsu Device Kernels
-baseurl=https://repos.fyralabs.com/kaibutsu
+[ultramarine-source]
+name=Ultramarine Linux $releasever - Source
+#baseurl=https://repos.fyralabs.com/um$releasever-source
+metalink=https://tetsudou.fyralabs.com/metalink?repo=um$releasever-source&arch=$basearch
 metadata_expire=6h
 type=rpm
-skip_if_unavailable=True
 gpgcheck=1
-gpgkey=https://repos.fyralabs.com/kaibutsu/key.asc
+gpgkey=https://repos.fyralabs.com/um$releasever-source/key.asc
 repo_gpgcheck=1
-enabled=1
-enabled_metadata=1
-priority=1
+enabled=0
+enabled_metadata=0

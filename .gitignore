@@ -1,3 +1,4 @@
 katsu-work/
 .DS_Store
 *.env*
+.test/

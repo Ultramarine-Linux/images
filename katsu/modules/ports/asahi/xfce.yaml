@@ -1,0 +1,24 @@
+builder: dnf
+
+import:
+  - ../../xfce/xfce.yaml
+  - ../../xfce/base-disk-aarch64.yaml
+  - asahi.yaml
+
+distro: Ultramarine Linux 41 (Xfce Edition)
+
+out_file: ultramarine-xfce-41-asahi.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+scripts:
+  post:
+    - id: xfce-live
+      name: Set up XFCE Live
+      file: ../../xfce/./xfce-live.sh
+
+dnf:
+  releasever: 41
+  exec: dnf4

@@ -1,0 +1,16 @@
+builder: dnf
+
+dnf:
+  releasever: 41
+  exec: dnf4
+  packages:
+    - asahi-platform-metapackage
+    - asahi-repos
+    - kernel-16k
+    - kernel-16k-modules
+    - kernel-16k-modules-core
+    - kernel-16k-modules-extra
+    - kernel-16k-core
+  exclude:
+    - kernel
+    - kernel-core

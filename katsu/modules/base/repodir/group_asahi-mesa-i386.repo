@@ -1,0 +1,12 @@
+[copr:copr.fedorainfracloud.org:group_asahi:mesa-i386]
+name=Copr repo for mesa owned by @asahi (i386)
+baseurl=https://download.copr.fedorainfracloud.org/results/@asahi/mesa/fedora-$releasever-i386/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-group_asahi-mesa
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+priority=5
+includepkgs=mesa-fex-emu-overlay-i386*

@@ -1,0 +1,18 @@
+builder: dnf
+
+import:
+  - ../../gnome/gnome.yaml
+  - ../../gnome/base-disk-aarch64.yaml
+  - asahi.yaml
+
+distro: Ultramarine GNOME 41
+
+out_file: ultramarine-gnome-41-aarch64.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+dnf:
+  releasever: 41
+  exec: dnf4

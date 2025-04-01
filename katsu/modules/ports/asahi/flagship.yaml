@@ -1,0 +1,27 @@
+builder: dnf
+
+import:
+  - ../../flagship/flagship.yaml
+  - ../../flagship/base-disk-aarch64.yaml
+  - asahi.yaml
+
+distro: Ultramarine Linux 41 (Flagship Edition)
+
+out_file: ultramarine-flagship-41-surface.iso
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-Flagship-Live
+
+scripts:
+  post:
+    - id: flagship-live
+      name: Set up Flagship Live
+      file: ../../flagship/./flagship-live.sh
+
+dnf:
+  releasever: 41
+  exec: dnf4

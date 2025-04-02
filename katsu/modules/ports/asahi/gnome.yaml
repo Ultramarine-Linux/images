@@ -7,7 +7,7 @@ import:
 
 distro: Ultramarine GNOME 41
 
-out_file: ultramarine-gnome-41-aarch64.img
+out_file: ultramarine-gnome-41-asahi.img
 
 bootloader: grub
 

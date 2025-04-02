@@ -7,20 +7,11 @@ import:
 
 distro: Ultramarine Linux 41 (Flagship Edition)
 
-out_file: ultramarine-flagship-41-surface.iso
+out_file: ultramarine-flagship-41-asahi.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
-
-iso:
-  volume_id: UM-Flagship-Live
-
-scripts:
-  post:
-    - id: flagship-live
-      name: Set up Flagship Live
-      file: ../../flagship/./flagship-live.sh
 
 dnf:
   releasever: 41

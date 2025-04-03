@@ -13,12 +13,6 @@ bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
-scripts:
-  post:
-    - id: xfce-live
-      name: Set up XFCE Live
-      file: ../../xfce/./xfce-live.sh
-
 dnf:
   releasever: 41
   exec: dnf4

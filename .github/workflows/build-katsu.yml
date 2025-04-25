@@ -254,6 +254,7 @@ jobs:
           path: |
             katsu/katsu-work/*.tar.zst
             katsu/katsu-work/*.tar.gz
+            katsu/katsu-work/*.wsl
           compression-level: 0
 
   #### LIVE ISO PUSH ####

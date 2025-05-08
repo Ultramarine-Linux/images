@@ -2,7 +2,6 @@ builder: dnf
 
 import:
   - ../base/base.yaml
-  - ../base/desktop.yaml
   - ../live/live.yaml
   - ../live/anaconda.yaml
   - xfce.yaml

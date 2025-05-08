@@ -6,13 +6,9 @@ dnf:
   options:
   packages:
     - kernel-surface
-    - kernel-surface-core
-    - kernel-surface-devel
-    - kernel-surface-modules
-    - kernel-surface-modules-core
-    - kernel-surface-modules-extra
     - iptsd
     - libwacom-surface
+    - kernel-surface-devel
     - ultramarine-release-surface
     - surface-dtx-daemon
     # Below for camera support
@@ -25,7 +21,6 @@ dnf:
     - pipewire-plugin-libcamera
 
   exclude:
-    - libwacom
     - kernel
     - kernel-core
     - kernel-devel*

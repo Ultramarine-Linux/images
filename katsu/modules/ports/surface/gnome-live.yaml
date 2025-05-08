@@ -2,7 +2,6 @@ builder: dnf
 
 import:
   - ../../base/base.yaml
-  - ../../live/anaconda.yaml
   - ../../live/live.yaml
   - ../../gnome/gnome.yaml
   - surface.yaml
@@ -23,9 +22,6 @@ scripts:
     - id: gnome-live
       name: Set up GNOME Live
       file: ../../gnome/./gnome-live.sh
-    - id: gnome-live-anaconda
-      name: Set up GNOME Live (for Anaconda)
-      file: gnome-live-anaconda.sh
 
 dnf:
   releasever: rawhide

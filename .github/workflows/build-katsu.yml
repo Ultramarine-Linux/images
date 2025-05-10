@@ -109,6 +109,53 @@ jobs:
           path: katsu/katsu-work/image/*.img.zst
           compression-level: 0
 
+  #### ASAHI INSTALLER PACKAGES ####
+  asahi:
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - flagship
+          - gnome
+          - plasma
+          - xfce
+    runs-on: ubuntu-22.04-arm
+    container:
+      image: ghcr.io/terrapkg/builder:f42
+      # Pass /dev from host to container
+      # Very hacky, but it works
+      # Microsoft/Github, if you're reading this,
+      # I'm sorry.
+      options: --privileged -v /dev:/dev
+
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf up -y
+          dnf install -y zip unzip util-linux btrfs-progs e2fsprogs
+          dnf clean all
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ports-asahi-${{ matrix.variant }}-base-disk-aarch64-image.zip
+
+      - name: Create Asahi Package
+        run: |
+          unzip ports-asahi-${{ matrix.variant }}-base-disk-aarch64-image.zip
+          zstd -d ports-asahi-${{ matrix.variant }}-base-disk-aarch64.img.zst
+          chmod +x ports/katsu/modules/imagestoasahi.sh
+          ports/katsu/modules/imagestoasahi.sh ports-asahi-${{ matrix.variant }}-base-disk-aarch64.img ${{ matrix.variant }}-asahi-package.zip
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.variant }}-asahi-package.zip
+          path: ${{ matrix.variant }}-asahi-package.zip
+          compression-level: 0
+
   live-iso:
     strategy:
       fail-fast: false

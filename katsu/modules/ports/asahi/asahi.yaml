@@ -1,7 +1,7 @@
 builder: dnf
 
 dnf:
-  releasever: 41
+  releasever: 42
   exec: dnf4
   packages:
     - asahi-platform-metapackage

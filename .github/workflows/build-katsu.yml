@@ -111,6 +111,7 @@ jobs:
 
   #### ASAHI INSTALLER PACKAGES ####
   asahi:
+    needs: image
     strategy:
       fail-fast: false
       matrix:

@@ -141,7 +141,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: ports-asahi-${{ matrix.variant }}-base-disk-aarch64-image.zip
+          name: ports-asahi-${{ matrix.variant }}-aarch64-image
 
       - name: Create Asahi Package
         run: |

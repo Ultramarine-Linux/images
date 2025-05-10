@@ -145,8 +145,8 @@ jobs:
 
       - name: Create Asahi Package
         run: |
-          unzip ports-asahi-${{ matrix.variant }}-base-disk-aarch64-image.zip
-          zstd -d ports-asahi-${{ matrix.variant }}-base-disk-aarch64.img.zst
+          unzip ports-asahi-${{ matrix.variant }}-aarch64-image.zip
+          zstd -d ports-asahi-${{ matrix.variant }}-aarch64.img.zst
           chmod +x ports/katsu/modules/imagestoasahi.sh
           ports/katsu/modules/imagestoasahi.sh ports-asahi-${{ matrix.variant }}-base-disk-aarch64.img ${{ matrix.variant }}-asahi-package.zip
 

@@ -145,7 +145,8 @@ jobs:
 
       - name: Create Asahi Package
         run: |
-          zstd -d $GITHUB_WORKSPACE/ports-asahi-${{ matrix.variant }}-aarch64.img.zst
+          cd $GITHUB_WORKSPACE
+          zstd -d ports-asahi-${{ matrix.variant }}-aarch64.img.zst
           chmod +x katsu/modules/ports/katsu/modules/imagestoasahi.sh
           katsu/modules/ports/asahi/imagestoasahi.sh ports-asahi-${{ matrix.variant }}-base-disk-aarch64.img ${{ matrix.variant }}-asahi-package.zip
 

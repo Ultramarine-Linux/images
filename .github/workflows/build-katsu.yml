@@ -36,10 +36,10 @@ jobs:
           # - ports/chromebook/sc7180/gnome
           # - ports/chromebook/sc7180/plasma
           # - ports/chromebook/sc7180/xfce
-          - ports/asahi/flagship
-          - ports/asahi/gnome
-          - ports/asahi/plasma
-          - ports/asahi/xfce
+          - ports/asahi/flagship-base-disk
+          - ports/asahi/gnome-base-disk
+          - ports/asahi/plasma-base-disk
+          - ports/asahi/xfce-base-disk
           # TODO: figure out how to get loop devices to work on our ARM runners
         exclude:
           - arch: aarch64
@@ -61,13 +61,13 @@ jobs:
           - arch: x86_64
             variant: ports/chromebook/sc7180/xfce
           - arch: x86_64
-            variant: ports/asahi/flagship
+            variant: ports/asahi/flagship-base-disk
           - arch: x86_64
-            variant: ports/asahi/gnome
+            variant: ports/asahi/gnome-base-disk
           - arch: x86_64
-            variant: ports/asahi/plasma
+            variant: ports/asahi/plasma-base-disk
           - arch: x86_64
-            variant: ports/asahi/xfce
+            variant: ports/asahi/xfce-base-disk
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'ubuntu-22.04-arm' }}
     container:
       image: ghcr.io/fyralabs/katsu:0.10.3

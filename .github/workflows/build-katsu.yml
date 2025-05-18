@@ -150,7 +150,7 @@ jobs:
           pwd
           zstd -d ports-asahi-${{ matrix.variant }}-aarch64.img.zst
           chmod +x katsu/modules/ports/asahi/imagestoasahi.sh
-          katsu/modules/ports/asahi/imagestoasahi.sh ports-asahi-${{ matrix.variant }}-base-disk-aarch64.img ${{ matrix.variant }}-asahi-package.zip
+          katsu/modules/ports/asahi/imagestoasahi.sh ports-asahi-${{ matrix.variant }}-aarch64.img ${{ matrix.variant }}-asahi-package.zip
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4

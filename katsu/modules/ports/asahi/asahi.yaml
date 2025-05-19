@@ -14,3 +14,8 @@ dnf:
   exclude:
     - kernel
     - kernel-core
+scripts:
+  post:
+    - id: setup-m1n1
+      name: Setup m1n1 in EFI
+      file: setup-m1n1.sh

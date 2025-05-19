@@ -51,7 +51,7 @@ sudo umount umroot/ root/
 rmdir umroot/ root/
 
 # copy icon
-cp $(dirname "$0")Ultramarine.icns ultramarine.icns
+cp $(dirname "$0")/Ultramarine.icns ultramarine.icns
 
 # clean up um loop
 sudo losetup -d $loop_device

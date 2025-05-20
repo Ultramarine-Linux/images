@@ -30,7 +30,6 @@ sudo mount ${loop_device}p2 umboot
 mkdir boot
 sudo mount ${boot_loop} boot
 sudo cp -a umboot/* boot/
-sudo rm -rf boot/efi
 sudo umount umboot/ boot/
 rmdir umboot/ boot/
 
@@ -46,7 +45,6 @@ sudo mount ${root_loop} root
 # sudo btrfs send umroot/ | sudo btrfs receive root/
 # sudo btrfs send umroot/home | sudo btrfs receive root/home
 sudo cp -a umroot/* root/
-sudo rm -rf root/boot
 sudo umount umroot/ root/
 rmdir umroot/ root/
 

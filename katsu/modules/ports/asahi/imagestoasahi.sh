@@ -45,6 +45,7 @@ sudo mount ${root_loop} root
 # sudo btrfs send umroot/ | sudo btrfs receive root/
 # sudo btrfs send umroot/home | sudo btrfs receive root/home
 sudo cp -a umroot/* root/
+sed -e 's/UUID=.*\/boot\/efi/UUID=7E5D-2CF4 \/boot\/efi/' umroot/etc/fstab | sudo tee umroot/etc/fstab
 sudo umount umroot/ root/
 rmdir umroot/ root/
 

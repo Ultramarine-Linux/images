@@ -21,3 +21,6 @@ scripts:
     - id: setup-m1n1
       name: Setup m1n1 in EFI
       file: setup-m1n1.sh
+    - id: set-efi-uuid
+      name: Set EFI UUID to match Asahi JSON
+      file: set-efi-uuid.sh

@@ -24,7 +24,7 @@ rmdir efi
 # create boot image
 fallocate -l 1GiB boot.img
 boot_loop=$(sudo losetup --partscan --show -f boot.img)
-sudo mkfs.ext4 -b 16384 $boot_loop
+sudo mkfs.ext4 -F -b 16384 $boot_loop
 mkdir umboot
 sudo mount ${loop_device}p2 umboot
 mkdir boot
@@ -36,7 +36,7 @@ rmdir umboot/ boot/
 # create root image
 fallocate -l 16GiB root.img
 root_loop=$(sudo losetup --partscan --show -f root.img)
-sudo mkfs.btrfs -s 16k $root_loop
+sudo mkfs.btrfs -f -s 16k $root_loop
 mkdir umroot
 sudo mount ${loop_device}p3 umroot
 mkdir root

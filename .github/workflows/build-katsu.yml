@@ -45,8 +45,6 @@ on:
   push:
     branches: ["um41"]
   workflow_dispatch:
-  pull_request:
-    branches: ["um41"]
 
 jobs:
   #### BASE IMAGES ####

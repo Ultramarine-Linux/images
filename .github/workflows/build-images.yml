@@ -1,0 +1,19 @@
+name: Build all images
+
+# todo: exclusive to current branch, but for now we're hackinng
+on:
+  push:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        variants:
+          - name: gnome
+
+    uses: ./.github/workflows/katsu.yml
+    with:
+      #   arch: ${{ matrix.arch }}
+      variant: ${{ matrix.variants.name }}
+      include: ${{ matrix.variants.includes }}

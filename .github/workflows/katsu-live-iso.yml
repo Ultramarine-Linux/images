@@ -1,0 +1,143 @@
+# Re-usable GHA workflow for building Ultramarine images, using
+# GHA workflow_calls!
+
+# Usage as a job:
+#   build:
+#     strategy:
+#     fail-fast: false
+#       matrix:
+#         arch:
+#           - x86_64
+#           - aarch64
+#         variant:
+#           - base
+#           - flagship
+#           - gnome
+#           - plasma
+#           - xfce
+#   uses: ./.github/workflows/katsu.yml
+#   with:
+#     arch: ${{ matrix.arch }}
+#     variant: ${{ matrix.variant }}
+
+# Be sure to name the katsu yaml files in this format:
+# $VARIANT/base-disk-$ARCH.yaml
+# $VARIANT/$VARIANT-live.yaml
+
+name: Build Disk Images
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
+env:
+  DNF_PKGS: |
+    git
+    xorriso
+    rpm
+    limine
+    systemd
+    btrfs-progs
+    e2fsprogs
+    xfsprogs
+    dosfstools
+    grub2
+    parted
+    util-linux-core
+    systemd-container
+    grub2-efi
+    uboot-images-armv8
+    uboot-tools
+    rustc
+    qemu-user-static-aarch64
+    qemu-user-binfmt
+    qemu-kvm
+    qemu-img
+    cargo
+    systemd-devel
+    mkpasswd
+    clang-devel
+    moby-engine
+    squashfs-tools
+    erofs-utils
+    grub2-tools
+    grub2-tools-extra
+    isomd5sum
+    moby-engine
+    podman
+    buildah
+    katsu
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-41.noarch.rpm
+    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-41.noarch.rpm
+
+on:
+  workflow_call:
+    inputs:
+      variant:
+        required: true
+        type: string
+        description: "Variant to build"
+
+      include:
+        required: false
+        type: string
+        description: "include a specific type from the build, comma separated"
+
+jobs:
+  live-iso:
+    strategy:
+      matrix:
+        arch: [x86_64, aarch64]
+      fail-fast: false
+    runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'arm64' }}
+    container:
+      image: ghcr.io/terrapkg/builder:f41
+      options: --privileged -v /dev:/dev
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf up -y
+          dnf install -y $DNF_PKGS
+          dnf clean all
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sanitize artifact name
+        run: |
+          name=$(echo ${{ inputs.variant }} | sed 's/\//-/g')
+          name=$name-${{ matrix.arch }}
+
+          # set github variable
+          echo artifact=$name-${{ matrix.arch }}-live >> $GITHUB_ENV
+          # Get architecture
+          # e.g. flagship/flagship-live -> flagship
+          echo variant=$(echo ${{ inputs.variant }} | cut -d'/' -f1) >> $GITHUB_ENV
+
+      - name: Build Live ISO
+        run: |
+          # loop device fix
+          if [ "$(df -T /dev | tail -1 |cut -f 1 -d ' ')" = "tmpfs" ]; then
+            mount -t devtmpfs none /dev
+          fi
+
+          rm -rf /etc/rpm/macros.image-language-conf
+          chcon system_u:object_r:install_exec_t:s0 "$(which katsu)"
+          pushd katsu
+          KATSU_KEEP_CHROOT=1 KATSU_LOG=trace katsu -v --output=iso "modules/${{ inputs.variant }}/${{ inputs.variant }}-live.yaml"
+          # get the ISO name, and then append the arch
+          # e.g. flagship-live.iso -> flagship-live-x86_64.iso
+
+          # get the ISO name
+          iso=$(ls *.iso)
+          # append the arch
+          mv $iso $(echo $iso | sed "s/.iso/-${{ matrix.arch }}.iso/")
+
+          rm -rf katsu-work/
+          popd
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.artifact }}-iso
+          path: katsu/*.iso
+          compression-level: 0

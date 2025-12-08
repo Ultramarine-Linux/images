@@ -5,6 +5,8 @@ permissions:
 
 env:
   KATSU_BUILD_TASK_NAME: "Build image"
+  DNF_PKGS: |
+    https://download.copr.fedorainfracloud.org/results/%40asahi/fedora-remix-branding/fedora-43-aarch64/08988043-asahi-repos/asahi-repos-1-20.fc43.noarch.rpm
 
 on:
   push:

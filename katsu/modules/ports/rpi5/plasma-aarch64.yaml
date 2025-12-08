@@ -1,0 +1,18 @@
+builder: dnf
+
+import:
+  - rpi5.yaml
+  - ../../plasma/plasma.yaml
+  - ../../plasma/base-disk-aarch64.yaml
+
+distro: Ultramarine Linux 43 Plasma (Raspberry Pi 5)
+
+out_file: ultramarine-plasma-rpi5-43.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+dnf:
+  releasever: 43
+  exec: dnf5

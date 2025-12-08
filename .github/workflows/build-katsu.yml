@@ -38,6 +38,10 @@ jobs:
           # - ports/chromebook/sc7180/plasma
           # - ports/chromebook/sc7180/xfce
           # TODO: figure out how to get loop devices to work on our ARM runners
+          - ports/rpi5/budgie
+          - ports/rpi5/gnome
+          - ports/rpi5/plasma
+          - ports/rpi5/xfce
         exclude:
           - arch: aarch64
             variant: ports/chromebook/x86_64/budgie
@@ -63,6 +67,14 @@ jobs:
             variant: ports/chromebook/sc7180/plasma
           - arch: x86_64
             variant: ports/chromebook/sc7180/xfce
+          - arch: x86_64
+            variant: ports/rpi5/plasma
+          - arch: x86_64
+            variant: ports/rpi5/gnome
+          - arch: x86_64
+            variant: ports/rpi5/xfce
+          - arch: x86_64
+            variant: ports/rpi5/budgie
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'ubuntu-22.04-arm' }}
     container:
       image: ghcr.io/fyralabs/katsu:0.10.3

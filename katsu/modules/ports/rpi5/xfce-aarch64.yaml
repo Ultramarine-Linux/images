@@ -1,0 +1,18 @@
+builder: dnf
+
+import:
+  - rpi5.yaml
+  - ../../xfce/xfce.yaml
+  - ../../xfce/base-disk-aarch64.yaml
+
+distro: Ultramarine Linux 43 Xfce (Raspberry Pi 5)
+
+out_file: ultramarine-xfce-rpi5-43.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+dnf:
+  releasever: 43
+  exec: dnf5

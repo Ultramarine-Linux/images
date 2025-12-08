@@ -1,0 +1,11 @@
+builder: dnf
+
+dnf:
+  releasever: 43
+  exec: dnf5
+  arch: aarch64
+  packages:
+    - kernel-rpi5
+    - kernel-rpi5-core
+    - kernel-rpi5-devel
+    - ultramarine-backgrounds

@@ -1,18 +1,18 @@
 builder: dnf
 
 import:
-  - ../../flagship/flagship.yaml
-  - ../../flagship/base-disk-aarch64.yaml
+  - ../../budgie/budgie.yaml
+  - ../../budgie/base-disk-aarch64.yaml
   - asahi.yaml
 
-distro: Ultramarine Linux 42 (Flagship Edition)
+distro: Ultramarine Linux 43 (Budgie Edition)
 
-out_file: ultramarine-flagship-42-asahi.img
+out_file: ultramarine-budgie-43-asahi.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 42
+  releasever: 43
   exec: dnf4

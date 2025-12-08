@@ -5,14 +5,14 @@ import:
   - ../../gnome/base-disk-aarch64.yaml
   - asahi.yaml
 
-distro: Ultramarine GNOME 42
+distro: Ultramarine GNOME 43
 
-out_file: ultramarine-gnome-42-asahi.img
+out_file: ultramarine-gnome-43-asahi.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 42
+  releasever: 43
   exec: dnf4

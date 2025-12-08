@@ -5,14 +5,14 @@ import:
   - ../../xfce/base-disk-aarch64.yaml
   - asahi.yaml
 
-distro: Ultramarine Linux 42 (Xfce Edition)
+distro: Ultramarine Linux 43 (Xfce Edition)
 
-out_file: ultramarine-xfce-42-asahi.img
+out_file: ultramarine-xfce-43-asahi.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 42
+  releasever: 43
   exec: dnf4

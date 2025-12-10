@@ -1,11 +1,10 @@
-[copr:copr.fedorainfracloud.org:group_asahi:kernel]
-name=Copr repo for kernel owned by @asahi
-baseurl=https://download.copr.fedorainfracloud.org/results/@asahi/kernel/fedora-$releasever-$basearch/
+[copr:copr.fedorainfracloud.org:group_asahi:steam]
+name=Copr repo for steam owned by @asahi
+baseurl=https://download.copr.fedorainfracloud.org/results/@asahi/steam/fedora-$releasever-$basearch/
 type=rpm-md
-skip_if_unavailable=False
+skip_if_unavailable=True
 gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-group_asahi-kernel
+gpgkey=https://download.copr.fedorainfracloud.org/results/@asahi/steam/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
-priority=5

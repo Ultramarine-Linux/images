@@ -2,7 +2,7 @@ builder: dnf
 
 dnf:
   releasever: 43
-  exec: dnf4
+  exec: dnf5
   packages:
     - asahi-platform-metapackage
     - asahi-repos

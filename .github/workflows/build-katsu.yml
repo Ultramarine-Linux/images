@@ -36,7 +36,7 @@ jobs:
           # - ports/chromebook/sc7180/gnome
           # - ports/chromebook/sc7180/plasma
           # - ports/chromebook/sc7180/xfce
-          - ports/asahi/flagship
+          - ports/asahi/budgie
           - ports/asahi/gnome
           - ports/asahi/plasma
           - ports/asahi/xfce
@@ -61,7 +61,7 @@ jobs:
           - arch: x86_64
             variant: ports/chromebook/sc7180/xfce
           - arch: x86_64
-            variant: ports/asahi/flagship
+            variant: ports/asahi/budgie
           - arch: x86_64
             variant: ports/asahi/gnome
           - arch: x86_64
@@ -121,7 +121,7 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - flagship
+          - budgie
           - gnome
           - plasma
           - xfce

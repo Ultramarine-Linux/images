@@ -1,0 +1,19 @@
+builder: dnf
+
+import:
+  - ../../plasma/plasma.yaml
+  - ../../plasma/base-disk-aarch64.yaml
+  - asahi.yaml
+
+distro: Ultramarine Linux 43 (Plasma Edition)
+
+out_file: ultramarine-plasma-43-asahi.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+dnf:
+  releasever: 43
+  exec: dnf5
+  arch: aarch64

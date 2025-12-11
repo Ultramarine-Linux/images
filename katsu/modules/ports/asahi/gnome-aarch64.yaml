@@ -1,0 +1,19 @@
+builder: dnf
+
+import:
+  - ../../gnome/gnome.yaml
+  - ../../gnome/base-disk-aarch64.yaml
+  - asahi.yaml
+
+distro: Ultramarine GNOME 43
+
+out_file: ultramarine-gnome-43-asahi.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+dnf:
+  releasever: 43
+  exec: dnf5
+  arch: aarch64

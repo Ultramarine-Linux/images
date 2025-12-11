@@ -37,6 +37,10 @@ jobs:
           # - ports/chromebook/sc7180/gnome
           # - ports/chromebook/sc7180/plasma
           # - ports/chromebook/sc7180/xfce
+          - ports/asahi/budgie
+          - ports/asahi/gnome
+          - ports/asahi/plasma
+          - ports/asahi/xfce
           # TODO: figure out how to get loop devices to work on our ARM runners
         exclude:
           - arch: aarch64
@@ -63,6 +67,14 @@ jobs:
             variant: ports/chromebook/sc7180/plasma
           - arch: x86_64
             variant: ports/chromebook/sc7180/xfce
+          - arch: x86_64
+            variant: ports/asahi/budgie
+          - arch: x86_64
+            variant: ports/asahi/gnome
+          - arch: x86_64
+            variant: ports/asahi/plasma
+          - arch: x86_64
+            variant: ports/asahi/xfce
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'ubuntu-22.04-arm' }}
     container:
       image: ghcr.io/fyralabs/katsu:0.10.3
@@ -73,6 +85,11 @@ jobs:
       options: --privileged -v /dev:/dev
 
     steps:
+      - name: Install Asahi Repos for GPG Key
+        run: |
+          dnf up -y
+          dnf in -y https://download.copr.fedorainfracloud.org/results/%40asahi/fedora-remix-branding/fedora-43-aarch64/08988043-asahi-repos/asahi-repos-1-20.fc43.noarch.rpm
+
       - name: Checkout
         uses: actions/checkout@v4
       - name: sanitize artifact name
@@ -102,6 +119,56 @@ jobs:
         with:
           name: ${{ env.artifact }}-image
           path: katsu/katsu-work/image/*.img.zst
+          compression-level: 0
+
+  #### ASAHI INSTALLER PACKAGES ####
+  asahi:
+    needs: image
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - budgie
+          - gnome
+          - plasma
+          - xfce
+    runs-on: ubuntu-22.04-arm
+    container:
+      image: ghcr.io/terrapkg/builder:f42
+      # Pass /dev from host to container
+      # Very hacky, but it works
+      # Microsoft/Github, if you're reading this,
+      # I'm sorry.
+      options: --privileged -v /dev:/dev
+
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf up -y
+          dnf install -y zip unzip util-linux btrfs-progs e2fsprogs
+          dnf clean all
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ports-asahi-${{ matrix.variant }}-aarch64-image
+
+      - name: Create Asahi Package
+        run: |
+          cd $GITHUB_WORKSPACE
+          ls
+          pwd
+          zstd -d ports-asahi-${{ matrix.variant }}-aarch64.img.zst
+          chmod +x katsu/modules/ports/asahi/imagestoasahi.sh
+          katsu/modules/ports/asahi/imagestoasahi.sh ports-asahi-${{ matrix.variant }}-aarch64.img ${{ matrix.variant }}-asahi-package.zip
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.variant }}-asahi-package.zip
+          path: ${{ matrix.variant }}-asahi-package.zip
           compression-level: 0
 
   live-iso:

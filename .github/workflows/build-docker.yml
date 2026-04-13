@@ -76,7 +76,8 @@ jobs:
 
   docker-push:
     permissions:
-      contents: write
+      contents: read
+      packages: write
     runs-on: ubuntu-latest
     needs: docker
     if: github.event_name != 'pull_request'

@@ -27,5 +27,5 @@ dnf:
     - "@hardware-support"
     - rpm
     - libgomp
-    - ultramarine-release-identity-basic
+    - ultramarine-release-identity-container
     - fedora-repos

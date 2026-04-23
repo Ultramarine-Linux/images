@@ -18,6 +18,7 @@ dnf:
   arch: aarch64
   packages:
     - ultramarine-release-identity-basic
+    - linux-firmware-rpi
 scripts:
   post:
     - id: grub

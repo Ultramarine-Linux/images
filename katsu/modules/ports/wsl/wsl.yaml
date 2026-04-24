@@ -29,8 +29,6 @@ dnf:
     - glibc
     - glibc-common
     - dnf
-    - git
-    - vim
     - rpm
     - libgomp
     - ultramarine-release-identity-basic

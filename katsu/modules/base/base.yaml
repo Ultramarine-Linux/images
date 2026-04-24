@@ -64,3 +64,4 @@ dnf:
     - ultramarine-release
     - ultramarine-repos
     - ultramarine-logos
+    - "@ultramarine-product-common"

@@ -36,15 +36,9 @@ dnf:
     - gjs
     - util-linux-user
     - livesys-scripts
-    - rsync
-    - htop
-    - vim
-    - nano
     # for drivers and other stuff
     - kernel
     - kernel-devel-matched
     # UMSS
-    - um
-    - dive
     - mkfstab
     - dracut-strip-trigger

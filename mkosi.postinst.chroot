@@ -1,0 +1,17 @@
+#!/bin/bash
+set -xeuo pipefail
+#lsblk # debug
+source /usr/src/ultramarine-bootc/base/common.sh
+
+
+KERNEL_VERSION=$(get_kernel_version)
+#kernel-install add $KERNEL_VERSION /lib/modules/$KERNEL_VERSION/vmlinuz
+rsync -av /usr/lib/ostree-boot/ /boot/
+# Copy EFI files
+
+mkdir -p /boot/efi
+rsync -av /usr/lib/efi/*/*/EFI/ /boot/efi/EFI/
+rsync -av /usr/lib/grub/ /boot/grub2/
+# Regenerate GRUB configuration
+# grub2-mkconfig -o /boot/grub2/grub.cfg || true
+# grub2-editenv create || true

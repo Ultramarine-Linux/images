@@ -75,7 +75,7 @@ rm /etc/dracut.conf.d/generic.conf
 # for obvious reasons
 for file in /boot/loader/entries/*.conf; do
     # change `ro` to `rw` if it ends with newline
-    sed -i "s|ro$|rw|" "$file"
+    sed -i "s|ro[[:space:]]*$|rw|" "$file"
 done
 
 EOF

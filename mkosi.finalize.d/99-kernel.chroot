@@ -1,0 +1,11 @@
+#!/bin/bash
+set -xeuo pipefail
+# welcome to chroot or something, testing
+
+# # Ensure hostname exists and is not empty for dracut
+# ls -la /etc/hostname || echo "hostname file does not exist"
+# file /etc/hostname || true
+# test -s /etc/hostname || echo "ultramarine" > /etc/hostname
+
+
+rm -f /etc/{machine-id,hostname,shadow,locale.conf}

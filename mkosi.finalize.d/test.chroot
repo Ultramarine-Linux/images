@@ -1,6 +1,0 @@
-#!/bin/bash
-set -xeuo pipefail
-# welcome to chroot or something, testing
-lsblk || true
-mount || true
-#bootctl install --variables=no --esp-path=/efi --make-entry-directory=yes --all-architectures --boot-path=/boot

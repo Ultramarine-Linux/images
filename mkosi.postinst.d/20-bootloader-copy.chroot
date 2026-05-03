@@ -11,7 +11,7 @@ rsync -av /usr/lib/ostree-boot/ /boot/
 
 mkdir -p /boot/efi
 rsync -av /usr/lib/efi/*/*/EFI/ /boot/efi/EFI/
-rsync -av /usr/lib/grub/ /boot/grub2/
+rsync -a /usr/lib/grub/ /boot/grub2/
 # Regenerate GRUB configuration
 # grub2-mkconfig -o /boot/grub2/grub.cfg || true
 # grub2-editenv create || true

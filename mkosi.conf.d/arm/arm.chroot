@@ -1,0 +1,4 @@
+#!/bin/bash -x
+#install pi uboot files
+cp -P /usr/share/uboot/rpi_arm64/u-boot.bin /boot/efi/rpi-u-boot.bin
+cp -P /usr/share/uboot/pinebook-pro-rk3399/u-boot.bin /boot/efi/pinebook-pro-u-boot.bin

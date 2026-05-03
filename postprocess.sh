@@ -61,15 +61,11 @@ loop="$1"
 grub2-install --target=i386-pc "$loop"
 source /usr/src/ultramarine-bootc/base/common.sh
 KERNEL_VERSION=$(get_kernel_version)
-# Ensure hostname exists and is not empty for dracut
-ls -la /etc/hostname || echo "hostname file does not exist"
-file /etc/hostname || true
-test -s /etc/hostname || echo "localhost" > /etc/hostname
 grub2-mkconfig -o /boot/grub2/grub.cfg
-
+# hack: disable dracut for now
+mv /usr/lib/kernel/install.d/50-dracut.install /tmp/dracut.install 
 kernel-install add -v $KERNEL_VERSION /lib/modules/$KERNEL_VERSION/vmlinuz
-
-# then remove hostname and machine-id and everything
-rm -f /etc/{machine-id,localtime,hostname,shadow,locale.conf}
+# then add it back
+mv /tmp/dracut.install /usr/lib/kernel/install.d/50-dracut.install
 
 EOF

@@ -3,11 +3,10 @@ builder: dnf
 import:
   - ../chromebook.yaml
   - ../../../xfce/xfce-live.yaml
-  - ../../../xfce/base-disk-x86_64.yaml
 
 distro: Ultramarine Linux 43 Xfce (Chromebook Edition)
 
-out_file: ultramarine-cbe-xfce-43.img
+out_file: ultramarine-cbe-xfce-43-live.iso
 
 bootloader: grub
 

@@ -127,10 +127,10 @@ jobs:
           - gnome/gnome-live-anaconda
           - plasma/plasma-live-anaconda
           - xfce/xfce-live-anaconda
-          # - ports/chromebook/x86_64/budgie
-          # - ports/chromebook/x86_64/gnome
-          # - ports/chromebook/x86_64/plasma
-          # - ports/chromebook/x86_64/xfce
+          - ports/chromebook/x86_64/budgie
+          - ports/chromebook/x86_64/gnome
+          - ports/chromebook/x86_64/plasma
+          - ports/chromebook/x86_64/xfce
         exclude:
           - arch: aarch64
             variant: ports/surface/budgie-live
@@ -182,6 +182,10 @@ jobs:
 
       - name: ${{ env.KATSU_BUILD_TASK_NAME }}
         run: |
+          if echo "${{ matrix.variant }}" | grep -q "^ports/chromebook/"; then
+            dnf install -y submarine gpt-image
+          fi
+
           # loop device fix
           if [ "$(df -T /dev | tail -1 |cut -f 1 -d ' ')" = "tmpfs" ]; then
             mount -t devtmpfs none /dev
@@ -204,13 +208,21 @@ jobs:
           ls -lR
 
           rm -rf katsu-work/
+
+          if echo "${{ matrix.variant }}" | grep -q "^ports/chromebook/"; then
+            iso=$(ls *.iso)
+            ./modules/ports/chromebook/impregnate.py /usr/share/submarine/submarine.kpart *.iso "${iso%.*}.img"
+          fi
+
           popd
 
       - name: Upload Artifact
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: ${{ env.artifact }}-iso
-          path: katsu/*.iso
+          path: |
+            katsu/*.iso
+            katsu/*.img
           compression-level: 0
 
   tar:

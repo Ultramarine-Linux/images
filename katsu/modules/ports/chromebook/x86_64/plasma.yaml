@@ -3,11 +3,10 @@ builder: dnf
 import:
   - ../chromebook.yaml
   - ../../../plasma/plasma-live.yaml
-  - ../../../plasma/base-disk-x86_64.yaml
 
 distro: Ultramarine Linux 43 Plasma (Chromebook Edition)
 
-out_file: ultramarine-cbe-plasma-43.img
+out_file: ultramarine-cbe-plasma-43-live.iso
 
 bootloader: grub
 

@@ -3,11 +3,10 @@ builder: dnf
 import:
   - ../chromebook.yaml
   - ../../../budgie/budgie-live.yaml
-  - ../../../budgie/base-disk-x86_64.yaml
 
 distro: Ultramarine Linux 43 Budgie (Chromebook Edition)
 
-out_file: ultramarine-cbe-budgie-43.img
+out_file: ultramarine-cbe-budgie-43-live.iso
 
 bootloader: grub
 

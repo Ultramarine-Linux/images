@@ -6,6 +6,8 @@ import:
 dnf:
   releasever: 43
   exec: dnf5
+  options:
+    - --enablerepo=kaibutsu
   arch: aarch64
   packages:
     - kernel-mt81

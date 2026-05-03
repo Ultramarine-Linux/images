@@ -2,19 +2,6 @@ builder: dnf
 
 scripts:
   post:
-    - id: cleanup
-      name: Clean up system
-      file: ../../base/cleanup.sh
-    - id: selinux-setup
-      name: Set up SELinux
-      file: ../../base/selinux.sh
-      chroot: false
-    - id: buildstamp
-      name: Generate buildstamp
-      file: ../../base/buildstamp.sh
-    - id: submarine
-      name: Set up ChromeOS bootloader
-      file: submarine.sh
     - id: readymade
       name: Set up chromebookinstall for readymade
       file: chromebookrdm.sh
@@ -22,13 +9,15 @@ scripts:
 dnf:
   releasever: 43
   exec: dnf5
-  options:
-    - --enablerepo=kaibutsu
+  # options:
+  #   - --enablerepo=kaibutsu
   packages:
+    - ultramarine-release-chromebook
     - cros-keyboard-map
     - depthcharge-tools
     - vboot-utils
     - submarine
     - croskbd
-    - kernel-chromebook
-    - kernel-chromebook-*
+    # - alsa-ucm-cros
+    # - kernel-chromebook
+    # - kernel-chromebook-headers

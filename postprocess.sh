@@ -68,4 +68,8 @@ test -s /etc/hostname || echo "localhost" > /etc/hostname
 grub2-mkconfig -o /boot/grub2/grub.cfg
 
 kernel-install add -v $KERNEL_VERSION /lib/modules/$KERNEL_VERSION/vmlinuz
+
+# then remove hostname and machine-id and everything
+rm -f /etc/{machine-id,localtime,hostname,shadow,locale.conf}
+
 EOF

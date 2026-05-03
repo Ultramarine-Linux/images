@@ -1,0 +1,5 @@
+#!/bin/bash
+if [[ "$WITH_DOCS" == "1" ]]; then
+    echo "Building man pages..."
+    mandb
+fi

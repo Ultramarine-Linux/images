@@ -10,10 +10,13 @@ full-build: prep build
 prep: pack-images
 
 postprocess:
-    sudo ./postprocess.sh
+    sudo ./scripts/postprocess.sh
     
 prepare_dirs:
     mkdir -p {{ cache_dir }}
+
+hash:
+    ./scripts/hash.sh
 
 mkosi-build:
     # for some reason $PROFILES does not get passed through on configure script so we need this instead

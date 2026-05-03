@@ -6,7 +6,14 @@ format="$(jq -r '.OutputFormat' "$MKOSI_CONFIG" 2>/dev/null || true)"
 # crude example for a raw disk image:
 img="$OUTPUTDIR/${output}.raw"
 
+# output manifest
+
+
 echo "disk image path: $img"
+manifest="$OUTPUTDIR/manifest.json"
+echo "manifest path: $manifest"
+cp -v "$MKOSI_CONFIG" "$manifest"
+
 env
 tree /work
 lsblk || true

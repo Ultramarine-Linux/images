@@ -1,8 +1,15 @@
 profile := "base"
+secondary_profile := ""
+
+# join with `,`
+
+profile_string := profile + if secondary_profile != "" { "," + secondary_profile } else { "" }
+export PROFILES := profile_string
 release := "44"
 cache_dir := "mkosi.cache"
 oci_image := "ghcr.io/ultramarine-linux" / profile + "-bootc:" + release
 tar_export := cache_dir / profile + ".tar"
+
 build: mkosi-build postprocess
 
 full-build: prep build
@@ -11,19 +18,21 @@ prep: pack-images
 
 postprocess:
     sudo ./scripts/postprocess.sh
-    
+
 prepare_dirs:
     mkdir -p {{ cache_dir }}
 
 hash:
     ./scripts/hash.sh
 
+
+
+# for some reason $PROFILES does not get passed through on configure script so we need this instead
 mkosi-build:
-    # for some reason $PROFILES does not get passed through on configure script so we need this instead
-    sudo mkosi --profile="{{ profile }}" --release="{{ release }}" -w build 
+    sudo mkosi --profile="{{ profile_string }}" --release="{{ release }}" -w build
+
 clean:
     mkosi clean
-
 
 pack-images: pull
     #!/bin/bash
@@ -37,4 +46,3 @@ pack-images: pull
 pull: prepare_dirs
     @echo "pulling image {{ oci_image }}"
     podman pull {{ oci_image }}
-

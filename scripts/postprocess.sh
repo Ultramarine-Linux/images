@@ -50,32 +50,9 @@ mount -t sysfs sysfs "$rootmnt/sys"
 mount -t tmpfs tmpfs "$rootmnt/tmp"
 mount -t tmpfs tmpfs "$rootmnt/run"
 
-chroot "$rootmnt" bash -s "$loop" "$architecture" <<'EOF'
-set -euxo pipefail
-loop="$1"
-architecture="$2"
-if [[ "$architecture" == "x86-64" ]]; then
-    grub2-install --target=i386-pc "$loop"
-fi
-source /usr/src/ultramarine-bootc/base/common.sh
-KERNEL_VERSION=$(get_kernel_version)
-grub2-mkconfig -o /boot/grub2/grub.cfg
-# hack: disable dracut for now
-mv /usr/lib/kernel/install.d/50-dracut.install /tmp/dracut.install
-echo 'hostonly="no"' > /etc/dracut.conf.d/generic.conf
-kernel-install add -v $KERNEL_VERSION /lib/modules/$KERNEL_VERSION/vmlinuz
-# then add it back
-mv /tmp/dracut.install /usr/lib/kernel/install.d/50-dracut.install
-rm /etc/dracut.conf.d/generic.conf
-
-# Change `ro` to `rw` for first boot
-# Fixes a weird issue where boot gets stuck on `ro` mode when there's no
-# /etc/hostname and other machine state
-# However we do want machine state to be wiped before first boot
-# for obvious reasons
-for file in /boot/loader/entries/*.conf; do
-    # change `ro` to `rw` if it ends with newline
-    sed -i "s|ro[[:space:]]*$|rw|" "$file"
-done
-
-EOF
+# Copy the chroot script into the image's /tmp (a tmpfs) so it's cleaned up
+# automatically when cleanup() unmounts the filesystems.
+export LOOP="$loop"
+export ARCHITECTURE="$architecture"
+cp "$(dirname "${BASH_SOURCE[0]}")/chroot-setup.sh" "$rootmnt/tmp/chroot-setup.sh"
+chroot "$rootmnt" bash /tmp/chroot-setup.sh

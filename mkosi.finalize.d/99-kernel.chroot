@@ -1,11 +1,12 @@
 #!/bin/bash
 set -xeuo pipefail
-# welcome to chroot or something, testing
+# welcome to chroot or something
+source /usr/src/ultramarine-bootc/base/common.sh
 
-# # Ensure hostname exists and is not empty for dracut
-# ls -la /etc/hostname || echo "hostname file does not exist"
-# file /etc/hostname || true
-# test -s /etc/hostname || echo "ultramarine" > /etc/hostname
+# prep fresh machine state for firstboot
+rm -f /etc/{machine-id,shadow,locale.conf,hostname}
 
-
-rm -f /etc/{machine-id,hostname,shadow,locale.conf}
+# we regen dracut manually in this path
+KERNEL_VERSION="$(get_kernel_version)"
+echo "Rebuilding initramfs for kernel version: $KERNEL_VERSION"
+dracut --no-hostonly --kver "$KERNEL_VERSION" --reproducible --zstd -v --add ostree --add bootc -f "/boot/initramfs-$KERNEL_VERSION.img"

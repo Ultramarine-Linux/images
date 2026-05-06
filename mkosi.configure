@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# use jq to replace the .BaseTrees value in the mkosi json
+# takes json from stdin and outputs the updated json to stdout
+FIRST_PROFILE="${PROFILES%%,*}"
+jq ".BaseTrees = [\"mkosi.cache/${FIRST_PROFILE}.tar\"]"

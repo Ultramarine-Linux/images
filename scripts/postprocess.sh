@@ -4,17 +4,12 @@
 # are stuck in a sandbox, and we want privileged access outside it
 
 set -euxo pipefail
+. "$(dirname "${BASH_SOURCE[0]}")/mkosi.sh"
 
-MKOSI_CONFIG="$(realpath mkosi.output/manifest.json)"
-
-if ! [[ -f "$MKOSI_CONFIG" ]]; then
-    echo "mkosi output manifest not found: $MKOSI_CONFIG"
-    exit 1
-fi
 
 output="$(jq -r '.Output' "$MKOSI_CONFIG")"
 format="$(jq -r '.OutputFormat' "$MKOSI_CONFIG" 2>/dev/null || true)"
-
+architecture="$(jq -r '.Architecture' "$MKOSI_CONFIG")"
 
 # crude example for a raw disk image:
 img="mkosi.output/$output"
@@ -55,21 +50,9 @@ mount -t sysfs sysfs "$rootmnt/sys"
 mount -t tmpfs tmpfs "$rootmnt/tmp"
 mount -t tmpfs tmpfs "$rootmnt/run"
 
-chroot "$rootmnt" bash -s "$loop" <<'EOF'
-set -euxo pipefail
-loop="$1"
-grub2-install --target=i386-pc "$loop"
-source /usr/src/ultramarine-bootc/base/common.sh
-KERNEL_VERSION=$(get_kernel_version)
-# Ensure hostname exists and is not empty for dracut
-ls -la /etc/hostname || echo "hostname file does not exist"
-file /etc/hostname || true
-test -s /etc/hostname || echo "localhost" > /etc/hostname
-grub2-mkconfig -o /boot/grub2/grub.cfg
-
-kernel-install add -v $KERNEL_VERSION /lib/modules/$KERNEL_VERSION/vmlinuz
-
-# then remove hostname and machine-id and everything
-rm -f /etc/{machine-id,localtime,hostname,shadow,locale.conf}
-
-EOF
+# Copy the chroot script into the image's /tmp (a tmpfs) so it's cleaned up
+# automatically when cleanup() unmounts the filesystems.
+export LOOP="$loop"
+export ARCHITECTURE="$architecture"
+cp "$(dirname "${BASH_SOURCE[0]}")/chroot-setup.sh" "$rootmnt/tmp/chroot-setup.sh"
+chroot "$rootmnt" bash /tmp/chroot-setup.sh

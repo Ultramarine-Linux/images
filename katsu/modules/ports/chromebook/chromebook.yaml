@@ -20,7 +20,7 @@ scripts:
       file: chromebookrdm.sh
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5
   options:
     - --enablerepo=kaibutsu

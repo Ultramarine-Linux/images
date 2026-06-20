@@ -5,14 +5,14 @@ import:
   - ../../../budgie/budgie-live.yaml
   - ../../../budgie/base-disk-x86_64.yaml
 
-distro: Ultramarine Linux 43 Budgie (Chromebook Edition)
+distro: Ultramarine Linux 44 Budgie (Chromebook Edition)
 
-out_file: ultramarine-cbe-budgie-43.img
+out_file: ultramarine-cbe-budgie-44.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5

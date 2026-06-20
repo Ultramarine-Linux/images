@@ -5,7 +5,8 @@ scripts:
     #   file: polycrystal.sh
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5
   packages:
     - "@default-flatpak-support"
+    - taidan-ultramarine-configs

@@ -5,14 +5,14 @@ import:
   - ../../../xfce/xfce.yaml
   - ../../../xfce/base-disk-aarch64.yaml
 
-distro: Ultramarine Linux 43 Xfce (mt8183 Chromebook)
+distro: Ultramarine Linux 44 Xfce (mt8183 Chromebook)
 
-out_file: ultramarine-cbe-mt8183-xfce-43.img
+out_file: ultramarine-cbe-mt8183-xfce-44.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5

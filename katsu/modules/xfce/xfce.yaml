@@ -1,8 +1,8 @@
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5
   exclude:
-    - "dnfdragora*" # Jade doesn't like this for some reason???
+    - "dnfdragora*"
     - dnfdragora-updater
     - desktop-backgrounds-compat
   packages:

@@ -7,9 +7,9 @@ import:
   - ../live/readymade.yaml
   - xfce.yaml
 
-distro: Ultramarine Linux 43 (Xfce Edition)
+distro: Ultramarine Linux 44 (Xfce Edition)
 
-out_file: ultramarine-xfce-43-live.iso
+out_file: ultramarine-xfce-44-live.iso
 
 bootloader: grub
 
@@ -25,5 +25,5 @@ scripts:
       file: ./xfce-live.sh
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5

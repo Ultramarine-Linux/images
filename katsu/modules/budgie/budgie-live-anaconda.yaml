@@ -7,9 +7,9 @@ import:
   - ../live/anaconda.yaml
   - budgie.yaml
 
-distro: Ultramarine Linux 43 (Budgie Edition)
+distro: Ultramarine Linux 44 (Budgie Edition)
 
-out_file: ultramarine-budgie-43-live-anaconda.iso
+out_file: ultramarine-budgie-44-live-anaconda.iso
 
 bootloader: grub
 
@@ -28,5 +28,5 @@ scripts:
       file: ./budgie-live-anaconda.sh
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5

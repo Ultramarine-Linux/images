@@ -5,14 +5,14 @@ import:
   - ../../../budgie/budgie.yaml
   - ../../../budgie/base-disk-aarch64.yaml
 
-distro: Ultramarine Linux 43 Budgie (mt8183 Chromebook)
+distro: Ultramarine Linux 44 Budgie (mt8183 Chromebook)
 
-out_file: ultramarine-cbe-mt8183-budgie-43.img
+out_file: ultramarine-cbe-mt8183-budgie-44.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5

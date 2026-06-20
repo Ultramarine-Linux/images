@@ -7,10 +7,10 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 on:
   push:
-    branches: ["um43"]
+    branches: ["um44]
   workflow_dispatch:
   pull_request:
-    branches: ["um43"]
+    branches: ["um44"]
 
 jobs:
   #### DOCKER ######
@@ -60,9 +60,9 @@ jobs:
             host_arch="arm64"
           fi
 
-          # tarball katsu-work/chroot then import using podman with tag ghcr.io/ultramarine-linux/ultramarine:43
-          tar -C katsu-work/chroot -c . | podman import --change='CMD ["/usr/bin/bash"]' - ghcr.io/ultramarine-linux/ultramarine:43 --arch $host_arch
-          podman save --format oci-archive ghcr.io/ultramarine-linux/ultramarine:43 --output katsu-work/image/katsu.tar.xz
+          # tarball katsu-work/chroot then import using podman with tag ghcr.io/ultramarine-linux/ultramarine:44
+          tar -C katsu-work/chroot -c . | podman import --change='CMD ["/usr/bin/bash"]' - ghcr.io/ultramarine-linux/ultramarine:44 --arch $host_arch
+          podman save --format oci-archive ghcr.io/ultramarine-linux/ultramarine:44 --output katsu-work/image/katsu.tar.xz
           popd
 
       - name: Upload Artifact
@@ -101,7 +101,7 @@ jobs:
         run: |
           set -x
           MANIFEST="ghcr.io/ultramarine-linux/ultramarine"
-          RELEASE="43"
+          RELEASE="44"
           ls -lR
           buildah manifest create $MANIFEST
           buildah manifest add $MANIFEST oci-archive:base-base-docker-x86_64-docker/katsu.tar.xz --arch amd64
@@ -120,7 +120,7 @@ jobs:
       fail-fast: true
       matrix:
         version:
-          - 43
+          - 44
         docker:
           - dockerfile: dockerfiles/devtools.dockerfile
             image: ghcr.io/ultramarine-linux/ultramarine-devtools

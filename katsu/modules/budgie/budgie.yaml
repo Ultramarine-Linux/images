@@ -1,12 +1,13 @@
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5
   exclude:
     - budgie-desktop-defaults
     - budgie-backgrounds
-    
+
   packages:
     - "@ultramarine-budgie-product-environment"
     - "@ultramarine-budgie-no-flatpak-apps"
     - ultramarine-release-budgie
     - ultramarine-release-identity-budgie
+    - budgie-sddm-switch

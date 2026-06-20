@@ -7,9 +7,9 @@ import:
   - ../../budgie/budgie.yaml
   - surface.yaml
 
-distro: Ultramarine Linux 43 (Budgie Edition)
+distro: Ultramarine Linux 44 (Budgie Edition)
 
-out_file: ultramarine-budgie-43-surface.iso
+out_file: ultramarine-budgie-44-surface.iso
 
 bootloader: grub
 
@@ -25,5 +25,5 @@ scripts:
       file: ../../budgie/./budgie-live.sh
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5

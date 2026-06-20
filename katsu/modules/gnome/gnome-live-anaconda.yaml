@@ -7,9 +7,9 @@ import:
   - ../live/anaconda.yaml
   - gnome.yaml
 
-distro: Ultramarine GNOME 43
+distro: Ultramarine GNOME 44
 
-out_file: ultramarine-gnome-43-live-anaconda.iso
+out_file: ultramarine-gnome-44-live-anaconda.iso
 
 bootloader: grub
 
@@ -28,5 +28,5 @@ scripts:
       file: gnome-live-anaconda.sh
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5

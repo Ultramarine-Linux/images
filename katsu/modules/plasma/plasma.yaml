@@ -1,5 +1,5 @@
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5
   packages:
     #beta - still need to set up our own comps

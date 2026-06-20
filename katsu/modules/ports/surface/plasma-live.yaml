@@ -7,9 +7,9 @@ import:
   - ../../plasma/plasma.yaml
   - surface.yaml
 
-distro: Ultramarine Linux 43 (Plasma Edition)
+distro: Ultramarine Linux 44 (Plasma Edition)
 
-out_file: ultramarine-plasma-43-surface.iso
+out_file: ultramarine-plasma-44-surface.iso
 
 scripts:
   post:
@@ -25,5 +25,5 @@ iso:
   volume_id: UM-Kd-Live
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5

@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 43 (GNOME Edition)
+distro: Ultramarine Linux 44 (GNOME Edition)
 
 # users:
 #   - username: ultramarine
@@ -44,6 +44,6 @@ disk:
       mountpoint: /
 
 dnf:
-  releasever: 43
+  releasever: 44
   exec: dnf5
   arch: aarch64

@@ -8,10 +8,10 @@ env:
 
 on:
   push:
-    branches: ["um43"]
+    branches: ["um44"]
   workflow_dispatch:
   pull_request:
-    branches: ["um43"]
+    branches: ["um44"]
 
 jobs:
   #### BASE IMAGES ####
@@ -305,7 +305,7 @@ jobs:
             type=$2
 
 
-            IMAGEDIR=images/$type/ultramarine/43/
+            IMAGEDIR=images/$type/ultramarine/44/
             mkdir -p $IMAGEDIR
 
             filename=$(basename -- "$file")

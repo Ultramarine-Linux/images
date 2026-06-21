@@ -1,4 +1,4 @@
-builder: dnf4
+builder: dnf
 distro: Ultramarine Linux 44 (Plasma Edition)
 
 # users:
@@ -46,4 +46,4 @@ disk:
 
 dnf:
   releasever: 44
-  exec: dnf5
+  exec: dnf4

@@ -14,7 +14,7 @@ scripts:
 
 dnf:
   releasever: 44
-  exec: dnf5
+  exec: dnf4
   repodir: repodir
   options:
     - --setopt=cachedir=/var/cache/dnf

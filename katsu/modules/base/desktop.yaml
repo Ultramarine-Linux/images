@@ -6,7 +6,7 @@ scripts:
 
 dnf:
   releasever: 44
-  exec: dnf5
+  exec: dnf4
   packages:
     - "@default-flatpak-support"
     - taidan-ultramarine-configs

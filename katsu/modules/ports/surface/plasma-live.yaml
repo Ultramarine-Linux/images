@@ -1,4 +1,4 @@
-builder: dnf4
+builder: dnf
 
 import:
   - ../../base/base.yaml
@@ -26,4 +26,4 @@ iso:
 
 dnf:
   releasever: 44
-  exec: dnf5
+  exec: dnf4

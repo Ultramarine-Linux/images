@@ -9,7 +9,7 @@ scripts:
       priority: 50
 dnf:
   releasever: 44
-  exec: dnf5
+  exec: dnf4
   options:
     - --setopt=cachedir=/var/cache/dnf
     - --setopt=keepcache=True

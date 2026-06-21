@@ -1,4 +1,4 @@
-builder: dnf4
+builder: dnf
 
 scripts:
   post:
@@ -9,7 +9,7 @@ scripts:
 dnf:
   repodir: ../../base/repodir/
   releasever: 44
-  exec: dnf5
+  exec: dnf4
   options:
     - --setopt=cachedir=/var/cache/dnf
     - --setopt=keepcache=True

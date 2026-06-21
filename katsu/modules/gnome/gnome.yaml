@@ -1,6 +1,6 @@
 dnf:
   releasever: 44
-  exec: dnf5
+  exec: dnf4
   packages:
     - "@ultramarine-gnome-product-environment"
     - "@ultramarine-gnome-no-flatpak-apps"

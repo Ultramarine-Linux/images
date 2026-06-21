@@ -1,11 +1,11 @@
-builder: dnf4
+builder: dnf
 
 import:
   - ../chromebook.yaml
 
 dnf:
   releasever: 44
-  exec: dnf5
+  exec: dnf4
   arch: aarch64
   packages:
     - kernel-mt81

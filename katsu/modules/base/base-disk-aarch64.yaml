@@ -1,4 +1,4 @@
-builder: dnf4
+builder: dnf
 distro: Ultramarine Linux 44
 
 # users:
@@ -14,7 +14,7 @@ import:
 
 dnf:
   releasever: 44
-  exec: dnf5
+  exec: dnf4
   arch: aarch64
   packages:
     - ultramarine-release-identity-basic

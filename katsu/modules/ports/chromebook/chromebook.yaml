@@ -1,4 +1,4 @@
-builder: dnf4
+builder: dnf
 
 scripts:
   post:
@@ -21,7 +21,7 @@ scripts:
 
 dnf:
   releasever: 44
-  exec: dnf5
+  exec: dnf4
   options:
     - --enablerepo=kaibutsu
   packages:

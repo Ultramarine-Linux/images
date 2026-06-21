@@ -1,4 +1,4 @@
-builder: dnf4
+builder: dnf
 
 import:
   - ../chromebook.yaml
@@ -15,4 +15,4 @@ kernel_cmdline: "quiet rhgb"
 
 dnf:
   releasever: 44
-  exec: dnf5
+  exec: dnf4

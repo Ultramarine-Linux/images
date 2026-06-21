@@ -1,4 +1,4 @@
-builder: dnf
+builder: dnf4
 
 import:
   - mt8183.yaml

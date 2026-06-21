@@ -1,4 +1,4 @@
-builder: dnf
+builder: dnf4
 distro: Ultramarine Linux 44
 
 # users:

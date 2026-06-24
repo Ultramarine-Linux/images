@@ -4,6 +4,8 @@ dnf:
   exclude:
     - budgie-desktop-defaults
     - budgie-backgrounds
+    - lightdm
+    - slick-greeter
 
   packages:
     - "@ultramarine-budgie-product-environment"
@@ -11,3 +13,4 @@ dnf:
     - ultramarine-release-budgie
     - ultramarine-release-identity-budgie
     - budgie-sddm-switch
+    - sddm

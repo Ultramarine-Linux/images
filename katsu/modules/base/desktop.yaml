@@ -1,12 +1,5 @@
-scripts:
-  post:
-    # - id: polycrystal
-    #   name: Install Flatpaks via Polycrystal
-    #   file: polycrystal.sh
-
 dnf:
   releasever: 44
   exec: dnf5
   packages:
-    - "@default-flatpak-support"
     - taidan-ultramarine-configs

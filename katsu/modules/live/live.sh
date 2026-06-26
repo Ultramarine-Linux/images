@@ -77,10 +77,6 @@ cat >>/var/lib/livesys/livesys-session-extra <<EOF
 # Remove the initial setup configs, we actually don't need them for now
 rm -rf /.unconfigured
 systemctl disable initial-setup || true
-
-# Disable polycrystal, so it doesn't attempt to fill the ramdisk with Flatpaks
-# on live images
-systemctl disable --now polycrystal.service || true
 EOF
 
 # Delete the firefox redhat configs, debranding

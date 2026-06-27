@@ -115,14 +115,14 @@ jobs:
           - x86_64
           - aarch64
         variant:
-          - budgie/budgie-live
-          - gnome/gnome-live
-          - plasma/plasma-live
-          - xfce/xfce-live
-          - ports/surface/budgie-live
-          - ports/surface/gnome-live
-          - ports/surface/plasma-live
-          - ports/surface/xfce-live
+          # - budgie/budgie-live
+          # - gnome/gnome-live
+          # - plasma/plasma-live
+          # - xfce/xfce-live
+          # - ports/surface/budgie-live
+          # - ports/surface/gnome-live
+          # - ports/surface/plasma-live
+          # - ports/surface/xfce-live
           - budgie/budgie-live-anaconda
           - gnome/gnome-live-anaconda
           - plasma/plasma-live-anaconda

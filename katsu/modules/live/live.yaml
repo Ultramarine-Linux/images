@@ -45,6 +45,6 @@ dnf:
     - kernel-devel-matched
     # UMSS
     - um
-    - dive
+    - umdive
     - mkfstab
     - dracut-strip-trigger

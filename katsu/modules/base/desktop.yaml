@@ -4,6 +4,7 @@ dnf:
   packages:
     - taidan-ultramarine-configs
   exclude: # to save space
+    - akonadi-server-mysql
     - mariadb
     - default-fonts-*
     - ultramarine-langpacks-core-en
@@ -14,3 +15,4 @@ dnf:
     - ibus-handwrite-ja
     - langpacks-*
     - im-chooser
+    - toolbox

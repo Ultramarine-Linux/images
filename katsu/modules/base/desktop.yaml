@@ -3,16 +3,21 @@ dnf:
   exec: dnf5
   packages:
     - taidan-ultramarine-configs
+    - ultramarine-langpacks-core-en
+    - ultramarine-langpacks-fonts-en
   exclude: # to save space
     - akonadi-server-mysql
     - mariadb
     - default-fonts-*
-    - ultramarine-langpacks-core-en
-    - ultramarine-langpacks-fonts-en
     - adobe-source-han-sans-fonts
     - adobe-source-han-serif-fonts
     - podman
     - ibus-handwrite-ja
+    - ibus-table-chinese-cangjie
     - langpacks-*
     - im-chooser
     - toolbox
+    - python3-botocore
+    - abrt*
+    - llvm21-libs # s76-sched pkging issue: https://github.com/terrapkg/packages/pull/13670
+    - clang21-libs

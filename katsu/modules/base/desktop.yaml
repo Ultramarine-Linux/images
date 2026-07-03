@@ -12,7 +12,7 @@ dnf:
   exclude: # to save space
     - akonadi-server-mysql
     - mariadb
-    - default-fonts-
+    - default-fonts-*
     - podman
     - ibus-handwrite-ja
     - langpacks-*

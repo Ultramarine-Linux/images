@@ -3,8 +3,6 @@ dnf:
   exec: dnf5
   packages:
     - taidan-ultramarine-configs
-    - im-chooser
-    - langpacks-*
   exclude: # to save space
     - mariadb
     - default-fonts-*
@@ -14,3 +12,5 @@ dnf:
     - adobe-source-han-serif-fonts
     - podman
     - ibus-handwrite-ja
+    - langpacks-*
+    - im-chooser

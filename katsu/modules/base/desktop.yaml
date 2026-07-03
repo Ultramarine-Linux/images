@@ -3,14 +3,14 @@ dnf:
   exec: dnf5
   packages:
     - taidan-ultramarine-configs
+    - ultramarine-langpacks-core-en
+    - ultramarine-langpacks-fonts-en
+    #- adobe-source-han-sans-fonts
+    #- adobe-source-han-serif-fonts
   exclude: # to save space
     - akonadi-server-mysql
     - mariadb
-    - default-fonts-*
-    - ultramarine-langpacks-core-en
-    - ultramarine-langpacks-fonts-en
-    - adobe-source-han-sans-fonts
-    - adobe-source-han-serif-fonts
+    - default-fonts-
     - podman
     - ibus-handwrite-ja
     - langpacks-*

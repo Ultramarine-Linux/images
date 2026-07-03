@@ -8,13 +8,13 @@ dnf:
     - ultramarine-default-fonts-core-sans
     - ultramarine-default-fonts-core-serif
     - google-noto-fonts-all-vf
+    - podman
     #- adobe-source-han-sans-fonts
     #- adobe-source-han-serif-fonts
   exclude: # to save space
     - akonadi-server-mysql
     - mariadb
     - default-fonts-*
-    - podman
     - ibus-handwrite-ja
     - ibus-table-chinese-cangjie
     - langpacks-*

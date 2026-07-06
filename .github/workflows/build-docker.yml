@@ -7,7 +7,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 on:
   push:
-    branches: ["um44]
+    branches: ["um44"]
   workflow_dispatch:
   pull_request:
     branches: ["um44"]

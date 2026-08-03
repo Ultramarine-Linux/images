@@ -13,6 +13,7 @@ dnf:
     - google-noto-serif-cjk-vf-fonts
     - google-noto-emoji-color-fonts
     - google-noto-emoji-fonts
+    - google-noto-sans-math-fonts
     - google-noto-sans-symbols-fonts
     - google-noto-sans-symbols2-fonts
     #- adobe-source-han-sans-fonts

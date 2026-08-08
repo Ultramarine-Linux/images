@@ -32,7 +32,6 @@ dnf:
     - julietaula-montserrat-fonts
     - ultramarine-backgrounds
     - ultramarine-bookmarks # Default Firefox bookmarks
-    - ultramarine-default-firefox-prefs # Default Firefox settings
     - initscripts
     - chkconfig
     - gjs

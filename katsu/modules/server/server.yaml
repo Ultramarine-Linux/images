@@ -1,0 +1,14 @@
+dnf:
+  releasever: 44
+  exec: dnf5
+  packages:
+    - ultramarine-release-server
+    - ultramarine-release-identity-server
+    - openssh-server
+    - cockpit
+    - podman
+    - tetra
+    - ultramarine-server-oobe
+  exclude:
+    - gnome-initial-setup
+    - initial-setup*

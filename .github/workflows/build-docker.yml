@@ -25,7 +25,7 @@ jobs:
     outputs:
       artifact: ${{ matrix.variant }}
       # ubuntu-latest unless we're building aarch64
-    runs-on: ${{ endsWith(matrix.variant, '-aarch64') && 'ubuntu-24.04-arm' || endsWith(matrix.variant, '-riscv64') && 'banana-pi-f3' || 'ubuntu-latest' }}
+    runs-on: ${{ endsWith(matrix.variant, '-aarch64') && 'ubuntu-24.04-arm' || endsWith(matrix.variant, '-riscv64') && 'ubuntu-24.04-riscv' || 'ubuntu-latest' }}
     container:
       image: ghcr.io/fyralabs/katsu:v0.10.2
       # Pass /dev from host to container

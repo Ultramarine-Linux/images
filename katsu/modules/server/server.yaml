@@ -1,3 +1,15 @@
+scripts:
+  post:
+    - id: selinux-setup
+      name: Defer Server SELinux relabeling to first boot
+      inline: "true"
+      chroot: false
+      priority: 100
+    - id: server-selinux-autorelabel
+      name: Schedule SELinux autorelabel
+      file: server-selinux-autorelabel.sh
+      priority: 90
+
 dnf:
   releasever: 44
   exec: dnf5
@@ -5,10 +17,16 @@ dnf:
     - ultramarine-release-server
     - ultramarine-release-identity-server
     - openssh-server
+    - selinux-policy-targeted
     - cockpit
     - podman
+    - ceph-common
+    - golang-github-containernetworking-cni
+    - btop
+    - kubernetes1.35-client
     - tetra
-    - ultramarine-server-oobe
+    - ultramarine-shell-config
+    - zsh
   exclude:
     - gnome-initial-setup
     - initial-setup*

@@ -32,6 +32,7 @@ dnf:
     - setroubleshoot-plugins
     - setroubleshoot-server
     - initial-setup*
+    - fedora-bookmarks
     # Blacklist all the fedora extra repos
     # We already provide alternatives for all of this in Terra
     - fedora-third-party

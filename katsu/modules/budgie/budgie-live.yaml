@@ -7,7 +7,7 @@ import:
   - ../live/readymade.yaml
   - budgie.yaml
 
-distro: Ultramarine Budgie Cheetah
+distro: Ultramarine Budgie 45
 
 out_file: ultramarine-budgie-cheeetah-live.iso
 
@@ -25,5 +25,5 @@ scripts:
       file: ./budgie-live.sh
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5

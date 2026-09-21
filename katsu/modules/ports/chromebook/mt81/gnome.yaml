@@ -5,14 +5,14 @@ import:
   - ../../../gnome/gnome.yaml
   - ../../../gnome/base-disk-aarch64.yaml
 
-distro: Ultramarine GNOME Cheetah (mt8183 Chromebook)
+distro: Ultramarine GNOME 45 (mt8183 Chromebook)
 
-out_file: ultramarine-cb-mt8183-gnome-cheetah.img
+out_file: ultramarine-cb-mt8183-gnome-45.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5

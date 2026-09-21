@@ -7,9 +7,9 @@ import:
   - ../../xfce/xfce.yaml
   - surface.yaml
 
-distro: Ultramarine Xfce Cheetah
+distro: Ultramarine Xfce 45
 
-out_file: ultramarine-surface-xfce-cheetah.iso
+out_file: ultramarine-surface-xfce-45.iso
 
 bootloader: grub
 
@@ -25,5 +25,5 @@ scripts:
       file: ../../xfce/./xfce-live.sh
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5

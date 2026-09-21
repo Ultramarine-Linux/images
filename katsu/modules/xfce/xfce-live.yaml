@@ -7,9 +7,9 @@ import:
   - ../live/readymade.yaml
   - xfce.yaml
 
-distro: Ultramarine Xfce Cheetah
+distro: Ultramarine Xfce 45
 
-out_file: ultramarine-xfce-cheetah-live.iso
+out_file: ultramarine-xfce-45-live.iso
 
 bootloader: grub
 
@@ -25,5 +25,5 @@ scripts:
       file: ./xfce-live.sh
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5

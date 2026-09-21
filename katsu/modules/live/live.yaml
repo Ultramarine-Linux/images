@@ -4,7 +4,7 @@ scripts:
       name: Set up Live Image
       file: live.sh
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5
   exclude:
     - fedora-release*

@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine GNOME Cheetah
+distro: Ultramarine GNOME 45
 
 # users:
 #   - username: ultramarine
@@ -44,6 +44,6 @@ disk:
       mountpoint: /
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5
   arch: aarch64

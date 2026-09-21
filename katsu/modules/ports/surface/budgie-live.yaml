@@ -7,9 +7,9 @@ import:
   - ../../budgie/budgie.yaml
   - surface.yaml
 
-distro: Ultramarine Budgie Cheetah
+distro: Ultramarine Budgie 45
 
-out_file: ultramarine-surface-budgie-cheetah.iso
+out_file: ultramarine-surface-budgie-45.iso
 
 bootloader: grub
 
@@ -25,5 +25,5 @@ scripts:
       file: ../../budgie/./budgie-live.sh
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5

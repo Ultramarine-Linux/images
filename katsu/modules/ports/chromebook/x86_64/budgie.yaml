@@ -5,9 +5,9 @@ import:
   - ../../../budgie/budgie-live.yaml
   - ../../../budgie/base-disk-x86_64.yaml
 
-distro: Ultramarine Budgie Cheetah (Chromebook Edition)
+distro: Ultramarine Budgie 45 (Chromebook Edition)
 
-out_file: ultramarine-cb-budgie-rawhide.img
+out_file: ultramarine-cb-budgie-45.img
 
 bootloader: grub
 

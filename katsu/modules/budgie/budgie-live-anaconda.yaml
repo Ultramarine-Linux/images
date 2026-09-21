@@ -7,9 +7,9 @@ import:
   - ../live/anaconda.yaml
   - budgie.yaml
 
-distro: Ultramarine Budgie Cheetah
+distro: Ultramarine Budgie 45
 
-out_file: ultramarine-budgie-cheetah-live-anaconda.iso
+out_file: ultramarine-budgie-45-live-anaconda.iso
 
 bootloader: grub
 
@@ -28,5 +28,5 @@ scripts:
       file: ./budgie-live-anaconda.sh
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5

@@ -7,9 +7,9 @@ import:
   - ../live/readymade.yaml
   - plasma.yaml
 
-distro: Ultramarine Cheetah
+distro: Ultramarine 45
 
-out_file: ultramarine-cheetah-live.iso
+out_file: ultramarine-45-live.iso
 
 scripts:
   post:
@@ -25,5 +25,5 @@ iso:
   volume_id: UM-Kd-Live
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5

@@ -7,9 +7,9 @@ import:
   - ../../gnome/gnome.yaml
   - surface.yaml
 
-distro: Ultramarine GNOME Cheetah
+distro: Ultramarine GNOME 45
 
-out_file: ultramarine-surface-gnome-cheetah.iso
+out_file: ultramarine-surface-gnome-45.iso
 
 bootloader: grub
 
@@ -28,5 +28,5 @@ scripts:
       file: gnome-live-anaconda.sh
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5

@@ -7,7 +7,7 @@ import:
   - ../live/readymade.yaml
   - gnome.yaml
 
-distro: Ultramarine GNOME Cheetah
+distro: Ultramarine GNOME 45
 
 out_file: ultramarine-gnome-44-live.iso
 
@@ -25,5 +25,5 @@ scripts:
       file: gnome-live.sh
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5

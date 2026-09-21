@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux Cheetah
+distro: Ultramarine Base 45
 
 # users:
 #   - username: ultramarine
@@ -13,7 +13,7 @@ import:
   - base-disk.yaml
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5
   arch: aarch64
   packages:

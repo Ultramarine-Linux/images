@@ -5,14 +5,14 @@ import:
   - ../../../gnome/gnome-live.yaml
   - ../../../gnome/base-disk-x86_64.yaml
 
-distro: Ultramarine GNOME Cheetah (Chromebook Edition)
+distro: Ultramarine GNOME 45 (Chromebook Edition)
 
-out_file: ultramarine-cb-gnome-cheetah.img
+out_file: ultramarine-cb-gnome-45.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: rawhide
+  releasever: 45
   exec: dnf5

@@ -36,11 +36,11 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 
 `katsu/modules/flagship` flagship edition build scripts.
 
-`katsu/modules/gnome` gnome edition build scripts.
+`katsu/modules/gnome` Ultramarine GNOME build scripts.
 
-`katsu/modules/plasma` plasma edition build scripts.
+`katsu/modules/plasma` Ultramarine proper build scripts.
 
-`katsu/modules/xfce` xfce edition build scripts.
+`katsu/modules/xfce` Ultramarine Xfce build scripts.
 
 `katsu/modules/live` holds yamls and config scripts that live ISO images need.
 

@@ -7,9 +7,9 @@ import:
   - ../live/readymade.yaml
   - budgie.yaml
 
-distro: Ultramarine Linux 44 (Budgie Edition)
+distro: Ultramarine Budgie Cheetah
 
-out_file: ultramarine-budgie-44-live.iso
+out_file: ultramarine-budgie-cheeetah-live.iso
 
 bootloader: grub
 
@@ -25,5 +25,5 @@ scripts:
       file: ./budgie-live.sh
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5

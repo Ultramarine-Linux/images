@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 44 (Plasma Edition)
+distro: Ultramarine Cheetah
 
 # users:
 #   - username: ultramarine
@@ -45,5 +45,5 @@ disk:
       mountpoint: /
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5

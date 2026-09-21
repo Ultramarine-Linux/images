@@ -1,5 +1,5 @@
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5
   exclude:
     - "dnfdragora*"

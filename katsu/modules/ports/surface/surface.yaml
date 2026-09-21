@@ -1,10 +1,9 @@
 builder: dnf
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5
   options:
-    - --enablerepo=linux-surface
   packages:
     - kernel-surface
     - kernel-surface-core

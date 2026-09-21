@@ -2,7 +2,7 @@ builder: dnf
 
 dnf:
   repodir: repodir/
-  releasever: 44
+  releasever: rawhide
   exec: dnf5
   options:
     - --setopt=cachedir=/var/cache/dnf

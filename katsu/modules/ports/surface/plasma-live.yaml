@@ -7,9 +7,9 @@ import:
   - ../../plasma/plasma.yaml
   - surface.yaml
 
-distro: Ultramarine Linux 44 (Plasma Edition)
+distro: Ultramarine Cheetah
 
-out_file: ultramarine-plasma-44-surface.iso
+out_file: ultramarine-surface-cheetah.iso
 
 scripts:
   post:
@@ -25,5 +25,5 @@ iso:
   volume_id: UM-Kd-Live
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5

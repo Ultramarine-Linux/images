@@ -5,14 +5,14 @@ import:
   - ../../../xfce/xfce-live.yaml
   - ../../../xfce/base-disk-x86_64.yaml
 
-distro: Ultramarine Linux 44 Xfce (Chromebook Edition)
+distro: Ultramarine Xfce Cheetah (Chromebook Edition)
 
-out_file: ultramarine-cbe-xfce-44.img
+out_file: ultramarine-cbe-xfce-cheetah.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5

@@ -4,7 +4,7 @@ import:
   - ../chromebook.yaml
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5
   arch: aarch64
   packages:

@@ -13,7 +13,7 @@ scripts:
       file: buildstamp.sh
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5
   repodir: repodir
   options:

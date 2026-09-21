@@ -1,10 +1,10 @@
 builder: dnf
-distro: Ultramarine Linux 44 Container
+distro: Ultramarine Cheetah Container
 
 import:
   - base-docker.yaml
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5
   arch: aarch64

@@ -5,14 +5,14 @@ import:
   - ../../../plasma/plasma-live.yaml
   - ../../../plasma/base-disk-x86_64.yaml
 
-distro: Ultramarine Linux 44 Plasma (Chromebook Edition)
+distro: Ultramarine Cheetah (Chromebook Edition)
 
-out_file: ultramarine-cbe-plasma-44.img
+out_file: ultramarine-cb-cheetah.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5

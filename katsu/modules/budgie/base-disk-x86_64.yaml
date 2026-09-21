@@ -1,5 +1,5 @@
 builder: dnf
-distro: Ultramarine Linux 44 (Budgie Edition)
+distro: Ultramarine Budgie Cheetah
 
 # users:
 #   - username: ultramarine
@@ -44,5 +44,5 @@ disk:
       mountpoint: /
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5

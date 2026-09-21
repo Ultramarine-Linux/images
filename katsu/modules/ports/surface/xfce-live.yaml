@@ -7,9 +7,9 @@ import:
   - ../../xfce/xfce.yaml
   - surface.yaml
 
-distro: Ultramarine Linux 44 (Xfce Edition)
+distro: Ultramarine Xfce Cheetah
 
-out_file: ultramarine-xfce-44-surface.iso
+out_file: ultramarine-surface-xfce-cheetah.iso
 
 bootloader: grub
 
@@ -25,5 +25,5 @@ scripts:
       file: ../../xfce/./xfce-live.sh
 
 dnf:
-  releasever: 44
+  releasever: rawhide
   exec: dnf5

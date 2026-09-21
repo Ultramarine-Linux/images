@@ -1,71 +1,81 @@
 #!/bin/bash -x
-# Set up the Server Anaconda installer image: a minimal live system that
-# boots straight into the text-mode Anaconda installer on the console,
-# instead of a desktop session.
+# Start Fedora's Anaconda WebUI in a minimal GNOME live session.
 
-# No display manager on this image, boot to a text console
-systemctl set-default multi-user.target
+systemctl set-default graphical.target
+systemctl enable livesys.service
+systemctl enable livesys-late.service
+systemctl enable gdm.service
 
-# Run the installer inside a tmux session, mirroring the units Anaconda
-# itself uses on the classic boot.iso (anaconda.service + anaconda-tmux@.service),
-# but starting the live image installer in text mode instead.
-# This also provides a shell and log windows, switchable with Alt+Tab.
-sed 's|^new-session -d -s anaconda -n main anaconda$|new-session -d -s anaconda -n main "anaconda --liveinst --text"|' \
-    /usr/share/anaconda/tmux.conf > /usr/share/anaconda/tmux-live.conf
+# Provide a real GNOME Session/GDM kiosk session. Autostarting gnome-kiosk
+# inside the normal GNOME session leaves GNOME Shell running, so it cannot
+# produce a kiosk-only desktop.
+cat > /usr/local/bin/ultramarine-server-installer << 'EOF'
+#!/bin/sh
+# Keep a launch failure available from the serial/login console for diagnosis.
+exec /usr/bin/liveinst >>/var/log/ultramarine-server-installer.log 2>&1
+EOF
+chmod 0755 /usr/local/bin/ultramarine-server-installer
 
-# Backend service: starts the tmux session with the installer running
-cat > /usr/lib/systemd/system/ultramarine-anaconda.service << 'EOF'
-[Unit]
-Description=Ultramarine Linux Installer
-# Only run inside the live installer environment, never on an installed system
-ConditionKernelCommandLine=rd.live.image
-Wants=NetworkManager.service systemd-udev-settle.service
-After=NetworkManager.service systemd-udev-settle.service
-
-[Service]
-Type=forking
-Environment=HOME=/root LANG=en_US.UTF-8 PATH=/usr/bin:/bin:/sbin:/usr/sbin XDG_RUNTIME_DIR=/run/user/0
-WorkingDirectory=/root
-ExecStart=/usr/bin/tmux -u -f /usr/share/anaconda/tmux-live.conf start
-
-[Install]
-WantedBy=multi-user.target
+cat > /usr/share/applications/ultramarine-server-installer.desktop << 'EOF'
+[Desktop Entry]
+Type=Application
+Name=Install Ultramarine Linux
+Comment=Start the Ultramarine Linux installer
+Exec=/usr/local/bin/ultramarine-server-installer
+Terminal=false
+X-GNOME-Autostart-Phase=Application
+X-GNOME-AutoRestart=true
 EOF
 
-# Console service: attaches tty1 to the installer tmux session
-cat > /usr/lib/systemd/system/ultramarine-anaconda-tty@.service << 'EOF'
+# GNOME Session on Fedora 44 starts session components through systemd user
+# units. A legacy RequiredComponents session file alone creates an empty
+# session, so make the kiosk compositor and installer explicit dependencies.
+mkdir -p /usr/lib/systemd/user/gnome-session@ultramarine-server-installer.target.d
+cat > /usr/lib/systemd/user/gnome-session@ultramarine-server-installer.target.d/session.conf << 'EOF'
 [Unit]
-Description=Ultramarine Linux Installer console on %I
-Requires=ultramarine-anaconda.service
-After=ultramarine-anaconda.service
-# Only run inside the live installer environment, never on an installed system
-ConditionKernelCommandLine=rd.live.image
-Conflicts=getty@%i.service
-After=getty@%i.service
-
-[Service]
-Type=idle
-Environment=HOME=/root LANG=en_US.UTF-8 TERM=linux
-WorkingDirectory=/root
-ExecStart=/usr/bin/tmux -u attach -t anaconda
-StandardInput=tty
-StandardOutput=tty
-TTYPath=/dev/%I
-TTYReset=yes
-TTYVHangup=yes
-TTYVTDisallocate=yes
-Restart=always
-RestartSec=1
-
-[Install]
-WantedBy=multi-user.target
+Requires=gnome-session-services.target
+Requires=org.gnome.Kiosk.target
+Requires=ultramarine-server-installer.service
 EOF
 
-systemctl enable ultramarine-anaconda.service
-systemctl enable ultramarine-anaconda-tty@tty1.service
+cat > /usr/lib/systemd/user/ultramarine-server-installer.service << 'EOF'
+[Unit]
+Description=Ultramarine Server Anaconda WebUI
+PartOf=graphical-session.target
+After=org.gnome.Kiosk@wayland.service
 
-# Locale defaults, same as the other live images
-cat > /etc/locale.conf << EOF
+[Service]
+ExecStart=/usr/local/bin/ultramarine-server-installer
+Restart=on-failure
+RestartSec=2
+EOF
+
+cat > /usr/share/gnome-session/sessions/ultramarine-server-installer.session << 'EOF'
+[GNOME Session]
+Name=Ultramarine Server Installer
+EOF
+
+cat > /usr/share/wayland-sessions/ultramarine-server-installer.desktop << 'EOF'
+[Desktop Entry]
+Name=Ultramarine Server Installer
+Comment=Ultramarine Server installation environment
+Exec=gnome-session --session=ultramarine-server-installer
+Type=Application
+DesktopNames=GNOME
+EOF
+
+# livesys creates liveuser during boot. GDM reads its selected Wayland session
+# from AccountsService, so pre-create the record before automatic login.
+mkdir -p /var/lib/AccountsService/users
+cat > /var/lib/AccountsService/users/liveuser << 'EOF'
+[User]
+Session=ultramarine-server-installer
+XSession=ultramarine-server-installer
+EOF
+
+sed -i 's/^livesys_session=.*/livesys_session="gnome"/' /etc/sysconfig/livesys
+
+cat > /etc/locale.conf << 'EOF'
 LANG=en_US.UTF-8
 LANGUAGE=en_US.UTF-8
 LC_ALL=en_US.UTF-8

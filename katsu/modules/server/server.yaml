@@ -1,14 +1,12 @@
 scripts:
   post:
+    # mkfs.erofs embeds image-policy labels from file_contexts. Avoid host-side
+    # setfiles, which cannot apply Cockpit's image-only context types.
     - id: selinux-setup
-      name: Defer Server SELinux relabeling to first boot
+      name: Preserve SELinux labels for the Server image
       inline: "true"
       chroot: false
       priority: 100
-    - id: server-selinux-autorelabel
-      name: Schedule SELinux autorelabel
-      file: server-selinux-autorelabel.sh
-      priority: 90
 
 dnf:
   releasever: 44

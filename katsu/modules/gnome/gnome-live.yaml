@@ -9,7 +9,7 @@ import:
 
 distro: Ultramarine GNOME 45
 
-out_file: ultramarine-gnome-44-live.iso
+out_file: ultramarine-gnome-45-live.iso
 
 bootloader: grub
 

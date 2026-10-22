@@ -24,26 +24,20 @@ jobs:
           - aarch64
         variant:
           - base/base-disk
-          - budgie/base-disk
           - gnome/base-disk
           - plasma/base-disk
           - xfce/base-disk
-          # - ports/chromebook/x86_64/budgie
           # - ports/chromebook/x86_64/gnome
           # - ports/chromebook/x86_64/plasma
           # - ports/chromebook/x86_64/xfce
-          # - ports/chromebook/mt81/budgie
           # - ports/chromebook/mt81/gnome
           # - ports/chromebook/mt81/plasma
           # - ports/chromebook/mt81/xfce
-          # - ports/chromebook/sc7180/budgie
           # - ports/chromebook/sc7180/gnome
           # - ports/chromebook/sc7180/plasma
           # - ports/chromebook/sc7180/xfce
           # TODO: figure out how to get loop devices to work on our ARM runners
         exclude:
-          - arch: aarch64
-            variant: ports/chromebook/x86_64/budgie
           - arch: aarch64
             variant: ports/chromebook/x86_64/gnome
           - arch: aarch64
@@ -51,15 +45,11 @@ jobs:
           - arch: aarch64
             variant: ports/chromebook/x86_64/xfce
           - arch: x86_64
-            variant: ports/chromebook/mt81/budgie
-          - arch: x86_64
             variant: ports/chromebook/mt81/gnome
           - arch: x86_64
             variant: ports/chromebook/mt81/plasma
           - arch: x86_64
             variant: ports/chromebook/mt81/xfce
-          - arch: x86_64
-            variant: ports/chromebook/sc7180/budgie
           - arch: x86_64
             variant: ports/chromebook/sc7180/gnome
           - arch: x86_64
@@ -115,25 +105,19 @@ jobs:
           - x86_64
           - aarch64
         variant:
-          # - budgie/budgie-live
           # - gnome/gnome-live
           # - plasma/plasma-live
           # - xfce/xfce-live
-          # - ports/surface/budgie-live
           # - ports/surface/gnome-live
           # - ports/surface/plasma-live
           # - ports/surface/xfce-live
-          - budgie/budgie-live-anaconda
           - gnome/gnome-live-anaconda
           - plasma/plasma-live-anaconda
           - xfce/xfce-live-anaconda
-          # - ports/chromebook/x86_64/budgie
           # - ports/chromebook/x86_64/gnome
           # - ports/chromebook/x86_64/plasma
           # - ports/chromebook/x86_64/xfce
         exclude:
-          - arch: aarch64
-            variant: ports/surface/budgie-live
           - arch: aarch64
             variant: ports/surface/gnome-live
           - arch: aarch64

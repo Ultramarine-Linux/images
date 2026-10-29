@@ -1,0 +1,26 @@
+builder: dnf
+
+dnf:
+  releasever: 43
+  exec: dnf5
+  packages:
+    - asahi-platform-metapackage
+    - asahi-repos
+    - kernel-16k
+    - kernel-16k-modules
+    - kernel-16k-modules-core
+    - kernel-16k-modules-extra
+    - kernel-16k-core
+  exclude:
+    - kernel
+    - kernel-core
+    - fedora-logos*
+    - fedora-*logos*
+scripts:
+  post:
+    - id: setup-m1n1
+      name: Setup m1n1 in EFI
+      file: setup-m1n1.sh
+    - id: set-efi-uuid
+      name: Set EFI UUID to match Asahi JSON
+      file: set-efi-uuid.sh

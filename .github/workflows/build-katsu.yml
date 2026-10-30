@@ -68,7 +68,7 @@ jobs:
             variant: ports/asahi/plasma
           - arch: x86_64
             variant: ports/asahi/xfce
-    runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'ubuntu-22.04-arm' }}
+    runs-on: ${{ matrix.arch == 'x86_64' && 'cirun-x86-64-lg' || 'ubuntu-22.04-arm' }}
     container:
       image: ghcr.io/fyralabs/katsu:0.10.3
       # Pass /dev from host to container

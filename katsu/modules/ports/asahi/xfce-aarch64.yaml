@@ -5,9 +5,9 @@ import:
   - ../../xfce/base-disk-aarch64.yaml
   - asahi.yaml
 
-distro: Ultramarine Linux 43 (Xfce Edition)
+distro: Ultramarine Xfce Cheetah for Apple Silicon
 
-out_file: ultramarine-xfce-43-asahi.img
+out_file: ultramarine-xfce-cheetah-asahi.img
 
 bootloader: grub
 

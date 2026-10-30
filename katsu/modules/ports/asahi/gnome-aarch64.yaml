@@ -5,15 +5,15 @@ import:
   - ../../gnome/base-disk-aarch64.yaml
   - asahi.yaml
 
-distro: Ultramarine GNOME 43
+distro: Ultramarine GNOME Cheetah for Apple Silicon
 
-out_file: ultramarine-gnome-43-asahi.img
+out_file: ultramarine-gnome-cheetah-asahi.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 43
+  releasever: rawhide
   exec: dnf5
   arch: aarch64

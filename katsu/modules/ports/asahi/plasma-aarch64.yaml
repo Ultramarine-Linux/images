@@ -5,15 +5,15 @@ import:
   - ../../plasma/base-disk-aarch64.yaml
   - asahi.yaml
 
-distro: Ultramarine Linux 43 (Plasma Edition)
+distro: Ultramarine Cheetah for Apple Silicon
 
-out_file: ultramarine-plasma-43-asahi.img
+out_file: ultramarine-cheetah-asahi.img
 
 bootloader: grub
 
 kernel_cmdline: "quiet rhgb"
 
 dnf:
-  releasever: 43
+  releasever: rawhide
   exec: dnf5
   arch: aarch64

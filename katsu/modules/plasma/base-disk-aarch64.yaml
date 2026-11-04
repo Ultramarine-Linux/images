@@ -20,6 +20,9 @@ scripts:
     - id: grub
       name: Set up GRUB
       file: ../base/grub-setup.sh
+    - id: u-boot
+      name: Install RPi and Pinebook Pro U-Boot
+      file: ../base/uboot.sh
 
 disk:
   size: 16GB

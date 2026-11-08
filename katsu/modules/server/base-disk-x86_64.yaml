@@ -1,0 +1,44 @@
+builder: dnf
+distro: Ultramarine Linux 44 (Server Edition)
+
+import:
+  - ../base/base.yaml
+  - ../base/base-disk.yaml
+  - server.yaml
+
+scripts:
+  post:
+    - id: grub
+      name: Set up GRUB
+      file: ../base/grub-setup.sh
+    - id: multi-user
+      priority: 60
+      name: Set default target to multi-user
+      file: ../base/default-target.sh
+
+disk:
+  # Preserve at least 20 GiB for the root filesystem after EFI and /boot.
+  size: 26GB
+  partitions:
+    - label: EFI
+      type: esp
+      size: 512MB
+      filesystem: efi
+      mountpoint: /boot/efi
+
+    - label: boot
+      type: xbootldr
+      size: 4GB
+      filesystem: ext4
+      mountpoint: /boot
+
+    - label: root
+      flags:
+        - grow-fs
+      type: root
+      filesystem: ext4
+      mountpoint: /
+
+dnf:
+  releasever: 44
+  exec: dnf5

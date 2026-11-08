@@ -42,6 +42,8 @@ The image itself is similar to the vanilla Fedora image, but includes the Ultram
 
 `katsu/modules/xfce` xfce edition build scripts.
 
+`katsu/modules/server` server edition build scripts (preinstalled disk image and Anaconda installer ISO).
+
 `katsu/modules/live` holds yamls and config scripts that live ISO images need.
 
 `katsu/modules/ports/chromebook` scripts to build various types of chromebook images.

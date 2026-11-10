@@ -5,7 +5,7 @@ import:
   - ../../../plasma/plasma-live.yaml
   - ../../../plasma/base-disk-x86_64.yaml
 
-distro: Ultramarine 45 (Chromebook Edition)
+distro: Ultramarine 45 for Chromebook
 
 out_file: ultramarine-cb-45.img
 

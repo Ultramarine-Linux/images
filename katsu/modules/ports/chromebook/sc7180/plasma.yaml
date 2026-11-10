@@ -5,7 +5,7 @@ import:
   - ../../../plasma/plasma.yaml
   - ../../../plasma/base-disk-aarch64.yaml
 
-distro: Ultramarine 45 (sc7180 Chromebook)
+distro: Ultramarine 45 for sc7180 Chromebook
 
 out_file: ultramarine-cb-sc7180-45.img
 

@@ -5,7 +5,7 @@ import:
   - ../../../gnome/gnome.yaml
   - ../../../gnome/base-disk-aarch64.yaml
 
-distro: Ultramarine GNOME 45 (sc7180 Chromebook)
+distro: Ultramarine GNOME 45 for sc7180 Chromebook
 
 out_file: ultramarine-cb-sc7180-45.img
 

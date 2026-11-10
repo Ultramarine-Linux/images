@@ -6,7 +6,6 @@ dnf:
     - "@ultramarine-plasma-product-environment"
     - "@ultramarine-plasma-no-flatpak-apps"
     - ultramarine-release-plasma
-    - ultramarine-release-identity-plasma
   exclude:
     - ibus
     - ibus-mozc

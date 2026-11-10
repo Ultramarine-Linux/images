@@ -30,3 +30,7 @@ scripts:
 dnf:
   releasever: 45
   exec: dnf5
+  exclude:
+    - ultramarine-release-identity-gnome
+  packages:
+    - ultramarine-release-identity-gnome-surface

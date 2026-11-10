@@ -1,0 +1,9 @@
+{
+  "repoOwner": "ultramarine-linux",
+  "repoName": "images",
+  "resetAuthor": true,
+  "targetBranchChoices": ["umrawhide", "um44", "um43"],
+  "branchLabelMapping": {
+    "^sync-(.+)$": "$1"
+  }
+}

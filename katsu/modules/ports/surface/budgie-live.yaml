@@ -7,7 +7,7 @@ import:
   - ../../budgie/budgie.yaml
   - surface.yaml
 
-distro: Ultramarine Budgie 45
+distro: Ultramarine Budgie 45 for Surface
 
 out_file: ultramarine-surface-budgie-45.iso
 

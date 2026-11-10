@@ -5,7 +5,7 @@ import:
   - ../../../xfce/xfce-live.yaml
   - ../../../xfce/base-disk-x86_64.yaml
 
-distro: Ultramarine Xfce 45 (Chromebook Edition)
+distro: Ultramarine Xfce 45 for Chromebook
 
 out_file: ultramarine-cbe-xfce-45.img
 

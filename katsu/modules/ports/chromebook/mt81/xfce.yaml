@@ -5,7 +5,7 @@ import:
   - ../../../xfce/xfce.yaml
   - ../../../xfce/base-disk-aarch64.yaml
 
-distro: Ultramarine Xfce 45 (mt8183 Chromebook)
+distro: Ultramarine Xfce 45 for mt8183 Chromebook
 
 out_file: ultramarine-cb-mt8183-xfce-45.img
 

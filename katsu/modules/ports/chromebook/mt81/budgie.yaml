@@ -5,7 +5,7 @@ import:
   - ../../../budgie/budgie.yaml
   - ../../../budgie/base-disk-aarch64.yaml
 
-distro: Ultramarine Budgie 45 (mt8183 Chromebook)
+distro: Ultramarine Budgie 45 for mt8183 Chromebook
 
 out_file: ultramarine-cb-mt8183-budgie-45.img
 

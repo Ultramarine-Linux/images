@@ -5,7 +5,7 @@ import:
   - ../../../budgie/budgie.yaml
   - ../../../budgie/base-disk-aarch64.yaml
 
-distro: Ultramarine Budgie 45 (sc7180 Chromebook)
+distro: Ultramarine Budgie 45 for sc7180 Chromebook
 
 out_file: ultramarine-cb-sc7180-budgie-45.img
 

@@ -5,7 +5,7 @@ import:
   - ../../../xfce/xfce.yaml
   - ../../../xfce/base-disk-aarch64.yaml
 
-distro: Ultramarine Xfce 45 (sc7180 Chromebook)
+distro: Ultramarine Xfce 45 for sc7180 Chromebook
 
 out_file: ultramarine-cb-sc7180-xfce-45.img
 

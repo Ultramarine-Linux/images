@@ -5,7 +5,7 @@ import:
   - ../../../plasma/plasma.yaml
   - ../../../plasma/base-disk-aarch64.yaml
 
-distro: Ultramarine 45 (mt8183 Chromebook)
+distro: Ultramarine 45 for mt8183 Chromebook
 
 out_file: ultramarine-cb-mt8183-45.img
 

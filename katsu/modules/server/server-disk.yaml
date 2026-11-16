@@ -1,0 +1,17 @@
+builder: dnf
+
+import:
+  - ../base/base-disk.yaml
+  - server.yaml
+
+distro: Ultramarine Linux 44 (Server Edition)
+
+out_file: ultramarine-server-44.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet"
+
+dnf:
+  releasever: 44
+  exec: dnf5

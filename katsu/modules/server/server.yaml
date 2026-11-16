@@ -1,0 +1,30 @@
+scripts:
+  post:
+    # mkfs.erofs embeds image-policy labels from file_contexts. Avoid host-side
+    # setfiles, which cannot apply Cockpit's image-only context types.
+    - id: selinux-setup
+      name: Preserve SELinux labels for the Server image
+      inline: "true"
+      chroot: false
+      priority: 100
+
+dnf:
+  releasever: 44
+  exec: dnf5
+  packages:
+    - ultramarine-release-server
+    - ultramarine-release-identity-server
+    - openssh-server
+    - selinux-policy-targeted
+    - cockpit
+    - podman
+    - ceph-common
+    - golang-github-containernetworking-cni
+    - btop
+    - kubernetes1.35-client
+    - tetra
+    - ultramarine-shell-config
+    - zsh
+  exclude:
+    - gnome-initial-setup
+    - initial-setup*

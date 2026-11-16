@@ -1,0 +1,53 @@
+builder: dnf
+
+import:
+  - ../base/base.yaml
+  - server.yaml
+
+distro: Ultramarine Server 44
+
+out_file: ultramarine-server-44-live-anaconda.iso
+
+bootloader: grub
+
+# Keep the local display and mirror boot/install output to the first serial port.
+kernel_cmdline: "quiet rhgb console=tty0 console=ttyS0,115200n8"
+
+iso:
+  volume_id: UM-Srv-Live-Anaconda
+
+scripts:
+  post:
+    - id: server-live-anaconda
+      name: Start the Server Anaconda installer
+      file: server-live-anaconda.sh
+    - id: server-anaconda-branding
+      name: Apply Ultramarine Anaconda branding
+      file: server-anaconda-branding.sh
+
+dnf:
+  releasever: 44
+  exec: dnf5
+  packages:
+    - kernel
+    # Anaconda invokes the RPM Python bindings and needs rpmrc/macros.
+    - rpm
+    - glibc-all-langpacks
+    - dracut-live
+    - dracut-network
+    - dracut-squash
+    - isomd5sum
+    - livesys-scripts
+    - rsync
+    - anaconda-dracut
+    - anaconda-live
+    - anaconda-install-env-deps
+    - anaconda-webui
+    - "@anaconda-tools"
+    # Minimal graphical session required by Fedora Server's WebUI installer.
+    - gdm
+    - gnome-shell
+    - gnome-session
+    - gnome-kiosk
+    - gnome-terminal
+    - firefox

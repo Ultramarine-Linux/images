@@ -26,7 +26,6 @@ dnf:
     - ibus-table-chinese-cangjie
     - langpacks-*
     - im-chooser
-    - toolbox
     - python3-botocore
     - abrt*
     - llvm21-libs # s76-sched pkging issue: https://github.com/terrapkg/packages/pull/13670

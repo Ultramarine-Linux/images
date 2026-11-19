@@ -9,4 +9,3 @@ dnf:
     - "@ultramarine-xfce-product-environment"
     - "@ultramarine-xfce-no-flatpak-apps"
     - ultramarine-release-xfce
-    - ultramarine-release-identity-xfce

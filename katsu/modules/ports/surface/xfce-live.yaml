@@ -27,3 +27,7 @@ scripts:
 dnf:
   releasever: 45
   exec: dnf5
+  exclude:
+    - ultramarine-release-identity-xfce
+  packages:
+    - ultramarine-release-identity-xfce-surface

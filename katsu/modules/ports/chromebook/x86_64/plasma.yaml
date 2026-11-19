@@ -16,3 +16,7 @@ kernel_cmdline: "quiet rhgb"
 dnf:
   releasever: 45
   exec: dnf5
+  exclude:
+    - ultramarine-release-identity-plasma
+  packages:
+    - ultramarine-release-identity-plasma-chromebook

@@ -18,3 +18,4 @@ dnf:
     - ibus-typing-booster
     # idk why this is pulled in
     - anthy
+    - kcm-fcitx5 # temporary because of the thing

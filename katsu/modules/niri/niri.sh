@@ -8,6 +8,7 @@ install -Dm0644 /usr/share/icons/hicolor/scalable/apps/start-here.svg \
 gtk-update-icon-cache -qf /usr/share/icons/hicolor
 
 # greetd runs noctalia-greeter
+# TODO: see if this is still needed after the greeter package fix
 cat > /etc/greetd/config.toml <<EOF
 [terminal]
 vt = 1

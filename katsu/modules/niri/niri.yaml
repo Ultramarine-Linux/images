@@ -1,0 +1,61 @@
+dnf:
+  releasever: 45
+  exec: dnf5
+  packages:
+    # TODO: @ultramarine-niri-product-environment
+    - "@base-graphical"
+    - "@container-management"
+    - "@desktop-accessibility"
+    - "@firefox"
+    - "@fonts"
+    - "@guest-desktop-agents"
+    - "@hardware-support"
+    - "@multimedia"
+    - "@networkmanager-submodules"
+    - "@printing"
+    - "@standard"
+    - "@ultramarine-desktop-product-common"
+    - "@ultramarine-peripheral-support"
+    - "@ultramarine-product-common"
+    - ultramarine-release-niri
+    - ultramarine-release-identity-niri
+    - ultramarine-niri-settings
+    - niri
+    - xwayland-satellite
+    - noctalia
+    - noctalia-greeter
+    - greetd
+    - greetd-selinux
+    - xdg-desktop-portal-gnome
+    - xdg-desktop-portal-gtk
+    - gnome-keyring
+    - gnome-keyring-pam
+    - wireplumber
+    - upower
+    - NetworkManager-wifi
+    - xdg-user-dirs
+    - nautilus
+    - gnome-disk-utility
+    - papers-thumbnailer
+    - gvfs-smb
+    - gvfs-mtp
+    - gvfs-afc
+    - gvfs-gphoto2
+    - gvfs-fuse
+    - glycin-thumbnailer
+    - gst-thumbnailers
+    - nautilus-open-any-terminal
+    - adw-gtk3-theme
+    - alacritty
+    - xdg-terminal-exec
+    - firefox
+    - gnome-text-editor
+    - nwg-displays
+    # otherwise micro is the default editor (oof)
+    - nano-default-editor
+    - ultramarine-backgrounds-compat
+  exclude:
+    # recommended by niri but are replaced by noctalia
+    - fuzzel
+    - swaylock
+    - waybar

@@ -27,7 +27,6 @@ jobs:
           - gnome/base-disk
           - plasma/base-disk
           - xfce/base-disk
-          - niri/base-disk
           # - ports/chromebook/x86_64/gnome
           # - ports/chromebook/x86_64/plasma
           # - ports/chromebook/x86_64/xfce
@@ -115,7 +114,6 @@ jobs:
           - gnome/gnome-live-anaconda
           - plasma/plasma-live-anaconda
           - xfce/xfce-live-anaconda
-          - niri/niri-live-anaconda
           # - ports/chromebook/x86_64/gnome
           # - ports/chromebook/x86_64/plasma
           # - ports/chromebook/x86_64/xfce

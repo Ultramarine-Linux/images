@@ -8,10 +8,10 @@ env:
 
 on:
   push:
-    branches: ["um44"]
+    branches: ["um45"]
   workflow_dispatch:
   pull_request:
-    branches: ["um44"]
+    branches: ["um45"]
 
 jobs:
   #### BASE IMAGES ####
@@ -267,7 +267,7 @@ jobs:
       - live-iso
       - image
       - tar
-    if: always() && github.event_name != 'pull_request'
+    if: always() && github.event_name == 'push'
 
     steps:
       - name: Download artifacts
@@ -289,7 +289,7 @@ jobs:
             type=$2
 
 
-            IMAGEDIR=images/$type/ultramarine/44/
+            IMAGEDIR=images/$type/ultramarine/45/
             mkdir -p $IMAGEDIR
 
             filename=$(basename -- "$file")

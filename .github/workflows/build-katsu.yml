@@ -115,6 +115,7 @@ jobs:
           - gnome/gnome-live-anaconda
           - plasma/plasma-live-anaconda
           - xfce/xfce-live-anaconda
+          - niri/niri-live-anaconda
           # - ports/chromebook/x86_64/gnome
           # - ports/chromebook/x86_64/plasma
           # - ports/chromebook/x86_64/xfce

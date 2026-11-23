@@ -1,23 +1,6 @@
 #!/bin/bash -x
 set -euo pipefail
 
-# noctalia needs a scalable logo, ultramarine-logos only ships pngs
-# TODO: fix this in ultramarine-logos, generally fix that whole package jesus
-install -Dm0644 /usr/share/icons/hicolor/scalable/apps/start-here.svg \
-    /usr/share/icons/hicolor/scalable/apps/ultramarine.svg
-gtk-update-icon-cache -qf /usr/share/icons/hicolor
-
-# greetd runs noctalia-greeter
-# TODO: see if this is still needed after the greeter package fix
-cat > /etc/greetd/config.toml <<EOF
-[terminal]
-vt = 1
-
-[default_session]
-command = "/usr/bin/noctalia-greeter-session"
-user = "greetd"
-EOF
-
 # initialize noctlia
 # goes in sync.toml since greeter.toml would always override sync
 if ! grep -q '^\[appearance' /var/lib/noctalia-greeter/sync.toml; then
@@ -51,6 +34,3 @@ path = "/usr/share/backgrounds/default-dark.png"
 fill_mode = "crop"
 EOF
 fi
-
-# TODO: see if this can just get added to something like 85-display-manager.preset in umpkgs
-systemctl enable --force greetd.service

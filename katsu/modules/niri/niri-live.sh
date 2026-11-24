@@ -2,32 +2,29 @@
 set -euo pipefail
 
 cat >>/var/lib/livesys/livesys-session-extra <<'ALLEOF'
-sed -i 's/NoDisplay=true/NoDisplay=false/' /usr/share/applications/com.fyralabs.Readymade.desktop
+# log straight into niri as liveuser
+cat >>/etc/greetd/ultramarine-niri.toml <<EOF
 
-mkdir -p /home/liveuser/.config/noctalia
-cat >/home/liveuser/.config/noctalia/zz-live-install.toml <<'EOF'
-[desktop_widgets]
-enabled = true
-
-[desktop_widgets.widget.live_install]
-type = "button"
-cx = 160.0
-cy = 160.0
-
-[desktop_widgets.widget.live_install.settings]
-glyph   = "download"
-label   = "Install to Hard Drive"
-command = "liveinst"
-variant = "primary"
+[initial_session]
+command = "niri-session"
+user = "liveuser"
 EOF
-chown -R liveuser:liveuser /home/liveuser/.config
 
-cat >/usr/share/polkit-1/rules.d/20-livesys-niri.rules <<'EOF'
-polkit.addRule(function(action, subject) {
-    if (!subject.local) return undefined;
-    if (subject.user !== 'liveuser') return undefined;
-    if (action.id.indexOf('org.fedoraproject.pkexec.liveinst') !== 0) return undefined;
-    return 'yes';
-});
+# liveuser has no password, let the greeter log back in after a logout
+if ! grep -q '^\[auth\]' /var/lib/noctalia-greeter/greeter.toml; then
+    printf '\n[auth]\nallow_empty_password = true\n' >>/var/lib/noctalia-greeter/greeter.toml
+fi
+
+# dont lock the screen on idle
+sed -i '/^\s*\[idle\.behavior\.lock\]/,/^\s*\[/s/enabled = true/enabled = false/' \
+    /home/liveuser/.config/noctalia/config.toml
+
+# no update downloads in the live session
+cat >>/usr/share/glib-2.0/schemas/org.gnome.software.gschema.override <<EOF
+[org.gnome.software]
+allow-updates=false
+download-updates=false
 EOF
+rm -f /etc/xdg/autostart/org.gnome.Software.desktop
+glib-compile-schemas /usr/share/glib-2.0/schemas
 ALLEOF

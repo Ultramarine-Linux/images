@@ -10,6 +10,7 @@ if ! grep -q '^\[appearance' /var/lib/noctalia-greeter/sync.toml; then
 scheme = "Synced"
 theme_mode = "dark"
 font_family = "Noto Sans"
+hide_logo = "true"
 
 [appearance.palette]
 primary = "#3daee9"
@@ -32,5 +33,7 @@ on_hover = "#0f0f0f"
 [appearance.wallpaper]
 path = "/usr/share/backgrounds/default-dark.png"
 fill_mode = "crop"
+
+[
 EOF
 fi

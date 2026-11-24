@@ -116,7 +116,7 @@ jobs:
           - aarch64
         variant:
           # - gnome/gnome-live
-          # - gnome/niri-live
+          # - niri/niri-live
           # - plasma/plasma-live
           # - xfce/xfce-live
           # - ports/surface/gnome-live

@@ -29,12 +29,15 @@ jobs:
           - xfce/base-disk
           - niri/base-disk
           # - ports/chromebook/x86_64/gnome
+          # - ports/chromebook/x86_64/niri
           # - ports/chromebook/x86_64/plasma
           # - ports/chromebook/x86_64/xfce
           # - ports/chromebook/mt81/gnome
+          # - ports/chromebook/mt81/niri-
           # - ports/chromebook/mt81/plasma
           # - ports/chromebook/mt81/xfce
           # - ports/chromebook/sc7180/gnome
+          # - ports/chromebook/sc7180/niri
           # - ports/chromebook/sc7180/plasma
           # - ports/chromebook/sc7180/xfce
           # TODO: figure out how to get loop devices to work on our ARM runners
@@ -42,17 +45,23 @@ jobs:
           - arch: aarch64
             variant: ports/chromebook/x86_64/gnome
           - arch: aarch64
+            variant: ports/chromebook/x86_64/niri
+          - arch: aarch64
             variant: ports/chromebook/x86_64/plasma
           - arch: aarch64
             variant: ports/chromebook/x86_64/xfce
           - arch: x86_64
             variant: ports/chromebook/mt81/gnome
           - arch: x86_64
+            variant: ports/chromebook/mt81/niri
+          - arch: x86_64
             variant: ports/chromebook/mt81/plasma
           - arch: x86_64
             variant: ports/chromebook/mt81/xfce
           - arch: x86_64
             variant: ports/chromebook/sc7180/gnome
+          - arch: x86_64
+            variant: ports/chromebook/sc7180/niri
           - arch: x86_64
             variant: ports/chromebook/sc7180/plasma
           - arch: x86_64
@@ -107,9 +116,11 @@ jobs:
           - aarch64
         variant:
           # - gnome/gnome-live
+          # - gnome/niri-live
           # - plasma/plasma-live
           # - xfce/xfce-live
           # - ports/surface/gnome-live
+          # - ports/surface/niri-live
           # - ports/surface/plasma-live
           # - ports/surface/xfce-live
           - gnome/gnome-live-anaconda
@@ -117,11 +128,14 @@ jobs:
           - xfce/xfce-live-anaconda
           - niri/niri-live-anaconda
           # - ports/chromebook/x86_64/gnome
+          # - ports/chromebook/x86_64/niri
           # - ports/chromebook/x86_64/plasma
           # - ports/chromebook/x86_64/xfce
         exclude:
           - arch: aarch64
             variant: ports/surface/gnome-live
+          - arch: aarch64
+            variant: ports/surface/niri-live
           - arch: aarch64
             variant: ports/surface/plasma-live
           - arch: aarch64

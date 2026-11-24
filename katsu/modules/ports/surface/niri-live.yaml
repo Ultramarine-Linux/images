@@ -1,0 +1,32 @@
+builder: dnf
+
+import:
+  - ../../base/base.yaml
+  - ../../live/anaconda.yaml
+  - ../../live/live.yaml
+  - ../../niri/niri.yaml
+  - surface.yaml
+
+distro: Ultramarine Niri 45 for Surface
+
+out_file: ultramarine-surface-niri-45.iso
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-niri-Live
+
+scripts:
+  post:
+    - id: niri
+      name: Set up Niri
+      file: ../../niri/./niri.sh
+    - id: niri-live-anaconda
+      name: Set up Niri Live (for Anaconda)
+      file: ./../niri/./niri-live-anaconda.sh
+
+dnf:
+  releasever: 45
+  exec: dnf5

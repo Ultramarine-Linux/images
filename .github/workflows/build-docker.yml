@@ -7,10 +7,10 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 on:
   push:
-    branches: ["um44"]
+    branches: ["um45"]
   workflow_dispatch:
   pull_request:
-    branches: ["um44"]
+    branches: ["um45"]
 
 jobs:
   #### DOCKER ######

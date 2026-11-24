@@ -3,7 +3,7 @@ builder: dnf
 import:
   - ../chromebook.yaml
   - ../../../niri/niri-live.yaml
-  - ../../../niri/niri-disk-x86_64.yaml
+  - ../../../niri/base-disk-x86_64.yaml
 
 distro: Ultramarine Niri 45 for Chromebook
 

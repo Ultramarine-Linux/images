@@ -23,9 +23,12 @@ scripts:
     - id: niri
       name: Set up Niri
       file: ../../niri/./niri.sh
+    - id: niri-live
+      name: Set up Niri Live
+      file: ../../niri/./niri-live.sh
     - id: niri-live-anaconda
       name: Set up Niri Live (for Anaconda)
-      file: ./../niri/./niri-live-anaconda.sh
+      file: ../../niri/./niri-live-anaconda.sh
 
 dnf:
   releasever: 45

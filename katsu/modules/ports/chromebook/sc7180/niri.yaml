@@ -3,7 +3,7 @@ builder: dnf
 import:
   - sc7180.yaml
   - ../../../niri/niri.yaml
-  - ../../../niri/niri-disk-aarch64.yaml
+  - ../../../niri/base-disk-aarch64.yaml
 
 distro: Ultramarine Niri 45 for sc7180 Chromebook
 

@@ -2,26 +2,21 @@
 set -euo pipefail
 
 cat >>/var/lib/livesys/livesys-session-extra <<'ALLEOF'
-sed -i 's/NoDisplay=true/NoDisplay=false/' /usr/share/applications/liveinst.desktop
+# install button on the bar, right after the launcher
+sed -i 's/^\(\s*start = \[ "launcher",\)/\1 "live-install",/' \
+    /home/liveuser/.config/noctalia/config.toml
+cat >>/home/liveuser/.config/noctalia/config.toml <<EOF
 
-mkdir -p /home/liveuser/.config/noctalia
-cat >/home/liveuser/.config/noctalia/zz-live-install.toml <<'EOF'
-[desktop_widgets]
-enabled = true
+[widget.live-install]
+type = "custom_button"
+glyph = "download"
+label = "Install to Hard Drive"
 
-[desktop_widgets.widget.live_install]
-type = "button"
-cx = 160.0
-cy = 160.0
-
-[desktop_widgets.widget.live_install.settings]
-glyph   = "download"
-label   = "Install to Hard Drive"
-command = "liveinst"
-variant = "primary"
+[widget.live-install.actions]
+left = "exec liveinst"
 EOF
-chown -R liveuser:liveuser /home/liveuser/.config
 
+# let liveuser start the installer without a password
 cat >/usr/share/polkit-1/rules.d/20-livesys-niri.rules <<'EOF'
 polkit.addRule(function(action, subject) {
     if (!subject.local) return undefined;

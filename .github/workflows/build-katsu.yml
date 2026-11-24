@@ -33,7 +33,7 @@ jobs:
           # - ports/chromebook/x86_64/plasma
           # - ports/chromebook/x86_64/xfce
           # - ports/chromebook/mt81/gnome
-          # - ports/chromebook/mt81/niri-
+          # - ports/chromebook/mt81/niri
           # - ports/chromebook/mt81/plasma
           # - ports/chromebook/mt81/xfce
           # - ports/chromebook/sc7180/gnome

@@ -1,6 +1,13 @@
 #!/bin/bash -x
 set -euo pipefail
 
+# only greeter.toml supports hide_logo
+cat >>/var/lib/noctalia-greeter/greeter.toml <<EOF
+
+[appearance]
+hide_logo = true
+EOF
+
 # initialize noctlia
 # goes in sync.toml since greeter.toml would always override sync
 if ! grep -q '^\[appearance' /var/lib/noctalia-greeter/sync.toml; then
@@ -10,7 +17,6 @@ if ! grep -q '^\[appearance' /var/lib/noctalia-greeter/sync.toml; then
 scheme = "Synced"
 theme_mode = "dark"
 font_family = "Noto Sans"
-hide_logo = "true"
 
 [appearance.palette]
 primary = "#3daee9"

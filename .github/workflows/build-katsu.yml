@@ -24,9 +24,9 @@ jobs:
           - aarch64
         variant:
           - base/base-disk
-          - gnome/base-disk
-          - plasma/base-disk
-          - xfce/base-disk
+          - #gnome/base-disk
+          - #plasma/base-disk
+          - #xfce/base-disk
           - niri/base-disk
           # - ports/chromebook/x86_64/gnome
           # - ports/chromebook/x86_64/niri
@@ -123,9 +123,9 @@ jobs:
           # - ports/surface/niri-live
           # - ports/surface/plasma-live
           # - ports/surface/xfce-live
-          - gnome/gnome-live-anaconda
-          - plasma/plasma-live-anaconda
-          - xfce/xfce-live-anaconda
+          #- gnome/gnome-live-anaconda
+          #- plasma/plasma-live-anaconda
+          #- xfce/xfce-live-anaconda
           - niri/niri-live-anaconda
           # - ports/chromebook/x86_64/gnome
           # - ports/chromebook/x86_64/niri

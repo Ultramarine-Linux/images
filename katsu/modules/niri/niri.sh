@@ -33,7 +33,5 @@ on_hover = "#0f0f0f"
 [appearance.wallpaper]
 path = "/usr/share/backgrounds/default-dark.png"
 fill_mode = "crop"
-
-[
 EOF
 fi

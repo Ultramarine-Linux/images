@@ -37,8 +37,6 @@ dnf:
     - util-linux-user
     - livesys-scripts
     - rsync
-    - htop
-    - vim
     - nano
     # for drivers and other stuff
     - kernel

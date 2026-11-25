@@ -221,7 +221,7 @@ jobs:
           - x86_64
           - aarch64
         variant:
-          # - ports/wsl/wsl
+          - ports/wsl/wsl
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'ubuntu-22.04-arm' }}
     container:
       image: ghcr.io/fyralabs/katsu:0.11.1

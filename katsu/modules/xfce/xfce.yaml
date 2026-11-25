@@ -5,6 +5,8 @@ dnf:
     - "dnfdragora*"
     - dnfdragora-updater
     - desktop-backgrounds-compat
+    # fedora's xfce-desktop group hard-lists it, nano is the default
+    - vim-enhanced
   packages:
     - "@ultramarine-xfce-product-environment"
     - "@ultramarine-xfce-no-flatpak-apps"

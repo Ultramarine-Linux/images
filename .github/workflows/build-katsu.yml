@@ -24,9 +24,9 @@ jobs:
           - aarch64
         variant:
           - base/base-disk
-          - #gnome/base-disk
-          - #plasma/base-disk
-          - #xfce/base-disk
+          # - gnome/base-disk
+          # - plasma/base-disk
+          # - xfce/base-disk
           - niri/base-disk
           # - ports/chromebook/x86_64/gnome
           # - ports/chromebook/x86_64/niri
@@ -123,9 +123,9 @@ jobs:
           # - ports/surface/niri-live
           # - ports/surface/plasma-live
           # - ports/surface/xfce-live
-          #- gnome/gnome-live-anaconda
-          #- plasma/plasma-live-anaconda
-          #- xfce/xfce-live-anaconda
+          # - gnome/gnome-live-anaconda
+          # - plasma/plasma-live-anaconda
+          # - xfce/xfce-live-anaconda
           - niri/niri-live-anaconda
           # - ports/chromebook/x86_64/gnome
           # - ports/chromebook/x86_64/niri
@@ -221,7 +221,7 @@ jobs:
           - x86_64
           - aarch64
         variant:
-          - ports/wsl/wsl
+          # - ports/wsl/wsl
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'ubuntu-22.04-arm' }}
     container:
       image: ghcr.io/fyralabs/katsu:0.11.1

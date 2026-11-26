@@ -4,7 +4,7 @@ dnf:
   releasever: 45
   exec: dnf5
   options:
-    - --enablerepo=linux-surface.repo
+    - --enablerepo=linux-surface
   packages:
     - kernel-surface
     - kernel-surface-core

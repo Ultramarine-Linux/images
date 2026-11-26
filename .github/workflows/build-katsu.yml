@@ -119,14 +119,20 @@ jobs:
           # - niri/niri-live
           # - plasma/plasma-live
           # - xfce/xfce-live
-          # - ports/surface/gnome-live
-          # - ports/surface/niri-live
-          # - ports/surface/plasma-live
-          # - ports/surface/xfce-live
+          - ports/surface/gnome-live
+          - ports/surface/niri-live
+          - ports/surface/plasma-live
+          - ports/surface/xfce-live
           # - gnome/gnome-live-anaconda
           # - plasma/plasma-live-anaconda
           # - xfce/xfce-live-anaconda
           - niri/niri-live-anaconda
+          - ports/surface/gnome-live
+          - ports/surface/plasma-live
+          - ports/surface/xfce-live
+          - gnome/gnome-live-anaconda
+          - plasma/plasma-live-anaconda
+          - xfce/xfce-live-anaconda
           # - ports/chromebook/x86_64/gnome
           # - ports/chromebook/x86_64/niri
           # - ports/chromebook/x86_64/plasma

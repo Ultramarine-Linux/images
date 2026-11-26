@@ -30,7 +30,7 @@ dnf:
     - glibc-common
     - dnf
     - git
-    - vim
+    - nano
     - rpm
     - libgomp
     - ultramarine-release-identity-basic

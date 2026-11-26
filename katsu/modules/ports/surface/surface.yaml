@@ -26,6 +26,7 @@ dnf:
 
   exclude:
     - libwacom
+    - virtualbox-guest-additions
     - kernel
     - kernel-core
     - kernel-devel*

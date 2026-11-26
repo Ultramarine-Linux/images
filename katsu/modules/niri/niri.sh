@@ -1,6 +1,9 @@
 #!/bin/bash -x
 set -euo pipefail
 
+# hide useless default noctalia launcher entry
+sed -i '/^\[Desktop Entry\]/a NoDisplay=true' /usr/share/applications/dev.noctalia.Noctalia.desktop
+
 # only greeter.toml supports hide_logo
 cat >>/var/lib/noctalia-greeter/greeter.toml <<EOF
 

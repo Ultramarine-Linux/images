@@ -1,0 +1,18 @@
+builder: dnf
+
+import:
+  - sc7180.yaml
+  - ../../../niri/niri.yaml
+  - ../../../niri/base-disk-aarch64.yaml
+
+distro: Ultramarine Niri 45 for sc7180 Chromebook
+
+out_file: ultramarine-cb-sc7180-niri-45.img
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+dnf:
+  releasever: 45
+  exec: dnf5

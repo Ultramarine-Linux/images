@@ -1,0 +1,43 @@
+builder: dnf
+distro: Ultramarine Niri 45
+
+import:
+  - ../base/base.yaml
+  - ../base/base-disk.yaml
+  - ../base/desktop.yaml
+  - niri.yaml
+
+scripts:
+  post:
+    - id: niri
+      name: Set up niri
+      file: niri.sh
+    - id: grub
+      name: Set up GRUB
+      file: ../base/grub-setup.sh
+
+disk:
+  size: 16GB
+  partitions:
+    - label: EFI
+      type: esp
+      size: 512MB
+      filesystem: efi
+      mountpoint: /boot/efi
+
+    - label: boot
+      type: xbootldr
+      size: 1GB
+      filesystem: ext4
+      mountpoint: /boot
+
+    - label: root
+      flags:
+        - grow-fs
+      type: root
+      filesystem: ext4
+      mountpoint: /
+
+dnf:
+  releasever: 45
+  exec: dnf5

@@ -1,0 +1,12 @@
+dnf:
+  releasever: 45
+  exec: dnf5
+  packages:
+    - "@ultramarine-niri-product-environment"
+    - ultramarine-release-niri
+    - ultramarine-release-identity-niri
+  exclude:
+    # recommended by niri but are replaced by noctalia features
+    - fuzzel
+    - swaylock
+    - waybar

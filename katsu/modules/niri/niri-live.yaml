@@ -1,0 +1,32 @@
+builder: dnf
+
+import:
+  - ../base/base.yaml
+  - ../live/live.yaml
+  - ../base/desktop.yaml
+  - ../live/readymade.yaml
+  - niri.yaml
+
+distro: Ultramarine Niri 45
+
+out_file: ultramarine-niri-45-live.iso
+
+bootloader: grub
+
+kernel_cmdline: "quiet rhgb"
+
+iso:
+  volume_id: UM-niri-Live
+
+scripts:
+  post:
+    - id: niri
+      name: Set up niri
+      file: niri.sh
+    - id: niri-live
+      name: Set up Niri Live
+      file: niri-live.sh
+
+dnf:
+  releasever: 45
+  exec: dnf5

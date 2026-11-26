@@ -24,16 +24,20 @@ jobs:
           - aarch64
         variant:
           - base/base-disk
-          - gnome/base-disk
-          - plasma/base-disk
-          - xfce/base-disk
+          # - gnome/base-disk
+          # - plasma/base-disk
+          # - xfce/base-disk
+          - niri/base-disk
           # - ports/chromebook/x86_64/gnome
+          # - ports/chromebook/x86_64/niri
           # - ports/chromebook/x86_64/plasma
           # - ports/chromebook/x86_64/xfce
           # - ports/chromebook/mt81/gnome
+          # - ports/chromebook/mt81/niri
           # - ports/chromebook/mt81/plasma
           # - ports/chromebook/mt81/xfce
           # - ports/chromebook/sc7180/gnome
+          # - ports/chromebook/sc7180/niri
           # - ports/chromebook/sc7180/plasma
           # - ports/chromebook/sc7180/xfce
           # TODO: figure out how to get loop devices to work on our ARM runners
@@ -41,11 +45,15 @@ jobs:
           - arch: aarch64
             variant: ports/chromebook/x86_64/gnome
           - arch: aarch64
+            variant: ports/chromebook/x86_64/niri
+          - arch: aarch64
             variant: ports/chromebook/x86_64/plasma
           - arch: aarch64
             variant: ports/chromebook/x86_64/xfce
           - arch: x86_64
             variant: ports/chromebook/mt81/gnome
+          - arch: x86_64
+            variant: ports/chromebook/mt81/niri
           - arch: x86_64
             variant: ports/chromebook/mt81/plasma
           - arch: x86_64
@@ -53,12 +61,14 @@ jobs:
           - arch: x86_64
             variant: ports/chromebook/sc7180/gnome
           - arch: x86_64
+            variant: ports/chromebook/sc7180/niri
+          - arch: x86_64
             variant: ports/chromebook/sc7180/plasma
           - arch: x86_64
             variant: ports/chromebook/sc7180/xfce
     runs-on: ${{ matrix.arch == 'x86_64' && 'cirun-x86-64-lg' || 'ubuntu-22.04-arm' }}
     container:
-      image: ghcr.io/fyralabs/katsu:0.10.3
+      image: ghcr.io/fyralabs/katsu:0.11.1
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
@@ -106,8 +116,17 @@ jobs:
           - aarch64
         variant:
           # - gnome/gnome-live
+          # - niri/niri-live
           # - plasma/plasma-live
           # - xfce/xfce-live
+          - ports/surface/gnome-live
+          - ports/surface/niri-live
+          - ports/surface/plasma-live
+          - ports/surface/xfce-live
+          # - gnome/gnome-live-anaconda
+          # - plasma/plasma-live-anaconda
+          # - xfce/xfce-live-anaconda
+          - niri/niri-live-anaconda
           - ports/surface/gnome-live
           - ports/surface/plasma-live
           - ports/surface/xfce-live
@@ -115,18 +134,21 @@ jobs:
           - plasma/plasma-live-anaconda
           - xfce/xfce-live-anaconda
           # - ports/chromebook/x86_64/gnome
+          # - ports/chromebook/x86_64/niri
           # - ports/chromebook/x86_64/plasma
           # - ports/chromebook/x86_64/xfce
         exclude:
           - arch: aarch64
             variant: ports/surface/gnome-live
           - arch: aarch64
+            variant: ports/surface/niri-live
+          - arch: aarch64
             variant: ports/surface/plasma-live
           - arch: aarch64
             variant: ports/surface/xfce-live
     runs-on: ${{ matrix.arch == 'x86_64' && 'cirun-x86-64-lg' || 'ubuntu-22.04-arm' }}
     container:
-      image: ghcr.io/fyralabs/katsu:0.10.3
+      image: ghcr.io/fyralabs/katsu:0.11.1
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
@@ -208,7 +230,7 @@ jobs:
           - ports/wsl/wsl
     runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'ubuntu-22.04-arm' }}
     container:
-      image: ghcr.io/fyralabs/katsu:0.10.3
+      image: ghcr.io/fyralabs/katsu:0.11.1
       # Pass /dev from host to container
       # Very hacky, but it works
       # Microsoft/Github, if you're reading this,
@@ -261,7 +283,7 @@ jobs:
   push-image:
     runs-on: cirun-x86-64-lg-disk
     container:
-      image: ghcr.io/fyralabs/katsu:0.10.3
+      image: ghcr.io/fyralabs/katsu:0.11.1
     environment: production
     needs:
       - live-iso

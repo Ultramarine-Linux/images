@@ -5,6 +5,5 @@ dnf:
     - "@ultramarine-gnome-product-environment"
     - "@ultramarine-gnome-no-flatpak-apps"
     - ultramarine-release-gnome
-    - ultramarine-release-identity-gnome
   exclude:
     - gnome-initial-setup
